@@ -244,9 +244,9 @@ export default function Hero() {
                 </div>
                 <div className="form-btn col-md-12 col-lg-auto">
                   <button className="th-btn">
-                    <button src="assets/img/icon/search.svg" alt="">
+                    <div src="assets/img/icon/search.svg" alt="">
                       Search
-                    </button>
+                    </div>
                   </button>
                 </div>
               </div>
