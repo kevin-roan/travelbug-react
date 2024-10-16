@@ -1,5 +1,6 @@
 {
   "name": "tranvelbug",
+  "author": "kevin roan",
   "private": true,
   "version": "0.0.0",
   "type": "module",
