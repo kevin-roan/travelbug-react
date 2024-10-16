@@ -8,6 +8,7 @@ import Destination from "./pages/destination";
 import About from "./pages/about";
 import FAQ from "./pages/faq";
 import Contact from "./pages/contact";
+import Blog from "./pages/blog";
 
 function App() {
   useEffect(() => {
@@ -33,7 +34,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Contact />
+      <Blog />
     </div>
   );
 }
