@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [loading, setLoading] = useState(true);
@@ -97,7 +98,7 @@ function Header() {
               <div className="row align-items-center justify-content-between">
                 <div className="col-auto">
                   <div className="header-logo">
-                    <a href="index.php">
+                    <a href="/">
                       <img
                         src="/assets/img/travelbug_logo.png"
                         alt="Travel Bug"
@@ -110,36 +111,36 @@ function Header() {
                   <nav className="main-menu d-none d-xl-inline-block">
                     <ul>
                       <li>
-                        <a href="index.php">Home</a>
+                        <a href="/">Home</a>
                       </li>
                       <li>
-                        <a href="about.php">About Us</a>
+                        <Link to="/about">About us</Link>
                       </li>
                       <li className="menu-item-has-children">
                         <a href="#">Holidays</a>
                         <ul className="sub-menu">
                           <li>
-                            <a href="destination.php">Beach Holidays</a>
+                            <a href="/destination">Beach Holidays</a>
                           </li>
                           <li>
-                            <a href="destination.php">Ayurveda Wellness</a>
+                            <a href="/destination">Ayurveda Wellness</a>
                           </li>
                           <li>
-                            <a href="destination.php">Escorted Tour</a>
+                            <a href="/destination">Escorted Tour</a>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a href="contact.php">Visa Requirements</a>
+                        <a href="/contact">Visa Requirements</a>
                       </li>
                       <li>
-                        <a href="faq.php">FAQ</a>
+                        <a href="/faq">FAQ</a>
                       </li>
                       <li>
-                        <a href="blog.php">Blog</a>
+                        <a href="/blog">Blog</a>
                       </li>
                       <li>
-                        <a href="contact.php">Contact us</a>
+                        <a href="/contact">Contact us</a>
                       </li>
                     </ul>
                   </nav>
