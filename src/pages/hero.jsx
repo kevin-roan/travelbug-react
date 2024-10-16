@@ -123,14 +123,21 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          {/** 
- <div className="th-swiper-custom">
-                <button data-slider-prev="#heroSlide1" className="slider-arrow slider-prev"><button src="assets/img/icon/right-arrow.svg" alt=""></button>
-                <div className="slider-pagination"></div>
-                <button data-slider-next="#heroSlide1" className="slider-arrow slider-next"><button src="assets/img/icon/left-arrow.svg" alt=""></button>
-            </div>
-
-            **/}
+          <div className="th-swiper-custom">
+            <button
+              data-slider-prev="#heroSlide1"
+              className="slider-arrow slider-prev"
+            >
+              <img src="assets/img/icon/right-arrow.svg" alt="Previous Slide" />
+            </button>
+            <div className="slider-pagination"></div>
+            <button
+              data-slider-next="#heroSlide1"
+              className="slider-arrow slider-next"
+            >
+              <img src="assets/img/icon/left-arrow.svg" alt="Next Slide" />
+            </button>
+          </div>
         </div>
       </div>
       <div className="booking-sec">
@@ -951,8 +958,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -999,8 +1006,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -1047,8 +1054,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -1095,8 +1102,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -1143,8 +1150,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -1191,8 +1198,8 @@ export default function Hero() {
                           <span style={{ width: "100%" }}>
                             Rated
                             <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>(4.8
-                            Rating)
+                            based on <span className="rating">4.8</span>
+                            (4.8 Rating)
                           </span>
                         </div>
                         <a
@@ -2787,7 +2794,7 @@ export default function Hero() {
                   />
                 </div>
                 <div className="form-group col-12">
-                  <label for="new_email">Your email*</label>
+                  <label htmlFor="new_email">Your email*</label>
                   <input
                     type="text"
                     className="form-control"
@@ -2797,7 +2804,7 @@ export default function Hero() {
                   />
                 </div>
                 <div className="form-group col-12">
-                  <label for="new_email_confirm">Confirm email*</label>
+                  <label htmlFor="new_email_confirm">Confirm email*</label>
                   <input
                     type="text"
                     className="form-control"

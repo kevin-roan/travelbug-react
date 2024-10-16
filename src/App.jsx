@@ -4,6 +4,7 @@ import "./App.css";
 import "./sass/style.scss";
 import "./Swiper-Bundle.css";
 import Footer from "./components/footer.jsx";
+import AnimatedCursor from "react-animated-cursor";
 import { useEffect } from "react";
 
 function App() {
@@ -28,6 +29,27 @@ function App() {
   return (
     <>
       <Header />
+      <AnimatedCursor
+        innerSize={14}
+        outerSize={32}
+        color="28, 168, 203"
+        outerAlpha={0.2}
+        innerScale={0.7}
+        outerScale={2}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
       <Outlet /> {/* This renders the matched child route */}
       <Footer />
     </>
