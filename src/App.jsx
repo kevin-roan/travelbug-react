@@ -4,6 +4,10 @@ import "./App.css";
 import "./sass/style.scss";
 import "./Swiper-Bundle.css";
 import { useEffect } from "react";
+import Destination from "./pages/destination";
+import About from "./pages/about";
+import FAQ from "./pages/faq";
+import Contact from "./pages/contact";
 
 function App() {
   useEffect(() => {
@@ -29,7 +33,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Hero />
+      <Contact />
     </div>
   );
 }
