@@ -5,7 +5,6 @@ import "./sass/style.scss";
 import "./Swiper-Bundle.css";
 import Footer from "./components/footer.jsx";
 import AnimatedCursor from "react-animated-cursor";
-import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
@@ -25,7 +24,6 @@ function App() {
       document.body.removeChild(script2);
     };
   }, []);
-
   return (
     <>
       <Header />

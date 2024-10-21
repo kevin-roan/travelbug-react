@@ -1,5 +1,27 @@
 //workoing
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Destination() {
+  const [destinations, setDestinations] = useState([]);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/home")
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+        setDestinations(response.data.data.popular_destinations);
+        console.log(destinations, "destinations");
+      })
+      .catch((error) => {
+        setError(error);
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
+
   return (
     <>
       <div
