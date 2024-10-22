@@ -1,4 +1,21 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function About() {
+  const [aboutInfo, setAboutInfo] = useState("");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/about")
+      .then((response) => {
+        setAboutInfo(response.data.data);
+        console.log("about info data", response.data.data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, []);
   return (
     <>
       <div
@@ -40,63 +57,40 @@ export default function About() {
               <div className="ps-xl-4">
                 <div className="title-area mb-20">
                   <span className="sub-title style1 ">
-                    Welcome To Travel Bug
+                    Welcome To Travel Bug India
                   </span>
                   <h2 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
-                    We are world reputeted travel agency
+                    {aboutInfo && aboutInfo.welcome_message.title}
                   </h2>
                 </div>
                 <p className="pe-xl-5">
-                  There are many variations of passages of available but the
-                  majority have suffered alteration in some form, by injected
-                  hum randomised words.
+                  {aboutInfo && aboutInfo.welcome_message.introduction}
                 </p>
                 <p className="mb-30 pe-xl-5">
-                  {" "}
-                  Leiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt.
+                  {aboutInfo && aboutInfo.why_choose_travel_bug.introduction}
+                </p>
+                <p className="mb-30 pe-xl-5">
+                  {aboutInfo &&
+                    aboutInfo.why_choose_travel_bug.special_features
+                      .description}
                 </p>
                 <div className="about-item-wrap">
-                  <div className="about-item style2">
-                    <div className="about-item_img">
-                      <img src="assets/img/icon/about_1_1.svg" alt="" />
-                    </div>
-                    <div className="about-item_centent">
-                      <h5 className="box-title">Exclusive Trip</h5>
-                      <p className="about-item_text">
-                        There are many variations of passages of available but
-                        the majority.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="about-item style2">
-                    <div className="about-item_img">
-                      <img src="assets/img/icon/about_1_2.svg" alt="" />
-                    </div>
-                    <div className="about-item_centent">
-                      <h5 className="box-title">Safety First Always</h5>
-                      <p className="about-item_text">
-                        There are many variations of passages of available but
-                        the majority.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="about-item style2">
-                    <div className="about-item_img">
-                      <img src="assets/img/icon/about_1_3.svg" alt="" />
-                    </div>
-                    <div className="about-item_centent">
-                      <h5 className="box-title">Professional Guide</h5>
-                      <p className="about-item_text">
-                        There are many variations of passages of available but
-                        the majority.
-                      </p>
-                    </div>
-                  </div>
+                  {aboutInfo &&
+                    aboutInfo.why_choose_travel_bug.special_features.features.map(
+                      (item, index) => (
+                        <div className="about-item style2" key={index}>
+                          <div className="about-item_img">
+                            <img src="assets/img/icon/about_1_1.svg" alt="" />
+                          </div>
+                          <div className="about-item_centent">
+                            <h5 className="box-title">{item.title}</h5>
+                            <p className="about-item_text">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      ),
+                    )}
                 </div>
                 <div className="mt-35">
                   <a href="contact.html" className="th-btn style3 th-icon">
@@ -143,7 +137,13 @@ export default function About() {
         <div className="container">
           <div className="title-area text-center">
             <span className="sub-title">Services We Offer</span>
-            <h2 className="sec-title">Our Amazing services</h2>
+            <h2 className="sec-title">
+              {aboutInfo && aboutInfo.travel_packages.title}
+            </h2>
+
+            <p className="mb-30 pe-xl-5">
+              {aboutInfo && aboutInfo.travel_packages.introduction}
+            </p>
           </div>
           <div className="row gy-4 gx-4">
             <div className="col-xl-3 col-lg-4 col-md-6">
