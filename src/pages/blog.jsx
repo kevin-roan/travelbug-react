@@ -1,4 +1,22 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Blog() {
+  const [blogData, setBlogdata] = useState();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/blog")
+      .then((response) => {
+        setBlogdata(response.data.data.blogs);
+        console.log("response", response.data.data.blogs);
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(error);
+      });
+  }, []);
   return (
     <>
       <div
@@ -20,215 +38,43 @@ export default function Blog() {
       <section className="th-blog-wrapper space-top space-extra-bottom">
         <div className="container">
           <div className="row">
-            <div className="col-xxl-8 col-lg-7">
-              <div className="th-blog blog-single has-post-thumbnail">
-                <div className="blog-img">
-                  <a href="blog-details.html">
-                    <img
-                      src="assets/img/blog/blog-s-1-1.jpg"
-                      alt="Blog Image"
-                    />
-                  </a>
-                </div>
-                <div className="blog-content">
-                  <div className="blog-meta">
-                    <a className="author" href="blog.html">
-                      <i className="fa-light fa-user"></i>by David Smith
-                    </a>
-                    <a href="blog.html">
-                      <i className="fa-solid fa-calendar-days"></i>05 May, 2024
-                    </a>
-                    <a href="blog-details.html">
-                      <img src="assets/img/icon/map.svg" alt="" />
-                      Tour Guide
-                    </a>
-                  </div>
-                  <h2 className="blog-title">
-                    <a href="blog-details.html">
-                      Living sustainability: A day in the life at realar
-                      residence
-                    </a>
-                  </h2>
-                  <p className="blog-text">
-                    Uniquely pursue emerging experiences before liemerging
-                    content. Efficiently underwhelm customer directed total
-                    linkage after B2C synergy. Dynamically simplify superior
-                    human capital whereas efficient infrastructures generate
-                    business web-readiness after wireless outsourcing.
-                  </p>
-                  <a href="blog-details.html" className="th-btn style4 th-icon">
-                    Read More
-                  </a>
-                </div>
-              </div>
-              <div className="th-blog blog-single has-post-thumbnail">
-                <div
-                  className="blog-img th-slider"
-                  data-slider-options='{"effect":"fade"}'
-                >
-                  <div className="swiper-wrapper">
-                    <div className="swiper-slide">
-                      <a href="blog-details.html">
-                        <img
-                          src="assets/img/blog/blog-s-1-2.jpg"
-                          alt="Blog Image"
-                        />
+            {blogData &&
+              blogData.blogs.map((blog, index) => (
+                <div className="col-xxl-8 col-lg-7" key={index}>
+                  <div className="th-blog blog-single has-post-thumbnail">
+                    <div className="blog-img">
+                      <a href={blog.link}>
+                        <img src={blog.image} alt="Blog Image" />
                       </a>
                     </div>
-                    <div className="swiper-slide">
-                      <a href="blog-details.html">
-                        <img
-                          src="assets/img/blog/blog-s-1-4.jpg"
-                          alt="Blog Image"
-                        />
+                    <div className="blog-content">
+                      <div className="blog-meta">
+                        <a className="author" href="blog.html">
+                          <i className="fa-light fa-user"></i>by David Smith
+                        </a>
+                        <a href="blog.html">
+                          <i className="fa-solid fa-calendar-days"></i>05 May,
+                          2024
+                        </a>
+                        <a href="blog-details.html">
+                          <img src="assets/img/icon/map.svg" alt="" />
+                          Tour Guide
+                        </a>
+                      </div>
+                      <h2 className="blog-title">
+                        <a href="blog-details.html">{blog.title}</a>
+                      </h2>
+                      <p className="blog-text">{blog.description}</p>
+                      <a
+                        href="blog-details.html"
+                        className="th-btn style4 th-icon"
+                      >
+                        Read More
                       </a>
                     </div>
                   </div>
-                  <button className="slider-arrow slider-prev">
-                    <i className="far fa-arrow-left"></i>
-                  </button>
-                  <button className="slider-arrow slider-next">
-                    <i className="far fa-arrow-right"></i>
-                  </button>
                 </div>
-                <div className="blog-content">
-                  <div className="blog-meta">
-                    <a className="author" href="blog.html">
-                      <i className="fa-light fa-user"></i>by David Smith
-                    </a>
-                    <a href="blog.html">
-                      <i className="fa-solid fa-calendar-days"></i>05 May, 2024
-                    </a>
-                    <a href="blog-details.html">
-                      <img src="assets/img/icon/map.svg" alt="" />
-                      Tour Guide
-                    </a>
-                  </div>
-                  <h2 className="blog-title">
-                    <a href="blog-details.html">
-                      Exploring The Green Spaces Of Realar Residence Harmony
-                      with Nature
-                    </a>
-                  </h2>
-                  <p className="blog-text">
-                    Uniquely pursue emerging experiences before liemerging
-                    content. Efficiently underwhelm customer directed total
-                    linkage after B2C synergy. Dynamically simplify superior
-                    human capital whereas efficient infrastructures generate
-                    business web-readiness after wireless outsourcing.
-                  </p>
-                  <a href="blog-details.html" className="th-btn style4 th-icon">
-                    Read More=
-                  </a>
-                </div>
-              </div>
-              <div className="th-blog blog-single has-post-thumbnail">
-                <div className="blog-content">
-                  <div className="blog-meta">
-                    <a className="author" href="blog.html">
-                      <i className="fa-light fa-user"></i>by David Smith
-                    </a>
-                    <a href="blog.html">
-                      <i className="fa-solid fa-calendar-days"></i>05 May, 2024
-                    </a>
-                    <a href="blog-details.html">
-                      <img src="assets/img/icon/map.svg" alt="" />
-                      Tour Guide
-                    </a>
-                  </div>
-                  <h2 className="blog-title">
-                    <a href="blog-details.html">
-                      Enrich Your Mind Envision Your Future Education for
-                      Success
-                    </a>
-                  </h2>
-                  <p className="blog-text">
-                    Uniquely pursue emerging experiences before liemerging
-                    content. Efficiently underwhelm customer directed total
-                    linkage after B2C synergy. Dynamically simplify superior
-                    human capital whereas efficient infrastructures generate
-                    business web-readiness after wireless outsourcing.
-                  </p>
-                  <a href="blog-details.html" className="th-btn style4 th-icon">
-                    Read More
-                  </a>
-                </div>
-              </div>
-              <div className="th-blog blog-single has-post-thumbnail">
-                <div
-                  className="blog-img"
-                  data-overlay="bg-title"
-                  data-opacity="5"
-                >
-                  <a href="blog-details.html">
-                    <img
-                      src="assets/img/blog/blog-s-1-2.jpg"
-                      alt="Blog Image"
-                    />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/watch?v=cQfIUPw72Dk"
-                    className="play-btn popup-video"
-                  >
-                    <i className="fas fa-play"></i>
-                  </a>
-                </div>
-                <div className="blog-content">
-                  <div className="blog-meta">
-                    <a className="author" href="blog.html">
-                      <i className="fa-light fa-user"></i>by David Smith
-                    </a>
-                    <a href="blog.html">
-                      <i className="fa-solid fa-calendar-days"></i>05 May, 2024
-                    </a>
-                    <a href="blog-details.html">
-                      <img src="assets/img/icon/map.svg" alt="" />
-                      Tour Guide
-                    </a>
-                  </div>
-                  <h2 className="blog-title">
-                    <a href="blog-details.html">
-                      University className starting soon while the lovely valley
-                      team work
-                    </a>
-                  </h2>
-                  <p className="blog-text">
-                    Uniquely pursue emerging experiences before liemerging
-                    content. Efficiently underwhelm customer directed total
-                    linkage after B2C synergy. Dynamically simplify superior
-                    human capital whereas efficient infrastructures generate
-                    business web-readiness after wireless outsourcing.
-                  </p>
-                  <a href="blog-details.html" className="th-btn style4 th-icon">
-                    Read More
-                  </a>
-                </div>
-              </div>
-
-              <div className="th-pagination ">
-                <ul>
-                  <li>
-                    <a className="active" href="blog.html">
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="blog.html">2</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">3</a>
-                  </li>
-                  <li>
-                    <a href="blog.html">4</a>
-                  </li>
-                  <li>
-                    <a className="next-page" href="blog.html">
-                      Next <img src="assets/img/icon/arrow-right4.svg" alt="" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              ))}
             <div className="col-xxl-4 col-lg-5">
               <aside className="sidebar-area">
                 <div className="widget widget_search  ">
