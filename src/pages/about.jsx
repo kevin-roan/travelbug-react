@@ -146,165 +146,28 @@ export default function About() {
             </p>
           </div>
           <div className="row gy-4 gx-4">
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_1.jpg"
-                    alt="image"
-                  />
+            {aboutInfo &&
+              aboutInfo.travel_packages.packages.map((item) => (
+                <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
+                  <div className="destination-item th-ani">
+                    <div className="destination-item_img global-img">
+                      <img
+                        src="assets/img/destination/destination_4_8.jpg"
+                        alt={item.title}
+                      />
+                    </div>
+                    <div className="destination-content">
+                      <h3 className="box-title">
+                        <a href="service-details.html">{item.title}</a>
+                      </h3>
+                      <p className="destination-text">{item.description}</p>
+                      <a href="contact.html" className="th-btn style4 th-icon">
+                        Book Now
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Photo Shoot</a>
-                  </h3>
-                  <p className="destination-text">20 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_2.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Tour Guide</a>
-                  </h3>
-                  <p className="destination-text">22 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_3.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Cozy Event</a>
-                  </h3>
-                  <p className="destination-text">23 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_4.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Interesting Rest</a>
-                  </h3>
-                  <p className="destination-text">24 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_5.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Kayaking</a>
-                  </h3>
-                  <p className="destination-text">25 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_6.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Safe Flight</a>
-                  </h3>
-                  <p className="destination-text">26 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_7.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Entertainment</a>
-                  </h3>
-                  <p className="destination-text">27 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-xl-3 col-lg-4 col-md-6">
-              <div className="destination-item th-ani">
-                <div className="destination-item_img global-img">
-                  <img
-                    src="assets/img/destination/destination_4_8.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="destination-content">
-                  <h3 className="box-title">
-                    <a href="service-details.html">Delicisious Food</a>
-                  </h3>
-                  <p className="destination-text">28 Listing</p>
-                  <a href="contact.html" className="th-btn style4 th-icon">
-                    Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
       </section>
