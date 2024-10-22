@@ -1,4 +1,22 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function FAQ() {
+  const [faq, setFaq] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/faq")
+      .then((response) => {
+        setFaq(response.data.data.faqs);
+      })
+      .catch((error) => {
+        setError(error);
+        console.error("There was an error fetching the data", error);
+      });
+  });
+
   return (
     <>
       <div
@@ -31,321 +49,36 @@ export default function FAQ() {
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="accordion-area accordion mb-30" id="faqAccordion">
-                <div className="accordion-card style2 active">
-                  <div className="accordion-header" id="collapse-item-1">
-                    <button
-                      className="accordion-button "
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-1"
-                      aria-expanded="true"
-                      aria-controls="collapse-1"
+                {/* faq start */}
+                {faq.map((faq, index) => (
+                  <div className="accordion-card style2 " key={index}>
+                    <div
+                      className="accordion-header"
+                      id={`collapse-item-${index}`}
                     >
-                      Q1. How do I start the process of buying a home?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-1"
-                    className="accordion-collapse collapse show"
-                    aria-labelledby="collapse-item-1"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        The open-concept layout seamlessly connects the living
-                        room with the fully equipped kitchen, boasting
-                        top-of-the-line appliances and all the essentials for
-                        preparing delicious meals.
-                      </p>
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#collapse-${index}`}
+                        aria-expanded="false"
+                        aria-controls={`collapse-${index}`}
+                      >
+                        Q{index + 1}.{faq.question}
+                      </button>
+                    </div>
+                    <div
+                      id={`collapse-${index}`}
+                      className="accordion-collapse collapse "
+                      aria-labelledby={`collapse-item-${index}`}
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div className="accordion-body style2">
+                        <p className="faq-text"> {faq.answer}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-2">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-2"
-                      aria-expanded="false"
-                      aria-controls="collapse-2"
-                    >
-                      Q2. What factors should I consider when choosing a
-                      neighborhood?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-2"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-2"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        The responsibility for paying closing costs can vary
-                        depending on the terms negotiated between the buyer and
-                        the seller, as well as local customs and regulations. In
-                        some cases
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-3">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-3"
-                      aria-expanded="false"
-                      aria-controls="collapse-3"
-                    >
-                      Q3. How can I determine the right price for selling my
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-3"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-3"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Research the local real estate market to understand
-                        current trends, property values, and comparable sales in
-                        the area. Knowing the market will give you leverage
-                        during negotiations
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-4">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-4"
-                      aria-expanded="false"
-                      aria-controls="collapse-4"
-                    >
-                      Q4. What are closing costs and who is responsible for
-                      paying them?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-4"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-4"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Research the local real estate market to understand
-                        current trends, property values, and comparable sales in
-                        the area. Knowing the market will give you leverage
-                        during negotiations
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-5">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-5"
-                      aria-expanded="false"
-                      aria-controls="collapse-5"
-                    >
-                      Q5. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-5"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-5"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Understand the local real estate market trends, recent
-                        sales prices of similar properties, and the overall
-                        supply and demand dynamics in the area. This knowledge
-                        will help you determine a fair market value for the
-                        property you're interested in
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-6">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-6"
-                      aria-expanded="false"
-                      aria-controls="collapse-6"
-                    >
-                      Q6. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-6"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-6"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Set a realistic budget and stick to it. Consider your
-                        financial situation, including your down payment,
-                        mortgage pre-approval, and ongoing expenses. Knowing
-                        your financial limits will prevent you from
-                        overextending yourself during negotiations.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-7">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-7"
-                      aria-expanded="false"
-                      aria-controls="collapse-7"
-                    >
-                      Q7. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-7"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-7"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Identify Your Priorities: Determine your must-have
-                        features in a property and prioritize them during
-                        negotiations. This will help you focus on what matters
-                        most and avoid getting sidetracked by less important
-                        aspects of the deal.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-8">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-8"
-                      aria-expanded="false"
-                      aria-controls="collapse-8"
-                    >
-                      Q8. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-8"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-8"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Understand that negotiation is a give-and-take process.
-                        Be willing to walk away from a deal if the terms are not
-                        favorable or if the seller is not willing to negotiate
-                        in good faith. This demonstrates to the seller that
-                        you're serious and can sometimes prompt them to
-                        reconsider their position.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-9">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-9"
-                      aria-expanded="false"
-                      aria-controls="collapse-9"
-                    >
-                      Q9. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-9"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-9"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        Make a competitive but reasonable initial offer based on
-                        your research and budget. Include any contingencies or
-                        conditions that are important to you, such as a home
-                        inspection or financing approval.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="accordion-card style2 ">
-                  <div className="accordion-header" id="collapse-item-10">
-                    <button
-                      className="accordion-button collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapse-10"
-                      aria-expanded="false"
-                      aria-controls="collapse-10"
-                    >
-                      Q10. How can I negotiate the best price when buying a
-                      property?
-                    </button>
-                  </div>
-                  <div
-                    id="collapse-10"
-                    className="accordion-collapse collapse "
-                    aria-labelledby="collapse-item-10"
-                    data-bs-parent="#faqAccordion"
-                  >
-                    <div className="accordion-body style2">
-                      <p className="faq-text">
-                        {" "}
-                        If you're a qualified buyer with a strong financial
-                        position, emphasize this to the seller. Sellers are
-                        often more willing to negotiate with buyers who are
-                        well-prepared and can demonstrate their ability to close
-                        the deal quickly and smoothly.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
