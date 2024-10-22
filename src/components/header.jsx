@@ -250,19 +250,19 @@ export default function Header() {
               </li>
 
               <li>
-                <a href="/contact">Visa Requirements</a>
+                <a href="contact">Visa Requirements</a>
               </li>
 
               <li>
-                <a href="/contact">FAQ</a>
+                <a href="contact">FAQ</a>
               </li>
 
               <li>
-                <a href="/blog">Blog</a>
+                <a href="blog">Blog</a>
               </li>
 
               <li>
-                <a href="/contact">Contact us</a>
+                <a href="contact">Contact us</a>
               </li>
             </ul>
           </div>
@@ -295,7 +295,7 @@ export default function Header() {
               <div className="row align-items-center justify-content-between">
                 <div className="col-auto">
                   <div className="header-logo">
-                    <a href="/index">
+                    <a href="">
                       <img
                         src="assets/img/travelbug_logo.png"
                         alt="Travel Bug"
@@ -308,42 +308,42 @@ export default function Header() {
                   <nav className="main-menu d-none d-xl-inline-block">
                     <ul>
                       <li>
-                        <a href="/index">Home</a>
+                        <a href="index">Home</a>
                       </li>
 
                       <li>
-                        <a href="/about">About Us</a>
+                        <a href="about">About Us</a>
                       </li>
 
                       <li className="menu-item-has-children">
                         <a href="#">Holydays</a>
                         <ul className="sub-menu">
                           <li>
-                            <a href="/destination">Beach Holidays</a>
+                            <a href="destination">Beach Holidays</a>
                           </li>
                           <li>
-                            <a href="/destination">Ayurveda Wellness</a>
+                            <a href="destination">Ayurveda Wellness</a>
                           </li>
                           <li>
-                            <a href="/destination">Escorted Tour</a>
+                            <a href="destination">Escorted Tour</a>
                           </li>
                         </ul>
                       </li>
 
                       <li>
-                        <a href="/contact">Visa Requirements</a>
+                        <a href="contact">Visa Requirements</a>
                       </li>
 
                       <li>
-                        <a href="/faq">FAQ</a>
+                        <a href="faq">FAQ</a>
                       </li>
 
                       <li>
-                        <a href="/blog">Blog</a>
+                        <a href="blog">Blog</a>
                       </li>
 
                       <li>
-                        <a href="/contact">Contact us</a>
+                        <a href="contact">Contact us</a>
                       </li>
                     </ul>
                   </nav>

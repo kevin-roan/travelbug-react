@@ -18,27 +18,27 @@ const router = createHashRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Hero />,
       },
       {
-        path: "/blog",
+        path: "blog",
         element: <Blog />,
       },
       {
-        path: "/faq",
+        path: "faq",
         element: <FAQ />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/destination",
+        path: "destination",
         element: <Destination />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
     ],
