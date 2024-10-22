@@ -1,4 +1,21 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Contact() {
+  const [contactInfo, setContactInfo] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/contact_us")
+      .then((response) => {
+        setContactInfo(response.data.data.addresses);
+      })
+      .catch((error) => {
+        setError(error);
+        console.error(error);
+      });
+  }, []);
   return (
     <>
       <div
@@ -24,18 +41,30 @@ export default function Contact() {
             <h2 className="sec-title">Our Contact Information</h2>
           </div>
           <div className="row gy-4 justify-content-center">
-            <div className="col-xl-4 col-lg-6">
-              <div className="about-contact-grid style2">
-                <div className="about-contact-icon">
-                  <img src="assets/img/icon/location-dot2.svg" alt="" />
+            {contactInfo &&
+              contactInfo.map((address, index) => (
+                <div className="col-xl-4 col-lg-6" key={index}>
+                  <div className="about-contact-grid style2">
+                    <div className="about-contact-icon">
+                      <img src="assets/img/icon/location-dot2.svg" alt="" />
+                    </div>
+                    <div className="about-contact-details">
+                      <h6 className="box-title">{address.title}</h6>
+                      <p className="about-contact-details-text">
+                        {address.address.line_1}
+                      </p>
+                      <p className="about-contact-details-text">
+                        {address.address.line_2}
+                      </p>
+                      <p className="about-contact-details-text">
+                        {address.address.line_3}
+                      </p>
+                      <p className="about-contact-details-text"></p>
+                    </div>
+                  </div>
                 </div>
-                <div className="about-contact-details">
-                  <h6 className="box-title">Our Address</h6>
-                  <p className="about-contact-details-text"> </p>
-                  <p className="about-contact-details-text">Kochi, Kerala</p>
-                </div>
-              </div>
-            </div>
+              ))}
+            {/* 
             <div className="col-xl-4 col-lg-6">
               <div className="about-contact-grid">
                 <div className="about-contact-icon">
@@ -68,6 +97,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>{" "}
