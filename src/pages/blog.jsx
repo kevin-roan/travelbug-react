@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Blog() {
@@ -10,7 +10,6 @@ export default function Blog() {
       .get("/api/blog")
       .then((response) => {
         setBlogdata(response.data.data.blogs);
-        console.log("response", response.data.data.blogs);
       })
       .catch((err) => {
         setError(err);
