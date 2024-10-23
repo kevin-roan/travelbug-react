@@ -1,4 +1,5 @@
-// working
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <div>
@@ -36,13 +37,13 @@ function Footer() {
                 <div className="widget footer-widget">
                   <div className="th-widget-about">
                     <div className="about-logo">
-                      <a href="index.php">
+                      <Link to="/">
                         <img
                           src="assets/img/travelbug_logo.png"
                           alt="Travel Bug"
-                          style={{width:"150px"}}
+                          style={{ width: "150px" }}
                         />
-                      </a>
+                      </Link>
                     </div>
                     <p className="about-text">
                       Discover new horizons with tailored travel experiences.
@@ -74,13 +75,13 @@ function Footer() {
                   <div className="menu-all-pages-container">
                     <ul className="menu">
                       <li>
-                        <a href="index.php">Home</a>
+                        <Link to="/">Home</Link>
                       </li>
                       <li>
-                        <a href="about.php">About us</a>
+                        <Link to="/about">About us</Link>
                       </li>
                       <li>
-                        <a href="contact.php">Contact us</a>
+                        <Link to="/contact">Contact us</Link>
                       </li>
                       <li>
                         <a href="terms_conditions.php">Terms & Conditions</a>
@@ -186,7 +187,11 @@ function Footer() {
         >
           <path
             d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-            style={{transition: "stroke-dashoffset 10ms linear 0s", strokeDasharray: "307.919, 307.919", strokeDashoffset: "307.919"}}
+            style={{
+              transition: "stroke-dashoffset 10ms linear 0s",
+              strokeDasharray: "307.919, 307.919",
+              strokeDashoffset: "307.919",
+            }}
           ></path>
         </svg>
       </div>
@@ -340,7 +345,9 @@ function Footer() {
                 </div>
 
                 <div className="form-btn mt-20 col-12">
-                  <button type="submit" className="th-btn btn-fw th-radius2">Sign up</button>
+                  <button type="submit" className="th-btn btn-fw th-radius2">
+                    Sign up
+                  </button>
                 </div>
               </div>
               <p className="form-messages mb-0 mt-3"></p>

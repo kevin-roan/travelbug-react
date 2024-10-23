@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
     <>
@@ -68,9 +70,9 @@ export default function Header() {
           <div className="widget  ">
             <div className="th-widget-about">
               <div className="about-logo">
-                <a href="home-travel.html">
+                <Link to="/">
                   <img src="assets/img/logo2.svg" alt="Travel Bug" />
-                </a>
+                </Link>
               </div>
               <p className="about-text">
                 Discover new horizons with tailored travel experiences. Your
@@ -213,29 +215,29 @@ export default function Header() {
             <i className="fal fa-times"></i>
           </button>
           <div className="mobile-logo">
-            <a href="home-travel.html">
+            <Link to="/">
               <img src="assets/img/logo2.svg" alt="Travel Bug" />
-            </a>
+            </Link>
           </div>
           <div className="th-mobile-menu">
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/about">About Us</a>
+                <Link to="/about">About Us</Link>
               </li>
               <li className="menu-item-has-children">
                 <a href="#">Holidays</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="/destination">Beach Holidays</a>
+                    <Link to="/destination">Beach Holidays</Link>
                   </li>
                   <li>
-                    <a href="/destination">Ayurveda Wellness</a>
+                    <Link to="/destination">Ayurveda Wellness</Link>
                   </li>
                   <li>
-                    <a href="/destination">Escorted Tour</a>
+                    <Link to="/destination">Escorted Tour</Link>
                   </li>
                 </ul>
               </li>
@@ -244,25 +246,25 @@ export default function Header() {
                 <a href="#">Blog</a>
                 <ul className="sub-menu">
                   <li>
-                    <a href="/blog">Blog</a>
+                    <Link to="/blog">Blog</Link>
                   </li>
                 </ul>
               </li>
 
               <li>
-                <a href="contact">Visa Requirements</a>
+                <Link to="/contact">Visa Requirements</Link>
               </li>
 
               <li>
-                <a href="contact">FAQ</a>
+                <Link to="/contact">FAQ</Link>
               </li>
 
               <li>
-                <a href="blog">Blog</a>
+                <Link to="/blog">Blog</Link>
               </li>
 
               <li>
-                <a href="contact">Contact us</a>
+                <Link to="/contact">Contact us</Link>
               </li>
             </ul>
           </div>
@@ -308,42 +310,42 @@ export default function Header() {
                   <nav className="main-menu d-none d-xl-inline-block">
                     <ul>
                       <li>
-                        <a href="index">Home</a>
+                        <Link to="/">Home</Link>
                       </li>
 
                       <li>
-                        <a href="about">About Us</a>
+                        <Link to="/about">About Us</Link>
                       </li>
 
                       <li className="menu-item-has-children">
                         <a href="#">Holydays</a>
                         <ul className="sub-menu">
                           <li>
-                            <a href="destination">Beach Holidays</a>
+                            <Link to="/destination">Beach Holidays</Link>
                           </li>
                           <li>
-                            <a href="destination">Ayurveda Wellness</a>
+                            <Link to="/destination">Ayurveda Wellness</Link>
                           </li>
                           <li>
-                            <a href="destination">Escorted Tour</a>
+                            <Link to="/destination">Escorted Tour</Link>
                           </li>
                         </ul>
                       </li>
 
                       <li>
-                        <a href="contact">Visa Requirements</a>
+                        <Link to="/contact">Visa Requirements</Link>
                       </li>
 
                       <li>
-                        <a href="faq">FAQ</a>
+                        <Link to="/faq">FAQ</Link>
                       </li>
 
                       <li>
-                        <a href="blog">Blog</a>
+                        <Link to="/blog">Blog</Link>
                       </li>
 
                       <li>
-                        <a href="contact">Contact us</a>
+                        <Link to="/contact">Contact us</Link>
                       </li>
                     </ul>
                   </nav>
