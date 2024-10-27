@@ -1,33 +1,18 @@
-// src/services/api.js
 import axios from "axios";
-const api_endpoint = "https://techasainfotech.com/travel_bug/web_api";
 
 const apiClient = axios.create({
-  baseURL: api_endpoint,
-  timeout: 10000,
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Example GET request
-export const fetchData = async () => {
+export const fetchAbout = async () => {
   try {
-    const response = await apiClient.get("/about"); // Replace with your endpoint
-    return response.data;
+    const response = await apiClient.get("/about");
+    return response.data.data; // Return the data from the response
   } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error; // Optional: Rethrow the error for further handling
-  }
-};
-
-// Example POST request
-export const postData = async (data) => {
-  try {
-    const response = await apiClient.post("/endpoint", data); // Replace with your endpoint
-    return response.data;
-  } catch (error) {
-    console.error("Error posting data:", error);
-    throw error; // Optional: Rethrow the error for further handling
+    console.error("Error fetching about data:", error);
+    throw error; // Re-throw the error for handling in the calling component
   }
 };
