@@ -16,6 +16,9 @@ export default function About() {
         setError(error);
       });
   }, []);
+  if (error) {
+    console.warning("Error fetching data", error);
+  }
   return (
     <>
       <div
