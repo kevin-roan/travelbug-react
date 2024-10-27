@@ -17,7 +17,7 @@ export default function About() {
       });
   }, []);
   if (error) {
-    console.warning("Error fetching data", error);
+    console.log("Error fetching data", error);
   }
   return (
     <>
