@@ -10,6 +10,7 @@ import About from "./pages/about";
 import Destination from "./pages/destination";
 import Contact from "./pages/contact";
 import Hero from "./pages/hero";
+import DestinationDetails from "./components/destination_details.jsx";
 
 const router = createHashRouter([
   {
@@ -40,6 +41,10 @@ const router = createHashRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "detination_details/:id",
+        element: <DestinationDetails />,
       },
     ],
   },
