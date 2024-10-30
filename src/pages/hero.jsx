@@ -1,4 +1,22 @@
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
 export default function Hero() {
+  const [homeData, setHomeData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/home")
+      .then((response) => {
+        setHomeData(response.data.data);
+        console.log(categories);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, []);
+
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -35,10 +53,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="tour.html" className="th-btn th-icon">
+                      <a href="/tour" className="th-btn th-icon">
                         Explore Tours
                       </a>
-                      <a href="contact.php" className="th-btn style2 th-icon">
+                      <a href="/contact" className="th-btn style2 th-icon">
                         Contact Us
                       </a>
                     </div>
@@ -73,10 +91,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="tour.html" className="th-btn th-icon">
+                      <a href="/tour" className="th-btn th-icon">
                         Explore Tours
                       </a>
-                      <a href="contact.php" className="th-btn style2 th-icon">
+                      <a href="/contact" className="th-btn style2 th-icon">
                         Contact Us
                       </a>
                     </div>
@@ -111,10 +129,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="tour.html" className="th-btn th-icon">
+                      <a href="/tour" className="th-btn th-icon">
                         Explore Tours
                       </a>
-                      <a href="contact.php" className="th-btn style2 th-icon">
+                      <a href="/contact" className="th-btn style2 th-icon">
                         Contact Us
                       </a>
                     </div>
@@ -143,7 +161,7 @@ export default function Hero() {
       <div className="booking-sec">
         <div className="container">
           <form
-            action="mail.php"
+            action="mail"
             method="POST"
             className="booking-form ajax-contact"
           >
@@ -266,260 +284,22 @@ export default function Hero() {
           </div>
           <div className="swiper categorySlider" id="categorySlide">
             <div className="swiper-wrapper">
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_1.jpg"
-                      alt="Image"
-                    />
+              {homeData &&
+                homeData.categories.map((catergory, _) => (
+                  <div className="swiper-slide" key={catergory.id}>
+                    <div className="category-card single">
+                      <div className="box-img global-img">
+                        <img src={catergory.image} alt="Image" />
+                      </div>
+                      <h3 className="box-title">
+                        <a href="destination.html">{catergory.title}</a>
+                      </h3>
+                      <a className="line-btn" href="destination.html">
+                        See more
+                      </a>
+                    </div>
                   </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Cruises</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_2.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Hiking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_3.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Airbirds</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_4.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Wildlife</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_5.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Walking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_1.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Cruises</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_2.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Hiking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_3.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Airbirds</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_4.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Wildlife</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_5.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Walking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_1.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Cruises</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_2.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Hiking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_3.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Airbirds</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_4.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Wildlife</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
-
-              <div className="swiper-slide">
-                <div className="category-card single">
-                  <div className="box-img global-img">
-                    <img
-                      src="assets/img/category/category_1_5.jpg"
-                      alt="Image"
-                    />
-                  </div>
-                  <h3 className="box-title">
-                    <a href="destination.html">Walking</a>
-                  </h3>
-                  <a className="line-btn" href="destination.html">
-                    See more
-                  </a>
-                </div>
-              </div>
+                ))}
             </div>
             <div className="swiper-pagination"></div>
           </div>
@@ -537,266 +317,43 @@ export default function Hero() {
             data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"}},"effect":"coverflow","coverflowEffect":{"rotate":"0","stretch":"95","depth":"212","modifier":"1"},"centeredSlides":"true"}'
           >
             <div className="swiper-wrapper">
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_1.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Maldives</a>
-                        </h4>
-                        <span className="destination-subtitle">15 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_2.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Thailand</a>
-                        </h4>
-                        <span className="destination-subtitle">22 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
+              {homeData &&
+                homeData.popular_destinations.map((destination, _) => (
+                  <div className="swiper-slide" key={destination.id}>
+                    <div className="destination-box gsap-cursor">
+                      <div className="destination-img">
+                        <img
+                          src={destination.image}
+                          alt="destination image"
+                          style={{
+                            height: "506px",
+                            width: "337px",
+                          }}
+                        />
+                        <div className="destination-content">
+                          <div className="media-left">
+                            <h4 className="box-title">
+                              <a href="destination-details.html">
+                                {destination.title}
+                              </a>
+                            </h4>
+                            <span className="destination-subtitle">
+                              15 Listing
+                            </span>
+                          </div>
+                          <div className="">
+                            <a
+                              href="destination-details.html"
+                              className="th-btn style2 th-icon"
+                            >
+                              View All
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_3.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Belgium</a>
-                        </h4>
-                        <span className="destination-subtitle">25 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_4.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Island</a>
-                        </h4>
-                        <span className="destination-subtitle">28 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_5.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Maldives</a>
-                        </h4>
-                        <span className="destination-subtitle">30 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_1.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Maldives</a>
-                        </h4>
-                        <span className="destination-subtitle">15 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_2.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Thailand</a>
-                        </h4>
-                        <span className="destination-subtitle">22 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_3.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Belgium</a>
-                        </h4>
-                        <span className="destination-subtitle">25 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_4.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Island</a>
-                        </h4>
-                        <span className="destination-subtitle">28 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="destination-box gsap-cursor">
-                  <div className="destination-img">
-                    <img
-                      src="assets/img/destination/destination_1_5.jpg"
-                      alt="destination image"
-                    />
-                    <div className="destination-content">
-                      <div className="media-left">
-                        <h4 className="box-title">
-                          <a href="destination-details.html">Maldives</a>
-                        </h4>
-                        <span className="destination-subtitle">30 Listing</span>
-                      </div>
-                      <div className="">
-                        <a
-                          href="destination-details.html"
-                          className="th-btn style2 th-icon"
-                        >
-                          View All
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
           </div>
         </div>
@@ -1524,216 +1081,42 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_2.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jane Cooper</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
+                {homeData &&
+                  homeData.guide.map((guide) => (
+                    <div className="swiper-slide">
+                      <div className="th-team team-box">
+                        <div className="team-img">
+                          <img src={guide.image} alt="Team" />
+                        </div>
+                        <div className="team-content">
+                          <div className="media-body">
+                            <h3 className="box-title">
+                              <a href="tour-guider-details.html">
+                                {guide.name}
+                              </a>
+                            </h3>
+                            <span className="team-desig">
+                              {guide.designation}
+                            </span>
+                            <div className="th-social">
+                              <a target="_blank" href="https://facebook.com/">
+                                <i className="fab fa-facebook-f"></i>
+                              </a>
+                              <a target="_blank" href="https://twitter.com/">
+                                <i className="fab fa-twitter"></i>
+                              </a>
+                              <a target="_blank" href="https://instagram.com/">
+                                <i className="fab fa-instagram"></i>
+                              </a>
+                              <a target="_blank" href="https://linkedin.com/">
+                                <i className="fab fa-linkedin-in"></i>
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_3.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Guy Hawkins</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_4.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jenny Wilson</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_1.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jacob Jones</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_2.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jane Cooper</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_3.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Guy Hawkins</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_4.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jenny Wilson</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
               <div className="slider-pagination"></div>
             </div>
