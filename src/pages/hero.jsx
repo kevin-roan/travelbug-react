@@ -8,7 +8,7 @@ export default function Hero() {
 
   useEffect(() => {
     axios
-      .get("/api/home")
+      .get("https://iamanas.in/travel_bug/web_api/home")
       .then((response) => {
         setHomeData(response.data.data);
         console.log(response.data.data);

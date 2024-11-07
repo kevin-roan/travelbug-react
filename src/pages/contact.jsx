@@ -7,7 +7,30 @@ export default function Contact() {
 
   useEffect(() => {
     axios
-      .get("/api/contact_us")
+      .get("https://iamanas.in/travel_bug/web_api/contact")
+      .then((response) => {
+        setAboutInfo(response.data.data);
+        console.log("api response", response.data);
+        console.log("about info data", response.data.data);
+      })
+      .catch((error) => {
+        console.log("Error fetching data", error);
+        setError(error);
+      });
+  }, []);
+  //
+  // useEffect(() => {
+  //   const getAboutData = async () => {
+  //     try {
+  //       const data = await fetchAbout();
+  //       setAboutInfo(data);
+  //       console.log("data", data);
+  //     } catch (err) {
+  //       console.log("erro", err);
+  //       setError(err);
+  //     }
+  //   };
+
       .then((response) => {
         setContactInfo(response.data.data.addresses);
       })

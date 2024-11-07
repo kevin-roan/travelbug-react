@@ -8,7 +8,7 @@ export default function Destination() {
 
   useEffect(() => {
     axios
-      .get("/api/home")
+      .get("https://iamanas.in/travel_bug/web_api/home")
       .then((response) => {
         setDestinations(response.data.data.popular_destinations);
       })

@@ -7,7 +7,7 @@ export default function FAQ() {
 
   useEffect(() => {
     axios
-      .get("/api/faq")
+      .get("https://iamanas.in/travel_bug/web_api/faq")
       .then((response) => {
         setFaq(response.data.data.faqs);
       })

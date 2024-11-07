@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "/api",
+  baseURL: "https://iamanas.in/travel_bug/web_api/",
   headers: {
     "Content-Type": "application/json",
   },
