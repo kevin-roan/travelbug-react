@@ -7,7 +7,7 @@ export default function Contact() {
 
   useEffect(() => {
     axios
-      .get("https://iamanas.in/travel_bug/web_api/contact")
+      .get("https://iamanas.in/travel_bug/web_api/contact_us")
       .then((response) => {
         setContactInfo(response.data.data);
         console.log("api response", response.data);
