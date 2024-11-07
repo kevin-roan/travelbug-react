@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
+  const [packages, setPacakges] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -10,12 +11,23 @@ export default function Hero() {
       .get("/api/home")
       .then((response) => {
         setHomeData(response.data.data);
+        console.log(response.data.data);
       })
       .catch((error) => {
         setError(error);
       });
   }, []);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/holiday_packages")
+  //     .then((response) => {
+  //       setPackages(response.data.data);
+  //     })
+  //     .catch((error) => setError(error));
+  // });
+  //
+  //
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -73,10 +85,10 @@ export default function Hero() {
                 <div
                   className="th-hero-bg"
                   data-bg-src={
-                    homeData && homeData.banners ? homeData.banners[1] : ""
+                    homeData && homeData.banners ? homeData.banners[2] : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[2] : ""})`,
                   }}
                 ></div>
                 <div className="container">
@@ -289,7 +301,10 @@ export default function Hero() {
       </div>
       <section
         className="category-area bg-top-center"
-        data-bg-src="assets/img/bg/category_bg_1.png"
+        data-bg-src={homeData && homeData.banners ? homeData.banners[3] : ""}
+        style={{
+          backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[3] : ""})`,
+        }}
       >
         <div className="container th-container">
           <div className="title-area text-center">
@@ -1141,7 +1156,12 @@ export default function Hero() {
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
             <span className="sub-title">Testimonial</span>
-            <h2 className="sec-title">What Client Say About us</h2>
+            <h2 className="sec-title">What Our Customers Say</h2>
+            <p className="sec-text">
+              At Travel Bug India, we take pride in create memorable travel
+              experiences for our clients. Here’s what some of our satisfied
+              travellers have to say about their journeys with us
+            </p>
           </div>
           <div className="slider-area">
             <div
@@ -1150,284 +1170,44 @@ export default function Hero() {
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"767":{"slidesPerView":"2","centeredSlides":"true"},"992":{"slidesPerView":"2","centeredSlides":"true"},"1200":{"slidesPerView":"2","centeredSlides":"true"},"1400":{"slidesPerView":"3","centeredSlides":"true"}}}'
             >
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
+                {homeData &&
+                  homeData.reviews.map((review) => (
+                    <div className="swiper-slide">
+                      <div className="testi-card">
+                        <div className="testi-card_wrapper">
+                          <div className="testi-card_profile">
+                            <div className="testi-card_avater">
+                              <img
+                                src="assets/img/testimonial/testi_1_1.jpg"
+                                alt="testimonial"
+                              />
+                            </div>
+                            <div className="media-body">
+                              <h3 className="box-title">{review.author}</h3>
+                              <span className="testi-card_desig">
+                                Traveller
+                              </span>
+                            </div>
+                          </div>
+                          <div className="testi-card_review">
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                            <i className="fa-solid fa-star"></i>
+                          </div>
+                        </div>
+
+                        <p className="testi-card_text">{review.review}</p>
+                        <div className="testi-card-quote">
                           <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
+                            src="assets/img/icon/testi-quote.svg"
+                            alt="img"
                           />
                         </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
                       </div>
                     </div>
-
-                    <p className="testi-card_text">
-                      “A home that perfectly blends sustainability with luxury
-                      until I discovered Ecoland Residence. From the moment I
-                      stepped into this community, I knew it was where I wanted
-                      to live. The commitment to eco-friendly living”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Andrew Simon</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “The home boasts sleek, contemporary architecture with
-                      clean lines and expansive windows, allowing natural light
-                      to flood the interiors It incorporates passive design
-                      principles”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Alex Jordan</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “Solar panels adorn the roof, harnessing renewable energy
-                      to power the home and even feed excess electricity back
-                      into the grid. High-performance insulation and
-                      triple-glazed”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      A sophisticated rainwater harvesting system collects and
-                      filters rainwater for irrigation and non-potable uses,
-                      reducing reliance on municipal water sources. Greywater
-                      systems
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Angelina Rose</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      Throughout the interior, eco-friendly materials like
-                      reclaimed wood, bamboo flooring, and recycled glass
-                      countertops create a luxurious yet sustainable ambiance.
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “A home that perfectly blends sustainability with luxury
-                      until I discovered Ecoland Residence. From the moment I
-                      stepped into this community, I knew it was where I wanted
-                      to live. The commitment to eco-friendly living”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Andrew Simon</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      A sophisticated rainwater harvesting system collects and
-                      filters rainwater for irrigation and non-potable uses,
-                      reducing reliance on municipal water sources. Greywater
-                      systems
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Alex Jordan</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      Throughout the interior, eco-friendly materials like
-                      reclaimed wood, bamboo flooring, and recycled glass
-                      countertops create a luxurious yet sustainable ambiance.
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
               <div className="slider-pagination"></div>
             </div>
