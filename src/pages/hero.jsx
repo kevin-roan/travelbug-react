@@ -1,15 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const apiBaseUrl = import.meta.env.VITE_API_URL || "/api";
-
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
+  const [packages, setPacakges] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${apiBaseUrl}/home`)
+      .get("/api/home")
       .then((response) => {
         setHomeData(response.data.data);
         console.log(response.data.data);
@@ -19,9 +18,6 @@ export default function Hero() {
       });
   }, []);
 
-  if (error) {
-    console.error("error", error);
-  }
   // useEffect(() => {
   //   axios
   //     .get("/api/holiday_packages")
