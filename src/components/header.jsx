@@ -3,65 +3,6 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <>
-      <div id="preloader" className="preloader ">
-        <div className="preloader-inner">
-          <img
-            src="assets/img/travelbug_logo.png"
-            alt=""
-            style={{ width: "60%" }}
-          />
-        </div>
-
-        <div id="loader" className="th-preloader" style={{ marginTop: "75px" }}>
-          <div className="animation-preloader">
-            <div className="txt-loading">
-              <span preloader-text="T" className="characters">
-                T{" "}
-              </span>
-
-              <span preloader-text="R" className="characters">
-                R{" "}
-              </span>
-
-              <span preloader-text="A" className="characters">
-                A{" "}
-              </span>
-
-              <span preloader-text="V" className="characters">
-                V{" "}
-              </span>
-
-              <span preloader-text="E" className="characters">
-                E{" "}
-              </span>
-
-              <span preloader-text="L" className="characters">
-                L{" "}
-              </span>
-
-              <span preloader-text=" " className="characters">
-                {" "}
-              </span>
-
-              <span preloader-text=" " className="characters">
-                {" "}
-              </span>
-
-              <span preloader-text="B" className="characters">
-                B{" "}
-              </span>
-
-              <span preloader-text="U" className="characters">
-                U{" "}
-              </span>
-
-              <span preloader-text="G" className="characters">
-                G{" "}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>{" "}
       <div className="sidemenu-wrapper sidemenu-info ">
         <div className="sidemenu-content">
           <button className="closeButton sideMenuCls">
