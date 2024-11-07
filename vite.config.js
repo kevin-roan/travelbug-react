@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
-          target: "https://techasainfotech.com/travel_bug/web_api",
+          target: "https://iamanas.in/travel_bug/web_api/",
           changeOrigin: true,
           secure: false, // Set to true if your target is an HTTPS server
           rewrite: (path) => path.replace(/^\/api/, ""),
@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
     preview: {
       proxy: {
         "/api": {
-          target: "https://techasainfotech.com/travel_bug/web_api",
+          target: "https://iamanas.in/travel_bug/web_api/",
           changeOrigin: true,
           secure: false, // Set to true if your target is an HTTPS server
           rewrite: (path) => path.replace(/^\/api/, ""),
