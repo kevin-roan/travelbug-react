@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
-      cors: false, // Set this to true or false based on your needs
+      cors: true, // Set this to true or false based on your needs
     },
   };
 });
