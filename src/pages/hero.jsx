@@ -10,7 +10,6 @@ export default function Hero() {
       .get("/api/home")
       .then((response) => {
         setHomeData(response.data.data);
-        console.log(categories);
       })
       .catch((error) => {
         setError(error);
@@ -30,7 +29,12 @@ export default function Hero() {
               <div className="hero-inner">
                 <div
                   className="th-hero-bg"
-                  data-bg-src="assets/img/hero/hero_bg_1_1.jpg"
+                  data-bg-src={
+                    homeData && homeData.banners ? homeData.banners[0] : ""
+                  }
+                  style={{
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[0] : ""})`,
+                  }}
                 ></div>
                 <div className="container">
                   <div className="hero-style1">
@@ -68,7 +72,12 @@ export default function Hero() {
               <div className="hero-inner">
                 <div
                   className="th-hero-bg"
-                  data-bg-src="assets/img/hero/hero_bg_1_2.jpg"
+                  data-bg-src={
+                    homeData && homeData.banners ? homeData.banners[1] : ""
+                  }
+                  style={{
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
+                  }}
                 ></div>
                 <div className="container">
                   <div className="hero-style1">
@@ -106,7 +115,12 @@ export default function Hero() {
               <div className="hero-inner">
                 <div
                   className="th-hero-bg"
-                  data-bg-src="assets/img/hero/hero_bg_1_3.jpg"
+                  data-bg-src={
+                    homeData && homeData.banners ? homeData.banners[1] : ""
+                  }
+                  style={{
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
+                  }}
                 ></div>
                 <div className="container">
                   <div className="hero-style1">
