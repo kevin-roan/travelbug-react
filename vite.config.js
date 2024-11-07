@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
         "/api": {
           target: "https://iamanas.in/travel_bug/web_api/",
           changeOrigin: true,
-          secure: false, // Set to true if your target is an HTTPS server
+          secure: true, // Set to true if your target is an HTTPS server
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
         "/api": {
           target: "https://iamanas.in/travel_bug/web_api/",
           changeOrigin: true,
-          secure: false, // Set to true if your target is an HTTPS server
+          secure: true, // Set to true if your target is an HTTPS server
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
       },
