@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
@@ -321,11 +322,13 @@ export default function Hero() {
                         <img src={catergory.image} alt="Image" />
                       </div>
                       <h3 className="box-title">
-                        <a href="destination.html">{catergory.title}</a>
+                        <Link href="/destination_details/1">
+                          {catergory.title}
+                        </Link>
                       </h3>
-                      <a className="line-btn" href="destination.html">
+                      <Link className="line-btn" href="/destination_details/1">
                         See more
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 ))}
