@@ -7,7 +7,7 @@ export default function Blog() {
 
   useEffect(() => {
     axios
-      .get("https://iamanas.in/travel_bug/web_api/blog")
+      .get(`${import.meta.env.VITE_API_URL}/blog`)
       .then((response) => {
         setBlogdata(response.data.data.blogs);
       })

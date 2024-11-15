@@ -9,10 +9,9 @@ export default function Hero() {
 
   useEffect(() => {
     axios
-      .get("https://iamanas.in/travel_bug/web_api/home")
+      .get(`${import.meta.env.VITE_API_URL}/home`)
       .then((response) => {
         setHomeData(response.data.data);
-        console.log(response.data.data);
       })
       .catch((error) => {
         setError(error);

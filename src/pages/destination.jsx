@@ -8,7 +8,7 @@ export default function Destination() {
 
   useEffect(() => {
     axios
-      .get("https://iamanas.in/travel_bug/web_api/home")
+      .get(`${import.meta.env.VITE_API_URL}/destination`)
       .then((response) => {
         setDestinations(response.data.data.popular_destinations);
       })

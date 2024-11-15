@@ -8,7 +8,7 @@ export default function About() {
 
   useEffect(() => {
     axios
-      .get("https://iamanas.in/travel_bug/web_api/about")
+      .get(`${import.meta.env.VITE_API_URL}/about`)
       .then((response) => {
         setAboutInfo(response.data.data);
         console.log("api response", response.data);
