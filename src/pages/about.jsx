@@ -156,10 +156,7 @@ export default function About() {
                 <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
                   <div className="destination-item th-ani">
                     <div className="destination-item_img global-img">
-                      <img
-                        src="assets/img/destination/destination_4_8.jpg"
-                        alt={item.title}
-                      />
+                      <img src={item.image} alt={item.title} />
                     </div>
                     <div className="destination-content">
                       <h3 className="box-title">

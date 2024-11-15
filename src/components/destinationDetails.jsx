@@ -1,9 +1,6 @@
 export default function DestinationDetails() {
   return (
     <>
-      {/*==============================
-    Breadcumb
-============================== */}
       <div
         className="breadcumb-wrapper "
         data-bg-src="assets/img/bg/breadcumb-bg.jpg"
@@ -20,9 +17,6 @@ export default function DestinationDetails() {
           </div>
         </div>
       </div>
-      {/*==============================
-tour Area
-==============================*/}
       <section className="space">
         <div className="container">
           <div className="row">
