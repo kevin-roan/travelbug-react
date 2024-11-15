@@ -19,25 +19,7 @@ export default function About() {
         setError(error);
       });
   }, []);
-  //
-  // useEffect(() => {
-  //   const getAboutData = async () => {
-  //     try {
-  //       const data = await fetchAbout();
-  //       setAboutInfo(data);
-  //       console.log("data", data);
-  //     } catch (err) {
-  //       console.log("erro", err);
-  //       setError(err);
-  //     }
-  //   };
-  //
-  //   getAboutData();
-  // }, []);
-  //
-  if (error) {
-    console.log("Error fetching data", error);
-  }
+
   return (
     <>
       <div
@@ -160,16 +142,17 @@ export default function About() {
           <div className="title-area text-center">
             <span className="sub-title">Services We Offer</span>
             <h2 className="sec-title">
-              {aboutInfo && aboutInfo.travel_packages.title}
+              {aboutInfo && aboutInfo.travel_packages.package_types.title}
             </h2>
 
             <p className="mb-30 pe-xl-5">
-              {aboutInfo && aboutInfo.travel_packages.introduction}
+              {aboutInfo &&
+                aboutInfo.travel_packages.package_types.introduction}
             </p>
           </div>
           <div className="row gy-4 gx-4">
             {aboutInfo &&
-              aboutInfo.travel_packages.packages.map((item) => (
+              aboutInfo.travel_packages.package_types.map((item) => (
                 <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
                   <div className="destination-item th-ani">
                     <div className="destination-item_img global-img">
