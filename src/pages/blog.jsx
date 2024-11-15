@@ -7,7 +7,7 @@ export default function Blog() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/blog`)
+      .get(`${import.meta.env.VITE_API_URL}/blogs`)
       .then((response) => {
         setBlogdata(response.data.data.blogs);
       })
