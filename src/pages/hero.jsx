@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
-  const [packages, setPacakges] = useState(null);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -18,16 +19,6 @@ export default function Hero() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/holiday_packages")
-  //     .then((response) => {
-  //       setPackages(response.data.data);
-  //     })
-  //     .catch((error) => setError(error));
-  // });
-  //
-  //
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -315,7 +306,13 @@ export default function Hero() {
             <div className="swiper-wrapper">
               {homeData &&
                 homeData.categories.map((catergory, _) => (
-                  <div className="swiper-slide" key={catergory.id}>
+                  <div
+                    className="swiper-slide"
+                    key={catergory.id}
+                    onClick={() =>
+                      navigate(`/destination_details/${catergory.id}`)
+                    }
+                  >
                     <div className="category-card single">
                       <div className="box-img global-img">
                         <img src={catergory.image} alt="Image" />
@@ -325,7 +322,10 @@ export default function Hero() {
                           {catergory.title}
                         </Link>
                       </h3>
-                      <Link className="line-btn" href="/destination_details/1">
+                      <Link
+                        className="line-btn"
+                        href="/destination_details/${category.id}"
+                      >
                         See more
                       </Link>
                     </div>

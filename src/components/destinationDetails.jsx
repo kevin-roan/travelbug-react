@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import DOMPurify from "dompurify";
+import axios from "axios";
 export default function DestinationDetails() {
+  const [details, setDetails] = useState();
+  const [error, setError] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/package_details/${id}`)
+      .then((response) => {
+        const data = response.data.data;
+        setDetails(data);
+        console.log("Details ", data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [id]);
+  if (error) {
+    throw new Error(error);
+  }
   return (
     <>
       <div
@@ -7,7 +30,9 @@ export default function DestinationDetails() {
       >
         <div className="container">
           <div className="breadcumb-content">
-            <h1 className="breadcumb-title">Destination Maldives</h1>
+            <h1 className="breadcumb-title">
+              {details && details.package_details.title}
+            </h1>
             <ul className="breadcumb-menu">
               <li>
                 <a href="home-travel.html">Home</a>
@@ -24,7 +49,7 @@ export default function DestinationDetails() {
               <div className="page-single">
                 <div className="service-img">
                   <img
-                    src="assets/img/destination/destination-details.jpg"
+                    src={details && details.package_details.thumbnail}
                     alt=""
                   />
                 </div>
@@ -39,24 +64,42 @@ export default function DestinationDetails() {
                     </span>
                   </div>
                   <h2 className="box-title">
-                    Explore the Beauty of Maldives and enjoy
+                    {details && details.package_details.title}
                   </h2>
-                  <p className="blog-text mb-30">
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto beatae vitae dicta sunt explicabo. Dolorem
-                    ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                    quia non numquam eius modi tempora incidunt ut labore et
-                    dolore magnam aliquam quaerat voluptatem. Quis autem vel eum
-                    iure reprehenderit qui in ea voluptate velit esse quam nihil
-                    molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                    voluptas nulla pariatur Quis autem vel eum iure
-                    reprehenderit qui in ea voluptate velit esse quam nihil
-                    molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                    voluptas nulla pariatur
-                  </p>
+                  <div
+                    className="package-overview"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        details && details.package_details.overview,
+                      ),
+                    }}
+                  />
+                  <div
+                    className="package-overview"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        details && details.package_details.inclusions,
+                      ),
+                    }}
+                  />
+                  <div
+                    className="package-overview"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        details && details.package_details.highlights,
+                      ),
+                    }}
+                  />
+                  <div
+                    className="package-overview"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        details && details.package_details.itinerary,
+                      ),
+                    }}
+                  />
+                  {/* 
                   <p className="blog-text mb-35">
-                    {" "}
                     ‍Whether you work from home or commute to a nearby office,
                     the energy-efficient features of your home contribute to a
                     productive and eco-conscious workday. Smart home systems
@@ -64,12 +107,6 @@ export default function DestinationDetails() {
                     your environmental impact remains minimal.
                   </p>
                   <h2 className="box-title">Basic Information</h2>
-                  <p className="blog-text mb-35">
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto beatae vitae dicta sunt explicabo. Dolorem
-                    ipsum quia dolor sit amet, consectetur, adipisci.
-                  </p>
                   <div className="destination-checklist">
                     <div className="checklist style2">
                       <ul>
@@ -123,15 +160,7 @@ export default function DestinationDetails() {
                     The sustainable traveller These 6 hotels epitomise ethical
                     luxury
                   </h3>
-                  <p className="mb-35">
-                    {" "}
-                    ‍Whether you work from home or commute to a nearby office,
-                    the energy-efficient features of your home contribute to a
-                    productive and eco-conscious workday. Smart home systems
-                    allow you to monitor and control energy usage, ensuring that
-                    your environmental impact remains minimal.
-                  </p>
-                  <div className="service-inner-img mb-40">
+                                       <div className="service-inner-img mb-40">
                     <img
                       src="assets/img/destination/destination-inner-1.jpg"
                       alt=""
@@ -336,8 +365,8 @@ export default function DestinationDetails() {
                       </div>
                     </li>
                   </ul>
-                </div>{" "}
-                {/* Comment end */} {/* Comment Form */}
+*/}
+                </div>
                 <div className="th-comment-form ">
                   <div className="row">
                     <h3 className="blog-inner-title h4 mb-2">Leave a Reply</h3>

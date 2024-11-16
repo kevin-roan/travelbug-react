@@ -43,7 +43,7 @@ const router = createHashRouter([
         element: <Contact />,
       },
       {
-        path: "destinationdetails",
+        path: "destination_details/:id",
         element: <DestinationDetails />,
       },
     ],
