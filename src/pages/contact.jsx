@@ -7,11 +7,9 @@ export default function Contact() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/contact`)
+      .get(`${import.meta.env.VITE_API_URL}/contact_us`)
       .then((response) => {
-        setContactInfo(response.data.data);
-        console.log("api response", response.data);
-        console.log("about info data", response.data.data);
+        setContactInfo(response.data.data.addresses);
       })
       .catch((error) => {
         console.log("Error fetching data", error);

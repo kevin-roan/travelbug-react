@@ -180,6 +180,9 @@ export default function Header() {
                   <li>
                     <Link to="/destination">Escorted Tour</Link>
                   </li>
+                  <li>
+                    <Link to="/destination">Cultural Tours</Link>
+                  </li>
                 </ul>
               </li>
 
@@ -269,6 +272,10 @@ export default function Header() {
                           </li>
                           <li>
                             <Link to="/destination">Escorted Tour</Link>
+                          </li>
+
+                          <li>
+                            <Link to="/destination">Cultural Tours</Link>
                           </li>
                         </ul>
                       </li>
