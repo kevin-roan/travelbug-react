@@ -169,7 +169,7 @@ export default function Header() {
                 <Link to="/about">About Us</Link>
               </li>
               <li className="menu-item-has-children">
-                <a href="#">Holidays</a>
+                <Link href="/tour_packages">Holidays</Link>
                 <ul className="sub-menu">
                   <li>
                     <Link to="/destination">Beach Holidays</Link>
@@ -262,7 +262,7 @@ export default function Header() {
                       </li>
 
                       <li className="menu-item-has-children">
-                        <a href="#">Holydays</a>
+                        <Link href="/tour_packages">Holydays</Link>
                         <ul className="sub-menu">
                           <li>
                             <Link to="/destination">Beach Holidays</Link>
