@@ -196,7 +196,7 @@ export default function Header() {
               </li>
 
               <li>
-                <Link to="/contact">Visa Requirements</Link>
+                <Link to="/visa_requirements">Visa Requirements</Link>
               </li>
 
               <li>
@@ -281,7 +281,7 @@ export default function Header() {
                       </li>
 
                       <li>
-                        <Link to="/contact">Visa Requirements</Link>
+                        <Link to="/visa_requirements">Visa Requirements</Link>
                       </li>
 
                       <li>

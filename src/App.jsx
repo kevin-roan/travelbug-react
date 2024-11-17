@@ -6,8 +6,10 @@ import "./Swiper-Bundle.css";
 import Footer from "./components/footer.jsx";
 import AnimatedCursor from "react-animated-cursor";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
   useEffect(() => {
     const script1 = document.createElement("script");
     script1.src = "/assets/js/vendor/jquery-3.6.0.min.js";
@@ -25,6 +27,7 @@ function App() {
       document.body.removeChild(script1);
     };
   }, []);
+
   return (
     <>
       <Header />

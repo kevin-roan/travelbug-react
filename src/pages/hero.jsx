@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
+  const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function Hero() {
       .get(`${import.meta.env.VITE_API_URL}/home`)
       .then((response) => {
         setHomeData(response.data.data);
+        setFaq(response.data.data.faqs);
       })
       .catch((error) => {
         setError(error);
@@ -1321,177 +1323,52 @@ export default function Hero() {
           <img src="assets/img/shape/shape_3.png" alt="shape" />
         </div>
       </section>
-      <footer className="footer-wrapper footer-layout1">
-        <div className="widget-area">
-          <div className="container">
-            <div className="newsletter-area">
-              <div className="newsletter-top">
-                <div className="row gy-4 align-items-center">
-                  <div className="col-lg-5">
-                    <h2 className="newsletter-title text-capitalize mb-0">
-                      get updated the latest newsletter
-                    </h2>
-                  </div>
-                  <div className="col-lg-7">
-                    <form className="newsletter-form">
-                      <input
-                        className="form-control "
-                        type="email"
-                        placeholder="Enter Email"
-                        required=""
-                      />
-                      <button type="submit" className="th-btn style3">
-                        Subscribe Now{" "}
-                        <img src="assets/img/icon/plane.svg" alt="" />
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+
+      <div className="row">
+        <div className="col-lg-10 offset-lg-1">
+          <div className="accordion-area accordion mb-30" id="faqAccordion">
+            <div
+              className="items-center"
+              style={{ paddingTop: 50, textAlign: "center" }}
+            >
+              <h3>{homeData && homeData.faq_head}</h3>
+              <p>{homeData && homeData.fag_description}</p>
             </div>
-            <div className="row justify-content-between">
-              <div className="col-md-3 col-xl-auto"></div>
-              <div className="col-md-6 col-xl-3">
-                <div className="widget footer-widget">
-                  <div className="th-widget-about">
-                    <div className="about-logo">
-                      <a href="index.php">
-                        <img
-                          src="assets/img/travelbug_logo.png"
-                          alt="Travel Bug"
-                          style={{ width: "150px" }}
-                        />
-                      </a>
-                    </div>
-                    <p className="about-text">
-                      Discover new horizons with tailored travel experiences.
-                      Your adventure awaits—start exploring with us
-                    </p>
-                    <div className="th-social">
-                      <a href="https://www.facebook.com/">
-                        <i className="fab fa-facebook-f"></i>
-                      </a>
-                      <a href="https://www.twitter.com/">
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                      <a href="https://www.linkedin.com/">
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                      <a href="https://www.whatsapp.com/">
-                        <i className="fab fa-whatsapp"></i>
-                      </a>
-                      <a href="https://instagram.com/">
-                        <i className="fab fa-instagram"></i>
-                      </a>
+            {/* faq start */}
+            {faq &&
+              faq.map((faq, index) => (
+                <div className="accordion-card style2 " key={index}>
+                  <div
+                    className="accordion-header"
+                    id={`collapse-item-${index}`}
+                  >
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapse-${index}`}
+                      aria-expanded="false"
+                      aria-controls={`collapse-${index}`}
+                    >
+                      Q{index + 1}.{faq.question}
+                    </button>
+                  </div>
+                  <div
+                    id={`collapse-${index}`}
+                    className="accordion-collapse collapse "
+                    aria-labelledby={`collapse-item-${index}`}
+                    data-bs-parent="#faqAccordion"
+                  >
+                    <div className="accordion-body style2">
+                      <p className="faq-text"> {faq.answer}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-6 col-xl-auto">
-                <div className="widget widget_nav_menu footer-widget">
-                  <h3 className="widget_title">Quick Links</h3>
-                  <div className="menu-all-pages-container">
-                    <ul className="menu">
-                      <li>
-                        <a href="index.php">Home</a>
-                      </li>
-                      <li>
-                        <a href="about.php">About us</a>
-                      </li>
-                      <li>
-                        <a href="contact.php">Contact us</a>
-                      </li>
-                      <li>
-                        <a href="terms_conditions.php">Terms & Conditions</a>
-                      </li>
-                      <li>
-                        <a href="privacy_policy.php">Privacy Policy</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-xl-auto">
-                <div className="widget footer-widget">
-                  <h3 className="widget_title">Address</h3>
-                  <div className="th-widget-contact">
-                    <div className="info-box_text">
-                      <div className="icon">
-                        <img src="assets/img/icon/phone.svg" alt="img" />
-                      </div>
-                      <div className="details">
-                        <p>
-                          <a href="tel:+919037317949" className="info-box_link">
-                            +919037317949
-                          </a>
-                        </p>
-                        <p>
-                          <a href="tel:+919037317949" className="info-box_link">
-                            +919037317949
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="info-box_text">
-                      <div className="icon">
-                        <img src="assets/img/icon/envelope.svg" alt="img" />
-                      </div>
-                      <div className="details">
-                        <p>
-                          <a
-                            href="mailto:example.com"
-                            className="info-box_link"
-                          >
-                            mailinfo.com
-                          </a>
-                        </p>
-                        <p>
-                          <a
-                            href="mailto:support24@example.com"
-                            className="info-box_link"
-                          >
-                            support.com
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="info-box_text">
-                      <div className="icon">
-                        <img src="assets/img/icon/location-dot.svg" alt="img" />
-                      </div>
-                      <div className="details">
-                        <p>Kochi, Kerala</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-3 col-xl-auto"></div>
-            </div>
+              ))}
           </div>
         </div>
-        <div
-          className="copyright-wrap"
-          data-bg-src="assets/img/bg/copyright_bg_1.jpg"
-        >
-          <div className="container">
-            <div className="row justify-content-between align-items-center">
-              <div className="col-md-6">
-                <p className="copyright-text">
-                  Copyright 2024 <a href="home-travel.html">Travel Bug</a>. All
-                  Rights Reserved.
-                </p>
-              </div>
-              <div className="col-md-6 text-end d-none d-md-block">
-                <div className="footer-card">
-                  <span className="title">We Accept</span>
-                  <img src="assets/img/shape/cards.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
+
       <div className="scroll-top">
         <svg
           className="progress-circle svg-content"
