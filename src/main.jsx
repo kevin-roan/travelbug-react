@@ -10,7 +10,7 @@ import About from "./pages/about";
 import Destination from "./pages/destination";
 import Contact from "./pages/contact";
 import Hero from "./pages/hero";
-import DestinationDetails from "./components/destinationDetails.jsx";
+import PrivacyPolicy from "./pages/privacyPolicy.jsx";
 
 const router = createHashRouter([
   {
@@ -43,8 +43,16 @@ const router = createHashRouter([
         element: <Contact />,
       },
       {
+        path: "privacy_policy",
+        element: <PrivacyPolicy />,
+      },
+      {
         path: "destination_details/:id",
-        element: <DestinationDetails />,
+        element: <destinationdetails />,
+      },
+      {
+        path: "packages/:id",
+        element: <packagesPage />,
       },
     ],
   },
