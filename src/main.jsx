@@ -62,7 +62,7 @@ const router = createHashRouter([
         element: <VisaRequirements />,
       },
       {
-        path: "package_details/:id",
+        path: "tour_packages/package_details/:id",
         element: <PackageDetails />,
       },
     ],
