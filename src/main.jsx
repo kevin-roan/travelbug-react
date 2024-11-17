@@ -11,6 +11,7 @@ import Destination from "./pages/destination";
 import Contact from "./pages/contact";
 import Hero from "./pages/hero";
 import PrivacyPolicy from "./pages/privacyPolicy.jsx";
+import VisaRequirements from "./pages/visaRequirements.jsx";
 
 const router = createHashRouter([
   {
@@ -53,6 +54,10 @@ const router = createHashRouter([
       {
         path: "packages/:id",
         element: <packagesPage />,
+      },
+      {
+        path: "visa_requirements",
+        element: <VisaRequirements />,
       },
     ],
   },
