@@ -177,6 +177,25 @@ export default function About() {
           </div>
         </div>
       </section>
+      <section>
+        <div className="container">
+          <div className="title-area text-center">
+            <h2 className="sub-title">Discover India</h2>
+            <h4 className="sec-title">
+              {aboutInfo && aboutInfo.discover_india.title}
+            </h4>
+          </div>
+          <p>{aboutInfo && aboutInfo.discover_india.description}</p>
+          <div className="text-center">
+            <h4 className="sub-title">
+              {aboutInfo && aboutInfo.contact_us.title}
+            </h4>
+            <h4 className="text-center sec-title">
+              {aboutInfo && aboutInfo.contact_us.introduction}
+            </h4>
+          </div>
+        </div>
+      </section>
       <div>
         <form
           action="mail.php"
