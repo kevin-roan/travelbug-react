@@ -1285,7 +1285,7 @@ export default function Hero() {
                             />
 
                             <a
-                              href="blog-details.html"
+                              href={item.link} // should navigate to blog details page
                               className="th-btn style4 th-icon"
                             >
                               Read More

@@ -67,9 +67,13 @@ export default function About() {
                     {aboutInfo && aboutInfo.welcome_message.title}
                   </h2>
                 </div>
+
                 <p className="pe-xl-5">
                   {aboutInfo && aboutInfo.welcome_message.introduction}
                 </p>
+                <h4 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
+                  Why Choose Travel Bug India
+                </h4>
                 <p className="mb-30 pe-xl-5">
                   {aboutInfo && aboutInfo.why_choose_travel_bug.introduction}
                 </p>
@@ -142,7 +146,7 @@ export default function About() {
           <div className="title-area text-center">
             <span className="sub-title">Services We Offer</span>
             <h2 className="sec-title">
-              {aboutInfo && aboutInfo.travel_packages.package_types.title}
+              {aboutInfo && aboutInfo.travel_packages.title}
             </h2>
 
             <p className="mb-30 pe-xl-5">
@@ -173,539 +177,70 @@ export default function About() {
           </div>
         </div>
       </section>
-      <div className="elements-sec bg-white overflow-hidden">
-        <div className="container-fluid">
-          <div className="tags-container relative"></div>
-        </div>
-      </div>
-      <section
-        className="testi-area overflow-hidden space-bottom"
-        id="testi-sec"
-        style={{ marginTop: "80px" }}
-      >
-        <div className="container-fluid p-0">
-          <div className="title-area mb-20 text-center">
-            <span className="sub-title">Testimonial</span>
-            <h2 className="sec-title">What Client Say About us</h2>
-          </div>
-          <div className="slider-area">
-            <div
-              className="swiper th-slider testiSlider1 has-shadow"
-              id="testiSlider1"
-              data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"767":{"slidesPerView":"2","centeredSlides":"true"},"992":{"slidesPerView":"2","centeredSlides":"true"},"1200":{"slidesPerView":"2","centeredSlides":"true"},"1400":{"slidesPerView":"3","centeredSlides":"true"}}}'
-            >
-              <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “A home that perfectly blends sustainability with luxury
-                      until I discovered Ecoland Residence. From the moment I
-                      stepped into this community, I knew it was where I wanted
-                      to live. The commitment to eco-friendly living”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Andrew Simon</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “The home boasts sleek, contemporary architecture with
-                      clean lines and expansive windows, allowing natural light
-                      to flood the interiors It incorporates passive design
-                      principles”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Alex Jordan</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “Solar panels adorn the roof, harnessing renewable energy
-                      to power the home and even feed excess electricity back
-                      into the grid. High-performance insulation and
-                      triple-glazed”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      A sophisticated rainwater harvesting system collects and
-                      filters rainwater for irrigation and non-potable uses,
-                      reducing reliance on municipal water sources. Greywater
-                      systems
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Angelina Rose</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      Throughout the interior, eco-friendly materials like
-                      reclaimed wood, bamboo flooring, and recycled glass
-                      countertops create a luxurious yet sustainable ambiance.
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Maria Doe</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      “A home that perfectly blends sustainability with luxury
-                      until I discovered Ecoland Residence. From the moment I
-                      stepped into this community, I knew it was where I wanted
-                      to live. The commitment to eco-friendly living”
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_2.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Andrew Simon</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      A sophisticated rainwater harvesting system collects and
-                      filters rainwater for irrigation and non-potable uses,
-                      reducing reliance on municipal water sources. Greywater
-                      systems
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="testi-card">
-                    <div className="testi-card_wrapper">
-                      <div className="testi-card_profile">
-                        <div className="testi-card_avater">
-                          <img
-                            src="assets/img/testimonial/testi_1_1.jpg"
-                            alt="testimonial"
-                          />
-                        </div>
-                        <div className="media-body">
-                          <h3 className="box-title">Alex Jordan</h3>
-                          <span className="testi-card_desig">Traveller</span>
-                        </div>
-                      </div>
-                      <div className="testi-card_review">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <p className="testi-card_text">
-                      Throughout the interior, eco-friendly materials like
-                      reclaimed wood, bamboo flooring, and recycled glass
-                      countertops create a luxurious yet sustainable ambiance.
-                    </p>
-                    <div className="testi-card-quote">
-                      <img src="assets/img/icon/testi-quote.svg" alt="img" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="slider-pagination"></div>
+      <div>
+        <form
+          action="mail.php"
+          method="POST"
+          className="contact-form style2 ajax-contact"
+        >
+          <h3 className="sec-title mb-30 text-capitalize">Book a tour</h3>
+          <div className="row">
+            <div className="col-12 form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                id="name3"
+                placeholder="First Name"
+              />
+              <img src="assets/img/icon/user.svg" alt="" />
+            </div>
+            <div className="col-12 form-group">
+              <input
+                type="email"
+                className="form-control"
+                name="email3"
+                id="email3"
+                placeholder="Your Mail"
+              />
+              <img src="assets/img/icon/mail.svg" alt="" />
+            </div>
+            <div className="form-group col-12">
+              <select
+                name="subject"
+                id="subject"
+                className="form-select nice-select"
+              >
+                <option value="Select Tour Type" selected disabled>
+                  Select Tour Type
+                </option>
+                <option value="Africa Adventure">Africa Adventure</option>
+                <option value="Africa Wild">Africa Wild</option>
+                <option value="Asia">Asia</option>
+                <option value="Scandinavia">Scandinavia</option>
+                <option value="Western Europe">Western Europe</option>
+              </select>
+            </div>
+            <div className="form-group col-12">
+              <textarea
+                name="message"
+                id="message"
+                cols="30"
+                rows="3"
+                className="form-control"
+                placeholder="Your Message"
+              ></textarea>
+              <img src="assets/img/icon/chat.svg" alt="" />
+            </div>
+            <div className="form-btn col-12 mt-24">
+              <button type="submit" className="th-btn style3">
+                Send message
+                <img src="assets/img/icon/plane.svg" alt="" />
+              </button>
             </div>
           </div>
-        </div>
-        <div
-          className="shape-mockup d-none d-xl-block"
-          data-bottom="-2%"
-          data-right="0%"
-        >
-          <img src="assets/img/shape/line2.png" alt="shape" />
-        </div>
-        <div
-          className="shape-mockup movingX d-none d-xl-block"
-          data-top="30%"
-          data-left="5%"
-        >
-          <img src="assets/img/shape/shape_7.png" alt="shape" />
-        </div>
-      </section>
-      <div className="brand-area overflow-hidden ">
-        <div className="container th-container">
-          <div
-            className="swiper th-slider brandSlider1"
-            id="brandSlider1"
-            data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"6"},"1400":{"slidesPerView":"8"}}}'
-          >
-            <div className="swiper-wrapper">
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_1.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_1.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_2.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_2.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_3.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_3.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_4.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_4.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_5.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_5.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_6.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_6.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_7.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_7.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_8.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_8.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_4.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_4.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_3.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_3.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_2.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_2.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="swiper-slide">
-                <div className="brand-box">
-                  <a href="">
-                    <img
-                      className="original"
-                      src="assets/img/brand/brand_1_1.svg"
-                      alt="Brand Logo"
-                    />
-                    <img
-                      className="gray"
-                      src="assets/img/brand/brand_1_1.svg"
-                      alt="Brand Logo"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>{" "}
-      <div className="sidebar-gallery-area space">
-        <div className="container-fluid">
-          <div className="slider-area">
-            <div
-              className="swiper th-slider has-shadow"
-              data-slider-options='{"centeredSlides":"true","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'
-            ></div>
-          </div>
-        </div>
+          <p className="form-messages mb-0 mt-3"></p>
+        </form>
       </div>
     </>
   );
