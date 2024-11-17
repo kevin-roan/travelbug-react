@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import DOMPurify from "dompurify";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
   const [error, setError] = useState(null);
@@ -18,6 +19,9 @@ export default function Hero() {
         setError(error);
       });
   }, []);
+  if (error) {
+    throw new Error(error);
+  }
 
   return (
     <div>
@@ -358,7 +362,7 @@ export default function Hero() {
                           alt="destination image"
                           style={{
                             height: "506px",
-                            width: "337px",
+                            width: "450px",
                           }}
                         />
                         <div className="destination-content">
@@ -395,66 +399,44 @@ export default function Hero() {
         id="about-sec"
       >
         <div className="container">
-          <div className="row">
-            <div className="col-xl-6">
-              <div className="img-box1">
-                <div className="img1">
-                  <img src="assets/img/normal/about_1_1.jpg" alt="About" />
-                </div>
-                <div className="img2">
-                  <img src="assets/img/normal/about_1_2.jpg" alt="About" />
-                </div>
-                <div className="img3">
-                  <img src="assets/img/normal/about_1_3.jpg" alt="About" />
-                </div>
-              </div>
+          <div className="ps-xl-4 ms-xl-2">
+            <div className="title-area mb-20 pe-xl-5 me-xl-5">
+              <span className="sub-title style1 ">Let’s Go Together</span>
+              <h2 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
+                Why Choose Us ?
+              </h2>
             </div>
-            <div className="col-xl-6">
-              <div className="ps-xl-4 ms-xl-2">
-                <div className="title-area mb-20 pe-xl-5 me-xl-5">
-                  <span className="sub-title style1 ">Let’s Go Together</span>
-                  <h2 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
-                    Plan Your Trip With us
-                  </h2>
-
-                  <p className="sec-text mb-30">
-                    There are many variations of passages of available but the
-                    majority have suffered alteration in some form, by injected
-                    hum randomised words which don't look even slightly.
-                  </p>
-                </div>
-                <div className="about-item-wrap">
-                  <div className="about-item">
-                    <div className="about-item_img">
-                      <img src="assets/img/icon/map3.svg" alt="" />
-                    </div>
-                    <div className="about-item_centent">
-                      <h5 className="box-title">Exclusive Trip</h5>
-                      <p className="about-item_text">
-                        There are many variations of passages of available but
-                        the majority.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="about-item">
+            <div
+              className="about-item-wrap"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "baseline",
+                flexWrap: "wrap",
+                gap: "20px",
+              }}
+            >
+              {homeData &&
+                homeData.why_choose_us.map((item, index) => (
+                  <div
+                    className="about-item"
+                    key={index}
+                    style={{
+                      backgroundColor: "#E9F6F9",
+                      padding: 20,
+                      borderRadius: 20,
+                      minHeight: 400,
+                    }}
+                  >
                     <div className="about-item_img">
                       <img src="assets/img/icon/guide.svg" alt="" />
                     </div>
                     <div className="about-item_centent">
-                      <h5 className="box-title">Professional Guide</h5>
-                      <p className="about-item_text">
-                        There are many variations of passages of available but
-                        the majority.
-                      </p>
+                      <h5 className="box-title">{item.title}</h5>
+                      <p className="about-item_text">{item.description}</p>
                     </div>
                   </div>
-                </div>
-                <div className="mt-35">
-                  <a href="about.html" className="th-btn style3 th-icon">
-                    Learn More
-                  </a>
-                </div>
-              </div>
+                ))}
             </div>
           </div>
         </div>
@@ -528,293 +510,78 @@ export default function Hero() {
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'
             >
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_1.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Greece Tour Package</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
+                {homeData &&
+                  homeData.packages.map((item, _) => (
+                    <div className="swiper-slide" key={item.id}>
+                      <div className="tour-box th-ani gsap-cursor">
+                        <div className="tour-box_img global-img">
+                          <img
+                            src={item.thumbnail}
+                            alt="image"
+                            style={{
+                              height: 280,
+                            }}
+                          />
                         </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_2.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Italy Tour package</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
+                        <div className="tour-content">
+                          <h4 className="box-title">
+                            <a href="tour-details.html">{item.title}</a>
+                          </h4>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 10,
+                              alignItems: "center",
+                              flexWrap: "wrap",
+                              marginBottom: 10,
+                            }}
+                          >
+                            Starting Point:
+                            <span
+                              style={{
+                                padding: 10,
+                                paddingTop: 2,
+                                paddingBottom: 2,
+                                backgroundColor: "#1CA8CB",
+                                color: "white",
+                                borderRadius: 20,
+                              }}
+                            >
+                              {item.starting_point}
+                            </span>
+                            <br />
+                            Ending Point:
+                            <span
+                              style={{
+                                padding: 10,
+                                paddingTop: 2,
+                                paddingBottom: 2,
+                                backgroundColor: "#1CA8CB",
+                                color: "white",
+                                borderRadius: 20,
+                              }}
+                            >
+                              {item.ending_point}
+                            </span>
+                          </div>
+                          <h3 className="tour-box_price">
+                            <span className="box-title">{item.amount}</span>
+                          </h3>
+                          <div className="tour-action">
+                            <span>
+                              {item.day} Days <br /> {item.night} Nights
+                            </span>
+                            <a
+                              href="contact.html"
+                              className="th-btn style4 th-icon"
+                            >
+                              Book Now
+                            </a>
+                          </div>
                         </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_3.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Dubai Tour Package</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
-                        </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_4.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Switzerland</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
-                        </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_1.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Greece Tour Package</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
-                        </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="tour-box th-ani gsap-cursor">
-                    <div className="tour-box_img global-img">
-                      <img src="assets/img/tour/tour_box_2.jpg" alt="image" />
-                    </div>
-                    <div className="tour-content">
-                      <h3 className="box-title">
-                        <a href="tour-details.html">Italy Tour package</a>
-                      </h3>
-                      <div className="tour-rating">
-                        <div
-                          className="star-rating"
-                          role="img"
-                          aria-label="Rated 5.00 out of 5"
-                        >
-                          <span style={{ width: "100%" }}>
-                            Rated
-                            <strong className="rating">5.00</strong> out of 5
-                            based on <span className="rating">4.8</span>
-                            (4.8 Rating)
-                          </span>
-                        </div>
-                        <a
-                          href="tour-details.html"
-                          className="woocommerce-review-link"
-                        >
-                          (<span className="count">4.8</span>
-                          Rating)
-                        </a>
-                      </div>
-                      <h4 className="tour-box_price">
-                        <span className="currency">$980.00</span>/Person
-                      </h4>
-                      <div className="tour-action">
-                        <span>
-                          <i className="fa-light fa-clock"></i>7 Days
-                        </span>
-                        <a
-                          href="contact.html"
-                          className="th-btn style4 th-icon"
-                        >
-                          Book Now
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -1440,7 +1207,7 @@ export default function Hero() {
             <div className="row align-items-center justify-content-between">
               <div className="col-md-7">
                 <div className="title-area mb-md-0">
-                  <span className="sub-title">About Us Restaurant</span>
+                  <span className="sub-title">About Us</span>
                   <h2 className="sec-title">News & Articles From Travel Bug</h2>
                 </div>
               </div>
@@ -1458,186 +1225,75 @@ export default function Hero() {
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"}}}'
             >
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_1.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 05 2024
-                        </a>
-                        <a href="blog.html">6 min read</a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          10 Reason why you should visit New Jersy
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <div>
+                  {homeData &&
+                    homeData.blogs.map((item, index) => (
+                      <div className="swiper-slide" key={index}>
+                        <div className="blog-box th-ani">
+                          <div className="blog-img global-img">
+                            <img
+                              src={item.image}
+                              alt="blog image"
+                              style={{ height: 300, width: 500 }}
+                            />
+                          </div>
+                          <div className="blog-box_content">
+                            <div
+                              className="blog-meta"
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <a className="author" href="blog.html">
+                                {item.published_on}
+                              </a>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  gap: "8px",
+                                }}
+                              >
+                                <img
+                                  src={item.author_image}
+                                  alt="Author"
+                                  style={{
+                                    height: 20,
+                                    width: 20,
+                                    borderRadius: "50%",
+                                  }}
+                                />
+                                <p className="box-desc" style={{ margin: 0 }}>
+                                  {item.author}
+                                </p>
+                              </div>
+                            </div>
+                            <h3 className="box-title">
+                              <a href={item.link}>{item.title}</a>
+                            </h3>
+                            <div></div>
+                            <div
+                              className="package-overview"
+                              dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(
+                                  item.short_description,
+                                ),
+                              }}
+                            />
 
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_2.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 06 2024
-                        </a>
-                        <a href="blog.html">7 min read</a>
+                            <a
+                              href="blog-details.html"
+                              className="th-btn style4 th-icon"
+                            >
+                              Read More
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          The best time to visit japan & enjoy the cherry
-                          blossoms
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_3.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 07 2024
-                        </a>
-                        <a href="blog.html">8 min read</a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          The 7 amazing destinations for adventure seekers
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_1.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 09 2024
-                        </a>
-                        <a href="blog.html">9 min read</a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          10 Reason why you should visit New Jersy
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_2.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 10 2024
-                        </a>
-                        <a href="blog.html">10 min read</a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          The best time to visit japan & enjoy the cherry
-                          blossoms
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="swiper-slide">
-                  <div className="blog-box th-ani">
-                    <div className="blog-img global-img">
-                      <img
-                        src="assets/img/blog/blog_1_3.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-box_content">
-                      <div className="blog-meta">
-                        <a className="author" href="blog.html">
-                          July 12 2024
-                        </a>
-                        <a href="blog.html">11 min read</a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          The 7 amazing destinations for adventure seekers
-                        </a>
-                      </h3>
-                      <a
-                        href="blog-details.html"
-                        className="th-btn style4 th-icon"
-                      >
-                        Read More
-                      </a>
-                    </div>
-                  </div>
+                    ))}
                 </div>
               </div>
             </div>
