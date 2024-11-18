@@ -10,8 +10,8 @@ export default function PackageDetails() {
     axios
       .get(`${import.meta.env.VITE_API_URL}/package_type_details/${id}`)
       .then((response) => {
-        setDetails(response.data.data);
-        console.log("response", details);
+        setDetails(response.data);
+        console.log("response", response.data);
       })
       .catch((error) => {
         console.log("Error fetching data", error);
@@ -24,7 +24,7 @@ export default function PackageDetails() {
 
   return (
     <div>
-      <h3>{details.title}</h3>
+      <div>{details.data.main_title}</div>
     </div>
   );
 }

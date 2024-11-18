@@ -77,7 +77,7 @@ export default function TourPackages() {
                   }}
                 >
                   <Link
-                    to={`package_details/${item.id}`}
+                    to={`destination_details/${item.id}`}
                     className="th-btn style4 th-icon"
                   >
                     Book Now
