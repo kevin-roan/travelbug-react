@@ -37,6 +37,7 @@ export default function TourPackages() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexWrap: "wrap",
         }}
       >
         {tourPackages.package_types.map((item, _) => (
@@ -77,7 +78,7 @@ export default function TourPackages() {
                   }}
                 >
                   <Link
-                    to={`destination_details/${item.id}`}
+                    to={`package_details/${item.id}`}
                     className="th-btn style4 th-icon"
                   >
                     Book Now
