@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function EscortedPage({ escorted }) {
   return (
     <div className="container">
-      <h1 className="text-center sec-title">{escorted.data.title.title}</h1>
+      <h2 className="text-center sec-title">{escorted.data.title.title}</h2>
       <p>{escorted.data.title.content}</p>
       <h3 className="text-center sec-title">
         {escorted.data.packages.heading}

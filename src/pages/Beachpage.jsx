@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 const Beachpage = ({ details }) => {
   return (
     <div className="container ">
-      <h1 className="sec-title text-center">{details.data.main_title}</h1>
-      <h2>{details.data.title.title}</h2>
+      <h1 className="sub-title text-center">{details.data.main_title}</h1>
+      <h2 className="text-center">{details.data.title.title}</h2>
       <p>{details.data.title.content}</p>
-      <h2>{details.data.destinations.heading}</h2>
+      <h2 className="text-center">{details.data.destinations.heading}</h2>
 
       <div
         className="wrapper"

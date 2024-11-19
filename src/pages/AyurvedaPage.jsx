@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 function AyurvedaPage({ ayurveda }) {
   return (
     <div className="container">
-      <h1>{ayurveda.data.title.title}</h1>
+      <h2 className="text-center">{ayurveda.data.title.title}</h2>
       <p>{ayurveda.data.title.content}</p>
-      <h2>{ayurveda.data.section_2.heading}</h2>
+      <h3 className="text-center">{ayurveda.data.section_2.heading}</h3>
       <p>{ayurveda.data.section_2.content}</p>
-      <h3>{ayurveda.data.packages.heading}</h3>
+      <h3 className="text-center">{ayurveda.data.packages.heading}</h3>
 
       <div
         style={{
