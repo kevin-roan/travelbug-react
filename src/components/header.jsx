@@ -84,7 +84,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="widget  ">
+          <div className="widget">
             <h3 className="widget_title">Get In Touch</h3>
             <div className="th-widget-contact">
               <div className="info-box_text">
@@ -166,10 +166,11 @@ export default function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/tour_packages">About Us</Link>
               </li>
               <li className="menu-item-has-children">
                 <Link href="/tour_packages">Holidays</Link>
+                {/*
                 <ul className="sub-menu">
                   <li>
                     <Link to="/destination">Beach Holidays</Link>
@@ -184,6 +185,7 @@ export default function Header() {
                     <Link to="/destination">Cultural Tours</Link>
                   </li>
                 </ul>
+                */}
               </li>
 
               <li className="menu-item-has-children">
@@ -260,9 +262,9 @@ export default function Header() {
                       <li>
                         <Link to="/about">About Us</Link>
                       </li>
-
                       <li className="menu-item-has-children">
-                        <Link href="/tour_packages">Holydays</Link>
+                        <Link to="/tour_packages">Holydays</Link>
+                        {/*
                         <ul className="sub-menu">
                           <li>
                             <Link to="/destination">Beach Holidays</Link>
@@ -278,6 +280,7 @@ export default function Header() {
                             <Link to="/destination">Cultural Tours</Link>
                           </li>
                         </ul>
+                        */}
                       </li>
 
                       <li>

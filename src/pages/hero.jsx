@@ -311,12 +311,12 @@ export default function Hero() {
           <div className="swiper categorySlider" id="categorySlide">
             <div className="swiper-wrapper">
               {homeData &&
-                homeData.categories.map((catergory, _) => (
+                homeData.categories.map((catergory) => (
                   <div
                     className="swiper-slide"
                     key={catergory.id}
                     onClick={() =>
-                      navigate(`/destination_details/${catergory.id}`)
+                      navigate(`/tour_packages/package_details/${catergory.id}`)
                     }
                   >
                     <div className="category-card single">
@@ -324,13 +324,13 @@ export default function Hero() {
                         <img src={catergory.image} alt="Image" />
                       </div>
                       <h3 className="box-title">
-                        <Link href="/destination_details/1">
+                        <Link to="/tour_packages/package_details/${category.id}">
                           {catergory.title}
                         </Link>
                       </h3>
                       <Link
                         className="line-btn"
-                        href="/destination_details/${category.id}"
+                        to="/destination_details/${category.id}"
                       >
                         See more
                       </Link>
@@ -601,14 +601,18 @@ export default function Hero() {
               <div className="gallery-card">
                 <div className="box-img global-img">
                   <a
-                    href="assets/img/gallery/gallery_1_1.jpg"
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[0] : ""
+                    }
                     className="popup-image"
                   >
                     <div className="icon-btn">
                       <i className="fal fa-magnifying-glass-plus"></i>
                     </div>
                     <img
-                      src="assets/img/gallery/gallery_1_1.jpg"
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[0] : ""
+                      }
                       alt="gallery image"
                     />
                   </a>
@@ -619,14 +623,18 @@ export default function Hero() {
               <div className="gallery-card">
                 <div className="box-img global-img">
                   <a
-                    href="assets/img/gallery/gallery_1_2.jpg"
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[1] : ""
+                    }
                     className="popup-image"
                   >
                     <div className="icon-btn">
                       <i className="fal fa-magnifying-glass-plus"></i>
                     </div>
                     <img
-                      src="assets/img/gallery/gallery_1_2.jpg"
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[1] : ""
+                      }
                       alt="gallery image"
                     />
                   </a>
@@ -635,32 +643,18 @@ export default function Hero() {
               <div className="gallery-card">
                 <div className="box-img global-img">
                   <a
-                    href="assets/img/gallery/gallery_1_3.jpg"
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[2] : ""
+                    }
                     className="popup-image"
                   >
                     <div className="icon-btn">
                       <i className="fal fa-magnifying-glass-plus"></i>
                     </div>
                     <img
-                      src="assets/img/gallery/gallery_1_3.jpg"
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href="assets/img/gallery/gallery_1_4.jpg"
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src="assets/img/gallery/gallery_1_4.jpg"
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[2] : ""
+                      }
                       alt="gallery image"
                     />
                   </a>
@@ -671,30 +665,18 @@ export default function Hero() {
               <div className="gallery-card">
                 <div className="box-img global-img">
                   <a
-                    href="assets/img/gallery/gallery_1_5.jpg"
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[3] : ""
+                    }
                     className="popup-image"
                   >
                     <div className="icon-btn">
                       <i className="fal fa-magnifying-glass-plus"></i>
                     </div>
                     <img
-                      src="assets/img/gallery/gallery_1_5.jpg"
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href="assets/img/gallery/gallery_1_6.jpg"
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src="assets/img/gallery/gallery_1_6.jpg"
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[3] : ""
+                      }
                       alt="gallery image"
                     />
                   </a>
@@ -705,14 +687,60 @@ export default function Hero() {
               <div className="gallery-card">
                 <div className="box-img global-img">
                   <a
-                    href="assets/img/gallery/gallery_1_7.jpg"
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[4] : ""
+                    }
                     className="popup-image"
                   >
                     <div className="icon-btn">
                       <i className="fal fa-magnifying-glass-plus"></i>
                     </div>
                     <img
-                      src="assets/img/gallery/gallery_1_7.jpg"
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[4] : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[1] : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[1] : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery ? homeData.gallery[2] : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery ? homeData.gallery[2] : ""
+                      }
                       alt="gallery image"
                     />
                   </a>
