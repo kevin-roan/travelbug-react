@@ -776,61 +776,25 @@ export default function Hero() {
       <div className="counter-area space">
         <div className="container">
           <div className="row">
-            <div className="col-sm-6 col-xl-3 counter-card-wrap">
-              <div className="counter-card">
-                <div className="counter-shape">
-                  <span></span>
+            {homeData &&
+              homeData.experience_data.map((item, index) => (
+                <div
+                  className="col-sm-6 col-xl-3 counter-card-wrap"
+                  key={index}
+                >
+                  <div className="counter-card">
+                    <div className="counter-shape">
+                      <span></span>
+                    </div>
+                    <div className="media-body">
+                      <h3 className="box-number">
+                        <span className="counter-number">{item.value}</span>
+                      </h3>
+                      <h6 className="counter-title">{item.title}</h6>
+                    </div>
+                  </div>
                 </div>
-                <div className="media-body">
-                  <h3 className="box-number">
-                    <span className="counter-number">12</span>
-                  </h3>
-                  <h6 className="counter-title">Years Experience</h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-xl-3 counter-card-wrap">
-              <div className="counter-card">
-                <div className="counter-shape">
-                  <span></span>
-                </div>
-                <div className="media-body">
-                  <h3 className="box-number">
-                    <span className="counter-number">97</span>%
-                  </h3>
-                  <h6 className="counter-title">Retention Rate</h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-xl-3 counter-card-wrap">
-              <div className="counter-card">
-                <div className="counter-shape">
-                  <span></span>
-                </div>
-                <div className="media-body">
-                  <h3 className="box-number">
-                    <span className="counter-number">8</span>k
-                  </h3>
-                  <h6 className="counter-title">Tour Completed</h6>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-xl-3 counter-card-wrap">
-              <div className="counter-card">
-                <div className="counter-shape">
-                  <span></span>
-                </div>
-                <div className="media-body">
-                  <h3 className="box-number">
-                    <span className="counter-number">19</span>k
-                  </h3>
-                  <h6 className="counter-title">Happy Travellers</h6>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
         <div

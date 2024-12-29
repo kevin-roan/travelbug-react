@@ -15,9 +15,9 @@ export default function PackageDetails() {
     axios
       .get(`${import.meta.env.VITE_API_URL}/package_type_details/${id}`)
       .then((response) => {
+        console.log(id, "package details id ", response.data);
         if (id == 1) {
           setDetails(response.data);
-          console.log("beach ");
         } else if (id == 2) {
           setAyurveda(response.data);
         } else if (id == 3) {
