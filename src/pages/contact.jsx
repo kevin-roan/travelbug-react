@@ -3,19 +3,81 @@ import axios from "axios";
 
 export default function Contact() {
   const [contactInfo, setContactInfo] = useState([]);
+  const [packageListType, setPackageListType] = useState([]);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    packageType: "",
+    message: "",
+  });
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/contact_us`)
-      .then((response) => {
-        setContactInfo(response.data.data.addresses);
-      })
-      .catch((error) => {
-        console.log("Error fetching data", error);
-        setError(error);
-      });
+    const fetchContactInformation = () => {
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/contact_us`)
+        .then((response) => {
+          setContactInfo(response.data.data.addresses);
+        })
+        .catch((error) => {
+          console.log("Error fetching data", error);
+          setError(error);
+        });
+    };
+    fetchContactInformation();
+    const fetchPackageList = () => {
+      axios
+        .get(`https://iamanas.in/travel_bug/web_api/package_type_list`)
+        .then((response) => {
+          setPackageListType(response.data.data);
+        })
+        .catch((error) => {
+          setError(error.message);
+          console.log(error, "erro");
+        });
+    };
+    fetchPackageList();
   }, []);
+  if (error) {
+    <div className="container">{error}</div>;
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `https://iamanas.in/travel_bug/web_api/insert_contact_us`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+
+      if (response.status) {
+        setFormData({
+          username: "",
+          email: "",
+          package_type_id: "",
+          message: "",
+        });
+        alert("Message sent successfully!");
+      }
+    } catch (error) {
+      setError(error.message);
+      console.log("Error submitting form:", error.request);
+      alert(`Sorry try again later, ${error}`);
+    }
+  };
 
   return (
     <>
@@ -121,8 +183,7 @@ export default function Contact() {
             <div className="col-lg-6">
               <div>
                 <form
-                  action="mail.php"
-                  method="POST"
+                  onSubmit={handleSubmit}
                   className="contact-form style2 ajax-contact"
                 >
                   <h3 className="sec-title mb-30 text-capitalize">
@@ -133,9 +194,11 @@ export default function Contact() {
                       <input
                         type="text"
                         className="form-control"
-                        name="name"
-                        id="name3"
-                        placeholder="First Name"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        placeholder="Your Name"
+                        required
                       />
                       <img src="assets/img/icon/user.svg" alt="" />
                     </div>
@@ -143,43 +206,52 @@ export default function Contact() {
                       <input
                         type="email"
                         className="form-control"
-                        name="email3"
-                        id="email3"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         placeholder="Your Mail"
+                        required
                       />
                       <img src="assets/img/icon/mail.svg" alt="" />
                     </div>
                     <div className="form-group col-12">
                       <select
-                        name="subject"
-                        id="subject"
+                        name="packageType"
+                        value={formData.packageType}
+                        onChange={handleInputChange}
                         className="form-select nice-select"
+                        required
                       >
-                        <option value="Select Tour Type" selected disabled>
+                        <option value="" disabled>
                           Select Tour Type
                         </option>
-                        <option value="Africa Adventure">
-                          Africa Adventure
-                        </option>
-                        <option value="Africa Wild">Africa Wild</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Scandinavia">Scandinavia</option>
-                        <option value="Western Europe">Western Europe</option>
+                        {packageListType &&
+                          packageListType.map((packageType) => (
+                            <option key={packageType.id} value={packageType.id}>
+                              {packageType.title}
+                            </option>
+                          ))}
                       </select>
                     </div>
                     <div className="form-group col-12">
                       <textarea
                         name="message"
-                        id="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
                         cols="30"
                         rows="3"
                         className="form-control"
                         placeholder="Your Message"
+                        required
                       ></textarea>
                       <img src="assets/img/icon/chat.svg" alt="" />
                     </div>
                     <div className="form-btn col-12 mt-24">
-                      <button type="submit" className="th-btn style3">
+                      <button
+                        type="submit"
+                        className="th-btn style3"
+                        onClick={handleSubmit}
+                      >
                         Send message
                         <img src="assets/img/icon/plane.svg" alt="" />
                       </button>

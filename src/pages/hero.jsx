@@ -11,6 +11,7 @@ export default function Hero() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("apiurl", import.meta.env.VITE_API_URL);
     axios
       .get(`${import.meta.env.VITE_API_URL}/home`)
       .then((response) => {
@@ -24,7 +25,9 @@ export default function Hero() {
   if (error) {
     throw new Error(error);
   }
-
+  if (homeData) {
+    console.log(homeData.popular_destinations);
+  }
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -39,10 +42,12 @@ export default function Hero() {
                 <div
                   className="th-hero-bg"
                   data-bg-src={
-                    homeData && homeData.banners ? homeData.banners[0] : ""
+                    homeData && homeData.banners
+                      ? homeData.banners[0]?.image
+                      : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[0] : ""})`,
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[0].image : ""})`,
                   }}
                 ></div>
                 <div className="container">
@@ -59,7 +64,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.4s"
                     >
-                      Natural Wonder of the world{" "}
+                      {homeData && homeData.banners[0]?.title}
                     </h1>
                     <div
                       className="btn-group"
@@ -82,10 +87,12 @@ export default function Hero() {
                 <div
                   className="th-hero-bg"
                   data-bg-src={
-                    homeData && homeData.banners ? homeData.banners[2] : ""
+                    homeData && homeData.banners
+                      ? homeData.banners[1].image
+                      : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[2] : ""})`,
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1].image : ""})`,
                   }}
                 ></div>
                 <div className="container">
@@ -102,7 +109,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.4s"
                     >
-                      Let’s make your best trip with us{" "}
+                      {homeData && homeData.banners[1]?.title}
                     </h1>
                     <div
                       className="btn-group"
@@ -125,10 +132,12 @@ export default function Hero() {
                 <div
                   className="th-hero-bg"
                   data-bg-src={
-                    homeData && homeData.banners ? homeData.banners[1] : ""
+                    homeData && homeData.banners
+                      ? homeData.banners[2].image
+                      : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
+                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[2].image : ""})`,
                   }}
                 ></div>
                 <div className="container">
@@ -145,7 +154,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.4s"
                     >
-                      Explore beauty of the whole world{" "}
+                      {homeData && homeData.banners[2]?.title}
                     </h1>
                     <div
                       className="btn-group"
@@ -204,18 +213,12 @@ export default function Hero() {
                       <option value="Select Destination" selected disabled>
                         Select Destination
                       </option>
-                      <option value="Australia">Australia</option>
-                      <option value="Dubai">Dubai</option>
-                      <option value="England">England</option>
-                      <option value="Sweden">Sweden</option>
-                      <option value="Thailand">Thailand</option>
-                      <option value="Egypt">Egypt</option>
-                      <option value="Saudi Arab">Saudi Arab</option>
-                      <option value="Switzerland">Switzerland</option>
-                      <option value="Scandinavia">Scandinavia</option>
-                      <option value="Western Europe">Western Europe</option>
-                      <option value="Indonesia">Indonesia</option>
-                      <option className="Italy">Italy</option>
+                      {homeData &&
+                        homeData.popular_destinations.map((destination, _) => (
+                          <option value={destination.id} key={_}>
+                            {destination.title}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
@@ -298,9 +301,11 @@ export default function Hero() {
       </div>
       <section
         className="category-area bg-top-center"
-        data-bg-src={homeData && homeData.banners ? homeData.banners[3] : ""}
+        data-bg-src={
+          homeData && homeData.banners ? homeData.banners[1].image : ""
+        }
         style={{
-          backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[3] : ""})`,
+          backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
         }}
       >
         <div className="container th-container">
