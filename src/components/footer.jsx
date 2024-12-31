@@ -11,7 +11,7 @@ function Footer() {
                 <div className="row gy-4 align-items-center">
                   <div className="col-lg-5">
                     <h2 className="newsletter-title text-white text-capitalize mb-0">
-                      get updated the latest newsletter
+                      Get Latest Package Updates
                     </h2>
                   </div>
                   <div className="col-lg-7">

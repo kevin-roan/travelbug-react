@@ -71,10 +71,13 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="/tour" className="th-btn th-icon">
+                      <a
+                        href="/tour/#/tour_packages"
+                        className="th-btn th-icon"
+                      >
                         Explore Tours
                       </a>
-                      <a href="/contact" className="th-btn style2 th-icon">
+                      <a href="/#/contact" className="th-btn style2 th-icon">
                         Contact Us
                       </a>
                     </div>
@@ -238,8 +241,11 @@ export default function Hero() {
                       </option>
                       <option value="Beach">Beach</option>
                       <option value="Group Tour">Group Tour</option>
-                      <option value="Couple Tour">Couple Tour</option>
+                      <option value="Couple Tour">Couple's Tour</option>
                       <option value="Family Tour">Family Tour</option>
+                      <option value="Multi Center">Multicenter</option>
+                      <option value="Long-Haul Tour">Long-Haul Tour</option>
+                      <option value="Ayurveda Tour">Ayurveda Tour</option>
                     </select>
                   </div>
                 </div>
@@ -279,10 +285,11 @@ export default function Hero() {
                       className="form-select nice-select"
                     >
                       <option value="Normal" selected disabled>
-                        Luxury
+                        Superior
                       </option>
-                      <option value="1">Delux</option>
-                      <option value="2">Economy</option>
+                      <option value="1">Deluxe</option>
+                      <option value="2">Heritage</option>
+                      <option value="2">Luxury</option>
                     </select>
                   </div>
                 </div>
@@ -311,7 +318,17 @@ export default function Hero() {
         <div className="container th-container">
           <div className="title-area text-center">
             <span className="sub-title">Wornderful Place For You</span>
-            <h2 className="sec-title">Tour Categories</h2>
+            <h2 className="sec-title">Explore India's TOP Destinations</h2>
+            <p className="sec-text">
+              India is a land of diverse landscapes, rich history, and vibrant
+              cultures. From peaceful beaches and lush mountains to bustling
+              cities and royal palaces, every region offers a unique experience
+              that leaves an everlasting impression. For those seeking
+              adventure, spiritual rejuvenation, or a glimpse into India's royal
+              heritage, our selected destinations promise an unforgettable
+              journey. Explore the beauty of India with our top packages
+              featuring must-visit destinations.
+            </p>
           </div>
           <div className="swiper categorySlider" id="categorySlide">
             <div className="swiper-wrapper">
@@ -493,6 +510,7 @@ export default function Hero() {
           <img src="assets/img/icon/emoji.png" alt="" />
         </div>
       </div>
+      {/* 
       <section
         className="position-relative bg-top-center overflow-hidden space"
         id="service-sec"
@@ -595,11 +613,12 @@ export default function Hero() {
         </div>
       </section>
 
+        */}
       <div className="gallery-area ">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span className="sub-title">Make Your Tour More Pleasure</span>
-            <h2 className="sec-title">Recent Gallery</h2>
+            <span className="sub-title">Moments from Our Journeys</span>
+            <h2 className="sec-title">Latest Travel Highlights</h2>
           </div>
           <div className="row gy-10 gx-10 justify-content-center align-items-center">
             <div className="col-md-6 col-lg-2">
@@ -833,93 +852,96 @@ export default function Hero() {
           <img src="assets/img/shape/shape_5.png" alt="shape" />
         </div>
       </div>
-      <section
-        className="bg-smoke space"
-        data-bg-src="assets/img/bg/team_bg_1.png"
-      >
-        <div className="container z-index-common">
-          <div className="title-area text-center">
-            <span className="sub-title">Meet with Guide</span>
-            <h2 className="sec-title">Tour Guide</h2>
-          </div>
-          <div className="slider-area">
-            <div
-              className="swiper th-slider teamSlider1 has-shadow"
-              id="teamSlider1"
-              data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'
-            >
-              <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="th-team team-box">
-                    <div className="team-img">
-                      <img src="assets/img/team/team_1_1.jpg" alt="Team" />
-                    </div>
-                    <div className="team-content">
-                      <div className="media-body">
-                        <h3 className="box-title">
-                          <a href="tour-guider-details.html">Jacob Jones</a>
-                        </h3>
-                        <span className="team-desig">Tourist Guide</span>
-                        <div className="th-social">
-                          <a target="_blank" href="https://facebook.com/">
-                            <i className="fab fa-facebook-f"></i>
-                          </a>
-                          <a target="_blank" href="https://twitter.com/">
-                            <i className="fab fa-twitter"></i>
-                          </a>
-                          <a target="_blank" href="https://instagram.com/">
-                            <i className="fab fa-instagram"></i>
-                          </a>
-                          <a target="_blank" href="https://linkedin.com/">
-                            <i className="fab fa-linkedin-in"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {homeData &&
-                  homeData.guide.map((guide) => (
-                    <div className="swiper-slide">
-                      <div className="th-team team-box">
-                        <div className="team-img">
-                          <img src={guide.image} alt="Team" />
-                        </div>
-                        <div className="team-content">
-                          <div className="media-body">
-                            <h3 className="box-title">
-                              <a href="tour-guider-details.html">
-                                {guide.name}
-                              </a>
-                            </h3>
-                            <span className="team-desig">
-                              {guide.designation}
-                            </span>
-                            <div className="th-social">
-                              <a target="_blank" href="https://facebook.com/">
-                                <i className="fab fa-facebook-f"></i>
-                              </a>
-                              <a target="_blank" href="https://twitter.com/">
-                                <i className="fab fa-twitter"></i>
-                              </a>
-                              <a target="_blank" href="https://instagram.com/">
-                                <i className="fab fa-instagram"></i>
-                              </a>
-                              <a target="_blank" href="https://linkedin.com/">
-                                <i className="fab fa-linkedin-in"></i>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              <div className="slider-pagination"></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/*
+         * 
+      // <section
+      //   className="bg-smoke space"
+      //   data-bg-src="assets/img/bg/team_bg_1.png"
+      // >
+      // //   <div className="container z-index-common">
+      // //     <div className="title-area text-center">
+      // //       <span className="sub-title">Meet with Guide</span>
+      // //       <h2 className="sec-title">Tour Guide</h2>
+      // //     </div>
+      // //     <div className="slider-area">
+      // //       <div
+      // //         className="swiper th-slider teamSlider1 has-shadow"
+      // //         id="teamSlider1"
+      //         data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'
+      //       >
+      //         <div className="swiper-wrapper">
+      //           <div className="swiper-slide">
+      //             <div className="th-team team-box">
+      //               <div className="team-img">
+      //                 <img src="assets/img/team/team_1_1.jpg" alt="Team" />
+      //               </div>
+      //               <div className="team-content">
+      //                 <div className="media-body">
+      //                   <h3 className="box-title">
+      //                     <a href="tour-guider-details.html">Jacob Jones</a>
+      //                   </h3>
+      //                   <span className="team-desig">Tourist Guide</span>
+      //                   <div className="th-social">
+      //                     <a target="_blank" href="https://facebook.com/">
+      //                       <i className="fab fa-facebook-f"></i>
+      //                     </a>
+      //                     <a target="_blank" href="https://twitter.com/">
+      //                       <i className="fab fa-twitter"></i>
+      //                     </a>
+      //                     <a target="_blank" href="https://instagram.com/">
+      //                       <i className="fab fa-instagram"></i>
+      //                     </a>
+      //                     <a target="_blank" href="https://linkedin.com/">
+      //                       <i className="fab fa-linkedin-in"></i>
+      //                     </a>
+      //                   </div>
+      //                 </div>
+      //               </div>
+      //             </div>
+      //           </div>
+      //           {homeData &&
+      //             homeData.guide.map((guide, index) => (
+      //               <div className="swiper-slide" key={index}>
+      //                 <div className="th-team team-box">
+      //                   <div className="team-img">
+      //                     <img src={guide.image} alt="Team" />
+      //                   </div>
+      //                   <div className="team-content">
+      //                     <div className="media-body">
+      //                       <h3 className="box-title">
+      //                         <a href="tour-guider-details.html">
+      //                           {guide.name}
+      //                         </a>
+      //                       </h3>
+      //                       <span className="team-desig">
+      //                         {guide.designation}
+      //                       </span>
+      //                       <div className="th-social">
+      //                         <a target="_blank" href="https://facebook.com/">
+      //                           <i className="fab fa-facebook-f"></i>
+      //                         </a>
+      //                         <a target="_blank" href="https://twitter.com/">
+      //                           <i className="fab fa-twitter"></i>
+      //                         </a>
+      //                         <a target="_blank" href="https://instagram.com/">
+      //                           <i className="fab fa-instagram"></i>
+      //                         </a>
+      //                         <a target="_blank" href="https://linkedin.com/">
+      //                           <i className="fab fa-linkedin-in"></i>
+      //                         </a>
+      //                       </div>
+      //                     </div>
+      //                   </div>
+      //                 </div>
+      //               </div>
+      //             ))}
+      //         </div>
+      //         <div className="slider-pagination"></div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </section>
+         * */}
       <section className="testi-area overflow-hidden space" id="testi-sec">
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
@@ -1206,8 +1228,8 @@ export default function Hero() {
             <div className="row align-items-center justify-content-between">
               <div className="col-md-7">
                 <div className="title-area mb-md-0">
-                  <span className="sub-title">About Us</span>
-                  <h2 className="sec-title">News & Articles From Travel Bug</h2>
+                  <span className="sub-title">Travel Blogs</span>
+                  <h2 className="sec-title">Our Latest Travel Stories</h2>
                 </div>
               </div>
               <div className="col-md-auto">

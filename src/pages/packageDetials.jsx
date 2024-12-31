@@ -6,35 +6,12 @@ import AyurvedaPage from "./AyurvedaPage";
 import EscortedPage from "./EscortedPage";
 
 export default function PackageDetails() {
-  const [details, setDetails] = useState(null);
-  const [ayurveda, setAyurveda] = useState(null);
-  const [escorted, setEscorted] = useState(null);
-  const [error, setError] = useState(null);
   const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/package_type_details/${id}`)
-      .then((response) => {
-        console.log(id, "package details id ", response.data);
-        if (id == 1) {
-          setDetails(response.data);
-        } else if (id == 2) {
-          setAyurveda(response.data);
-        } else if (id == 3) {
-          setEscorted(response.data);
-        }
-      })
-      .catch((error) => {
-        console.log("Error fetching data", error);
-        setError(error);
-      });
-  }, [id]);
-
-  if (error) return <div>Error loading data. Please try again later.</div>;
-
-  if (details) return <Beachpage details={details} />;
-  if (ayurveda) return <AyurvedaPage ayurveda={ayurveda} />;
-  if (escorted) return <EscortedPage escorted={escorted} />;
-
-  return <div>Loading...</div>;
+  if (id === 1) {
+    return <Beachpage />;
+  } else if (id === 2) {
+    return <AyurvedaPage />;
+  } else if (id === 3) {
+    return <EscortedPage />;
+  } else return <div>Loading...</div>;
 }

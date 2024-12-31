@@ -1,8 +1,42 @@
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DOMPurify from "dompurify";
+import Error from "./error";
 
-const Beachpage = ({ details }) => {
-  console.log("beach details", details);
+const Tour = () => {
+  const [details, setDetails] = useState(null);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    console.log("mounted");
+    const fetchData = () => {
+      axios
+        .get(`${import.meta.VITE_API_URL}/package_type_details/1`)
+        .then((res) => {
+          setDetails(res.data);
+          console.log(res.data, "consolle");
+        })
+        .catch((err) => {
+          setError(err);
+          console.log("error", err);
+        });
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      {details ? (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(details),
+          }}
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  );
+
   return (
     <div className="container ">
       <h1 className="sub-title text-center">{details.data.main_title}</h1>
@@ -201,66 +235,4 @@ const Beachpage = ({ details }) => {
   );
 };
 
-export default Beachpage;
-
-Beachpage.propTypes = {
-  details: PropTypes.shape({
-    data: PropTypes.shape({
-      main_title: PropTypes.string.isRequired,
-      title: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-      }).isRequired,
-      destinations: PropTypes.shape({
-        heading: PropTypes.string.isRequired,
-        destinations: PropTypes.arrayOf(
-          PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
-            beaches: PropTypes.arrayOf(PropTypes.string).isRequired,
-          }),
-        ).isRequired,
-      }).isRequired,
-      packages: PropTypes.shape({
-        heading: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        packages: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            thumbnail: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            amount: PropTypes.string.isRequired,
-          }),
-        ).isRequired,
-      }).isRequired,
-      activities: PropTypes.shape({
-        heading: PropTypes.string.isRequired,
-        categories: PropTypes.arrayOf(
-          PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            activities: PropTypes.arrayOf(PropTypes.string).isRequired,
-          }),
-        ).isRequired,
-      }).isRequired,
-      best_time_to_visit: PropTypes.shape({
-        heading: PropTypes.string.isRequired,
-        seasons: PropTypes.arrayOf(
-          PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            highlights: PropTypes.arrayOf(PropTypes.string),
-          }),
-        ).isRequired,
-      }).isRequired,
-      faq: PropTypes.shape({
-        heading: PropTypes.string.isRequired,
-        faqs: PropTypes.arrayOf(
-          PropTypes.shape({
-            question: PropTypes.string.isRequired,
-            answer: PropTypes.string.isRequired,
-          }),
-        ).isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
-};
+export default Tour;

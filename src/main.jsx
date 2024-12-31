@@ -14,6 +14,7 @@ import PrivacyPolicy from "./pages/privacyPolicy.jsx";
 import VisaRequirements from "./pages/visaRequirements.jsx";
 import TourPackages from "./pages/TourPackages.jsx";
 import PackageDetails from "./pages/packageDetials.jsx";
+import Tour from "./pages/tour.jsx";
 
 const router = createHashRouter([
   {
@@ -53,17 +54,17 @@ const router = createHashRouter([
         path: "destination_details/:id",
         element: <destinationdetails />,
       },
-      {
-        path: "tour_packages",
-        element: <TourPackages />,
-      },
+      // {
+      //   path: "tour_packages",
+      //   element: <TourPackages />,
+      // },
       {
         path: "visa_requirements",
         element: <VisaRequirements />,
       },
       {
-        path: "tour_packages/package_details/:id",
-        element: <PackageDetails />,
+        path: "tour_packages/:id",
+        element: <Tour />,
       },
     ],
   },
