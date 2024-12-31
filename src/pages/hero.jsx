@@ -1366,7 +1366,10 @@ export default function Hero() {
 
       <div className="row">
         <div className="col-lg-10 offset-lg-1">
-          <div className="accordion-area accordion mb-30" id="faqAccordion">
+          <div
+            className="accordion-area accordion mb-30 mx-3"
+            id="faqAccordion"
+          >
             <div
               className="items-center"
               style={{ paddingTop: 50, textAlign: "center" }}
@@ -1378,7 +1381,7 @@ export default function Hero() {
             {faq &&
               faq.map((faq, index) => (
                 <div
-                  className="accordion-card style2 "
+                  className="accordion-card style2 mx-4 "
                   key={index}
                   style={{ borderRadius: 10 }}
                 >
