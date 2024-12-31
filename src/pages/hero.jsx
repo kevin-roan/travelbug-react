@@ -16,6 +16,7 @@ export default function Hero() {
       .get(`${import.meta.env.VITE_API_URL}/home`)
       .then((response) => {
         setHomeData(response.data.data);
+        console.log("homedata", response.data.data);
         setFaq(response.data.data.faqs);
       })
       .catch((error) => {
@@ -71,10 +72,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a
-                        href="/tour/#/tour_packages"
-                        className="th-btn th-icon"
-                      >
+                      <a href="/#/tour_packages" className="th-btn th-icon">
                         Explore Tours
                       </a>
                       <a href="/#/contact" className="th-btn style2 th-icon">
@@ -249,30 +247,52 @@ export default function Hero() {
                     </select>
                   </div>
                 </div>
+
                 <div className="form-group col-md-6 col-lg-auto">
                   <div className="icon">
                     <i className="fa-light fa-clock"></i>
                   </div>
                   <div className="search-input">
-                    <label>Duration</label>
-                    <select
-                      className="form-select nice-select"
-                      name="Duration"
-                      id="Duration"
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#4B5563",
+                        marginBottom: "8px",
+                      }}
                     >
-                      <option value="Normal" selected disabled>
-                        Duration
-                      </option>
-                      <option value="1">1 days</option>
-                      <option value="2">2 days</option>
-                      <option value="3">3 days</option>
-                      <option value="4">4 days</option>
-                      <option value="5">5 days</option>
-                      <option value="6">6 days</option>
-                      <option value="7">7 days</option>
-                    </select>
+                      Duration
+                    </label>
+
+                    <input
+                      id="days"
+                      type="number"
+                      placeholder="Days"
+                      style={{
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        padding: "10px 12px",
+                        width: "100%",
+                        maxWidth: "400px",
+                        outline: "none",
+                        boxSizing: "border-box",
+                        marginBottom: "8px",
+                      }}
+                      min="11"
+                      max="30"
+                      onInvalid={(e) => {
+                        e.target.setCustomValidity(
+                          "Tours are available for 11 to 30 days. Please select a number within this range.",
+                        );
+                      }}
+                      onInput={(e) => {
+                        e.target.setCustomValidity(""); // Clear the custom message on valid input
+                      }}
+                    />
                   </div>
                 </div>
+
                 <div className="form-group col-md-6 col-lg-auto">
                   <div className="icon">
                     <i className="fa-light fa-map-location-dot"></i>
@@ -364,6 +384,8 @@ export default function Hero() {
           </div>
         </div>
       </section>
+
+      {/* 
       <div className="destination-area position-relative overflow-hidden ">
         <div className="container">
           <div className="title-area text-center">
@@ -418,6 +440,7 @@ export default function Hero() {
         </div>
       </div>
 
+        * */}
       <div
         className="about-area position-relative overflow-hidden space"
         id="about-sec"
@@ -510,7 +533,6 @@ export default function Hero() {
           <img src="assets/img/icon/emoji.png" alt="" />
         </div>
       </div>
-      {/* 
       <section
         className="position-relative bg-top-center overflow-hidden space"
         id="service-sec"
@@ -613,7 +635,6 @@ export default function Hero() {
         </div>
       </section>
 
-        */}
       <div className="gallery-area ">
         <div className="container th-container">
           <div className="title-area text-center">
@@ -1356,7 +1377,11 @@ export default function Hero() {
             {/* faq start */}
             {faq &&
               faq.map((faq, index) => (
-                <div className="accordion-card style2 " key={index}>
+                <div
+                  className="accordion-card style2 "
+                  key={index}
+                  style={{ borderRadius: 10 }}
+                >
                   <div
                     className="accordion-header"
                     id={`collapse-item-${index}`}
