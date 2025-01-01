@@ -533,6 +533,7 @@ export default function Hero() {
           <img src="assets/img/icon/emoji.png" alt="" />
         </div>
       </div>
+      {/* 
       <section
         className="position-relative bg-top-center overflow-hidden space"
         id="service-sec"
@@ -634,6 +635,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
+*/}
 
       <div className="gallery-area ">
         <div className="container th-container">

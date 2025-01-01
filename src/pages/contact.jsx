@@ -107,7 +107,7 @@ export default function Contact() {
             {contactInfo &&
               contactInfo.map((address, index) => (
                 <div className="col-xl-4 col-lg-6" key={index}>
-                  <div className="about-contact-grid style2">
+                  <div className="about-contact-grid style2 h-100">
                     <div className="about-contact-icon">
                       <img src="assets/img/icon/location-dot2.svg" alt="" />
                     </div>
@@ -122,7 +122,6 @@ export default function Contact() {
                       <p className="about-contact-details-text">
                         {address.address.line_3}
                       </p>
-                      <p className="about-contact-details-text"></p>
                     </div>
                   </div>
                 </div>
