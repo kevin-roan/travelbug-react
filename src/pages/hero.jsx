@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
-  const [packageInfo, setPackageInfo] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
 
@@ -362,7 +361,8 @@ export default function Hero() {
                   <div
                     className="swiper-slide"
                     key={catergory.id}
-                    onClick={() => navigate(`/tour_packages/${catergory.id}`)}
+                    // onClick={() => navigate(`/tour_packages/${catergory.id}`)}
+                    onClick={() => navigate(`/holiday_packages`)}
                   >
                     <div className="category-card single">
                       <div
@@ -385,13 +385,17 @@ export default function Hero() {
                         />
                       </div>
                       <h3 className="box-title">
-                        <Link to={`/tour_packages/${catergory.id}`}>
+                        <Link
+                          to={`/holiday_packages`}
+                          // to={`/tour_packages/${catergory.id}`}
+                        >
                           {catergory.title}
                         </Link>
                       </h3>
                       <Link
                         className="line-btn"
-                        to={`/tour_packages/${catergory.id}`}
+                        // to={`/tour_packages/${catergory.id}`}
+                        to={`/holiday_packages`}
                       >
                         See more
                       </Link>

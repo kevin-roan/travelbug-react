@@ -8,7 +8,7 @@ export default function TourPackages() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/holiday_packages`)
+      .get(`${import.meta.env.VITE_API_URL}/holiday_packages/1`)
       .then((response) => {
         setTourpackages(response.data.data.holiday_packages);
       })
@@ -35,7 +35,8 @@ export default function TourPackages() {
       <div
         style={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "baseline",
+          alignContent: "baseline",
           justifyContent: "center",
           flexWrap: "wrap",
         }}
@@ -78,7 +79,7 @@ export default function TourPackages() {
                   }}
                 >
                   <Link
-                    to={`package_details/${item.id}`}
+                    to={`/tour_packages/${item.id}`}
                     className="th-btn style4 th-icon"
                   >
                     Book Now

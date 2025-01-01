@@ -54,10 +54,10 @@ const router = createHashRouter([
         path: "destination_details/:id",
         element: <destinationdetails />,
       },
-      // {
-      //   path: "tour_packages",
-      //   element: <TourPackages />,
-      // },
+      {
+        path: "holiday_packages",
+        element: <TourPackages />,
+      },
       {
         path: "visa_requirements",
         element: <VisaRequirements />,
