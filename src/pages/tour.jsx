@@ -24,20 +24,6 @@ const Tour = () => {
   }, []);
 
   return (
-    <div>
-      {details ? (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(details),
-          }}
-        />
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
-
-  return (
     <div className="container ">
       <h1 className="sub-title text-center">{details.data.main_title}</h1>
       <h2 className="text-center">{details.data.title.title}</h2>
