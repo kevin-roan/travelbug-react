@@ -8,10 +8,10 @@ function Tour() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/package_type_details/${id}`)
+      .get(`https://iamanas.in/travel_bug/web_api/package_type_details/${id}`)
       .then((res) => {
         console.log("packages array", res.data.data);
-        setTourData(res.data);
+        setTourData(res?.data);
       })
       .catch((error) => console.error(error.message));
   }, [id]);
@@ -22,10 +22,12 @@ function Tour() {
     return (
       <div>
         <div className="container ">
-          <h2 className="text-center">{tourData.data.main_title}</h2>
-          <h2 className="text-center">{tourData.data.title}</h2>
+          <h2 className="text-center sec-title" style={{marginBottom:'3px'}}>{tourData.data?.main_title}</h2>
+          <h2 className="text-center">{tourData.data?.title}</h2>
           <p>{tourData.data.main_content}</p>
-          <h2 className="text-center">{tourData.data.package_section_title}</h2>
+          <h2 className="text-center sec-title">
+            {tourData.data.package_section_title}
+          </h2>
           <p>{tourData.data.package_section_content}</p>
 
           {/* 
@@ -169,7 +171,7 @@ function Tour() {
                       id={`collapse-item-${index}`}
                     >
                       <button
-                        className="accordion-button collapsed"
+                        className="accordion-button collapsed new-btn-add"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${index}`}

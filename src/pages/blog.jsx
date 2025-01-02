@@ -42,8 +42,8 @@ export default function Blog() {
                 <div className="col-xxl-8 col-lg-7" key={index}>
                   <div className="th-blog blog-single has-post-thumbnail">
                     <div className="blog-img">
-                      <a href={blog.link}>
-                        <img src={blog.image} alt="Blog Image" />
+                      <a href={blog.link} >
+                        <img src={blog.image} className="image-new" alt="Blog Image" />
                       </a>
                     </div>
                     <div className="blog-content">

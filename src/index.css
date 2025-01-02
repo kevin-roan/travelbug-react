@@ -115,6 +115,8 @@ Last Update: 20-07-2024
   --section-title-space: 60px;
   --ripple-ani-duration: 2s;
 }
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 /*------------------- 1.5. Typography -------------------*/
 html,
@@ -2996,6 +2998,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
 /*------------------- 3.3. Titles -------------------*/
 .sec-title {
   margin-bottom: calc(var(--section-title-space) - 11px);
+  font-size: 37px !important;
 }
 
 .sub-title {
@@ -3059,8 +3062,10 @@ input[type=time]::-webkit-calendar-picker-indicator {
 }
 
 .sec-text {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 26px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .sec-text.style2 {
@@ -3170,6 +3175,7 @@ hr.title-line {
   .title-area,
   .sec-title {
     --section-title-space: 60px;
+    font-size: 32px !important;
   }
   .title-area.mb-45,
   .sec-title.mb-45 {
@@ -3196,6 +3202,7 @@ hr.title-line {
   .title-area,
   .sec-title {
     --section-title-space: 50px;
+    font-size: 30px !important;
   }
   .title-area.mb-45,
   .sec-title.mb-45 {
@@ -9643,6 +9650,11 @@ blockquote.has-very-dark-gray-color {
 .blog-video {
   line-height: 1px;
 }
+.blog-image-item{
+  width: 100% !important;
+  height: 430px !important;
+  object-fit: cover !important;
+}
 
 .blog-audio img,
 .blog-img img,
@@ -10953,6 +10965,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
 .hero-style1 .hero-title {
   color: var(--white-color);
   margin-bottom: 45px;
+  font-size: 54px !important;
 }
 
 .hero-style1 .hero-text {
@@ -10980,7 +10993,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
     max-width: 550px;
   }
   .hero-style1 .hero-title {
-    font-size: 58px;
+    font-size: 48px;
     line-height: 68px;
   }
 }
@@ -11030,7 +11043,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
     right: 3%;
   }
   .hero-title {
-    font-size: 42px;
+    font-size: 38px;
     line-height: 1.24;
     margin-bottom: 35px;
   }
@@ -11039,7 +11052,7 @@ ul.comment-list:has(> .th-comment-item ~ .th-comment-item):first-child > .th-pos
 /* Extra small devices */
 @media (max-width: 375px) {
   .hero-style1 .hero-title {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 50px;
   }
 }
@@ -15309,6 +15322,13 @@ table.woocommerce-product-attributes {
   padding-top: 115px;
 }
 
+.new-faq{
+  font-size: 30px !important;
+}
+.new-faq-decs{
+  font-size: 15px !important;
+}
+
 /* Medium Large devices */
 @media (max-width: 1299px) {
   .product-thumb-tab {
@@ -18975,6 +18995,18 @@ span.select2-selection.select2-selection--single:focus {
       -ms-transform: scale(1.6);
           transform: scale(1.6);
   /* Extra small devices */
+}
+
+.new-slider-image{
+  width: 100% !important;
+  height: 300px !important;
+  object-fit: cover;
+}
+.box-title.new-tile {
+  margin-top: 10px; /* Adjust the value as needed */
+  font-size: 14px;  /* Adjust the font size */
+  line-height: 1.2; /* Optional: Adjust line height for better spacing */
+  text-align: center; /* Optional: Center align the text */
 }
 
 @media (max-width: 575px) {
@@ -22713,6 +22745,10 @@ span.select2-selection.select2-selection--single:focus {
   color: var(--body-color);
   margin-bottom: -0.48em;
   margin-top: -0.48em;
+  font-size: 15px !important;
+}
+.new-button-text{
+  font-size: 18px !important;
 }
 
 /* Medium devices */
@@ -25443,6 +25479,7 @@ span.select2-selection.select2-selection--single:focus {
 .gallery-area3 {
   border-bottom: 1px solid rgba(233, 246, 249, 0.2);
   padding-bottom: 64px;
+  
 }
 
 /*------------------- 4.00. Destination -------------------*/
@@ -28191,3 +28228,270 @@ span.select2-selection.select2-selection--single:focus {
   margin: -35px 0;
   z-index: 8;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensures all cards are the same height */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease; /* Optional: Add a hover effect */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Optional: Slight zoom on hover */
+}
+
+.card-img {
+  height: 200px; /* Set a fixed height for the image container */
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image scales properly within the container */
+}
+
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: auto; /* Pushes the button to the bottom */
+}
+
+.btn {
+  align-self: flex-start; /* Aligns the button to the left */
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Limit text to 5 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  margin-bottom: 10px;
+}
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.pag{
+  max-width: 200px;
+}
+.pag .th-btn{
+  font-size: 12px;
+  height: 50px;
+}
+
+.card .card-text{
+  font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.discover-india-section-new {
+  padding: 60px 20px; /* Add padding for spacing */
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.discover-india-section-new .title-area {
+  margin-bottom: 30px;
+}
+
+/* .discover-india-section-new .sub-title {
+  font-size: 20px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+} */
+
+.discover-india-section-new .sec-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+}
+
+.discover-india-section-new .description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  text-align: justify;
+  margin: 20px 0 40px;
+}
+
+.discover-india-section-new .contact-us {
+  margin-top: 40px;
+}
+
+.discover-india-section-new .contact-us .sub-title {
+ 
+  margin-bottom: 10px;
+}
+
+.discover-india-section-new .contact-us .introduction {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.discover-india-section-new .text-center {
+  text-align: center;
+}
+
+.discover-india-section-new .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+.image-new{
+  height: 400px !important;
+  object-fit: cover;
+  }
+
+  .new-btn-add{
+    font-size: 17px !important;
+  }
+
+
+
+
+
+  .about-item-wrap-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  .about-item-wrap-new .about-item {
+    background-color: #e9f6f9;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    overflow: hidden; /* Ensure content inside respects the rounded corners */
+    height: 100%; /* Ensure all items stretch to the same height */
+    min-height: 300px; /* Default minimum height */
+    display: flex;
+  }
+  
+  .about-item-wrap-new .about-item_img {
+    width: 60px;        /* Set the width */
+    height: 60px;       /* Set the height */
+    overflow: hidden;   /* Ensures the image is clipped to its container */
+    border-radius: 50%; /* Makes the container round */
+    margin: 0 auto 10px;
+  }
+  
+  .about-item-wrap-new .about-item_img img {
+    width: 100%;        /* Ensures the image fills the container */
+    height: 100%;       /* Ensures the image fills the container */
+    object-fit: cover;  /* Ensures the image scales correctly while maintaining aspect ratio */
+  }
+  
+  .about-item-wrap-new .about-item_content {
+    flex: 1;
+  }
+  
+  .about-item-wrap-new .about-item_content .box-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .about-item-wrap-new .about-item_content .about-item_text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+    flex-grow: 1; /* Ensures the text takes up the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 768px) {
+    .about-item-wrap-new .about-item {
+      padding: 15px;
+      min-height: 350px; /* Adjusted height for smaller screens */
+    }
+  
+    .about-item-wrap-new .about-item_content .box-title {
+      font-size: 16px;
+    }
+  
+    .about-item-wrap-new .about-item_content .about-item_text {
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-item-wrap-new .about-item {
+      padding: 10px;
+      min-height: 300px; /* Adjusted height for very small screens */
+    }
+  
+    .about-item-wrap-new .about-item_content .box-title {
+      font-size: 14px;
+    }
+  
+    .about-item-wrap-new .about-item_content .about-item_text {
+      font-size: 12px;
+    }
+  }
+  
+
+
+
+
+
+  /* tour */
+
+  
