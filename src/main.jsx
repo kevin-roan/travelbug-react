@@ -66,6 +66,10 @@ const router = createHashRouter([
         path: "tour_packages/:id",
         element: <Tour />,
       },
+      {
+        path: "package_details/:id",
+        element: <PackageDetails />,
+      },
     ],
   },
 ]);

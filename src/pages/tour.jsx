@@ -141,7 +141,7 @@ function Tour() {
                       }}
                     >
                       <Link
-                        to={`package_details/${item.id}`}
+                        to={`/package_details/${item.id}`}
                         className="th-btn style4 th-icon"
                       >
                         Book Now
