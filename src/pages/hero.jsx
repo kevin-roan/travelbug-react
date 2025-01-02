@@ -30,28 +30,28 @@ export default function Hero() {
     const loadScripts = async () => {
       // Wait for jQuery to be available
       while (!window.jQuery) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
       // Initialize plugins only after jQuery is ready
       const $ = window.jQuery;
 
       // Initialize nice select
-      if (typeof $.fn.niceSelect === 'function') {
-        $('.nice-select').niceSelect();
+      if (typeof $.fn.niceSelect === "function") {
+        $(".nice-select").niceSelect();
       }
 
       // Initialize Swiper if available
       if (window.Swiper) {
-        new window.Swiper('.hero-slider-1', {
-          effect: 'fade',
+        new window.Swiper(".hero-slider-1", {
+          effect: "fade",
           pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
+            el: ".swiper-pagination",
+            clickable: true,
+          },
         });
 
-        new window.Swiper('.categorySlider', {
+        new window.Swiper(".categorySlider", {
           slidesPerView: 3,
           spaceBetween: 24,
           centeredSlides: true,
@@ -59,8 +59,8 @@ export default function Hero() {
           breakpoints: {
             0: { slidesPerView: 1 },
             576: { slidesPerView: 2 },
-            992: { slidesPerView: 3 }
-          }
+            992: { slidesPerView: 3 },
+          },
         });
       }
     };
@@ -69,8 +69,8 @@ export default function Hero() {
 
     return () => {
       // Cleanup
-      if (window.jQuery && typeof window.jQuery.fn.niceSelect === 'function') {
-        window.jQuery('.nice-select').niceSelect('destroy');
+      if (window.jQuery && typeof window.jQuery.fn.niceSelect === "function") {
+        window.jQuery(".nice-select").niceSelect("destroy");
       }
     };
   }, [location.pathname]);
@@ -355,7 +355,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range."
+                          "Tours are available for 11 to 30 days. Please select a number within this range.",
                         );
                       }}
                       onInput={(e) => {
@@ -445,9 +445,7 @@ export default function Hero() {
               homeData.categories.map((category, index) => (
                 <SwiperSlide
                   key={index}
-                  onClick={() =>
-                    navigate(`/tour_packages/package_details/${category.id}`)
-                  }
+                  onClick={() => navigate(`/holiday_packages`)}
                 >
                   <img
                     className="new-slider-image"
@@ -1418,7 +1416,7 @@ export default function Hero() {
                               className="package-overview"
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description
+                                  item.short_description,
                                 ),
                               }}
                             />
