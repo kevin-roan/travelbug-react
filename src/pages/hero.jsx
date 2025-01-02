@@ -1,23 +1,71 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import useLoadScripts from "../hooks/loadExternalScripts";
-import { useLocation } from "react-router-dom";
 
 import DOMPurify from "dompurify";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   const navigate = useNavigate();
 
   const scripts = [
     "../assets/js/vendor/jquery-3.6.0.min.js",
+    "../assets/js/vendor/jquery.nice-select.min.js",
     "../assets/js/main.js",
   ];
 
-  useLoadScripts(scripts);
+  useEffect(() => {
+    const loadScripts = async () => {
+      // Wait for jQuery to be available
+      while (!window.jQuery) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      // Initialize plugins only after jQuery is ready
+      const $ = window.jQuery;
+
+      // Initialize nice select
+      if (typeof $.fn.niceSelect === 'function') {
+        $('.nice-select').niceSelect();
+      }
+
+      // Initialize Swiper if available
+      if (window.Swiper) {
+        new window.Swiper('.hero-slider-1', {
+          effect: 'fade',
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+        });
+
+        new window.Swiper('.categorySlider', {
+          slidesPerView: 3,
+          spaceBetween: 24,
+          centeredSlides: true,
+          loop: true,
+          breakpoints: {
+            0: { slidesPerView: 1 },
+            576: { slidesPerView: 2 },
+            992: { slidesPerView: 3 }
+          }
+        });
+      }
+    };
+
+    loadScripts();
+
+    return () => {
+      // Cleanup
+      if (window.jQuery && typeof window.jQuery.fn.niceSelect === 'function') {
+        window.jQuery('.nice-select').niceSelect('destroy');
+      }
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     console.log("apiurl", import.meta.env.VITE_API_URL);
@@ -33,35 +81,6 @@ export default function Hero() {
       });
   }, []);
 
-  useEffect(() => {
-    // Reload page when user navigates back to hero page
-    const handlePageShow = (e) => {
-      if (e.persisted) {
-        window.location.reload();
-      }
-    };
-
-    window.addEventListener("pageshow", handlePageShow);
-
-    // Alternative approach using location change
-    if (location.pathname === "/") {
-      window.scrollTo(0, 0);
-      if (document.readyState === "complete") {
-        window.location.reload();
-      }
-    }
-
-    return () => {
-      window.removeEventListener("pageshow", handlePageShow);
-    };
-  }, [location]);
-
-  if (error) {
-    throw new Error(error);
-  }
-  if (homeData) {
-    console.log(homeData.popular_destinations);
-  }
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -978,7 +997,7 @@ export default function Hero() {
       // //       <div
       // //         className="swiper th-slider teamSlider1 has-shadow"
       // //         id="teamSlider1"
-      //         data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'
+      // //         data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'
       //       >
       //         <div className="swiper-wrapper">
       //           <div className="swiper-slide">

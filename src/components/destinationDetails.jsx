@@ -35,7 +35,7 @@ export default function DestinationDetails() {
             </h1>
             <ul className="breadcumb-menu">
               <li>
-                <a href="#">Home</a>
+                <a href="home-travel.html">Home</a>
               </li>
               <li>Destination Details</li>
             </ul>

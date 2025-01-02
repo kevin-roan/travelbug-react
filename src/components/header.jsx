@@ -1,6 +1,55 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Header() {
+  useEffect(() => {
+    const initializeMenu = () => {
+      if (window.jQuery) {
+        // Initialize mobile menu
+        window.jQuery(".th-menu-wrapper").thmobilemenu({
+          menuToggleBtn: ".th-menu-toggle",
+          bodyToggleClass: "th-body-visible",
+          subMenuClass: "th-submenu",
+          subMenuParent: "menu-item-has-children",
+          subMenuParentToggle: "th-active",
+          meanExpandClass: "th-mean-expand",
+          subMenuToggleClass: "th-open",
+          toggleSpeed: 400,
+        });
+
+        // Initialize one page nav
+        window.jQuery('.onepage-nav').each(function() {
+          const link = window.jQuery(this).find('a');
+          window.jQuery(this).find(link).each(function() {
+            window.jQuery(this).on('click', function(e) {
+              const target = window.jQuery(this.getAttribute('href'));
+              if (target.length) {
+                e.preventDefault();
+                window.jQuery('html, body').stop().animate({
+                  scrollTop: target.offset().top - 10
+                }, 1000);
+              }
+            });
+          });
+        });
+      } else {
+        // Retry after a short delay if jQuery isn't loaded yet
+        setTimeout(initializeMenu, 100);
+      }
+    };
+
+    // Start initialization process
+    initializeMenu();
+
+    return () => {
+      // Cleanup if needed
+      if (window.jQuery) {
+        window.jQuery(".th-menu-wrapper").off();
+        window.jQuery('.onepage-nav').off();
+      }
+    };
+  }, []);
+
   return (
     <>
       <div className="sidemenu-wrapper sidemenu-info ">
@@ -302,7 +351,19 @@ export default function Header() {
                   </nav>
                   <button
                     type="button"
-                    className="th-menu-toggle d-block d-xl-none"
+                    className="th-menu-toggle d-inline-block d-xl-none"
+                    style={{
+                      display: 'block',
+                      background: 'var(--theme-color)',
+                      border: 'none',
+                      width: '40px',
+                      height: '40px',
+                      lineHeight: '40px',
+                      textAlign: 'center',
+                      color: '#fff',
+                      fontSize: '20px',
+                      cursor: 'pointer'
+                    }}
                   >
                     <i className="far fa-bars"></i>
                   </button>
