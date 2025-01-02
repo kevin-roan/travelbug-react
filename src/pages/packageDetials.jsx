@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import axios from "axios";
+import TourPackageBanner from "../components/packageDetailBanner";
 
 export default function PackageDetails() {
   const [data, setData] = useState("");
@@ -14,7 +15,6 @@ export default function PackageDetails() {
       )
       .then((response) => {
         setData(response.data.data);
-        console.log("respponse", response.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -29,8 +29,22 @@ export default function PackageDetails() {
   } else
     return (
       <div className="container">
-        <h1>{data.package_details.title}</h1>
-        <image alt="image" src={data.package_details.thumbnail} />
+        <TourPackageBanner
+          id={data.package_details.id}
+          title={data.package_details.title}
+          day={data.package_details.day}
+          night={data.package_details.night}
+          amount={data.package_details.amount}
+          thumbnail={data.package_details.thumbnail}
+          startingPoint={data.package_details.starting_point}
+          endingPoint={data.package_details.ending_point}
+        />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(data.package_details.description),
+          }}
+        ></div>
+
         <div
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(data.package_details.overview),

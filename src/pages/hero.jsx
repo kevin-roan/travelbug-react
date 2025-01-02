@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useLoadScripts from "../hooks/loadExternalScripts";
+import { useLocation } from "react-router-dom";
 
 import DOMPurify from "dompurify";
 export default function Hero() {
@@ -9,6 +11,13 @@ export default function Hero() {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+
+  const scripts = [
+    "../assets/js/vendor/jquery-3.6.0.min.js",
+    "../assets/js/main.js",
+  ];
+
+  useLoadScripts(scripts);
 
   useEffect(() => {
     console.log("apiurl", import.meta.env.VITE_API_URL);
@@ -23,6 +32,30 @@ export default function Hero() {
         setError(error);
       });
   }, []);
+
+  useEffect(() => {
+    // Reload page when user navigates back to hero page
+    const handlePageShow = (e) => {
+      if (e.persisted) {
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+
+    // Alternative approach using location change
+    if (location.pathname === "/") {
+      window.scrollTo(0, 0);
+      if (document.readyState === "complete") {
+        window.location.reload();
+      }
+    }
+
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, [location]);
+
   if (error) {
     throw new Error(error);
   }
