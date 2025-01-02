@@ -3,6 +3,14 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useLoadScripts from "../hooks/loadExternalScripts";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import { EffectCoverflow, Pagination } from "swiper/modules";
+
 import DOMPurify from "dompurify";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
@@ -70,11 +78,11 @@ export default function Hero() {
   useEffect(() => {
     console.log("apiurl", import.meta.env.VITE_API_URL);
     axios
-      .get(`${import.meta.env.VITE_API_URL}/home`)
+      .get(`https://iamanas.in/travel_bug/web_api/home`)
       .then((response) => {
         setHomeData(response.data.data);
-        console.log("homedata", response.data.data);
-        setFaq(response.data.data.faqs);
+        console.log("homedata", response.data?.data);
+        setFaq(response.data?.data?.faqs);
       })
       .catch((error) => {
         setError(error);
@@ -100,7 +108,11 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[0].image : ""})`,
+                    backgroundImage: `url(${
+                      homeData && homeData.banners
+                        ? homeData.banners[0].image
+                        : ""
+                    })`,
                   }}
                 ></div>
                 <div className="container">
@@ -145,7 +157,11 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1].image : ""})`,
+                    backgroundImage: `url(${
+                      homeData && homeData.banners
+                        ? homeData.banners[1].image
+                        : ""
+                    })`,
                   }}
                 ></div>
                 <div className="container">
@@ -190,7 +206,11 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[2].image : ""})`,
+                    backgroundImage: `url(${
+                      homeData && homeData.banners
+                        ? homeData.banners[2].image
+                        : ""
+                    })`,
                   }}
                 ></div>
                 <div className="container">
@@ -335,7 +355,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range.",
+                          "Tours are available for 11 to 30 days. Please select a number within this range."
                         );
                       }}
                       onInput={(e) => {
@@ -384,7 +404,9 @@ export default function Hero() {
           homeData && homeData.banners ? homeData.banners[1].image : ""
         }
         style={{
-          backgroundImage: `url(${homeData && homeData.banners ? homeData.banners[1] : ""})`,
+          backgroundImage: `url(${
+            homeData && homeData.banners ? homeData.banners[1] : ""
+          })`,
         }}
       >
         <div className="container th-container">
@@ -402,61 +424,44 @@ export default function Hero() {
               featuring must-visit destinations.
             </p>
           </div>
-          <div
-            className="swiper categorySlider"
-            id="categorySlide"
-            data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2},"992":{"slidesPerView":3}},"centeredSlides":true,"initialSlide":2,"spaceBetween":24}'
+
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Pagination]}
+            className="mySwiper"
           >
-            <div className="swiper-wrapper">
-              {homeData &&
-                homeData.categories.map((catergory) => (
-                  <div
-                    className="swiper-slide"
-                    key={catergory.id}
-                    // onClick={() => navigate(`/tour_packages/${catergory.id}`)}
-                    onClick={() => navigate(`/holiday_packages`)}
-                  >
-                    <div className="category-card single">
-                      <div
-                        className="box-img global-img"
-                        style={{
-                          height: "250px",
-                          width: "100%",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <img
-                          src={catergory.image}
-                          alt="Image"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }}
-                        />
-                      </div>
-                      <h3 className="box-title">
-                        <Link
-                          to={`/holiday_packages`}
-                          // to={`/tour_packages/${catergory.id}`}
-                        >
-                          {catergory.title}
-                        </Link>
-                      </h3>
-                      <Link
-                        className="line-btn"
-                        // to={`/tour_packages/${catergory.id}`}
-                        to={`/holiday_packages`}
-                      >
-                        See more
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-            </div>
-            <div className="swiper-pagination"></div>
-          </div>
+            {homeData &&
+              homeData.categories.map((category, index) => (
+                <SwiperSlide
+                  key={index}
+                  onClick={() =>
+                    navigate(`/tour_packages/package_details/${category.id}`)
+                  }
+                >
+                  <img
+                    className="new-slider-image"
+                    src={category.image}
+                    alt="Image"
+                  />
+                  <h3 className="box-title new-tile">
+                    <Link to={`/tour_packages/package_details/${category.id}`}>
+                      {category.title}
+                    </Link>
+                  </h3>
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </div>
       </section>
 
@@ -522,38 +527,20 @@ export default function Hero() {
       >
         <div className="container">
           <div className="ps-xl-4 ms-xl-2">
-            <div className="title-area mb-20 pe-xl-5 me-xl-5">
+            <div className="title-area mb-20 pe-xl-5 me-xl-5 text-center">
               <span className="sub-title style1 ">Let’s Go Together</span>
               <h2 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
-                Why Choose Us ?
+                Why Choose Us?
               </h2>
             </div>
-            <div
-              className="about-item-wrap"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-                gap: "20px",
-              }}
-            >
+            <div className="about-item-wrap-new">
               {homeData &&
                 homeData.why_choose_us.map((item, index) => (
-                  <div
-                    className="about-item"
-                    key={index}
-                    style={{
-                      backgroundColor: "#E9F6F9",
-                      padding: 20,
-                      borderRadius: 20,
-                      minHeight: 400,
-                    }}
-                  >
+                  <div className="about-item" key={index}>
                     <div className="about-item_img">
                       <img src="assets/img/icon/guide.svg" alt="" />
                     </div>
-                    <div className="about-item_centent">
+                    <div className="about-item_content">
                       <h5 className="box-title">{item.title}</h5>
                       <p className="about-item_text">{item.description}</p>
                     </div>
@@ -608,6 +595,7 @@ export default function Hero() {
           <img src="assets/img/icon/emoji.png" alt="" />
         </div>
       </div>
+
       {/* 
       <section
         className="position-relative bg-top-center overflow-hidden space"
@@ -1430,7 +1418,7 @@ export default function Hero() {
                               className="package-overview"
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description,
+                                  item.short_description
                                 ),
                               }}
                             />
@@ -1499,7 +1487,7 @@ export default function Hero() {
                     id={`collapse-item-${index}`}
                   >
                     <button
-                      className="accordion-button collapsed"
+                      className="accordion-button collapsed "
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target={`#collapse-${index}`}

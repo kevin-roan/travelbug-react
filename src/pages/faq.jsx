@@ -57,7 +57,7 @@ export default function FAQ() {
                       id={`collapse-item-${index}`}
                     >
                       <button
-                        className="accordion-button collapsed"
+                        className="accordion-button collapsed new-btn-add"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${index}`}
