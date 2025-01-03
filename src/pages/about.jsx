@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { fetchAbout } from "../services/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function About() {
   const [aboutInfo, setAboutInfo] = useState("");
   const [error, setError] = useState(null);
+
+  const navigate=useNavigate()
 
   useEffect(() => {
     axios
@@ -20,6 +22,10 @@ export default function About() {
         setError(error);
       });
   }, []);
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
 
   return (
     <>
@@ -193,7 +199,7 @@ export default function About() {
                         {item.description.length > 150 ? (
                           <>
                             {item.description.substring(0, 150)}...
-                            <a className="read-more">Read More</a>
+                            <a className="read-more" onClick={()=>navigate(`/tour_packages/${item.id}`)}>Read More</a>
                           </>
                         ) : (
                           item.description
@@ -201,7 +207,7 @@ export default function About() {
                       </p>
                       <div className="pag">
                         <Link
-                          // to={`/tour_packages/${item.id}`}
+                          to={`/tour_packages/${item.id}`}
                           className="th-btn style4 th-icon"
                         >
                           Book Now

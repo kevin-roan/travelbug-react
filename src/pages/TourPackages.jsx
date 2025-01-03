@@ -31,6 +31,10 @@ export default function TourPackages() {
       });
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (error) {
     throw new Error(error);
   }
@@ -149,7 +153,7 @@ export default function TourPackages() {
               </div>
               {/* Content Section */}
               <div
-                className="tour-content"
+                className="tour-content item-per-page"
                 style={{
                   flex: 1,
                   padding: "10px",
@@ -159,7 +163,7 @@ export default function TourPackages() {
                 }}
               >
                 <h4 className="box-title">
-                  <a href="tour-details.html">{item.title}</a>
+                  <a className="ne-text text-start-start">{item.title}</a>
                 </h4>
                 <div
                   style={{
@@ -191,7 +195,7 @@ export default function TourPackages() {
                   <span className="box-title">{item.amount}</span>
                 </h3>
                 <div
-                  className="tour-action"
+                  className="tour-action action-item"
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -235,7 +239,12 @@ export default function TourPackages() {
                 textAlign: "center",
               }}
             >
-              <h2 className="sec-title">{selectedPackage.title}</h2>
+              <h2
+                className="sec-title"
+                style={{ marginBottom: "5px", fontSize: "12px" }}
+              >
+                {selectedPackage.title}
+              </h2>
               <p className="sec-text">{selectedPackage.description}</p>
             </div>
             <button

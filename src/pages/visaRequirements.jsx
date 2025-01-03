@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const VisaRequirements = () => {
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+      },[])
   return (
     <div className="visa-requirements container my-5 py-4">
       <h3 className="mb-4 ">Visa Requirements for Traveling to India</h3>
