@@ -28313,6 +28313,24 @@ span.select2-selection.select2-selection--single:focus {
   font-size: 12px;
   height: 50px;
 }
+.custom-tour-action .th-btn{
+  font-size: 12px;
+  height: 50px;
+  
+}
+.action-item{
+  width: 100%  !important;
+  display: flex  !important;
+  justify-content: start !important;
+}
+
+.ne-text{
+font-size: 16px !important;
+font-weight: bold;
+margin: 5px 0px;
+}
+
+
 
 .card .card-text{
   font-size: 15px;
