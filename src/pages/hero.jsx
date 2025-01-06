@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import useLoadScripts from "../hooks/loadExternalScripts";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css"; // Import Swiper styles
 
 // Import Swiper styles
 import "swiper/css";
@@ -355,7 +356,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range.",
+                          "Tours are available for 11 to 30 days. Please select a number within this range."
                         );
                       }}
                       onInput={(e) => {
@@ -1069,6 +1070,7 @@ export default function Hero() {
       //   </div>
       // </section>
          * */}
+
       <section className="testi-area overflow-hidden space" id="testi-sec">
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
@@ -1087,44 +1089,117 @@ export default function Hero() {
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"767":{"slidesPerView":"2","centeredSlides":"true"},"992":{"slidesPerView":"2","centeredSlides":"true"},"1200":{"slidesPerView":"2","centeredSlides":"true"},"1400":{"slidesPerView":"3","centeredSlides":"true"}}}'
             >
               <div className="swiper-wrapper">
-                {homeData &&
-                  homeData.reviews.map((review) => (
-                    <div className="swiper-slide">
-                      <div className="testi-card">
-                        <div className="testi-card_wrapper">
-                          <div className="testi-card_profile">
-                            <div className="testi-card_avater">
+                <Swiper
+                  spaceBetween={30} // Space between slides
+                  slidesPerView={1} // Default number of slides to show
+                  centeredSlides={true} // Center the active slide
+                  loop={true} // Infinite loop
+                  breakpoints={{
+                    // Responsive breakpoints
+                    768: { slidesPerView: 2 },
+                    992: { slidesPerView: 2 },
+                    1200: { slidesPerView: 3 },
+                  }}
+                  pagination={{ clickable: true }} // Enable pagination
+                  className="testi-slider"
+                >
+                  {homeData &&
+                    homeData.reviews.map((review, index) => (
+                      <SwiperSlide key={index}>
+                        <div
+                          className="testi-card"
+                          style={{
+                            padding: "20px",
+                            borderRadius: "10px",
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                            backgroundColor: "#fff",
+                            margin: "20px",
+                          }}
+                        >
+                          {/* Profile Section */}
+                          <div
+                            className="testi-card_wrapper"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              marginBottom: "15px",
+                            }}
+                          >
+                            <div
+                              className="testi-card_avater"
+                              style={{ marginRight: "15px" }}
+                            >
                               <img
                                 src="assets/img/testimonial/testi_1_1.jpg"
                                 alt="testimonial"
+                                style={{
+                                  width: "60px",
+                                  height: "60px",
+                                  borderRadius: "50%",
+                                  objectFit: "cover",
+                                }}
                               />
                             </div>
-                            <div className="media-body">
-                              <h3 className="box-title">{review.author}</h3>
-                              <span className="testi-card_desig">
+                            <div>
+                              <h3
+                                className="box-title"
+                                style={{
+                                  fontSize: "18px",
+                                  fontWeight: "600",
+                                  margin: 0,
+                                }}
+                              >
+                                {review.author}
+                              </h3>
+                              <span
+                                className="testi-card_desig"
+                                style={{ fontSize: "14px", color: "#999" }}
+                              >
                                 Traveller
                               </span>
                             </div>
                           </div>
-                          <div className="testi-card_review">
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
+
+                          {/* Review Stars */}
+                          <div
+                            className="testi-card_review"
+                            style={{ marginBottom: "10px", color: "#FFD700" }}
+                          >
+                            {Array(5)
+                              .fill(0)
+                              .map((_, i) => (
+                                <i key={i} className="fa-solid fa-star"></i>
+                              ))}
+                          </div>
+
+                          {/* Review Text */}
+                          <p
+                            className="testi-card_text"
+                            style={{
+                              fontSize: "14px",
+                              color: "#666",
+                              lineHeight: "1.6",
+                              marginBottom: "15px",
+                            }}
+                          >
+                            {review.review}
+                          </p>
+
+                          {/* Quote Icon */}
+                          <div
+                            className="testi-card-quote"
+                            style={{ textAlign: "center" }}
+                          >
+                            <img
+                              src="assets/img/icon/testi-quote.svg"
+                              alt="quote"
+                              style={{ width: "30px", opacity: "0.8" }}
+                            />
                           </div>
                         </div>
-
-                        <p className="testi-card_text">{review.review}</p>
-                        <div className="testi-card-quote">
-                          <img
-                            src="assets/img/icon/testi-quote.svg"
-                            alt="img"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                      </SwiperSlide>
+                    ))}
+                </Swiper>
               </div>
               <div className="slider-pagination"></div>
             </div>
@@ -1377,21 +1452,52 @@ export default function Hero() {
                   {homeData &&
                     homeData.blogs.map((item, index) => (
                       <div className="swiper-slide" key={index}>
-                        <div className="blog-box th-ani">
-                          <div className="blog-img global-img">
+                        <div
+                          className="blog-box th-ani"
+                          style={{
+                            background: "#fff",
+                            borderRadius: "10px",
+                            overflow: "hidden",
+                            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                            transition: "transform 0.3s, box-shadow 0.3s",
+                          }}
+                        >
+                          {/* Image Section */}
+                          <div
+                            className="blog-img global-img"
+                            style={{ overflow: "hidden" }}
+                          >
                             <img
                               src={item.image}
                               alt="blog image"
-                              style={{ height: 300, width: 500 }}
+                              style={{
+                                height: "200px",
+                                width: "100%",
+                                objectFit: "cover",
+                                transition: "transform 0.3s",
+                              }}
                             />
                           </div>
-                          <div className="blog-box_content">
+
+                          {/* Content Section */}
+                          <div
+                            className="blog-box_content"
+                            style={{
+                              padding: "20px",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "1px",
+                            }}
+                          >
+                            {/* Meta Information */}
                             <div
                               className="blog-meta"
                               style={{
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "space-between",
+                                color: "#888",
+                                fontSize: "14px",
                               }}
                             >
                               <a className="author" href="blog.html">
@@ -1401,43 +1507,95 @@ export default function Hero() {
                                 style={{
                                   display: "flex",
                                   alignItems: "center",
-                                  justifyContent: "center",
-                                  gap: "8px",
+                                  gap: "1px",
                                 }}
                               >
                                 <img
                                   src={item.author_image}
                                   alt="Author"
                                   style={{
-                                    height: 20,
-                                    width: 20,
+                                    height: "30px",
+                                    width: "30px",
                                     borderRadius: "50%",
                                   }}
                                 />
-                                <p className="box-desc" style={{ margin: 0 }}>
+                                <span style={{ margin: 0, fontWeight: "500" }}>
                                   {item.author}
-                                </p>
+                                </span>
                               </div>
                             </div>
-                            <h3 className="box-title">
-                              <a href={item.link}>{item.title}</a>
+
+                            {/* Blog Title */}
+                            <h3
+                              className="box-title"
+                              style={{
+                                fontSize: "18px",
+                                fontWeight: "bold",
+                                color: "#333",
+                                margin: "0",
+                                lineHeight: "1.4",
+                              }}
+                            >
+                              <a
+                                href={item.link}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "inherit",
+                                }}
+                              >
+                                {item.title}
+                              </a>
                             </h3>
-                            <div></div>
+
+                            {/* Description */}
                             <div
                               className="package-overview"
+                              style={{
+                                fontSize: "14px",
+                                color: "#666",
+                                marginTop: "0px",
+                                lineHeight: "1.6",
+                              }}
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description,
+                                  item.short_description
                                 ),
                               }}
                             />
 
-                            <a
-                              href={item.link} // should navigate to blog details page
+                            {/* Read More Button */}
+                            {/* <a
+                              href={item.link}
                               className="th-btn style4 th-icon"
+                              style={{
+                                display: "inline-block",
+                                marginTop: "10px",
+                                padding: "10px 20px",
+                                fontSize: "14px",
+                                fontWeight: "600",
+                                color: "#fff",
+                                background: "#007BFF",
+                                borderRadius: "5px",
+                                textAlign: "center",
+                                textDecoration: "none",
+                                transition: "background 0.3s",
+                              }}
+                              onMouseEnter={(e) =>
+                                (e.target.style.background = "#0056b3")
+                              }
+                              onMouseLeave={(e) =>
+                                (e.target.style.background = "#007BFF")
+                              }
                             >
                               Read More
-                            </a>
+                            </a> */}
+
+                            <Link
+                              // to={`/package_details/${item.id}`}
+                              className="th-btn style4 th-icon .th-btn"
+                            >
+                              Read More
+                            </Link>
                           </div>
                         </div>
                       </div>

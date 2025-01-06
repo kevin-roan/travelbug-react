@@ -19,6 +19,10 @@ export default function PackageDetails() {
         console.log(err);
       });
   }, [id]);
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   if (!data) {
     return (
       <div className="container flex items-center justify-center">
