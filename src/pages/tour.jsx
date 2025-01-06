@@ -16,17 +16,12 @@ function Tour() {
       .catch((error) => console.error(error.message));
   }, [id]);
 
-    useEffect(()=>{
-      window.scrollTo(0, 0);
-    },[])
-
   if (!tourData) {
     return <div>Loading</div>;
   } else
     return (
       <div>
         <div className="container ">
-<<<<<<< HEAD
           <h2 className="text-center sec-title" style={{ marginBottom: "3px" }}>
             {tourData.data?.main_title}
           </h2>
@@ -36,157 +31,130 @@ function Tour() {
             {tourData.data.package_section_title}
           </h2>
           <p>{tourData.data.package_section_content}</p>
-=======
-          <div style={{ padding: "40px 20px" }}>
-            {/* Main Titles */}
-            <h2
-              className="text-center sec-title"
-              style={{ marginBottom: "10px" }}
-            >
-              {tourData.data?.main_title}
-            </h2>
-            <h2 className="text-center" style={{ marginBottom: "20px" }}>
-              {tourData.data?.title}
-            </h2>
-            <p
-              style={{
-                fontSize: "16px",
-                color: "#666",
-                lineHeight: "1.8",
-                textAlign: "center",
-                maxWidth: "800px",
-                margin: "0 auto 30px auto",
-              }}
-            >
-              {tourData.data.main_content}
-            </p>
->>>>>>> 05a192336d00e4f6eb3578ab213632ad89cb3929
 
-            {/* Packages Section */}
-            <h2
-              className="text-center sec-title"
-              style={{ marginBottom: "15px" }}
-            >
-              {tourData.data.package_section_title}
-            </h2>
-            <p
-              style={{
-                fontSize: "16px",
-                color: "#666",
-                lineHeight: "1.8",
-                textAlign: "center",
-                maxWidth: "800px",
-                margin: "0 auto 30px auto",
-              }}
-            >
-              {tourData.data.package_section_content}
-            </p>
-
-            {/* Package Cards */}
-            <div
-              className="packages-wrapper"
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "20px",
-              }}
-            >
-              {tourData.data.packages.map((item) => (
-                <div
-                  className="custom-tour-box"
-                  key={item.id}
+          {/* 
+          <div
+            className="wrapper"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            {tourData.data.destinations.destinations.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  border: "1px solid #ddd",
+                  borderRadius: "10px",
+                  padding: "20px",
+                  backgroundColor: "#ffffff",
+                  margin: "20px auto",
+                  width: "300px",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  textAlign: "center",
+                }}
+              >
+                <h4 style={{ color: "#333", marginBottom: "10px" }}>
+                  {item.name}
+                </h4>
+                <img
+                  src={item.image}
+                  alt={item.name}
                   style={{
-                    width: "300px",
-                    backgroundColor: "#fff",
+                    width: "100%",
+                    height: "200px",
+                    objectFit: "cover",
                     borderRadius: "8px",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                    overflow: "hidden",
-                    transition: "transform 0.3s, box-shadow 0.3s",
+                    marginBottom: "15px",
                   }}
-                >
-                  {/* Image */}
-                  <div
-                    className="custom-tour-box_img"
-                    style={{ height: "200px" }}
-                  >
+                />
+                <div className="destinations" style={{ textAlign: "left" }}>
+                  <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                    Beaches in {item.name}:
+                  </p>
+                  <ul style={{ paddingLeft: "20px", margin: "0" }}>
+                    {item.beaches.map((beach, i) => (
+                      <li
+                        key={i}
+                        style={{
+                          color: "#555",
+                          fontSize: "14px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        {beach}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {tourData.data.packages.map((item) => (
+              <div
+                className=""
+                key={item.id}
+                style={{
+                  width: 300,
+                  margin: 10,
+                }}
+              >
+                <div className="tour-box th-ani gsap-cursor">
+                  <div className="tour-box_img global-img">
                     <img
                       src={item.thumbnail}
-                      alt={item.title}
+                      alt="image"
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        borderTopLeftRadius: "8px",
-                        borderTopRightRadius: "8px",
-                        transition: "transform 0.3s",
+                        height: 280,
                       }}
                     />
                   </div>
-
-                  {/* Content */}
-                  <div
-                    className="custom-tour-content"
-                    style={{ padding: "15px" }}
-                  >
-                    <h4
-                      className="custom-box-title"
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "600",
-                        marginBottom: "10px",
-                        color: "#333",
-                      }}
-                    >
-                      {item.title}
+                  <div className="tour-content">
+                    <h4 className="box-title">
+                      <a href="tour-tourData.html">{item.title}</a>
                     </h4>
-                    <p
+                    <div
                       style={{
-                        fontSize: "14px",
-                        color: "#666",
-                        lineHeight: "1.6",
-                        marginBottom: "15px",
+                        display: "flex",
+                        gap: 10,
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                        marginBottom: 10,
                       }}
                     >
                       {item.description}
-<<<<<<< HEAD
                     </div>
                     <h3 className="tour-box_price">
-                      <span className="box-title">{item.amount} €</span>
+                      <span className="box-title">{item.amount}</span>
                     </h3>
                     <div
                       className="tour-action"
-=======
-                    </p>
-                    <h3
-                      className="custom-tour-box_price"
->>>>>>> 05a192336d00e4f6eb3578ab213632ad89cb3929
                       style={{
-                        fontSize: "16px",
-                        fontWeight: "700",
-                        color: "#000000",
-                        marginBottom: "15px",
+                        display: "flex",
+                        justifyContent: "center",
                       }}
                     >
-                      {item.amount}
-                    </h3>
-                    <div
-                      className="custom-tour-action action-item"
-                      style={{ textAlign: "center" }}
-                    >
-                      
-
                       <Link
                         to={`/package_details/${item.id}`}
-                        className="th-btn style4 th-icon .th-btn"
+                        className="th-btn style4 th-icon"
                       >
                         Book Now
                       </Link>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           <div className="row">

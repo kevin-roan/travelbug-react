@@ -20,9 +20,9 @@ export default function PackageDetails() {
       });
   }, [id]);
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
   if (!data) {
     return (
       <div className="container flex items-center justify-center">
@@ -70,11 +70,41 @@ export default function PackageDetails() {
           }}
         ></div>
 
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(data.package_details?.itinerary),
-          }}
-        ></div>
+        <section className="itinerary m-3">
+          {data.package_details.itinerary.map((itenary, index) => (
+            <div className="accordion-card style2 " key={index}>
+              <div className="accordion-header" id={`collapse-item-${index}`}>
+                <button
+                  className="accordion-button collapsed new-btn-add"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#collapse-${index}`}
+                  aria-expanded="false"
+                  aria-controls={`collapse-${index}`}
+                >
+                  {itenary.title}
+                </button>
+              </div>
+              <div
+                id={`collapse-${index}`}
+                className="accordion-collapse collapse "
+                aria-labelledby={`collapse-item-${index}`}
+                data-bs-parent="#faqAccordion"
+              >
+                <div className="accordion-body style2">
+                  <p className="faq-text"> {itenary.content}</p>
+                </div>
+                <p
+                  className="faq-text text-bold mx-4 mb-4"
+                  style={{ fontWeight: "bold" }}
+                >
+                  {" "}
+                  {itenary.sub_content}
+                </p>
+              </div>
+            </div>
+          ))}
+        </section>
         <section
           className="similar-packages "
           style={{
