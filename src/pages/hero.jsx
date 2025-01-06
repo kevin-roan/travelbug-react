@@ -531,10 +531,21 @@ export default function Hero() {
                 Why Choose Us?
               </h2>
             </div>
-            <div className="about-item-wrap-new">
+            <div
+              className="about-item-wrap-new"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                grid: "col ",
+              }}
+            >
               {homeData &&
                 homeData.why_choose_us.map((item, index) => (
-                  <div className="about-item" key={index}>
+                  <div
+                    className="about-item"
+                    key={index}
+                    style={{ borderWidth: 1 }}
+                  >
                     <div className="about-item_img">
                       <img src="assets/img/icon/guide.svg" alt="" />
                     </div>

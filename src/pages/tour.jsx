@@ -22,7 +22,9 @@ function Tour() {
     return (
       <div>
         <div className="container ">
-          <h2 className="text-center sec-title" style={{marginBottom:'3px'}}>{tourData.data?.main_title}</h2>
+          <h2 className="text-center sec-title" style={{ marginBottom: "3px" }}>
+            {tourData.data?.main_title}
+          </h2>
           <h2 className="text-center">{tourData.data?.title}</h2>
           <p>{tourData.data.main_content}</p>
           <h2 className="text-center sec-title">
@@ -133,7 +135,7 @@ function Tour() {
                       {item.description}
                     </div>
                     <h3 className="tour-box_price">
-                      <span className="box-title">{item.amount}</span>
+                      <span className="box-title">{item.amount} €</span>
                     </h3>
                     <div
                       className="tour-action"
