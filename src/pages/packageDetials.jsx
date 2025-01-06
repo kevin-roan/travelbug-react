@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import axios from "axios";
 import TourPackageBanner from "../components/packageDetailBanner";
+import EnquiryForm from "../components/EnquiryForm";
 
 export default function PackageDetails() {
   const [data, setData] = useState("");
@@ -170,6 +171,21 @@ export default function PackageDetails() {
             </div>
           ))}
         </section>
+
+        <div style={{
+          position: 'absolute',
+          top: '100px',
+          right: 0,
+          width: '25%',
+          '@media (max-width: 768px)': {
+            position: 'relative',
+            width: '100%',
+            top: 'auto',
+            marginTop: '20px'
+          }
+        }}>
+          <EnquiryForm />
+        </div>
       </div>
     );
 }
