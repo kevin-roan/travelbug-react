@@ -122,7 +122,7 @@ function Tour() {
                   </div>
                   <div className="tour-content">
                     <h4 className="box-title">
-                      <a href="tour-tourData.html">{item.title}</a>
+                      <a>{item.title}</a>
                     </h4>
                     <div
                       style={{
@@ -135,18 +135,21 @@ function Tour() {
                     >
                       {item.description}
                     </div>
-                    <h3 className="tour-box_price">
-                      <span
-                        className="box-title"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Euro size={20} />
-                        {item.amount}
-                      </span>
+                    <h3
+                      className="tour-box_price"
+                      style={{
+                        margin: "10px 0px",
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        color: "#000",
+                        textAlign: "left",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 5,
+                      }}
+                    >
+                      <Euro size={20} />
+                      {item.amount}
                     </h3>
                     <div
                       className="tour-action"

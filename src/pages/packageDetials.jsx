@@ -35,30 +35,7 @@ export default function PackageDetails() {
     window.scrollTo(0, 0);
   }, []);
 
-  const dataaaa = [
-    {
-      title: "Destination 1",
-      images: [
-        "https://via.placeholder.com/600x300?text=Image+1",
-        "https://via.placeholder.com/600x300?text=Image+2",
-      ],
-    },
-    {
-      title: "Destination 2",
-      images: [
-        "https://via.placeholder.com/600x300?text=Image+3",
-        "https://via.placeholder.com/600x300?text=Image+4",
-      ],
-    },
-    {
-      title: "Destination 3",
-      images: [
-        "https://via.placeholder.com/600x300?text=Image+5",
-        "https://via.placeholder.com/600x300?text=Image+6",
-      ],
-    },
-  ];
-
+ 
   if (!data) {
     return <div className="loading-container">Loading...</div>;
   } else {
@@ -163,6 +140,10 @@ export default function PackageDetails() {
                   <Box
                     sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
                   >
+
+
+
+
                     {data?.package_details?.accommodation?.map(
                       (item, index) => (
                         <Accordion key={index}>
@@ -192,6 +173,7 @@ export default function PackageDetails() {
                         </Accordion>
                       )
                     )}
+                    
                   </Box>
                 </>
               )}

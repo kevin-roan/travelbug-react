@@ -136,6 +136,7 @@ export default function Hero() {
     );
   };
 
+
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -183,7 +184,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="/#/tour_packages" className="th-btn th-icon">
+                      <a  className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
                         Explore Tours
                       </a>
                       <a href="/#/contact" className="th-btn style2 th-icon">
@@ -232,7 +233,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="/tour" className="th-btn th-icon">
+                      <a className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
                         Explore Tours
                       </a>
                       <a href="/contact" className="th-btn style2 th-icon">
@@ -281,7 +282,7 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a href="/tour" className="th-btn th-icon">
+                      <a  className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
                         Explore Tours
                       </a>
                       <a href="/contact" className="th-btn style2 th-icon">
