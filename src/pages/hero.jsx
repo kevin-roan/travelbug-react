@@ -10,7 +10,15 @@ import "swiper/swiper-bundle.css"; // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActions,
+  Button,
+} from "@mui/material";
 
 import DOMPurify from "dompurify";
 import GallerySlider from "../components/gallerySlider";
@@ -108,6 +116,25 @@ export default function Hero() {
         setError(error);
       });
   }, []);
+
+  const handleOpen = (index) => {
+    setCurrentImageIndex(index);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
+
+  const handleNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex < homeData.gallery.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  const handlePrevious = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : homeData.gallery.length - 1
+    );
+  };
 
   return (
     <div>
@@ -375,7 +402,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range.",
+                          "Tours are available for 11 to 30 days. Please select a number within this range."
                         );
                       }}
                       onInput={(e) => {
@@ -445,7 +472,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <div
+          {/* <div
             className="swiper categorySlider"
             id="categorySlide"
             data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2},"992":{"slidesPerView":3}},"centeredSlides":true,"initialSlide":2,"spaceBetween":24}'
@@ -499,6 +526,48 @@ export default function Hero() {
                 ))}
             </div>
             <div className="swiper-pagination"></div>
+          </div> */}
+
+          <div
+            className="custom-container"
+            sx={{ maxWidth: "1100px", margin: "0 auto", padding: "16px" }}
+          >
+            <Swiper
+              className="custom-category-slider"
+              modules={[Navigation, Pagination]}
+              spaceBetween={24}
+              slidesPerView={1}
+              // centeredSlides={true}
+              // initialSlide={2}
+              pagination={{ clickable: true }}
+              navigation={true}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                576: { slidesPerView: 2 },
+                992: { slidesPerView: 3 },
+              }}
+            >
+              {homeData &&
+                homeData.categories.map((category) => (
+                  <SwiperSlide key={category.id}>
+                    <div className="cta">
+                      <img src={category?.image} alt="Cta Background" />
+                      <div className="cta-text">
+                        <h2>{category?.title}</h2>
+                        <p>{category?.description}</p>
+
+                        <Link
+                          to={`/tour_packages/${category.id}`}
+                          className="th-btn style4 th-icon"
+                          style={{ border: "white" }}
+                        >
+                          Book Now
+                        </Link>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
           </div>
         </div>
       </section>
@@ -567,9 +636,7 @@ export default function Hero() {
           <div className="ps-xl-4 ms-xl-2">
             <div className="title-area mb-20 pe-xl-5 me-xl-5 text-center">
               <span className="sub-title style1 ">Let’s Go Together</span>
-              <h2 className="sec-title mb-20 pe-xl-5 me-xl-5 heading">
-                Why Choose Us?
-              </h2>
+              <h2 className="sec-title mb-20  heading">Why Choose Us?</h2>
             </div>
             <div
               className="about-item-wrap-new"
@@ -748,9 +815,217 @@ export default function Hero() {
         </div>
       </section>
 */}
-      <section>
-        <GallerySlider data={homeData} />
-      </section>
+
+      <div className="gallery-area ">
+        <div className="container th-container">
+          <div className="title-area text-center">
+            <span className="sub-title">
+              {homeData && homeData.gallery_title}
+            </span>
+            <h2 className="sec-title">
+              {homeData && homeData.gallery_heading}
+            </h2>
+          </div>
+          <div className="row gy-10 gx-10 justify-content-center align-items-center">
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[0].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[0].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[1].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[1].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[2].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[2].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[3].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[3].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[4].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[4].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[6].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[6].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-lg-2">
+              <div className="gallery-card">
+                <div className="box-img global-img">
+                  <a
+                    href={
+                      homeData && homeData.gallery
+                        ? homeData.gallery[2].image
+                        : ""
+                    }
+                    className="popup-image"
+                  >
+                    <div className="icon-btn">
+                      <i className="fal fa-magnifying-glass-plus"></i>
+                    </div>
+                    <img
+                      src={
+                        homeData && homeData.gallery
+                          ? homeData.gallery[2].image
+                          : ""
+                      }
+                      alt="gallery image"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="shape-mockup  d-none d-xl-block"
+          data-top="-25%"
+          data-left="0%"
+        >
+          <img src="assets/img/shape/line.png" alt="shape" />
+        </div>
+        <div
+          className="shape-mockup movingX d-none d-xl-block"
+          data-top="30%"
+          data-left="3%"
+        >
+          <img
+            className="gmovingX"
+            src="assets/img/shape/shape_4.png"
+            alt="shape"
+          />
+        </div>
+      </div>
       <div className="counter-area space">
         <div className="container">
           <div className="row">
@@ -1389,7 +1664,7 @@ export default function Hero() {
                               }}
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description,
+                                  item.short_description
                                 ),
                               }}
                             />
