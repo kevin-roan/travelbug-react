@@ -18,19 +18,28 @@ export default function Header() {
         });
 
         // Initialize one page nav
-        window.jQuery('.onepage-nav').each(function() {
-          const link = window.jQuery(this).find('a');
-          window.jQuery(this).find(link).each(function() {
-            window.jQuery(this).on('click', function(e) {
-              const target = window.jQuery(this.getAttribute('href'));
-              if (target.length) {
-                e.preventDefault();
-                window.jQuery('html, body').stop().animate({
-                  scrollTop: target.offset().top - 10
-                }, 1000);
-              }
+        window.jQuery(".onepage-nav").each(function () {
+          const link = window.jQuery(this).find("a");
+          window
+            .jQuery(this)
+            .find(link)
+            .each(function () {
+              window.jQuery(this).on("click", function (e) {
+                const target = window.jQuery(this.getAttribute("href"));
+                if (target.length) {
+                  e.preventDefault();
+                  window
+                    .jQuery("html, body")
+                    .stop()
+                    .animate(
+                      {
+                        scrollTop: target.offset().top - 10,
+                      },
+                      1000,
+                    );
+                }
+              });
             });
-          });
         });
       } else {
         // Retry after a short delay if jQuery isn't loaded yet
@@ -45,7 +54,7 @@ export default function Header() {
       // Cleanup if needed
       if (window.jQuery) {
         window.jQuery(".th-menu-wrapper").off();
-        window.jQuery('.onepage-nav').off();
+        window.jQuery(".onepage-nav").off();
       }
     };
   }, []);
@@ -311,25 +320,24 @@ export default function Header() {
                       <li>
                         <Link to="/about">About Us</Link>
                       </li>
+                      {/* make this dynamic */}
                       <li className="menu-item-has-children">
                         <Link to="/holiday_packages">Holydays</Link>
-                        {/*
                         <ul className="sub-menu">
                           <li>
-                            <Link to="/destination">Beach Holidays</Link>
+                            <Link to="/tour_packages/1">Beach Holidays</Link>
                           </li>
                           <li>
-                            <Link to="/destination">Ayurveda Wellness</Link>
+                            <Link to="/tour_packages/3">Ayurveda Wellness</Link>
                           </li>
                           <li>
-                            <Link to="/destination">Escorted Tour</Link>
+                            <Link to="/tour_packages/14">Escorted Tour</Link>
                           </li>
 
                           <li>
-                            <Link to="/destination">Cultural Tours</Link>
+                            <Link to="/tour_packages/17">Cultural Tours</Link>
                           </li>
                         </ul>
-                        */}
                       </li>
 
                       <li>
@@ -353,16 +361,16 @@ export default function Header() {
                     type="button"
                     className="th-menu-toggle d-inline-block d-xl-none"
                     style={{
-                      display: 'block',
-                      background: 'var(--theme-color)',
-                      border: 'none',
-                      width: '40px',
-                      height: '40px',
-                      lineHeight: '40px',
-                      textAlign: 'center',
-                      color: '#fff',
-                      fontSize: '20px',
-                      cursor: 'pointer'
+                      display: "block",
+                      background: "var(--theme-color)",
+                      border: "none",
+                      width: "40px",
+                      height: "40px",
+                      lineHeight: "40px",
+                      textAlign: "center",
+                      color: "#fff",
+                      fontSize: "20px",
+                      cursor: "pointer",
                     }}
                   >
                     <i className="far fa-bars"></i>

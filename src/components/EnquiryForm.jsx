@@ -14,7 +14,7 @@ export default function EnquiryForm() {
       backgroundColor: "white",
       padding: "20px",
       boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-      width: "300px",
+      width: "20rem",
       borderRadius: "8px 0 0 8px",
       zIndex: 1000,
       margin: "20px",
