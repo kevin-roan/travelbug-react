@@ -356,7 +356,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range."
+                          "Tours are available for 11 to 30 days. Please select a number within this range.",
                         );
                       }}
                       onInput={(e) => {
@@ -426,41 +426,61 @@ export default function Hero() {
             </p>
           </div>
 
-          <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination]}
-            className="mySwiper"
+          <div
+            className="swiper categorySlider"
+            id="categorySlide"
+            data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2},"992":{"slidesPerView":3}},"centeredSlides":true,"initialSlide":2,"spaceBetween":24}'
           >
-            {homeData &&
-              homeData.categories.map((category, index) => (
-                <SwiperSlide
-                  key={index}
-                  onClick={() => navigate(`/holiday_packages`)}
-                >
-                  <img
-                    className="new-slider-image"
-                    src={category.image}
-                    alt="Image"
-                  />
-                  <h3 className="box-title new-tile">
-                    <Link to={`/tour_packages/package_details/${category.id}`}>
-                      {category.title}
-                    </Link>
-                  </h3>
-                </SwiperSlide>
-              ))}
-          </Swiper>
+            <div className="swiper-wrapper">
+              {homeData &&
+                homeData.categories.map((catergory) => (
+                  <div
+                    className="swiper-slide"
+                    key={catergory.id}
+                    // onClick={() => navigate(`/tour_packages/${catergory.id}`)}
+                    onClick={() => navigate(`/holiday_packages`)}
+                  >
+                    <div className="category-card single">
+                      <div
+                        className="box-img global-img"
+                        style={{
+                          height: "250px",
+                          width: "100%",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <img
+                          src={catergory.image}
+                          alt="Image"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <h3 className="box-title">
+                        <Link
+                          to={`/holiday_packages`}
+                          // to={`/tour_packages/${catergory.id}`}
+                        >
+                          {catergory.title}
+                        </Link>
+                      </h3>
+                      <Link
+                        className="line-btn"
+                        // to={`/tour_packages/${catergory.id}`}
+                        to={`/holiday_packages`}
+                      >
+                        See more
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <div className="swiper-pagination"></div>
+          </div>
         </div>
       </section>
 
@@ -1558,7 +1578,7 @@ export default function Hero() {
                               }}
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description
+                                  item.short_description,
                                 ),
                               }}
                             />
