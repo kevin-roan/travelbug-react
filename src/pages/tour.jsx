@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { Euro } from "lucide-react";
 
 function Tour() {
   const [tourData, setTourData] = useState(null);
@@ -135,7 +136,17 @@ function Tour() {
                       {item.description}
                     </div>
                     <h3 className="tour-box_price">
-                      <span className="box-title">{item.amount}</span>
+                      <span
+                        className="box-title"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Euro size={20} />
+                        {item.amount}
+                      </span>
                     </h3>
                     <div
                       className="tour-action"

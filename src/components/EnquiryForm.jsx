@@ -6,6 +6,8 @@ export default function EnquiryForm() {
   const formStyles = {
     container: {
       position: "fixed",
+      maxHeight: "90rem",
+      flexShrink: 1,
       right: isMinimized ? "-300px" : 0,
       top: "50%",
       transform: "translateY(-50%)",
@@ -158,4 +160,3 @@ export default function EnquiryForm() {
     </div>
   );
 }
-

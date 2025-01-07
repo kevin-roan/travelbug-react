@@ -20,10 +20,10 @@ function App() {
     checkMobile();
 
     // Add resize listener
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
     // Cleanup
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
