@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
 import DOMPurify from "dompurify";
+import GallerySlider from "../components/gallerySlider";
 export default function Hero() {
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
@@ -26,6 +27,24 @@ export default function Hero() {
     "../assets/js/vendor/jquery.nice-select.min.js",
     "../assets/js/main.js",
   ];
+
+  useEffect(() => {
+    const script1 = document.createElement("script");
+    script1.src = "/assets/js/vendor/jquery-3.6.0.min.js";
+    script1.async = true;
+
+    const script2 = document.createElement("script");
+    script2.src = "/assets/js/main.js";
+    script2.async = true;
+
+    document.body.appendChild(script2);
+    document.body.appendChild(script1);
+
+    return () => {
+      document.body.removeChild(script2);
+      document.body.removeChild(script1);
+    };
+  }, []);
 
   useEffect(() => {
     const loadScripts = async () => {
@@ -729,217 +748,9 @@ export default function Hero() {
         </div>
       </section>
 */}
-
-      <div className="gallery-area ">
-        <div className="container th-container">
-          <div className="title-area text-center">
-            <span className="sub-title">
-              {homeData && homeData.gallery_title}
-            </span>
-            <h2 className="sec-title">
-              {homeData && homeData.gallery_heading}
-            </h2>
-          </div>
-          <div className="row gy-10 gx-10 justify-content-center align-items-center">
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[0].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[0].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[1].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[1].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[2].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[2].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[3].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[3].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[4].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[4].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[6].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[6].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[2].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[2].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="shape-mockup  d-none d-xl-block"
-          data-top="-25%"
-          data-left="0%"
-        >
-          <img src="assets/img/shape/line.png" alt="shape" />
-        </div>
-        <div
-          className="shape-mockup movingX d-none d-xl-block"
-          data-top="30%"
-          data-left="3%"
-        >
-          <img
-            className="gmovingX"
-            src="assets/img/shape/shape_4.png"
-            alt="shape"
-          />
-        </div>
-      </div>
+      <section>
+        <GallerySlider data={homeData} />
+      </section>
       <div className="counter-area space">
         <div className="container">
           <div className="row">
