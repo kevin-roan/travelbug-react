@@ -224,26 +224,25 @@ export default function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/tour_packages">About Us</Link>
+                <Link to="/#/about">About Us</Link>
               </li>
               <li className="menu-item-has-children">
                 <Link href="/#/holiday_packages">Holidays</Link>
-                {/*
                 <ul className="sub-menu">
                   <li>
-                    <Link to="/destination">Beach Holidays</Link>
+                    <Link to="/tour_packages/1">Beach Holidays</Link>
                   </li>
                   <li>
-                    <Link to="/destination">Ayurveda Wellness</Link>
+                    <Link to="/tour_packages/17">Ayurveda Wellness</Link>
                   </li>
                   <li>
-                    <Link to="/destination">Escorted Tour</Link>
+                    <Link to="/tour_packages/3">Escorted Tour</Link>
                   </li>
+
                   <li>
-                    <Link to="/destination">Cultural Tours</Link>
+                    <Link to="/tour_packages/14">Cultural Tours</Link>
                   </li>
-                </ul>
-                */}
+                </ul>{" "}
               </li>
 
               <li className="menu-item-has-children">
@@ -260,7 +259,7 @@ export default function Header() {
               </li>
 
               <li>
-                <Link to="/contact">FAQ</Link>
+                <Link to="/faq">FAQ</Link>
               </li>
 
               <li>
