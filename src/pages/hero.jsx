@@ -542,33 +542,42 @@ export default function Hero() {
 
           <div
             className="custom-container"
-            sx={{ maxWidth: "1200px", margin: "0 auto", padding: "16px" }}
+            style={{
+              maxWidth: "1200px",
+              margin: "0 auto",
+              padding: "16px",
+              gap: "40px",
+            }}
           >
             <Swiper
               className="custom-category-slider"
               modules={[Navigation, Pagination]}
-              spaceBetween={24}
+              spaceBetween={24} // Space between slides
               slidesPerView={1}
-              pagination={{ clickable: true }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true, // Makes pagination dots responsive
+              }}
               navigation={{
                 prevEl: ".swiper-button-prev", // Customize the left button
                 nextEl: ".swiper-button-next", // Customize the right button
               }}
               breakpoints={{
-                0: { slidesPerView: 1 },
-                576: { slidesPerView: 2 },
-                992: { slidesPerView: 3 },
+                0: { slidesPerView: 1, spaceBetween: 16 }, // Mobile: 1 card, smaller spacing
+                576: { slidesPerView: 2, spaceBetween: 20 }, // Tablet: 2 cards, moderate spacing
+                992: { slidesPerView: 3, spaceBetween: 24 }, // Desktop: 3 cards, default spacing
               }}
             >
               {homeData &&
                 homeData.categories.map((category) => (
                   <SwiperSlide key={category.id}>
-                    <div className="cta">
+                    <div className="cta" style={{ margin: "0 8px" }}>
+                      {" "}
+                      {/* Add card spacing */}
                       <img src={category?.image} alt="Cta Background" />
                       <div className="cta-text">
                         <h2>{category?.title}</h2>
                         <p>{category?.description}</p>
-
                         <Link
                           to={`/tour_packages/${category.id}`}
                           className="th-btn style4 th-icon"
