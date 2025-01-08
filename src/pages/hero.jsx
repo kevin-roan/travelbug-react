@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import useLoadScripts from "../hooks/loadExternalScripts";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
@@ -11,30 +10,14 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  CardActions,
-  Button,
-} from "@mui/material";
-
 import DOMPurify from "dompurify";
-import GallerySlider from "../components/gallerySlider";
 export default function Hero() {
+  const location = useLocation();
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
-  const location = useLocation();
 
   const navigate = useNavigate();
-
-  const scripts = [
-    "../assets/js/vendor/jquery-3.6.0.min.js",
-    "../assets/js/vendor/jquery.nice-select.min.js",
-    "../assets/js/main.js",
-  ];
 
   useEffect(() => {
     const script1 = document.createElement("script");
@@ -48,11 +31,12 @@ export default function Hero() {
     document.body.appendChild(script2);
     document.body.appendChild(script1);
 
+    console.log("reloaded");
     return () => {
       document.body.removeChild(script2);
       document.body.removeChild(script1);
     };
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     const loadScripts = async () => {
@@ -126,13 +110,13 @@ export default function Hero() {
 
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex < homeData.gallery.length - 1 ? prevIndex + 1 : 0
+      prevIndex < homeData.gallery.length - 1 ? prevIndex + 1 : 0,
     );
   };
 
   const handlePrevious = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : homeData.gallery.length - 1
+      prevIndex > 0 ? prevIndex - 1 : homeData.gallery.length - 1,
     );
   };
 
@@ -411,7 +395,7 @@ export default function Hero() {
                       max="30"
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range."
+                          "Tours are available for 11 to 30 days. Please select a number within this range.",
                         );
                       }}
                       onInput={(e) => {
@@ -541,44 +525,43 @@ export default function Hero() {
             className="custom-container"
             sx={{ maxWidth: "1200px", margin: "0 auto", padding: "16px" }}
           >
-          <Swiper
-  className="custom-category-slider"
-  modules={[Navigation, Pagination]}
-  spaceBetween={24}
-  slidesPerView={1}
-  pagination={{ clickable: true }}
-  navigation={{
-    prevEl: '.swiper-button-prev', // Customize the left button
-    nextEl: '.swiper-button-next', // Customize the right button
-  }}
-  breakpoints={{
-    0: { slidesPerView: 1 },
-    576: { slidesPerView: 2 },
-    992: { slidesPerView: 3 },
-  }}
->
-  {homeData &&
-    homeData.categories.map((category) => (
-      <SwiperSlide key={category.id}>
-        <div className="cta">
-          <img src={category?.image} alt="Cta Background" />
-          <div className="cta-text">
-            <h2>{category?.title}</h2>
-            <p>{category?.description}</p>
-
-            <Link
-              to={`/tour_packages/${category.id}`}
-              className="th-btn style4 th-icon"
-              style={{ border: "white" }}
+            <Swiper
+              className="custom-category-slider"
+              modules={[Navigation, Pagination]}
+              spaceBetween={24}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              navigation={{
+                prevEl: ".swiper-button-prev", // Customize the left button
+                nextEl: ".swiper-button-next", // Customize the right button
+              }}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                576: { slidesPerView: 2 },
+                992: { slidesPerView: 3 },
+              }}
             >
-              Book Now
-            </Link>
-          </div>
-        </div>
-      </SwiperSlide>
-    ))}
-</Swiper>
+              {homeData &&
+                homeData.categories.map((category) => (
+                  <SwiperSlide key={category.id}>
+                    <div className="cta">
+                      <img src={category?.image} alt="Cta Background" />
+                      <div className="cta-text">
+                        <h2>{category?.title}</h2>
+                        <p>{category?.description}</p>
 
+                        <Link
+                          to={`/tour_packages/${category.id}`}
+                          className="th-btn style4 th-icon"
+                          style={{ border: "white" }}
+                        >
+                          Book Now
+                        </Link>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
           </div>
         </div>
       </section>
@@ -1552,7 +1535,7 @@ export default function Hero() {
                 </div>
               </div>
               <div className="col-md-auto">
-                <a href="blog.html" className="th-btn style4 th-icon">
+                <a href="/#/blog" className="th-btn style4 th-icon">
                   See More Articles
                 </a>
               </div>
@@ -1675,7 +1658,7 @@ export default function Hero() {
                               }}
                               dangerouslySetInnerHTML={{
                                 __html: DOMPurify.sanitize(
-                                  item.short_description
+                                  item.short_description,
                                 ),
                               }}
                             />

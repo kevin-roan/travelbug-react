@@ -7,9 +7,10 @@ export default function Blog() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/blog`)
+      .get(`https://iamanas.in/travel_bug/web_api/blog`)
       .then((response) => {
         setBlogdata(response.data.data);
+        console.log("blog data", response.data.data);
       })
       .catch((err) => {
         setError(err);
@@ -42,8 +43,12 @@ export default function Blog() {
                 <div className="col-xxl-8 col-lg-7" key={index}>
                   <div className="th-blog blog-single has-post-thumbnail">
                     <div className="blog-img">
-                      <a href={blog.link} >
-                        <img src={blog.image} className="image-new" alt="Blog Image" />
+                      <a href={blog.link}>
+                        <img
+                          src={blog.image}
+                          className="image-new"
+                          alt="Blog Image"
+                        />
                       </a>
                     </div>
                     <div className="blog-content">
