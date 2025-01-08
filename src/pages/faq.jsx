@@ -7,7 +7,7 @@ export default function FAQ() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/faq`)
+      .get(`https://iamanas.in/travel_bug/web_api/faq`)
       .then((response) => {
         setFaq(response.data.data.faqs);
       })
@@ -17,9 +17,9 @@ export default function FAQ() {
       });
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function FAQ() {
             <h1 className="breadcumb-title">FAQs</h1>
             <ul className="breadcumb-menu">
               <li>
-                <a href="home-travel.html">Home</a>
+                <a href="/#/">Home</a>
               </li>
               <li>FAQs</li>
             </ul>

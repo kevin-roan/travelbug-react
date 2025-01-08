@@ -7,11 +7,11 @@ export default function About() {
   const [aboutInfo, setAboutInfo] = useState("");
   const [error, setError] = useState(null);
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/about`)
+      .get(`https://iamanas.in/travel_bug/web_api/about/`)
       .then((response) => {
         setAboutInfo(response.data.data);
         console.log("api response", response.data);
@@ -23,9 +23,9 @@ export default function About() {
       });
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function About() {
             <h1 className="breadcumb-title">About Travel Bug</h1>
             <ul className="breadcumb-menu">
               <li>
-                <a href="home-travel.html">Home</a>
+                <a href="/#/">Home</a>
               </li>
               <li>About Travel Bug</li>
             </ul>
@@ -104,11 +104,11 @@ export default function About() {
                             </p>
                           </div>
                         </div>
-                      )
+                      ),
                     )}
                 </div>
                 <div className="mt-35">
-                  <a href="contact.html" className="th-btn style3 th-icon">
+                  <a href="/contact" className="th-btn style3 th-icon">
                     Contact With Us
                   </a>
                 </div>
@@ -199,7 +199,14 @@ export default function About() {
                         {item.description.length > 150 ? (
                           <>
                             {item.description.substring(0, 150)}...
-                            <a className="read-more" onClick={()=>navigate(`/tour_packages/${item.id}`)}>Read More</a>
+                            <a
+                              className="read-more"
+                              onClick={() =>
+                                navigate(`/tour_packages/${item.id}`)
+                              }
+                            >
+                              Read More
+                            </a>
                           </>
                         ) : (
                           item.description
@@ -242,71 +249,82 @@ export default function About() {
         </div>
       </section>
       <div className="booking-form-container">
-  <form
-    action="mail.php"
-    method="POST"
-    className="contact-form style2 ajax-contact"
-  >
-    <h3 className="sec-title mb-30 text-capitalize">Book a Tour</h3>
-    <div className="row">
-      <div className="col-12 form-group position-relative">
-        <input
-          type="text"
-          className="form-control"
-          name="name"
-          id="name3"
-          placeholder="First Name"
-        />
-        <img src="assets/img/icon/user.svg" alt="User Icon" className="input-icon" />
-      </div>
-      <div className="col-12 form-group position-relative">
-        <input
-          type="email"
-          className="form-control"
-          name="email3"
-          id="email3"
-          placeholder="Your Mail"
-        />
-        <img src="assets/img/icon/mail.svg" alt="Mail Icon" className="input-icon" />
-      </div>
-      <div className="form-group col-12">
-        <select
-          name="subject"
-          id="subject"
-          className="form-select nice-select"
+        <form
+          action="mail.php"
+          method="POST"
+          className="contact-form style2 ajax-contact"
         >
-          <option value="Select Tour Type" disabled>
-            Select Tour Type
-          </option>
-          <option value="Africa Adventure">Africa Adventure</option>
-          <option value="Africa Wild">Africa Wild</option>
-          <option value="Asia">Asia</option>
-          <option value="Scandinavia">Scandinavia</option>
-          <option value="Western Europe">Western Europe</option>
-        </select>
+          <h3 className="sec-title mb-30 text-capitalize">Book a Tour</h3>
+          <div className="row">
+            <div className="col-12 form-group position-relative">
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                id="name3"
+                placeholder="First Name"
+              />
+              <img
+                src="assets/img/icon/user.svg"
+                alt="User Icon"
+                className="input-icon"
+              />
+            </div>
+            <div className="col-12 form-group position-relative">
+              <input
+                type="email"
+                className="form-control"
+                name="email3"
+                id="email3"
+                placeholder="Your Mail"
+              />
+              <img
+                src="assets/img/icon/mail.svg"
+                alt="Mail Icon"
+                className="input-icon"
+              />
+            </div>
+            <div className="form-group col-12">
+              <select
+                name="subject"
+                id="subject"
+                className="form-select nice-select"
+              >
+                <option value="Select Tour Type" disabled>
+                  Select Tour Type
+                </option>
+                <option value="Africa Adventure">Africa Adventure</option>
+                <option value="Africa Wild">Africa Wild</option>
+                <option value="Asia">Asia</option>
+                <option value="Scandinavia">Scandinavia</option>
+                <option value="Western Europe">Western Europe</option>
+              </select>
+            </div>
+            <div className="form-group col-12 position-relative">
+              <textarea
+                name="message"
+                id="message"
+                cols="30"
+                rows="4"
+                className="form-control"
+                placeholder="Your Message"
+              ></textarea>
+              <img
+                src="assets/img/icon/chat.svg"
+                alt="Chat Icon"
+                className="textarea-icon"
+              />
+            </div>
+            <div className="form-btn col-12 mt-24 text-center">
+              <button type="submit" className="th-btn style3">
+                Send Message
+                <img src="assets/img/icon/plane.svg" alt="Send Icon" />
+              </button>
+            </div>
+          </div>
+          <p className="form-messages mb-0 mt-3"></p>
+        </form>
       </div>
-      <div className="form-group col-12 position-relative">
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="4"
-          className="form-control"
-          placeholder="Your Message"
-        ></textarea>
-        <img src="assets/img/icon/chat.svg" alt="Chat Icon" className="textarea-icon" />
-      </div>
-      <div className="form-btn col-12 mt-24 text-center">
-        <button type="submit" className="th-btn style3">
-          Send Message
-          <img src="assets/img/icon/plane.svg" alt="Send Icon" />
-        </button>
-      </div>
-    </div>
-    <p className="form-messages mb-0 mt-3"></p>
-  </form>
-</div>
-
     </>
   );
 }

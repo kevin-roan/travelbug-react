@@ -9,7 +9,7 @@ export default function DestinationDetails() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/package_details/${id}`)
+      .get(`https://iamanas.in/travel_bug/web_api/package_details/${id}`)
       .then((response) => {
         const data = response.data.data;
         setDetails(data);

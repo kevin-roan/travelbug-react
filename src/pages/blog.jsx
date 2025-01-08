@@ -17,6 +17,9 @@ export default function Blog() {
         console.log(error);
       });
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div
@@ -28,7 +31,7 @@ export default function Blog() {
             <h1 className="breadcumb-title">Blog Lists View</h1>
             <ul className="breadcumb-menu">
               <li>
-                <a href="home-travel.html">Home</a>
+                <a href="/#/">Home</a>
               </li>
               <li>Blog Lists View</li>
             </ul>

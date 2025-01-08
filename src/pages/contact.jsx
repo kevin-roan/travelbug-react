@@ -13,9 +13,13 @@ export default function Contact() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchContactInformation = () => {
       axios
-        .get(`${import.meta.env.VITE_API_URL}/contact_us`)
+        .get(`https://iamanas.in/travel_bug/web_api/contact_us`)
         .then((response) => {
           setContactInfo(response.data.data.addresses);
         })
@@ -90,7 +94,7 @@ export default function Contact() {
             <h1 className="breadcumb-title">Contact Us</h1>
             <ul className="breadcumb-menu">
               <li>
-                <a href="home-travel.html">Home</a>
+                <a href="/#/">Home</a>
               </li>
               <li>Contact Us</li>
             </ul>

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 const VisaRequirements = () => {
-    useEffect(()=>{
-        window.scrollTo(0, 0);
-      },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="visa-requirements container my-5 py-4">
       <h3 className="mb-4 ">Visa Requirements for Traveling to India</h3>
@@ -62,7 +62,9 @@ const VisaRequirements = () => {
           Financial proof (bank statements) to show sufficient funds for your
           stay.
         </li>
-        <li className="fs-6">Additional documents may be required based on the visa type.</li>
+        <li className="fs-6">
+          Additional documents may be required based on the visa type.
+        </li>
       </ul>
 
       <h4 className="mb-3 h5">4. Visa Processing Time</h4>
