@@ -136,7 +136,6 @@ export default function Hero() {
     );
   };
 
-
   return (
     <div>
       <div className="th-hero-wrapper hero-1" id="hero">
@@ -184,7 +183,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a  className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
+                      <a
+                        className="th-btn th-icon"
+                        onClick={() => navigate(`/holiday_packages`)}
+                      >
                         Explore Tours
                       </a>
                       <a href="/#/contact" className="th-btn style2 th-icon">
@@ -233,7 +235,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
+                      <a
+                        className="th-btn th-icon"
+                        onClick={() => navigate(`/holiday_packages`)}
+                      >
                         Explore Tours
                       </a>
                       <a href="/contact" className="th-btn style2 th-icon">
@@ -282,7 +287,10 @@ export default function Hero() {
                       data-ani="slideinup"
                       data-ani-delay="0.6s"
                     >
-                      <a  className="th-btn th-icon" onClick={()=>navigate(`/holiday_packages`)}>
+                      <a
+                        className="th-btn th-icon"
+                        onClick={() => navigate(`/holiday_packages`)}
+                      >
                         Explore Tours
                       </a>
                       <a href="/contact" className="th-btn style2 th-icon">
@@ -531,44 +539,46 @@ export default function Hero() {
 
           <div
             className="custom-container"
-            sx={{ maxWidth: "1100px", margin: "0 auto", padding: "16px" }}
+            sx={{ maxWidth: "1200px", margin: "0 auto", padding: "16px" }}
           >
-            <Swiper
-              className="custom-category-slider"
-              modules={[Navigation, Pagination]}
-              spaceBetween={24}
-              slidesPerView={1}
-              // centeredSlides={true}
-              // initialSlide={2}
-              pagination={{ clickable: true }}
-              navigation={true}
-              breakpoints={{
-                0: { slidesPerView: 1 },
-                576: { slidesPerView: 2 },
-                992: { slidesPerView: 3 },
-              }}
-            >
-              {homeData &&
-                homeData.categories.map((category) => (
-                  <SwiperSlide key={category.id}>
-                    <div className="cta">
-                      <img src={category?.image} alt="Cta Background" />
-                      <div className="cta-text">
-                        <h2>{category?.title}</h2>
-                        <p>{category?.description}</p>
+          <Swiper
+  className="custom-category-slider"
+  modules={[Navigation, Pagination]}
+  spaceBetween={24}
+  slidesPerView={1}
+  pagination={{ clickable: true }}
+  navigation={{
+    prevEl: '.swiper-button-prev', // Customize the left button
+    nextEl: '.swiper-button-next', // Customize the right button
+  }}
+  breakpoints={{
+    0: { slidesPerView: 1 },
+    576: { slidesPerView: 2 },
+    992: { slidesPerView: 3 },
+  }}
+>
+  {homeData &&
+    homeData.categories.map((category) => (
+      <SwiperSlide key={category.id}>
+        <div className="cta">
+          <img src={category?.image} alt="Cta Background" />
+          <div className="cta-text">
+            <h2>{category?.title}</h2>
+            <p>{category?.description}</p>
 
-                        <Link
-                          to={`/tour_packages/${category.id}`}
-                          className="th-btn style4 th-icon"
-                          style={{ border: "white" }}
-                        >
-                          Book Now
-                        </Link>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
+            <Link
+              to={`/tour_packages/${category.id}`}
+              className="th-btn style4 th-icon"
+              style={{ border: "white" }}
+            >
+              Book Now
+            </Link>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+</Swiper>
+
           </div>
         </div>
       </section>

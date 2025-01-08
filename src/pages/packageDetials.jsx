@@ -114,6 +114,18 @@ export default function PackageDetails() {
                       ),
                     }}
                   ></div>
+
+
+{/* <h1 className="overSize">Other Info</h1> */}
+
+
+                     <div
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        data.package_details?.other_info
+                      ),
+                    }}
+                  ></div>
                 </>
               )}
               {activeTab === "other_info" && (
@@ -221,7 +233,7 @@ export default function PackageDetails() {
         </div>
 
         <div>
-        <h1 className="overSize" style={{marginTop:'16px'}}>Similar Packages</h1>
+        <h1 className="overSize" style={{marginTop:'16px',textAlign:'center'}}>You might also like</h1>
 
         </div>
         <section

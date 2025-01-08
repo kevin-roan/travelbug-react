@@ -28632,6 +28632,39 @@ margin: 5px 0px;
   border: 1px solid white !important;
   color: white !important;
 }
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: 50%; /* Center the buttons vertically */
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: background color for buttons */
+  border-radius: 50%; /* Optional: rounded buttons */
+  width: 40px; /* Adjust button size */
+  height: 40px; /* Adjust button size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Button color */
+  cursor: pointer;
+  display: none;
+}
+
+.swiper-button-prev {
+  left: 0; /* Position the "previous" button on the left */
+}
+
+.swiper-button-next {
+  right: 0; /* Position the "next" button on the right */
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 20px; /* Adjust icon size */
+}
+
+
+
+
+
 
 
 
