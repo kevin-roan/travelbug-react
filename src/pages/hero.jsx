@@ -645,7 +645,7 @@ export default function Hero() {
       >
         <div className="container">
           <div className="ps-xl-4 ms-xl-2">
-            <div className="title-area mb-20 pe-xl-5 me-xl-5 text-center">
+            <div className="title-area mb-20 text-center">
               <span className="sub-title style1 ">Let’s Go Together</span>
               <h2 className="sec-title mb-20  heading">Why Choose Us?</h2>
             </div>
