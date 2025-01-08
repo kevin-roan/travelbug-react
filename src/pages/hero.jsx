@@ -322,92 +322,116 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="booking-sec">
-        <div className="container">
+      <div className="booking-sec" style={{ padding: '20px 0' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 15px' }}>
           <form
             action="mail"
             method="POST"
-            className="booking-form ajax-contact"
+            style={{
+              background: 'white',
+              borderRadius: '8px',
+              padding: '20px',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+            }}
           >
             <div className="input-wrap">
-              <div className="row align-items-center justify-content-between">
-                <div className="form-group col-md-6 col-lg-auto">
-                  <div className="icon">
-                    <i className="fa-light fa-route"></i>
-                  </div>
-                  <div className="search-input">
-                    <label>Destination</label>
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                margin: '0 -10px',
+                gap: '20px'
+              }}>
+                {/* Destination Field */}
+                <div style={{
+                  flex: '1 1 250px',
+                  minWidth: '250px',
+                  padding: '0 10px'
+                }}>
+                  <div style={{ position: 'relative' }}>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: '10px', 
+                      top: '45px',
+                      color: '#666' 
+                    }}>
+                      <i className="fa-light fa-route"></i>
+                    </div>
+                    <label style={{
+                      display: 'block',
+                      marginBottom: '10px',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      color: '#4B5563'
+                    }}>
+                      Destination
+                    </label>
                     <select
                       name="subject"
                       id="subject"
-                      className="form-select"
                       style={{
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        width: "100%",
-                        maxWidth: "400px",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        marginBottom: "8px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        appearance: "auto",
-                        marginTop: "10px",
-                        padding: 10,
-                        paddingRight: 30,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        paddingBottom: 30,
-                        alignItems: "baseline",
+                        width: '100%',
+                        padding: '12px 12px 12px 35px',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '4px',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                        color: '#4B5563',
+                        cursor: 'pointer',
+                        appearance: 'auto',
+                        height: '45px'
                       }}
                     >
-                      <option value="Select Destination" selected disabled>
-                        Select Destination
-                      </option>
-                      {homeData &&
-                        homeData.popular_destinations.map((destination, _) => (
-                          <option value={destination.id} key={_}>
-                            {destination.title}
-                          </option>
-                        ))}
+                      <option value="" disabled selected>Select Destination</option>
+                      {homeData?.popular_destinations?.map((destination, idx) => (
+                        <option value={destination.id} key={idx}>
+                          {destination.title}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
-                <div className="form-group col-md-6 col-lg-auto">
-                  <div className="icon">
-                    <i className="fa-regular fa-person-hiking"></i>
-                  </div>
-                  <div className="search-input">
-                    <label>Type</label>
+
+                {/* Adventure Type Field */}
+                <div style={{
+                  flex: '1 1 250px',
+                  minWidth: '250px',
+                  padding: '0 10px'
+                }}>
+                  <div style={{ position: 'relative' }}>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: '10px', 
+                      top: '45px',
+                      color: '#666' 
+                    }}>
+                      <i className="fa-regular fa-person-hiking"></i>
+                    </div>
+                    <label style={{
+                      display: 'block',
+                      marginBottom: '10px',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      color: '#4B5563'
+                    }}>
+                      Type
+                    </label>
                     <select
-                      className="form-select"
                       name="Adventure"
                       id="Adventure"
                       style={{
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        width: "100%",
-                        maxWidth: "400px",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        marginBottom: "8px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        appearance: "auto",
-                        marginTop: "10px",
-                        padding: 10,
-                        paddingRight: 30,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        paddingBottom: 30,
-                        alignItems: "baseline",
+                        width: '100%',
+                        padding: '12px 12px 12px 35px',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '4px',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                        color: '#4B5563',
+                        cursor: 'pointer',
+                        appearance: 'auto',
+                        height: '45px'
                       }}
                     >
-                      <option value="" disabled selected>
-                        Select Adventure Type
-                      </option>
+                      <option value="" disabled selected>Select Adventure Type</option>
                       <option value="Beach">Beach</option>
                       <option value="Group Tour">Group Tour</option>
                       <option value="Couple Tour">Couple's Tour</option>
@@ -419,92 +443,97 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <div className="form-group col-md-6 col-lg-auto">
-                  <div className="icon">
-                    <i className="fa-light fa-clock"></i>
-                  </div>
-                  <div className="search-input">
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#4B5563",
-                        marginBottom: "8px",
-                      }}
-                    >
+                {/* Duration Field */}
+                <div style={{
+                  flex: '1 1 250px',
+                  minWidth: '250px',
+                  padding: '0 10px'
+                }}>
+                  <div style={{ position: 'relative' }}>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: '10px', 
+                      top: '45px',
+                      color: '#666' 
+                    }}>
+                      <i className="fa-light fa-clock"></i>
+                    </div>
+                    <label style={{
+                      display: 'block',
+                      marginBottom: '10px',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      color: '#4B5563'
+                    }}>
                       Duration
                     </label>
-
                     <input
                       id="days"
                       type="number"
                       placeholder="Days"
-                      style={{
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        width: "100%",
-                        maxWidth: "400px",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        marginBottom: "8px",
-                        textAlign: "center",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        alignSelf: "center",
-                        paddingBottom: 30,
-                        padding: 18,
-                        marginTop: 14,
-                      }}
                       min="11"
                       max="30"
+                      style={{
+                        width: '100%',
+                        padding: '12px 12px 12px 35px',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '4px',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                        color: '#4B5563',
+                        height: '45px'
+                      }}
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range.",
+                          "Tours are available for 11 to 30 days. Please select a number within this range."
                         );
                       }}
-                      onInput={(e) => {
-                        e.target.setCustomValidity(""); // Clear the custom message on valid input
-                      }}
+                      onInput={(e) => e.target.setCustomValidity("")}
                     />
                   </div>
                 </div>
 
-                <div className="form-group col-md-6 col-lg-auto">
-                  <div className="icon">
-                    <i className="fa-light fa-map-location-dot"></i>
-                  </div>
-                  <div className="search-input">
-                    <label>Tour Category</label>
+                {/* Tour Category Field */}
+                <div style={{
+                  flex: '1 1 250px',
+                  minWidth: '250px',
+                  padding: '0 10px'
+                }}>
+                  <div style={{ position: 'relative' }}>
+                    <div style={{ 
+                      position: 'absolute', 
+                      left: '10px', 
+                      top: '45px',
+                      color: '#666' 
+                    }}>
+                      <i className="fa-light fa-map-location-dot"></i>
+                    </div>
+                    <label style={{
+                      display: 'block',
+                      marginBottom: '10px',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      color: '#4B5563'
+                    }}>
+                      Tour Category
+                    </label>
                     <select
-                      name="subject"
+                      name="category"
                       id="category"
-                      className="form-select"
                       style={{
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        width: "100%",
-                        maxWidth: "400px",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        marginBottom: "8px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        appearance: "auto",
-                        marginTop: "10px",
-                        padding: 10,
-                        paddingRight: 30,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        paddingBottom: 30,
-                        alignItems: "baseline",
+                        width: '100%',
+                        padding: '12px 12px 12px 35px',
+                        border: '1px solid #D1D5DB',
+                        borderRadius: '4px',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                        color: '#4B5563',
+                        cursor: 'pointer',
+                        appearance: 'auto',
+                        height: '45px'
                       }}
                     >
-                      <option value="" disabled selected>
-                        Select Category
-                      </option>
+                      <option value="" disabled selected>Select Category</option>
                       <option value="Superior">Superior</option>
                       <option value="Deluxe">Deluxe</option>
                       <option value="Heritage">Heritage</option>
@@ -512,15 +541,36 @@ export default function Hero() {
                     </select>
                   </div>
                 </div>
-                <div className="form-btn col-md-12 col-lg-auto">
-                  <button className="th-btn">
-                    <div src="assets/img/icon/search.svg" alt="">
-                      Search
-                    </div>
+
+                {/* Search Button */}
+                <div style={{
+                  flex: '1 1 250px',
+                  minWidth: '250px',
+                  padding: '0 10px',
+                  display: 'flex',
+                  alignItems: 'flex-end'
+                }}>
+                  <button 
+                    className="th-btn"
+                    style={{
+                      width: '100%',
+                      height: '45px',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '16px',
+                      fontWeight: '500',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    <i className="fa-light fa-search"></i>
+                    Search
                   </button>
                 </div>
               </div>
-              <p className="form-messages mb-0 mt-3"></p>
             </div>
           </form>
         </div>
