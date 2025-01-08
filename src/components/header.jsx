@@ -372,6 +372,9 @@ export default function Header() {
                       color: "#fff",
                       fontSize: "20px",
                       cursor: "pointer",
+                      paddingRight: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
                     <i className="far fa-bars"></i>
