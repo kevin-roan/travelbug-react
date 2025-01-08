@@ -344,7 +344,6 @@ export default function Hero() {
                       style={{
                         border: "1px solid #D1D5DB",
                         borderRadius: "4px",
-                        padding: "10px 12px",
                         width: "100%",
                         maxWidth: "400px",
                         outline: "none",
@@ -354,11 +353,13 @@ export default function Hero() {
                         color: "#4B5563",
                         cursor: "pointer",
                         appearance: "auto",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        textAlign: "center",
                         marginTop: "10px",
+                        padding: 10,
+                        paddingRight: 30,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        paddingBottom: 30,
+                        alignItems: "baseline",
                       }}
                     >
                       <option value="Select Destination" selected disabled>
@@ -386,7 +387,6 @@ export default function Hero() {
                       style={{
                         border: "1px solid #D1D5DB",
                         borderRadius: "4px",
-                        padding: "10px 12px",
                         width: "100%",
                         maxWidth: "400px",
                         outline: "none",
@@ -397,6 +397,12 @@ export default function Hero() {
                         cursor: "pointer",
                         appearance: "auto",
                         marginTop: "10px",
+                        padding: 10,
+                        paddingRight: 30,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        paddingBottom: 30,
+                        alignItems: "baseline",
                       }}
                     >
                       <option value="" disabled selected>
@@ -437,12 +443,19 @@ export default function Hero() {
                       style={{
                         border: "1px solid #D1D5DB",
                         borderRadius: "4px",
-                        padding: "10px 12px",
                         width: "100%",
                         maxWidth: "400px",
                         outline: "none",
                         boxSizing: "border-box",
                         marginBottom: "8px",
+                        textAlign: "center",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        alignSelf: "center",
+                        paddingBottom: 30,
+                        padding: 18,
+                        marginTop: 14,
                       }}
                       min="11"
                       max="30"
@@ -471,7 +484,6 @@ export default function Hero() {
                       style={{
                         border: "1px solid #D1D5DB",
                         borderRadius: "4px",
-                        padding: "10px 12px",
                         width: "100%",
                         maxWidth: "400px",
                         outline: "none",
@@ -482,6 +494,12 @@ export default function Hero() {
                         cursor: "pointer",
                         appearance: "auto",
                         marginTop: "10px",
+                        padding: 10,
+                        paddingRight: 30,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        paddingBottom: 30,
+                        alignItems: "baseline",
                       }}
                     >
                       <option value="" disabled selected>
