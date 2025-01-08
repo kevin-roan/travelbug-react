@@ -13,6 +13,7 @@ import {
   Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Carousel from "react-material-ui-carousel";
 
 export default function PackageDetails() {
   const [data, setData] = useState("");
@@ -35,7 +36,6 @@ export default function PackageDetails() {
     window.scrollTo(0, 0);
   }, []);
 
- 
   if (!data) {
     return <div className="loading-container">Loading...</div>;
   } else {
@@ -129,21 +129,17 @@ export default function PackageDetails() {
               )}
               {activeTab === "accommodation" && (
                 <>
-                  <div
+                  {/* <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
                         data.package_details?.other_info
                       ),
                     }}
-                  ></div>
+                  ></div> */}
 
                   <Box
                     sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
                   >
-
-
-
-
                     {data?.package_details?.accommodation?.map(
                       (item, index) => (
                         <Accordion key={index}>
@@ -156,24 +152,34 @@ export default function PackageDetails() {
                           </AccordionSummary>
                           <AccordionDetails>
                             <Box sx={{ display: "flex", gap: 2 }}>
-                              {item?.images?.map((image, idx) => (
-                                <img
-                                  key={idx}
-                                  src={image}
-                                  alt={`Image ${idx + 1}`}
-                                  style={{
-                                    width: "100%",
-                                    maxWidth: "300px",
-                                    height: "auto",
-                                  }}
-                                />
-                              ))}
+                              {item?.images?.length > 0 ? (
+                                <Carousel
+                                  autoPlay
+                                  animation="slide"
+                                  indicators={true}
+                                  navButtonsAlwaysVisible={true}
+                                  cycleNavigation={true}
+                                >
+                                  {item.images.map((image, idx) => (
+                                    <Box
+                                      key={idx}
+                                      component="img"
+                                      src={image}
+                                      alt={`Image ${idx + 1}`}
+                                      style={{width:'100%'}}
+                                    />
+                                  ))}
+                                </Carousel>
+                              ) : (
+                                <Typography>No images available</Typography>
+                              )}
                             </Box>
+
+                            <p style={{ marginTop: "5px" }}>{item?.content}</p>
                           </AccordionDetails>
                         </Accordion>
                       )
                     )}
-                    
                   </Box>
                 </>
               )}
@@ -214,6 +220,10 @@ export default function PackageDetails() {
           </section>
         </div>
 
+        <div>
+        <h1 className="overSize" style={{marginTop:'16px'}}>Similar Packages</h1>
+
+        </div>
         <section
           className="similar-packages"
           style={{
@@ -223,6 +233,7 @@ export default function PackageDetails() {
             flexWrap: "wrap",
           }}
         >
+          
           {data.package_details.similar_packages.map((item) => (
             <div
               key={item.id}

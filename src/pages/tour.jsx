@@ -28,7 +28,7 @@ function Tour() {
           </h2>
           <h2 className="text-center">{tourData.data?.title}</h2>
           <p>{tourData.data.main_content}</p>
-          <h2 className="text-center sec-title">
+          <h2 className="text-center sec-title" style={{marginBottom:'3px'}}>
             {tourData.data.package_section_title}
           </h2>
           <p>{tourData.data.package_section_content}</p>
