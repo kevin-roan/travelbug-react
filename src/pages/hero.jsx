@@ -20,21 +20,40 @@ export default function Hero() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const script1 = document.createElement("script");
-    script1.src = "/assets/js/vendor/jquery-3.6.0.min.js";
-    script1.async = true;
+    const scriptSources = [
+      "/assets/js/vendor/jquery-3.6.0.min.js",
+      "/assets/js/bootstrap.min.js",
+      "/assets/js/swiper-bundle.min.js",
+      "/assets/js/jquery.magnific-popup.min.js",
+      "/assets/js/jquery.counterup.min.js",
+      "/assets/js/jquery-ui.min.js",
+      "/assets/js/imagesloaded.pkgd.min.js",
+      "/assets/js/isotope.pkgd.min.js",
+      "/assets/js/gsap.min.js",
+      "/assets/js/circle-progress.js",
+      "/assets/js/matter.min.js",
+      "/assets/js/matterjs-custom.js",
+      "/assets/js/nice-select.min.js",
+      "/assets/js/main.js",
+    ];
 
-    const script2 = document.createElement("script");
-    script2.src = "/assets/js/main.js";
-    script2.async = true;
+    const scripts = scriptSources.map((src) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      return script;
+    });
 
-    document.body.appendChild(script2);
-    document.body.appendChild(script1);
+    console.log("Scripts loaded");
 
-    console.log("reloaded");
     return () => {
-      document.body.removeChild(script2);
-      document.body.removeChild(script1);
+      scripts.forEach((script) => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      });
+      console.log("Scripts removed");
     };
   }, [location.pathname]);
 

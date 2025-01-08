@@ -328,14 +328,16 @@ export default function Header() {
                             <Link to="/tour_packages/1">Beach Holidays</Link>
                           </li>
                           <li>
-                            <Link to="/tour_packages/3">Ayurveda Wellness</Link>
+                            <Link to="/tour_packages/17">
+                              Ayurveda Wellness
+                            </Link>
                           </li>
                           <li>
-                            <Link to="/tour_packages/14">Escorted Tour</Link>
+                            <Link to="/tour_packages/3">Escorted Tour</Link>
                           </li>
 
                           <li>
-                            <Link to="/tour_packages/17">Cultural Tours</Link>
+                            <Link to="/tour_packages/14">Cultural Tours</Link>
                           </li>
                         </ul>
                       </li>
