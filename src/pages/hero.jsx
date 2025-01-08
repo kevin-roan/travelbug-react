@@ -340,7 +340,26 @@ export default function Hero() {
                     <select
                       name="subject"
                       id="subject"
-                      className="form-select nice-select"
+                      className="form-select"
+                      style={{
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        padding: "10px 12px",
+                        width: "100%",
+                        maxWidth: "400px",
+                        outline: "none",
+                        boxSizing: "border-box",
+                        marginBottom: "8px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center",
+                        marginTop: "10px",
+                      }}
                     >
                       <option value="Select Destination" selected disabled>
                         Select Destination
@@ -361,12 +380,27 @@ export default function Hero() {
                   <div className="search-input">
                     <label>Type</label>
                     <select
-                      className=" nice-select"
+                      className="form-select"
                       name="Adventure"
                       id="Adventure"
+                      style={{
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        padding: "10px 12px",
+                        width: "100%",
+                        maxWidth: "400px",
+                        outline: "none",
+                        boxSizing: "border-box",
+                        marginBottom: "8px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        marginTop: "10px",
+                      }}
                     >
-                      <option value="Adventure" selected disabled>
-                        Adventure
+                      <option value="" disabled selected>
+                        Select Adventure Type
                       </option>
                       <option value="Beach">Beach</option>
                       <option value="Group Tour">Group Tour</option>
@@ -433,14 +467,30 @@ export default function Hero() {
                     <select
                       name="subject"
                       id="category"
-                      className="form-select nice-select"
+                      className="form-select"
+                      style={{
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        padding: "10px 12px",
+                        width: "100%",
+                        maxWidth: "400px",
+                        outline: "none",
+                        boxSizing: "border-box",
+                        marginBottom: "8px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        marginTop: "10px",
+                      }}
                     >
-                      <option value="Normal" selected disabled>
-                        Superior
+                      <option value="" disabled selected>
+                        Select Category
                       </option>
-                      <option value="1">Deluxe</option>
-                      <option value="2">Heritage</option>
-                      <option value="2">Luxury</option>
+                      <option value="Superior">Superior</option>
+                      <option value="Deluxe">Deluxe</option>
+                      <option value="Heritage">Heritage</option>
+                      <option value="Luxury">Luxury</option>
                     </select>
                   </div>
                 </div>
