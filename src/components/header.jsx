@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Toggle body class for overlay
+    document.body.classList.toggle('th-body-visible');
+  };
+
+  // Add cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('th-body-visible');
+    };
+  }, []);
+
   useEffect(() => {
     const initializeMenu = () => {
       if (window.jQuery) {
@@ -208,9 +223,9 @@ export default function Header() {
           </button>
         </form>
       </div>{" "}
-      <div className="th-menu-wrapper onepage-nav">
+      <div className={`th-menu-wrapper onepage-nav ${isMobileMenuOpen ? 'th-body-visible' : ''}`}>
         <div className="th-menu-area text-center">
-          <button className="th-menu-toggle">
+          <button className="th-menu-toggle" onClick={toggleMobileMenu}>
             <i className="fal fa-times"></i>
           </button>
           <div className="mobile-logo">
@@ -221,53 +236,53 @@ export default function Header() {
           <div className="th-mobile-menu">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" onClick={toggleMobileMenu}>Home</Link>
               </li>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/about" onClick={toggleMobileMenu}>About Us</Link>
               </li>
               <li className="menu-item-has-children">
-                <Link href="/#/holiday_packages">Holidays</Link>
+                <Link href="/#/holiday_packages" onClick={toggleMobileMenu}>Holidays</Link>
                 <ul className="sub-menu">
                   <li>
-                    <Link to="/tour_packages/1">Beach Holidays</Link>
+                    <Link to="/tour_packages/1" onClick={toggleMobileMenu}>Beach Holidays</Link>
                   </li>
                   <li>
-                    <Link to="/tour_packages/17">Ayurveda Wellness</Link>
+                    <Link to="/tour_packages/17" onClick={toggleMobileMenu}>Ayurveda Wellness</Link>
                   </li>
                   <li>
-                    <Link to="/tour_packages/3">Escorted Tour</Link>
+                    <Link to="/tour_packages/3" onClick={toggleMobileMenu}>Escorted Tour</Link>
                   </li>
 
                   <li>
-                    <Link to="/tour_packages/14">Cultural Tours</Link>
+                    <Link to="/tour_packages/14" onClick={toggleMobileMenu}>Cultural Tours</Link>
                   </li>
                 </ul>{" "}
               </li>
 
               <li className="menu-item-has-children">
-                <a href="#">Blog</a>
+                <a href="#" onClick={toggleMobileMenu}>Blog</a>
                 <ul className="sub-menu">
                   <li>
-                    <Link to="/blog">Blog</Link>
+                    <Link to="/blog" onClick={toggleMobileMenu}>Blog</Link>
                   </li>
                 </ul>
               </li>
 
               <li>
-                <Link to="/visa_requirements">Visa Requirements</Link>
+                <Link to="/visa_requirements" onClick={toggleMobileMenu}>Visa Requirements</Link>
               </li>
 
               <li>
-                <Link to="/faq">FAQ</Link>
+                <Link to="/faq" onClick={toggleMobileMenu}>FAQ</Link>
               </li>
 
               <li>
-                <Link to="/blog">Blog</Link>
+                <Link to="/blog" onClick={toggleMobileMenu}>Blog</Link>
               </li>
 
               <li>
-                <Link to="/contact">Contact us</Link>
+                <Link to="/contact" onClick={toggleMobileMenu}>Contact us</Link>
               </li>
             </ul>
           </div>
@@ -313,54 +328,55 @@ export default function Header() {
                   <nav className="main-menu d-none d-xl-inline-block">
                     <ul>
                       <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" onClick={toggleMobileMenu}>Home</Link>
                       </li>
 
                       <li>
-                        <Link to="/about">About Us</Link>
+                        <Link to="/about" onClick={toggleMobileMenu}>About Us</Link>
                       </li>
                       {/* make this dynamic */}
                       <li className="menu-item-has-children">
-                        <Link to="/holiday_packages">Holydays</Link>
+                        <Link to="/holiday_packages" onClick={toggleMobileMenu}>Holydays</Link>
                         <ul className="sub-menu">
                           <li>
-                            <Link to="/tour_packages/1">Beach Holidays</Link>
+                            <Link to="/tour_packages/1" onClick={toggleMobileMenu}>Beach Holidays</Link>
                           </li>
                           <li>
-                            <Link to="/tour_packages/17">
+                            <Link to="/tour_packages/17" onClick={toggleMobileMenu}>
                               Ayurveda Wellness
                             </Link>
                           </li>
                           <li>
-                            <Link to="/tour_packages/3">Escorted Tour</Link>
+                            <Link to="/tour_packages/3" onClick={toggleMobileMenu}>Escorted Tour</Link>
                           </li>
 
                           <li>
-                            <Link to="/tour_packages/14">Cultural Tours</Link>
+                            <Link to="/tour_packages/14" onClick={toggleMobileMenu}>Cultural Tours</Link>
                           </li>
                         </ul>
                       </li>
 
                       <li>
-                        <Link to="/visa_requirements">Visa Requirements</Link>
+                        <Link to="/visa_requirements" onClick={toggleMobileMenu}>Visa Requirements</Link>
                       </li>
 
                       <li>
-                        <Link to="/faq">FAQ</Link>
+                        <Link to="/faq" onClick={toggleMobileMenu}>FAQ</Link>
                       </li>
 
                       <li>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/blog" onClick={toggleMobileMenu}>Blog</Link>
                       </li>
 
                       <li>
-                        <Link to="/contact">Contact us</Link>
+                        <Link to="/contact" onClick={toggleMobileMenu}>Contact us</Link>
                       </li>
                     </ul>
                   </nav>
                   <button
                     type="button"
                     className="th-menu-toggle d-inline-block d-xl-none"
+                    onClick={toggleMobileMenu}
                     style={{
                       display: "block",
                       background: "var(--theme-color)",
@@ -371,6 +387,8 @@ export default function Header() {
                       textAlign: "center",
                       color: "#fff",
                       fontSize: "20px",
+                      zIndex:10000,
+                      marginTop:15,
                       cursor: "pointer",
                       paddingRight: 10,
                       alignItems: "center",
@@ -385,6 +403,23 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      {/* Overlay for mobile menu */}
+      {isMobileMenuOpen && (
+        <div 
+          className="menu-overlay" 
+          onClick={toggleMobileMenu}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            zIndex: 998
+          }}
+        />
+      )}
     </>
   );
 }
