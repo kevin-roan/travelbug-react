@@ -239,7 +239,14 @@ export default function Header() {
           </button>
           <div className="mobile-logo">
             <Link to="/">
-              <img src="assets/img/logo2.svg" alt="Travel Bug" />
+              <img
+                src="assets/img/logo2.svg"
+                alt="Travel Bug"
+                style={{
+                  height: "5rem",
+                  width: "10rem",
+                }}
+              />
             </Link>
           </div>
           <div className="th-mobile-menu">
