@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +16,13 @@ export default function Hero() {
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
+
+  const [activeIndex, setActiveIndex] = useState(null);
+  const accordionRefs = useRef([]);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   const navigate = useNavigate();
 
@@ -192,9 +199,9 @@ export default function Hero() {
                       >
                         Explore Tours
                       </a>
-                      <a href="/#/contact" className="th-btn style2 th-icon">
+                      <Link to="/contact" className="th-btn style2 th-icon">
                         Contact Us
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -322,116 +329,139 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="booking-sec" style={{ padding: '20px 0' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 15px' }}>
+      <div className="booking-sec" style={{ padding: "20px 0" }}>
+        <div
+          className="container"
+          style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}
+        >
           <form
             action="mail"
             method="POST"
             style={{
-              background: 'white',
-              borderRadius: '8px',
-              padding: '20px',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+              background: "white",
+              borderRadius: "8px",
+              padding: "20px",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
             }}
           >
             <div className="input-wrap">
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                margin: '0 -10px',
-                gap: '20px'
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  margin: "0 -10px",
+                  gap: "20px",
+                }}
+              >
                 {/* Destination Field */}
-                <div style={{
-                  flex: '1 1 250px',
-                  minWidth: '250px',
-                  padding: '0 10px'
-                }}>
-                  <div style={{ position: 'relative' }}>
-                    <div style={{ 
-                      position: 'absolute', 
-                      left: '10px', 
-                      top: '45px',
-                      color: '#666' 
-                    }}>
+                <div
+                  style={{
+                    flex: "1 1 250px",
+                    minWidth: "250px",
+                    padding: "0 10px",
+                  }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "45px",
+                        color: "#666",
+                      }}
+                    >
                       <i className="fa-light fa-route"></i>
                     </div>
-                    <label style={{
-                      display: 'block',
-                      marginBottom: '10px',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      color: '#4B5563'
-                    }}>
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#4B5563",
+                      }}
+                    >
                       Destination
                     </label>
                     <select
                       name="subject"
                       id="subject"
                       style={{
-                        width: '100%',
-                        padding: '12px 12px 12px 35px',
-                        border: '1px solid #D1D5DB',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                        backgroundColor: 'white',
-                        color: '#4B5563',
-                        cursor: 'pointer',
-                        appearance: 'auto',
-                        height: '45px'
+                        width: "100%",
+                        padding: "12px 12px 12px 35px",
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>Select Destination</option>
-                      {homeData?.popular_destinations?.map((destination, idx) => (
-                        <option value={destination.id} key={idx}>
-                          {destination.title}
-                        </option>
-                      ))}
+                      <option value="" disabled selected>
+                        Select Destination
+                      </option>
+                      {homeData?.popular_destinations?.map(
+                        (destination, idx) => (
+                          <option value={destination.id} key={idx}>
+                            {destination.title}
+                          </option>
+                        ),
+                      )}
                     </select>
                   </div>
                 </div>
 
                 {/* Adventure Type Field */}
-                <div style={{
-                  flex: '1 1 250px',
-                  minWidth: '250px',
-                  padding: '0 10px'
-                }}>
-                  <div style={{ position: 'relative' }}>
-                    <div style={{ 
-                      position: 'absolute', 
-                      left: '10px', 
-                      top: '45px',
-                      color: '#666' 
-                    }}>
+                <div
+                  style={{
+                    flex: "1 1 250px",
+                    minWidth: "250px",
+                    padding: "0 10px",
+                  }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "45px",
+                        color: "#666",
+                      }}
+                    >
                       <i className="fa-regular fa-person-hiking"></i>
                     </div>
-                    <label style={{
-                      display: 'block',
-                      marginBottom: '10px',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      color: '#4B5563'
-                    }}>
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#4B5563",
+                      }}
+                    >
                       Type
                     </label>
                     <select
                       name="Adventure"
                       id="Adventure"
                       style={{
-                        width: '100%',
-                        padding: '12px 12px 12px 35px',
-                        border: '1px solid #D1D5DB',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                        backgroundColor: 'white',
-                        color: '#4B5563',
-                        cursor: 'pointer',
-                        appearance: 'auto',
-                        height: '45px'
+                        width: "100%",
+                        padding: "12px 12px 12px 35px",
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>Select Adventure Type</option>
+                      <option value="" disabled selected>
+                        Select Adventure Type
+                      </option>
                       <option value="Beach">Beach</option>
                       <option value="Group Tour">Group Tour</option>
                       <option value="Couple Tour">Couple's Tour</option>
@@ -444,27 +474,33 @@ export default function Hero() {
                 </div>
 
                 {/* Duration Field */}
-                <div style={{
-                  flex: '1 1 250px',
-                  minWidth: '250px',
-                  padding: '0 10px'
-                }}>
-                  <div style={{ position: 'relative' }}>
-                    <div style={{ 
-                      position: 'absolute', 
-                      left: '10px', 
-                      top: '45px',
-                      color: '#666' 
-                    }}>
+                <div
+                  style={{
+                    flex: "1 1 250px",
+                    minWidth: "250px",
+                    padding: "0 10px",
+                  }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "45px",
+                        color: "#666",
+                      }}
+                    >
                       <i className="fa-light fa-clock"></i>
                     </div>
-                    <label style={{
-                      display: 'block',
-                      marginBottom: '10px',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      color: '#4B5563'
-                    }}>
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#4B5563",
+                      }}
+                    >
                       Duration
                     </label>
                     <input
@@ -474,18 +510,18 @@ export default function Hero() {
                       min="11"
                       max="30"
                       style={{
-                        width: '100%',
-                        padding: '12px 12px 12px 35px',
-                        border: '1px solid #D1D5DB',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                        backgroundColor: 'white',
-                        color: '#4B5563',
-                        height: '45px'
+                        width: "100%",
+                        padding: "12px 12px 12px 35px",
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        height: "45px",
                       }}
                       onInvalid={(e) => {
                         e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range."
+                          "Tours are available for 11 to 30 days. Please select a number within this range.",
                         );
                       }}
                       onInput={(e) => e.target.setCustomValidity("")}
@@ -494,46 +530,54 @@ export default function Hero() {
                 </div>
 
                 {/* Tour Category Field */}
-                <div style={{
-                  flex: '1 1 250px',
-                  minWidth: '250px',
-                  padding: '0 10px'
-                }}>
-                  <div style={{ position: 'relative' }}>
-                    <div style={{ 
-                      position: 'absolute', 
-                      left: '10px', 
-                      top: '45px',
-                      color: '#666' 
-                    }}>
+                <div
+                  style={{
+                    flex: "1 1 250px",
+                    minWidth: "250px",
+                    padding: "0 10px",
+                  }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "45px",
+                        color: "#666",
+                      }}
+                    >
                       <i className="fa-light fa-map-location-dot"></i>
                     </div>
-                    <label style={{
-                      display: 'block',
-                      marginBottom: '10px',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      color: '#4B5563'
-                    }}>
+                    <label
+                      style={{
+                        display: "block",
+                        marginBottom: "10px",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                        color: "#4B5563",
+                      }}
+                    >
                       Tour Category
                     </label>
                     <select
                       name="category"
                       id="category"
                       style={{
-                        width: '100%',
-                        padding: '12px 12px 12px 35px',
-                        border: '1px solid #D1D5DB',
-                        borderRadius: '4px',
-                        fontSize: '14px',
-                        backgroundColor: 'white',
-                        color: '#4B5563',
-                        cursor: 'pointer',
-                        appearance: 'auto',
-                        height: '45px'
+                        width: "100%",
+                        padding: "12px 12px 12px 35px",
+                        border: "1px solid #D1D5DB",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        backgroundColor: "white",
+                        color: "#4B5563",
+                        cursor: "pointer",
+                        appearance: "auto",
+                        height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>Select Category</option>
+                      <option value="" disabled selected>
+                        Select Category
+                      </option>
                       <option value="Superior">Superior</option>
                       <option value="Deluxe">Deluxe</option>
                       <option value="Heritage">Heritage</option>
@@ -543,27 +587,29 @@ export default function Hero() {
                 </div>
 
                 {/* Search Button */}
-                <div style={{
-                  flex: '1 1 250px',
-                  minWidth: '250px',
-                  padding: '0 10px',
-                  display: 'flex',
-                  alignItems: 'flex-end'
-                }}>
-                  <button 
+                <div
+                  style={{
+                    flex: "1 1 250px",
+                    minWidth: "250px",
+                    padding: "0 10px",
+                    display: "flex",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <button
                     className="th-btn"
                     style={{
-                      width: '100%',
-                      height: '45px',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '16px',
-                      fontWeight: '500',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px'
+                      width: "100%",
+                      height: "45px",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                      fontWeight: "500",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px",
                     }}
                   >
                     <i className="fa-light fa-search"></i>
@@ -711,7 +757,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
-
       {/* 
       <div className="destination-area position-relative overflow-hidden ">
         <div className="container">
@@ -851,7 +896,6 @@ export default function Hero() {
           <img src="assets/img/icon/emoji.png" alt="" />
         </div>
       </div>
-
       {/* 
       <section
         className="position-relative bg-top-center overflow-hidden space"
@@ -955,7 +999,6 @@ export default function Hero() {
         </div>
       </section>
 */}
-
       <div className="gallery-area ">
         <div className="container th-container">
           <div className="title-area text-center">
@@ -1316,7 +1359,6 @@ export default function Hero() {
       //   </div>
       // </section>
          * */}
-
       <section className="testi-area overflow-hidden space" id="testi-sec">
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
@@ -1873,7 +1915,6 @@ export default function Hero() {
           <img src="assets/img/shape/shape_3.png" alt="shape" />
         </div>
       </section>
-
       <div className="row">
         <div className="col-lg-10 offset-lg-1">
           <div
@@ -1884,14 +1925,14 @@ export default function Hero() {
               className="items-center"
               style={{ paddingTop: 50, textAlign: "center" }}
             >
-              <h3>{homeData && homeData.faq_head}</h3>
-              <p>{homeData && homeData.fag_description}</p>
+              <h3>{homeData?.faq_head}</h3>
+              <p>{homeData?.fag_description}</p>
             </div>
-            {/* faq start */}
+            {/* FAQ Start */}
             {faq &&
-              faq.map((faq, index) => (
+              faq.map((item, index) => (
                 <div
-                  className="accordion-card style2 mx-4 "
+                  className="accordion-card style2 mx-4"
                   key={index}
                   style={{ borderRadius: 10 }}
                 >
@@ -1900,32 +1941,36 @@ export default function Hero() {
                     id={`collapse-item-${index}`}
                   >
                     <button
-                      className="accordion-button collapsed "
+                      className={`accordion-button ${
+                        activeIndex === index ? "" : "collapsed"
+                      }`}
                       type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target={`#collapse-${index}`}
-                      aria-expanded="false"
-                      aria-controls={`collapse-${index}`}
+                      onClick={() => toggleAccordion(index)}
                     >
-                      Q{index + 1}.{faq.question}
+                      Q{index + 1}. {item.question}
                     </button>
                   </div>
                   <div
-                    id={`collapse-${index}`}
-                    className="accordion-collapse collapse "
-                    aria-labelledby={`collapse-item-${index}`}
-                    data-bs-parent="#faqAccordion"
+                    ref={(el) => (accordionRefs.current[index] = el)}
+                    className="accordion-collapse"
+                    style={{
+                      maxHeight:
+                        activeIndex === index
+                          ? `${accordionRefs.current[index]?.scrollHeight}px`
+                          : "0",
+                      overflow: "hidden",
+                      transition: "max-height 0.5s ease",
+                    }}
                   >
                     <div className="accordion-body style2">
-                      <p className="faq-text"> {faq.answer}</p>
+                      <p className="faq-text">{item.answer}</p>
                     </div>
                   </div>
                 </div>
               ))}
           </div>
         </div>
-      </div>
-
+      </div>{" "}
       <div className="scroll-top">
         <svg
           className="progress-circle svg-content"

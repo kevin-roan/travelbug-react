@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Euro } from "lucide-react";
@@ -6,6 +6,13 @@ import { Euro } from "lucide-react";
 function Tour() {
   const [tourData, setTourData] = useState(null);
   const { id } = useParams();
+
+  const [activeIndex, setActiveIndex] = useState(null);
+  const accordionRefs = useRef([]);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   useEffect(() => {
     axios
@@ -28,7 +35,7 @@ function Tour() {
           </h2>
           <h2 className="text-center">{tourData.data?.title}</h2>
           <p>{tourData.data.main_content}</p>
-          <h2 className="text-center sec-title" style={{marginBottom:'3px'}}>
+          <h2 className="text-center sec-title" style={{ marginBottom: "3px" }}>
             {tourData.data.package_section_title}
           </h2>
           <p>{tourData.data.package_section_content}</p>
@@ -181,27 +188,36 @@ function Tour() {
                   <h3>{tourData.data.faq.heading}</h3>
                 </div>
                 {tourData.data.faq.faqs.map((faq, index) => (
-                  <div className="accordion-card style2 " key={index}>
+                  <div
+                    className="accordion-card style2 mx-4"
+                    key={index}
+                    style={{ borderRadius: 10 }}
+                  >
                     <div
                       className="accordion-header"
                       id={`collapse-item-${index}`}
                     >
                       <button
-                        className="accordion-button collapsed new-btn-add"
+                        className={`accordion-button ${
+                          activeIndex === index ? "" : "collapsed"
+                        }`}
                         type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#collapse-${index}`}
-                        aria-expanded="false"
-                        aria-controls={`collapse-${index}`}
+                        onClick={() => toggleAccordion(index)}
                       >
                         Q{index + 1}.{faq.question}
                       </button>
                     </div>
                     <div
-                      id={`collapse-${index}`}
-                      className="accordion-collapse collapse "
-                      aria-labelledby={`collapse-item-${index}`}
-                      data-bs-parent="#faqAccordion"
+                      ref={(el) => (accordionRefs.current[index] = el)}
+                      className="accordion-collapse"
+                      style={{
+                        maxHeight:
+                          activeIndex === index
+                            ? `${accordionRefs.current[index]?.scrollHeight}px`
+                            : "0",
+                        overflow: "hidden",
+                        transition: "max-height 0.5s ease",
+                      }}
                     >
                       <div className="accordion-body style2">
                         <p className="faq-text"> {faq.answer}</p>

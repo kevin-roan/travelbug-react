@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 export default function FAQ() {
   const [faq, setFaq] = useState([]);
   const [error, setError] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const accordionRefs = useRef([]);
 
   useEffect(() => {
     axios
@@ -20,6 +23,10 @@ export default function FAQ() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <>
@@ -52,33 +59,39 @@ export default function FAQ() {
           </div>
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
-              <div className="accordion-area accordion mb-30" id="faqAccordion">
-                {/* faq start */}
-                {faq.map((faq, index) => (
-                  <div className="accordion-card style2 " key={index}>
+              <div className="accordion-area accordion mb-30">
+                {faq.map((item, index) => (
+                  <div
+                    className="accordion-card style2 mx-4"
+                    key={index}
+                    style={{ borderRadius: 10 }}
+                  >
                     <div
                       className="accordion-header"
                       id={`collapse-item-${index}`}
                     >
                       <button
-                        className="accordion-button collapsed new-btn-add"
+                        className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
                         type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#collapse-${index}`}
-                        aria-expanded="false"
-                        aria-controls={`collapse-${index}`}
+                        onClick={() => toggleAccordion(index)}
                       >
-                        Q{index + 1}.{faq.question}
+                        Q{index + 1}. {item.question}
                       </button>
                     </div>
                     <div
-                      id={`collapse-${index}`}
-                      className="accordion-collapse collapse "
-                      aria-labelledby={`collapse-item-${index}`}
-                      data-bs-parent="#faqAccordion"
+                      ref={(el) => (accordionRefs.current[index] = el)}
+                      className="accordion-collapse"
+                      style={{
+                        maxHeight:
+                          activeIndex === index
+                            ? `${accordionRefs.current[index]?.scrollHeight}px`
+                            : "0",
+                        overflow: "hidden",
+                        transition: "max-height 0.5s ease",
+                      }}
                     >
                       <div className="accordion-body style2">
-                        <p className="faq-text"> {faq.answer}</p>
+                        <p className="faq-text">{item.answer}</p>
                       </div>
                     </div>
                   </div>

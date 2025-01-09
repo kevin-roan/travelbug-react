@@ -28876,3 +28876,13 @@ margin: 5px 0px;
 .th-mobile-menu .menu-item-has-children.th-active > .sub-menu {
   display: block;
 }
+
+.accordion-collapse {
+  transition: all 0.3s ease-in-out;
+}
+
+.accordion-button {
+  transition: all 0.3s ease;
+}
+
+
