@@ -450,26 +450,25 @@ export default function Header() {
                       </li>
                     </ul>
                   </nav>
+
                   <button
                     type="button"
                     className="th-menu-toggle d-inline-block d-xl-none"
                     onClick={toggleMobileMenu}
                     style={{
-                      display: "block",
+                      display: "flex", // Use flexbox for better centering
+                      justifyContent: "center", // Center horizontally
+                      alignItems: "center", // Center vertically
                       background: "var(--theme-color)",
                       border: "none",
                       width: "40px",
                       height: "40px",
-                      lineHeight: "40px",
-                      textAlign: "center",
-                      color: "#fff",
                       fontSize: "20px",
+                      color: "#fff",
                       zIndex: 10000,
                       marginTop: 15,
                       cursor: "pointer",
-                      paddingRight: 10,
-                      alignItems: "center",
-                      justifyContent: "center",
+                      padding: 0, // Remove extra padding to keep icon centered
                     }}
                   >
                     <i className="far fa-bars"></i>
