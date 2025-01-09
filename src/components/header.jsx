@@ -7,7 +7,7 @@ export default function Header() {
   const location = useLocation();
 
   const toggleMobileMenu = () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       // Check if the screen is mobile-sized
       setIsMobileMenuOpen(!isMobileMenuOpen);
       document.body.classList.toggle("th-body-visible");
