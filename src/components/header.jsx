@@ -234,6 +234,7 @@ export default function Header() {
         className={`th-menu-wrapper onepage-nav ${isMobileMenuOpen ? "th-body-visible" : ""}`}
       >
         <div className="th-menu-area text-center">
+          {/*
           <button
             className="th-menu-toggle"
             onClick={toggleMobileMenu}
@@ -243,6 +244,7 @@ export default function Header() {
           >
             <i className="fal fa-times"></i>
           </button>
+          */}
           <div className="mobile-logo">
             <Link to="/">
               <img
