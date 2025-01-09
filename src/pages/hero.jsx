@@ -251,9 +251,9 @@ export default function Hero() {
                       >
                         Explore Tours
                       </a>
-                      <a href="/contact" className="th-btn style2 th-icon">
+                      <Link to="/contact" className="th-btn style2 th-icon">
                         Contact Us
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -303,9 +303,9 @@ export default function Hero() {
                       >
                         Explore Tours
                       </a>
-                      <a href="/contact" className="th-btn style2 th-icon">
+                      <Link to="/contact" className="th-btn style2 th-icon">
                         Contact Us
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -1713,9 +1713,9 @@ export default function Hero() {
                 </div>
               </div>
               <div className="col-md-auto">
-                <a href="/#/blog" className="th-btn style4 th-icon">
+                <Link to="/blog" className="th-btn style4 th-icon">
                   See More Articles
-                </a>
+                </Link>
               </div>
             </div>
           </div>
