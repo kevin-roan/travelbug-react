@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     if (window.innerWidth <= 768) {
@@ -16,6 +18,11 @@ export default function Header() {
       document.body.classList.remove("th-body-visible");
     };
   }, []);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    document.body.classList.remove("th-body-visible");
+  }, [location]);
 
   useEffect(() => {
     const initializeMenu = () => {
