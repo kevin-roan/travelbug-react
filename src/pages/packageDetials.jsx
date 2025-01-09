@@ -176,7 +176,7 @@ export default function PackageDetails() {
                                       component="img"
                                       src={image}
                                       alt={`Image ${idx + 1}`}
-                                      style={{ width: "100%", height: "50vh" }}
+                                      style={{ width: "100%", height: "auto" }}
                                     />
                                   ))}
                                 </Carousel>
