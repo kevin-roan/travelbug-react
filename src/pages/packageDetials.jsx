@@ -91,7 +91,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.overview
+                        data.package_details?.overview,
                       ),
                     }}
                   ></div>
@@ -100,7 +100,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.inclusions
+                        data.package_details?.inclusions,
                       ),
                     }}
                   ></div>
@@ -110,19 +110,17 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.highlights
+                        data.package_details?.highlights,
                       ),
                     }}
                   ></div>
 
+                  {/* <h1 className="overSize">Other Info</h1> */}
 
-{/* <h1 className="overSize">Other Info</h1> */}
-
-
-                     <div
+                  <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.other_info
+                        data.package_details?.other_info,
                       ),
                     }}
                   ></div>
@@ -133,7 +131,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.accommodation
+                        data.package_details?.accommodation,
                       ),
                     }}
                   ></div>
@@ -178,7 +176,7 @@ export default function PackageDetails() {
                                       component="img"
                                       src={image}
                                       alt={`Image ${idx + 1}`}
-                                      style={{width:'100%'}}
+                                      style={{ width: "100%", height: "50vh" }}
                                     />
                                   ))}
                                 </Carousel>
@@ -190,7 +188,7 @@ export default function PackageDetails() {
                             <p style={{ marginTop: "5px" }}>{item?.content}</p>
                           </AccordionDetails>
                         </Accordion>
-                      )
+                      ),
                     )}
                   </Box>
                 </>
@@ -233,8 +231,12 @@ export default function PackageDetails() {
         </div>
 
         <div>
-        <h1 className="overSize" style={{marginTop:'16px',textAlign:'center'}}>You might also like</h1>
-
+          <h1
+            className="overSize"
+            style={{ marginTop: "16px", textAlign: "center" }}
+          >
+            You might also like
+          </h1>
         </div>
         <section
           className="similar-packages"
@@ -245,7 +247,6 @@ export default function PackageDetails() {
             flexWrap: "wrap",
           }}
         >
-          
           {data.package_details.similar_packages.map((item) => (
             <div
               key={item.id}
