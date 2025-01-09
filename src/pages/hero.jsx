@@ -621,17 +621,7 @@ export default function Hero() {
           </form>
         </div>
       </div>
-      <section
-        className="category-area bg-top-center"
-        data-bg-src={
-          homeData && homeData.banners ? homeData.banners[1].image : ""
-        }
-        style={{
-          backgroundImage: `url(${
-            homeData && homeData.banners ? homeData.banners[1] : ""
-          })`,
-        }}
-      >
+      <section className="category-area bg-top-center">
         <div className="container th-container">
           <div className="title-area text-center">
             <span className="sub-title">Wornderful Place For You</span>
@@ -1788,9 +1778,9 @@ export default function Hero() {
                                 fontSize: "14px",
                               }}
                             >
-                              <a className="author" href="blog.html">
+                              <Link className="author" to="/blog">
                                 {item.published_on}
-                              </a>
+                              </Link>
                               <div
                                 style={{
                                   display: "flex",
@@ -2058,7 +2048,7 @@ export default function Hero() {
                   </div>
                 </div>
                 <div id="forgot_url">
-                  <a href="my-account.html">Forgot password?</a>
+                  <Link to="/#">Forgot password?</Link>
                 </div>
                 <p className="form-messages mb-0 mt-3"></p>
               </form>
