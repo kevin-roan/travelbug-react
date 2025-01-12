@@ -6,6 +6,44 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const scriptSources = [
+      "/assets/js/vendor/jquery-3.6.0.min.js",
+      "/assets/js/bootstrap.min.js",
+      "/assets/js/swiper-bundle.min.js",
+      "/assets/js/jquery.magnific-popup.min.js",
+      "/assets/js/jquery.counterup.min.js",
+      "/assets/js/jquery-ui.min.js",
+      "/assets/js/imagesloaded.pkgd.min.js",
+      "/assets/js/isotope.pkgd.min.js",
+      "/assets/js/gsap.min.js",
+      "/assets/js/circle-progress.js",
+      "/assets/js/matter.min.js",
+      "/assets/js/matterjs-custom.js",
+      "/assets/js/nice-select.min.js",
+      "/assets/js/main.js",
+    ];
+
+    const scripts = scriptSources.map((src) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      return script;
+    });
+
+    console.log("Scripts loaded");
+
+    return () => {
+      scripts.forEach((script) => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      });
+      console.log("Scripts removed");
+    };
+  }, [location.pathname]);
+
   const toggleMobileMenu = () => {
     if (window.innerWidth <= 1024) {
       // Check if the screen is mobile-sized
@@ -270,38 +308,44 @@ export default function Header() {
                 </Link>
               </li>
               <li className="menu-item-has-children">
-                <Link href="/#/holiday_packages" onClick={toggleMobileMenu}>
-                  Holidays
-                </Link>
-                <ul className="sub-menu">
-                  <li>
-                    <Link to="/tour_packages/1" onClick={toggleMobileMenu}>
-                      Beach Holidays
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/tour_packages/17" onClick={toggleMobileMenu}>
-                      Ayurveda Wellness
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/tour_packages/3" onClick={toggleMobileMenu}>
-                      Escorted Tour
-                    </Link>
-                  </li>
+                <Link href="/holiday_packages">Holidays</Link>
+                <li>
+                  <Link
+                    to="/tour_packages/1"
+                    style={{ color: "gray", paddingLeft: 10 }}
+                  >
+                    Beach Holidays
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/tour_packages/17"
+                    style={{ color: "gray", paddingLeft: 10 }}
+                  >
+                    Ayurveda Wellness
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/tour_packages/3"
+                    style={{ color: "gray", paddingLeft: 10 }}
+                  >
+                    Escorted Tour
+                  </Link>
+                </li>
 
-                  <li>
-                    <Link to="/tour_packages/14" onClick={toggleMobileMenu}>
-                      Cultural Tours
-                    </Link>
-                  </li>
-                </ul>{" "}
+                <li>
+                  <Link
+                    to="/tour_packages/14"
+                    style={{ color: "gray", padding: 10 }}
+                  >
+                    Cultural Tours
+                  </Link>
+                </li>
               </li>
 
               <li className="menu-item-has-children">
-                <a href="#" onClick={toggleMobileMenu}>
-                  Blog
-                </a>
+                <Link to="/blog">Blog</Link>
                 <ul className="sub-menu">
                   <li>
                     <Link to="/blog" onClick={toggleMobileMenu}>
@@ -391,7 +435,7 @@ export default function Header() {
                       {/* make this dynamic */}
                       <li className="menu-item-has-children">
                         <Link to="/holiday_packages" onClick={toggleMobileMenu}>
-                          Holydays
+                          Holidays
                         </Link>
                         <ul className="sub-menu">
                           <li>
