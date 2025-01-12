@@ -79,7 +79,12 @@ export default function TourPackageBanner({
       <img
         src={thumbnail}
         alt={title}
-        style={{ transition: "transform 0.3s" }}
+        style={{
+          transition: "transform 0.3s",
+          objectFit: "cover",
+          height: "100%",
+          width: "100%",
+        }}
       />
       <div style={overlayStyle} />
       <div style={contentStyle}>
