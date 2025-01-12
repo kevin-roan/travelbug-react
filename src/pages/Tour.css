@@ -30,16 +30,16 @@
   color: #fff;
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.tour-container .banner-content .tx-white{
-    color: white;
-    max-width: 800px;
-  }
+.tour-container .banner-content .tx-white {
+  color: white;
+  max-width: 800px;
+}
 
 .tour-container .banner-content h1 {
   font-size: 2rem;
@@ -89,6 +89,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  
 }
 
 .tour-container .package-card {
@@ -98,6 +99,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Ensure children stack vertically */
 }
 
 .tour-container .package-card:hover {
@@ -112,6 +115,7 @@
 
 .tour-container .package-details {
   padding: 15px;
+
 }
 
 .tour-container .package-details h4 {
@@ -123,9 +127,58 @@
   font-size: 1rem;
 }
 
+
+/* added */
+
+/* Package Card */
+.tour-container .package-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Ensure children stack vertically */
+}
+
+.tour-container .package-card:hover {
+  transform: translateY(-5px);
+}
+
+.tour-container .package-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.tour-container .package-details {
+  padding: 15px;
+  flex: 1; /* Allow this section to grow and take remaining space */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Push button to the bottom */
+}
+
+.tour-container .package-details h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.tour-container .package-details p {
+  font-size: 1rem;
+  text-align: start;
+}
+
+.tour-container .tour-action {
+  display: flex;
+  justify-content: flex-start; /* Align button to the start */
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .tour-container .banner-content h1 {
+  .tour-container .banner-content h1 {
     font-size: 1.6rem;
   }
 
@@ -142,9 +195,11 @@
     align-items: center;
   }
 
-  .tour-container .banner-content {
-   width: 90%;
-   background-color: transparent;
+ 
+  .tour-container .banner {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
   }
-
 }

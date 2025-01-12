@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import TourPackageBanner from "../components/packageDetailBanner";
 import EnquiryForm from "../components/EnquiryForm";
+import './Tour.css'
 
 import {
   Accordion,
@@ -91,7 +92,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.overview,
+                        data.package_details?.overview
                       ),
                     }}
                   ></div>
@@ -100,7 +101,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.inclusions,
+                        data.package_details?.inclusions
                       ),
                     }}
                   ></div>
@@ -110,7 +111,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.highlights,
+                        data.package_details?.highlights
                       ),
                     }}
                   ></div>
@@ -120,7 +121,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.other_info,
+                        data.package_details?.other_info
                       ),
                     }}
                   ></div>
@@ -131,7 +132,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.accommodation,
+                        data.package_details?.accommodation
                       ),
                     }}
                   ></div>
@@ -188,7 +189,7 @@ export default function PackageDetails() {
                             <p style={{ marginTop: "5px" }}>{item?.content}</p>
                           </AccordionDetails>
                         </Accordion>
-                      ),
+                      )
                     )}
                   </Box>
                 </>
@@ -247,7 +248,7 @@ export default function PackageDetails() {
             flexWrap: "wrap",
           }}
         >
-          {data.package_details.similar_packages.map((item) => (
+          {/* {data.package_details.similar_packages.map((item) => (
             <div
               key={item.id}
               style={{
@@ -331,7 +332,44 @@ export default function PackageDetails() {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
+
+        <div className="tour-container">
+        <div className="package-grid">
+            {data.package_details.similar_packages.map((pkg) => (
+              <div className="package-card" key={pkg.id}>
+                <img
+                  src={pkg.thumbnail}
+                  alt={pkg.title}
+                  className="package-image"
+                />
+                <div className="package-details">
+                <div>
+                <h4>{pkg.title}</h4>
+                  <p style={{ textAlign: "start" }}>
+                    <strong>Price:</strong> ${pkg.amount}
+                  </p>
+                </div>
+
+                  <div
+                    className="tour-action"
+                    style={{
+                      display: "flex",
+                      justifyContent: "start",
+                    }}
+                  >
+                    <Link
+                      to={`/package_details/${pkg?.id}`}
+                      className="th-btn style4 th-icon"
+                    >
+                      Book Now
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         </section>
       </div>
     );

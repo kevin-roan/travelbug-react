@@ -38,7 +38,7 @@
 //           </h2>
 //           <p>{tourData.data.package_section_content}</p>
 
-//           {/* 
+//           {/*
 //           <div
 //             className="wrapper"
 //             style={{
@@ -236,7 +236,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Euro } from "lucide-react";
 import "./Tour.css"; // Import the CSS file
-import Banner from '../assets/bane.jpg'
+import Banner from "../assets/bane.jpg";
 
 const Tour = () => {
   const [tourData, setTourData] = useState(null);
@@ -262,8 +262,6 @@ const Tour = () => {
       .catch((error) => console.error(error.message));
   }, [id]);
 
-
-
   return (
     <div className="tour-container">
       {/* Banner Section */}
@@ -282,7 +280,9 @@ const Tour = () => {
       {/* Main Content */}
       <section className="main-content">
         <h2>{tourData?.data?.main_title}</h2>
-        <p style={{maxWidth:'1200px',margin:'0 auto'}}>{tourData?.data?.main_content}</p>
+        <p style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          {tourData?.data?.main_content}
+        </p>
       </section>
 
       {/* Package Section */}
@@ -298,29 +298,30 @@ const Tour = () => {
                 className="package-image"
               />
               <div className="package-details">
-                <h4>{pkg.title}</h4>
-                <p style={{textAlign:'start'}}>
-                  <strong>Price:</strong> ${pkg.amount}
-                </p>
+                <div>
+                  <h4>{pkg.title}</h4>
+                  <p style={{ textAlign: "start" }}>
+                    <strong>Price:</strong> ${pkg.amount}
+                  </p>
+                </div>
 
                 <div
-                      className="tour-action"
-                      style={{
-                        display: "flex",
-                        justifyContent: "start",
-                      }}
-                    >
-                      <Link
-                        to={`/package_details/${pkg?.id}`}
-                        className="th-btn style4 th-icon"
-                      >
-                        Book Now
-                      </Link>
-                    </div>
+                  className="tour-action"
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                  }}
+                >
+                  <Link
+                    to={`/package_details/${pkg?.id}`}
+                    className="th-btn style4 th-icon"
+                  >
+                    Book Now
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
-          
         </div>
       </section>
 

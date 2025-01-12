@@ -59,6 +59,9 @@ export default function EnquiryForm() {
         },
       );
 
+      console.log('response',response);
+      
+
       if (response.status) {
         setFormData({
           username: "",
@@ -183,6 +186,7 @@ export default function EnquiryForm() {
             type="text"
             placeholder="Name *"
             name="name"
+            value={formData.name}
             style={formStyles.input}
             onChange={handleInputChange}
           />
@@ -193,6 +197,7 @@ export default function EnquiryForm() {
             type="text"
             placeholder="City of Residence *"
             style={formStyles.input}
+            value={formData.city}
             onChange={handleInputChange}
           />
         </div>
@@ -202,6 +207,7 @@ export default function EnquiryForm() {
             type="email"
             name="email"
             placeholder="Email *"
+            value={formData.email}
             style={formStyles.input}
             onChange={handleInputChange}
           />
@@ -212,6 +218,8 @@ export default function EnquiryForm() {
             type="tel"
             name="phone"
             placeholder="Phone Number *"
+            value={formData.phone}
+
             style={formStyles.phoneInput}
             onChange={handleInputChange}
           />
@@ -222,6 +230,8 @@ export default function EnquiryForm() {
             type="tel"
             name="whatsapp"
             placeholder="WhatsApp"
+            value={formData.whatsapp}
+
             style={formStyles.phoneInput}
             onChange={handleInputChange}
           />
@@ -232,6 +242,8 @@ export default function EnquiryForm() {
             type="text"
             name="destination"
             placeholder="Travel Destination *"
+            value={formData.destination}
+
             style={formStyles.input}
             onChange={handleInputChange}
           />
@@ -243,6 +255,8 @@ export default function EnquiryForm() {
             name="date"
             placeholder="Date of Travel *"
             style={formStyles.input}
+            value={formData.date}
+
             onChange={handleInputChange}
           />
         </div>
@@ -253,6 +267,8 @@ export default function EnquiryForm() {
             name="no_of_people"
             placeholder="No. of People *"
             style={formStyles.input}
+            value={formData.no_of_people}
+
             onChange={handleInputChange}
           />
         </div>
@@ -263,6 +279,8 @@ export default function EnquiryForm() {
             name="vacation_type"
             placeholder="Vacation Type *"
             style={formStyles.input}
+            value={formData.vacation_type}
+
             onChange={handleInputChange}
           />
         </div>
