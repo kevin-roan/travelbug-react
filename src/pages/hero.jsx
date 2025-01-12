@@ -395,7 +395,7 @@ export default function Hero() {
                         backgroundColor: "white",
                         color: "#4B5563",
                         cursor: "pointer",
-                        appearance: "auto",
+                        // appearance: "auto",
                         height: "45px",
                       }}
                     >
@@ -455,7 +455,7 @@ export default function Hero() {
                         backgroundColor: "white",
                         color: "#4B5563",
                         cursor: "pointer",
-                        appearance: "auto",
+                        // appearance: "auto",
                         height: "45px",
                       }}
                     >
@@ -571,7 +571,7 @@ export default function Hero() {
                         backgroundColor: "white",
                         color: "#4B5563",
                         cursor: "pointer",
-                        appearance: "auto",
+                        // appearance: "auto",
                         height: "45px",
                       }}
                     >
@@ -597,6 +597,7 @@ export default function Hero() {
                   }}
                 >
                   <button
+                  onClick={()=>navigate('/search')}
                     className="th-btn"
                     style={{
                       width: "100%",
