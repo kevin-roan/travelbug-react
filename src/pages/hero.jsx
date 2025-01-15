@@ -1398,7 +1398,7 @@ export default function Hero() {
           </div>
           <div className="slider-area">
             <div
-              className="swiper th-slider testiSlider1 has-shadow"
+              className="swiper th-slider has-shadow"
               id="testiSlider1"
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"767":{"slidesPerView":"2","centeredSlides":"true"},"992":{"slidesPerView":"2","centeredSlides":"true"},"1200":{"slidesPerView":"2","centeredSlides":"true"},"1400":{"slidesPerView":"3","centeredSlides":"true"}}}'
             >
@@ -1428,6 +1428,7 @@ export default function Hero() {
                             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                             backgroundColor: "#fff",
                             margin: "20px",
+                            minHeight: "16rem",
                           }}
                         >
                           {/* Profile Section */}

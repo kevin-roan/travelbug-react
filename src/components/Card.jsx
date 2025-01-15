@@ -70,7 +70,12 @@ const styles = {
     position: "relative", // Add this to make the badge position relative to the container
     overflow: "hidden",
   },
-  description: {},
+  description: {
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+  },
   span: {
     display: "flex",
     alignItems: "center",
