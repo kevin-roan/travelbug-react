@@ -638,9 +638,23 @@ export default function Hero() {
               justifyContent: "center",
             }}
           >
-            <Card />
-            <Card />
-            <Card />
+            {homeData &&
+              homeData.packages.map((item, index) => (
+                <Card
+                  title={item.title}
+                  key={index}
+                  starting_point={item.starting_point}
+                  ending_point={item.ending_point}
+                  amount={item.amount}
+                  standard_amount={item.standard_amount}
+                  discount={item.discount}
+                  persons={item.persons}
+                  destination_title={item.destination_title}
+                  day={item.day}
+                  night={item.night}
+                  thumbnail={item.thumbnail}
+                />
+              ))}
           </div>
         </div>
       </section>

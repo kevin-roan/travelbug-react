@@ -3,24 +3,30 @@ import { Clock } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { UsersRound } from "lucide-react";
 
-function Card() {
+function Card({
+  id,
+  title,
+  starting_point,
+  ending_point,
+  amount,
+  standard_amount,
+  discount,
+  persons,
+  destination_title,
+  day,
+  night,
+  thumbnail,
+}) {
   return (
     <div style={styles.container}>
       <span style={styles.offerSpan}>
         <img src="./assets/img/thunder.png" style={{ height: 20 }} />
-        19% OFF
+        {discount} % OFF
       </span>
-      <img
-        src="https://iamanas.in/travel_bug/uploads/package_type_images/122024/cdbdce14f9306e8a7f2fe8b645552baf.jpg"
-        alt="packageTypeImage"
-        style={styles.cardImage}
-      />
+      <img src={thumbnail} alt="packageTypeImage" style={styles.cardImage} />
       <div style={styles.content}>
-        <h4 style={styles.cardHeading}>Assunie Adventure Down Under</h4>
-        <p style={styles.description}>
-          Eu velit nulla tempor hac phasellus varius ultrices diam convallis.
-          Urna rhoncus, dictumst ante ante et, tristique lectus est convallis.
-        </p>
+        <h4 style={styles.cardHeading}>{title}</h4>
+        <p style={styles.description}>{destination_title}</p>
         <hr />
         <div style={styles.contentBottom}>
           <div>
@@ -45,8 +51,8 @@ function Card() {
           </div>
           <div style={styles.amountWrapper}>
             <div>
-              <h3 style={styles.crossedPrice}>$ 3,100</h3>
-              <h6 style={styles.packageTypePriceText}>$ 2,500</h6>
+              <h3 style={styles.crossedPrice}>$ {standard_amount}</h3>
+              <h6 style={styles.packageTypePriceText}>$ {amount}</h6>
             </div>
           </div>
         </div>
@@ -58,7 +64,7 @@ function Card() {
 const styles = {
   container: {
     width: "25rem",
-    minHeight: "20rem",
+    minHeight: "32rem",
     borderRadius: "3%",
     backgroundColor: "#F6F7F9",
     position: "relative", // Add this to make the badge position relative to the container
