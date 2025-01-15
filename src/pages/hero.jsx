@@ -11,6 +11,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import DOMPurify from "dompurify";
+import Card from "../components/Card";
 export default function Hero() {
   const location = useLocation();
   const [homeData, setHomeData] = useState(null);
@@ -597,7 +598,7 @@ export default function Hero() {
                   }}
                 >
                   <button
-                  onClick={()=>navigate('/search')}
+                    onClick={() => navigate("/search")}
                     className="th-btn"
                     style={{
                       width: "100%",
@@ -622,6 +623,27 @@ export default function Hero() {
           </form>
         </div>
       </div>
+      <section className="catergory-area bg-top-center">
+        <div className="container th-container">
+          <div className="title-area text-center">
+            <span className="sub-title">Exclusive Offers for you</span>
+            <h2 className="sec-title">Our Popular Packages</h2>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: 20,
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Card />
+            <Card />
+            <Card />
+          </div>
+        </div>
+      </section>
       <section className="category-area bg-top-center">
         <div className="container th-container">
           <div className="title-area text-center">
@@ -694,7 +716,6 @@ export default function Hero() {
             </div>
             <div className="swiper-pagination"></div>
           </div> */}
-
           <div
             className="custom-container"
             style={{
@@ -1925,17 +1946,21 @@ export default function Hero() {
                 <div
                   className="accordion-card style2 mx-4"
                   key={index}
-                  style={{ borderRadius: 10 }}
+                  style={{
+                    borderRadius: 10,
+                  }}
                 >
                   <div
                     className="accordion-header"
                     id={`collapse-item-${index}`}
                   >
                     <button
-                      className={`accordion-button ${
-                        activeIndex === index ? "" : "collapsed"
-                      }`}
+                      className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
                       type="button"
+                      style={{
+                        backgroundColor: activeIndex === index ? "#E8EFFA" : "",
+                        transition: "background-color 0.5s ease",
+                      }}
                       onClick={() => toggleAccordion(index)}
                     >
                       Q{index + 1}. {item.question}
@@ -1949,16 +1974,26 @@ export default function Hero() {
                         activeIndex === index
                           ? `${accordionRefs.current[index]?.scrollHeight}px`
                           : "0",
+                      backgroundColor: activeIndex === index ? "#E8EFFA" : "",
                       overflow: "hidden",
-                      transition: "max-height 0.5s ease",
+                      transition:
+                        "max-height 0.5s ease, background-color 0.5s ease",
                     }}
                   >
                     <div className="accordion-body style2">
-                      <p className="faq-text">{item.answer}</p>
+                      <p
+                        className="faq-text"
+                        style={{
+                          color: "#5C7295",
+                          fontWeight: "500",
+                        }}
+                      >
+                        {item.answer}
+                      </p>
                     </div>
                   </div>
                 </div>
-              ))}
+              ))}{" "}
           </div>
         </div>
       </div>{" "}
