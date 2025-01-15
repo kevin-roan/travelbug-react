@@ -8,6 +8,7 @@ const failedMessage =
 
 export default function EnquiryForm() {
   const [isMinimized, setIsMinimized] = useState(false);
+  const [vacationType, setVactionType] = useState(null);
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -38,6 +39,19 @@ export default function EnquiryForm() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const fetchVacationType = async () => {
+      const result = await axios.get(
+        "https://iamanas.in/travel_bug/web_api/vacation_type_list",
+      );
+      if (result.status) {
+        setVactionType(result.data.data);
+        console.log("vacation type", result.data.data);
+      } else setError("error");
+    };
+    fetchVacationType();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -59,8 +73,7 @@ export default function EnquiryForm() {
         },
       );
 
-      console.log('response',response);
-      
+      console.log("response", response);
 
       if (response.status) {
         setFormData({
@@ -219,7 +232,6 @@ export default function EnquiryForm() {
             name="phone"
             placeholder="Phone Number *"
             value={formData.phone}
-
             style={formStyles.phoneInput}
             onChange={handleInputChange}
           />
@@ -231,7 +243,6 @@ export default function EnquiryForm() {
             name="whatsapp"
             placeholder="WhatsApp"
             value={formData.whatsapp}
-
             style={formStyles.phoneInput}
             onChange={handleInputChange}
           />
@@ -243,7 +254,6 @@ export default function EnquiryForm() {
             name="destination"
             placeholder="Travel Destination *"
             value={formData.destination}
-
             style={formStyles.input}
             onChange={handleInputChange}
           />
@@ -256,7 +266,6 @@ export default function EnquiryForm() {
             placeholder="Date of Travel *"
             style={formStyles.input}
             value={formData.date}
-
             onChange={handleInputChange}
           />
         </div>
@@ -268,21 +277,33 @@ export default function EnquiryForm() {
             placeholder="No. of People *"
             style={formStyles.input}
             value={formData.no_of_people}
-
             onChange={handleInputChange}
           />
         </div>
 
         <div style={formStyles.inputGroup}>
-          <input
-            type="text"
-            name="vacation_type"
-            placeholder="Vacation Type *"
-            style={formStyles.input}
-            value={formData.vacation_type}
-
-            onChange={handleInputChange}
-          />
+          <select
+            name="subject"
+            id="subject"
+            style={{
+              width: "100%",
+              border: "1px solid #D1D5DB",
+              borderRadius: "4px",
+              fontSize: "14px",
+              backgroundColor: "white",
+              color: "#4B5563",
+              cursor: "pointer",
+              height: "45px",
+            }}
+          >
+            <option value="" disabled selected>
+              Select Vacation Type
+            </option>
+            <option>{vacationType[1]}</option>
+            <option>{vacationType[2]}</option>
+            <option>{vacationType[3]}</option>
+            <option>{vacationType[4]}</option>
+          </select>
         </div>
 
         <button style={formStyles.submitButton} type="submit">
