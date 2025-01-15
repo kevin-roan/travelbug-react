@@ -626,8 +626,18 @@ export default function Hero() {
       <section className="catergory-area bg-top-center">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span className="sub-title">Exclusive Offers for you</span>
-            <h2 className="sec-title">Our Popular Packages</h2>
+            <span
+              className="sub-title"
+              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+            >
+              Exclusive Offers for you
+            </span>
+            <h2
+              className="sec-title"
+              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+            >
+              Our Popular Packages
+            </h2>
           </div>
           <div
             style={{
@@ -661,9 +671,22 @@ export default function Hero() {
       <section className="category-area bg-top-center">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span className="sub-title">Wornderful Place For You</span>
-            <h2 className="sec-title">Explore India's TOP Destinations</h2>
-            <p className="sec-text">
+            <span
+              className="sub-title"
+              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+            >
+              Wornderful Place For You
+            </span>
+            <h2
+              className="sec-title"
+              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+            >
+              Explore India's TOP Destinations
+            </h2>
+            <p
+              className="sec-text"
+              style={{ fontFamily: "Poppins", fontSize: "16px" }}
+            >
               India is a land of diverse landscapes, rich history, and vibrant
               cultures. From peaceful beaches and lush mountains to bustling
               cities and royal palaces, every region offers a unique experience
@@ -846,8 +869,18 @@ export default function Hero() {
         <div className="container">
           <div className="ps-xl-4 ms-xl-2">
             <div className="title-area mb-20 text-center">
-              <span className="sub-title style1 ">Let’s Go Together</span>
-              <h2 className="sec-title mb-20  heading">Why Choose Us?</h2>
+              <span
+                className="sub-title style1 "
+                style={{ fontFamily: "Poppins", fontSize: "20px" }}
+              >
+                Let’s Go Together
+              </span>
+              <h2
+                className="sec-title mb-20  heading"
+                style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+              >
+                Why Choose Us?
+              </h2>
             </div>
             <div
               className="about-item-wrap-new"
@@ -1028,10 +1061,16 @@ export default function Hero() {
       <div className="gallery-area ">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span className="sub-title">
+            <span
+              className="sub-title"
+              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+            >
               {homeData && homeData.gallery_title}
             </span>
-            <h2 className="sec-title">
+            <h2
+              className="sec-title"
+              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+            >
               {homeData && homeData.gallery_heading}
             </h2>
           </div>
@@ -1388,8 +1427,18 @@ export default function Hero() {
       <section className="testi-area overflow-hidden space" id="testi-sec">
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
-            <span className="sub-title">Testimonial</span>
-            <h2 className="sec-title">What Our Customers Say</h2>
+            <span
+              className="sub-title"
+              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+            >
+              Testimonial
+            </span>
+            <h2
+              className="sec-title"
+              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+            >
+              What Our Customers Say
+            </h2>
             <p className="sec-text">
               At Travel Bug India, we take pride in create memorable travel
               experiences for our clients. Here’s what some of our satisfied

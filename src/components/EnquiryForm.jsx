@@ -299,10 +299,12 @@ export default function EnquiryForm() {
             <option value="" disabled selected>
               Select Vacation Type
             </option>
-            <option>{vacationType[1]}</option>
-            <option>{vacationType[2]}</option>
-            <option>{vacationType[3]}</option>
-            <option>{vacationType[4]}</option>
+            {vacationType &&
+              Object.entries(vacationType).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value}
+                </option>
+              ))}
           </select>
         </div>
 

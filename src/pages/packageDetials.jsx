@@ -4,7 +4,7 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import TourPackageBanner from "../components/packageDetailBanner";
 import EnquiryForm from "../components/EnquiryForm";
-import './Tour.css'
+import "./Tour.css";
 
 import {
   Accordion,
@@ -20,16 +20,17 @@ export default function PackageDetails() {
   const [data, setData] = useState("");
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("overview");
+  console.log("id is ", id);
 
   useEffect(() => {
     axios
       .get(`https://iamanas.in/travel_bug/web_api/package_details/${id}`)
       .then((response) => {
         setData(response.data.data);
-        console.log("Package details", response.data.data);
+        console.log("Package details 222", response.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "error");
       });
   }, [id]);
 
@@ -46,14 +47,14 @@ export default function PackageDetails() {
           {/* Banner Section */}
           <section className="banner-section">
             <TourPackageBanner
-              id={data.package_details.id}
-              title={data.package_details.title}
-              day={data.package_details.day}
-              night={data.package_details.night}
-              amount={data.package_details.amount}
-              thumbnail={data.package_details.thumbnail}
-              startingPoint={data.package_details.starting_point}
-              endingPoint={data.package_details.ending_point}
+              id={data.package_details?.id}
+              title={data.package_details?.title}
+              day={data.package_details?.day}
+              night={data.package_details?.night}
+              amount={data.package_details?.amount}
+              thumbnail={data.package_details?.thumbnail}
+              startingPoint={data.package_details?.starting_point}
+              endingPoint={data.package_details?.ending_point}
             />
 
             {/* Tab Navigation */}
@@ -92,7 +93,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.overview
+                        data.package_details?.overview,
                       ),
                     }}
                   ></div>
@@ -101,7 +102,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.inclusions
+                        data.package_details?.inclusions,
                       ),
                     }}
                   ></div>
@@ -111,7 +112,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.highlights
+                        data.package_details?.highlights,
                       ),
                     }}
                   ></div>
@@ -121,7 +122,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.other_info
+                        data.package_details?.other_info,
                       ),
                     }}
                   ></div>
@@ -132,7 +133,7 @@ export default function PackageDetails() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
-                        data.package_details?.accommodation
+                        data.package_details?.accommodation,
                       ),
                     }}
                   ></div>
@@ -189,7 +190,7 @@ export default function PackageDetails() {
                             <p style={{ marginTop: "5px" }}>{item?.content}</p>
                           </AccordionDetails>
                         </Accordion>
-                      )
+                      ),
                     )}
                   </Box>
                 </>
@@ -227,7 +228,7 @@ export default function PackageDetails() {
 
           {/* Form Section */}
           <section className="form-section">
-            <EnquiryForm packageId={data.package_details.id} />
+            <EnquiryForm packageId={data?.package_details?.id} />
           </section>
         </div>
 
@@ -334,42 +335,42 @@ export default function PackageDetails() {
             </div>
           ))} */}
 
-        <div className="tour-container">
-        <div className="package-grid">
-            {data.package_details.similar_packages.map((pkg) => (
-              <div className="package-card" key={pkg.id}>
-                <img
-                  src={pkg.thumbnail}
-                  alt={pkg.title}
-                  className="package-image"
-                />
-                <div className="package-details">
-                <div>
-                <h4>{pkg.title}</h4>
-                  <p style={{ textAlign: "start" }}>
-                    <strong>Price:</strong> ${pkg.amount}
-                  </p>
-                </div>
+          <div className="tour-container">
+            <div className="package-grid">
+              {data.package_details.similar_packages.map((pkg) => (
+                <div className="package-card" key={pkg.id}>
+                  <img
+                    src={pkg.thumbnail}
+                    alt={pkg.title}
+                    className="package-image"
+                  />
+                  <div className="package-details">
+                    <div>
+                      <h4>{pkg.title}</h4>
+                      <p style={{ textAlign: "start" }}>
+                        <strong>Price:</strong> ${pkg.amount}
+                      </p>
+                    </div>
 
-                  <div
-                    className="tour-action"
-                    style={{
-                      display: "flex",
-                      justifyContent: "start",
-                    }}
-                  >
-                    <Link
-                      to={`/package_details/${pkg?.id}`}
-                      className="th-btn style4 th-icon"
+                    <div
+                      className="tour-action"
+                      style={{
+                        display: "flex",
+                        justifyContent: "start",
+                      }}
                     >
-                      Book Now
-                    </Link>
+                      <Link
+                        to={`/package_details/${pkg?.id}`}
+                        className="th-btn style4 th-icon"
+                      >
+                        Book Now
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
         </section>
       </div>
     );
