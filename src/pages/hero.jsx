@@ -1980,9 +1980,10 @@ export default function Hero() {
                 {homeData?.faq_head}
               </h4>
               <p
+              className="decription-tag-area"
                 style={{
                   fontFamily: "Poppins",
-                  fontSize: "1.3rem",
+             
                   color: "#4A4A4A",
                   padding: "0 5vmax",
                   paddingBottom: 10,

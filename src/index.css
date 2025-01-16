@@ -29794,6 +29794,10 @@ span.select2-selection.select2-selection--single:focus {
   color: "#4A4A4A";
   padding: "0 5vmax";
 }
+.acordion-text-item{
+ 
+   font-size: 1.2rem;
+}
 
 @media (max-width: 700px) {
   .tab-item-content-wraper {
@@ -29817,6 +29821,11 @@ span.select2-selection.select2-selection--single:focus {
   .decription-tag-area{
     font-size: 17px;
   }
+
+  .acordion-text-item{
+ 
+    font-size: 1rem;
+ }
 
 
 }

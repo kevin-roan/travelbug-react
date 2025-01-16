@@ -20,12 +20,11 @@ function Accordion({ question, answer, index }) {
     >
       <div className="accordion-header" id={`collapse-item-${index}`}>
         <button
-          className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
+          className={`accordion-button  acordion-text-item ${activeIndex === index ? "" : "collapsed"}`}
           type="button"
           style={{
             backgroundColor: activeIndex === index ? "#E8EFFA" : "",
             transition: "background-color 0.5s ease",
-            fontSize: "1.2rem",
           }}
           onClick={() => toggleAccordion(index)}
         >
