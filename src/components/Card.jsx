@@ -2,6 +2,7 @@ import React from "react";
 import { Clock } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { UsersRound } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Card({
   id,
@@ -18,11 +19,14 @@ function Card({
   night,
   thumbnail,
 }) {
+
+  const naviaget = useNavigate()
   return (
-    <div style={styles.container} key={id}>
+    <div style={styles.container} key={id} onClick={() => naviaget(`/package_details/${id}
+`)}>
       <span style={styles.offerSpan}>
         <img src="./assets/img/thunder.png" style={{ height: 20 }} />
-        {discount} % OFF
+        {discount} % OFF 
       </span>
       <img src={thumbnail} alt="packageTypeImage" style={styles.cardImage} />
       <div style={styles.content}>
@@ -134,20 +138,21 @@ const styles = {
     margin: 0,
   },
   offerSpan: {
-    top: "10px",
     backgroundColor: "#F66748",
-    padding: "0.2rem 1.4rem",
+    padding: "0.2rem 1rem",
     borderRadius: 30,
     overflow: "hidden",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
     position: "absolute",
-    left: "10px", // Adjust position to make it stick to the top-left
+    left: "15px", // Adjust position to make it stick to the top-left
+    top:'15px',
     zIndex: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     color: "white",
-    fontWeight: "bold",
+    fontWeight: "", // You can specify values like "bold" or "500"
+    fontSize: "14px",
   },
 };
 

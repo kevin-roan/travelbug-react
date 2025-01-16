@@ -272,7 +272,7 @@ const Tour = () => {
           alt="Beach Vacation Banner"
           className="banner-image"
         />
-        <div className="banner-content">
+        <div className="banner-content" >
           <h1 className="tx-white">{tourData?.data?.meta_title}</h1>
           <p className="tx-white">{tourData?.data?.meta_description}</p>
         </div>
@@ -280,14 +280,14 @@ const Tour = () => {
 
       {/* Main Content */}
       <section className="main-content">
-        <h2>{tourData?.data?.main_title}</h2>
-        <p style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <h2 style={{marginTop:'20px'}}>{tourData?.data?.main_title}</h2>
+        <p style={{ maxWidth: "1200px", margin: "0 auto", }}>
           {tourData?.data?.main_content}
         </p>
       </section>
 
       {/* Package Section */}
-      <section className="package-section">
+      <section className="package-section" style={{marginTop:'30px'}}>
         <h3>{tourData?.data?.package_section_title}</h3>
         <p>{tourData?.data?.package_section_content}</p>
         <div className="package-grid">
@@ -326,12 +326,12 @@ const Tour = () => {
         </div>
       </section>
 
-      <div className="row">
+      <div className="row" style={{marginBottom:'50px'}}>
         <div className="col-lg-10 offset-lg-1">
           <div className="accordion-area accordion mb-30" id="faqAccordion">
             <div
               className="items-center"
-              style={{ paddingTop: 50, textAlign: "center" }}
+              style={{ paddingTop: 50, textAlign: "center",marginBottom:'40px' }}
             >
               <h3>{tourData?.data?.faq?.heading}</h3>
             </div>

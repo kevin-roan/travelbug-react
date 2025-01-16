@@ -189,7 +189,11 @@ export default function About() {
                 <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
                   <div className="card">
                     <div className="card-img">
-                      <img src={item.image} alt={item.title} />
+                      <img src={item.image} alt={item.title} style={{
+                        objectFit: 'cover', objectPosition: 'top',
+                        width: '100%',
+                        height: '100%',
+                      }} />
                     </div>
                     <div className="card-content">
                       <h3 className="card-title">

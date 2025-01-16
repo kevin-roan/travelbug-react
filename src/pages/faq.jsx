@@ -73,7 +73,7 @@ export default function FAQ() {
       </div>{" "}
       <div className="elements-sec bg-white overflow-hidden">
         <div className="container-fluid">
-          <div className="tags-container relative"></div>
+          <div className="tags-container relative" style={{marginBottom:'50px'}}></div>
         </div>
       </div>{" "}
       <div

@@ -676,6 +676,7 @@ export default function Hero() {
                 homeData.packages.map((item, index) => (
                   <SwiperSlide key={index}>
                     <Card
+                      id={item?.id}
                       title={item.title}
                       starting_point={item.starting_point}
                       ending_point={item.ending_point}
