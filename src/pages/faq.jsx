@@ -74,8 +74,13 @@ export default function FAQ() {
                         className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
                         type="button"
                         onClick={() => toggleAccordion(index)}
+                        style={{
+                          backgroundColor:
+                            activeIndex === index ? "#E8EFFA" : "",
+                          transition: "background-color 0.5s ease",
+                        }}
                       >
-                        Q{index + 1}. {item.question}
+                        {item.question}
                       </button>
                     </div>
                     <div
@@ -86,6 +91,8 @@ export default function FAQ() {
                           activeIndex === index
                             ? `${accordionRefs.current[index]?.scrollHeight}px`
                             : "0",
+
+                        backgroundColor: activeIndex === index ? "#E8EFFA" : "",
                         overflow: "hidden",
                         transition: "max-height 0.5s ease",
                       }}

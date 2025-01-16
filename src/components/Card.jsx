@@ -10,6 +10,7 @@ function Card({
   ending_point,
   amount,
   standard_amount,
+  short_description,
   discount,
   persons,
   destination_title,
@@ -18,15 +19,15 @@ function Card({
   thumbnail,
 }) {
   return (
-    <div style={styles.container}>
+    <div style={styles.container} key={id}>
       <span style={styles.offerSpan}>
         <img src="./assets/img/thunder.png" style={{ height: 20 }} />
         {discount} % OFF
       </span>
       <img src={thumbnail} alt="packageTypeImage" style={styles.cardImage} />
       <div style={styles.content}>
-        <h4 style={styles.cardHeading}>{title || 'Default Title'}</h4>
-        <p style={styles.description}>{destination_title} </p>
+        <h4 style={styles.cardHeading}>{title || "Default Title"}</h4>
+        <p style={styles.description}>{short_description} </p>
         <hr />
         <div style={styles.contentBottom}>
           <div>
@@ -34,19 +35,21 @@ function Card({
               <span style={{ fontSize: "20px" }}>
                 <MapPin style={styles.spanIcon} size={20} />
               </span>
-              <span style={styles.spanText}>Autrailia</span>
+              <span style={styles.spanText}>{destination_title}</span>
             </div>
             <div style={styles.span}>
               <span style={{ fontSize: "20px" }}>
                 <Clock style={styles.spanIcon} size={20} />
               </span>
-              <span style={styles.spanText}>7 Days</span>
+              <span style={styles.spanText}>
+                {day} Days, {night} Nights
+              </span>
             </div>
             <div style={styles.span}>
               <span style={{ fontSize: "20px" }}>
                 <UsersRound style={styles.spanIcon} size={20} />
               </span>
-              <span style={styles.spanText}>1-5 People</span>
+              <span style={styles.spanText}>{persons} People</span>
             </div>
           </div>
           <div style={styles.amountWrapper}>
@@ -81,7 +84,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "start", // Centers items horizontally
     gap: "8px",
-    marginBottom: "10px"
+    marginBottom: "10px",
   },
   spanText: {
     color: "#0a0a0a",
