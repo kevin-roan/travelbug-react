@@ -347,8 +347,12 @@ const Tour = () => {
                     }`}
                     type="button"
                     onClick={() => toggleAccordion(index)}
+                    style={{
+                      backgroundColor: activeIndex === index ? "#E8EFFA" : "",
+                      transition: "background-color 0.5s ease",
+                    }}
                   >
-                    Q{index + 1}.{faq.question}
+                    {faq.question}
                   </button>
                 </div>
                 <div
@@ -359,8 +363,10 @@ const Tour = () => {
                       activeIndex === index
                         ? `${accordionRefs.current[index]?.scrollHeight}px`
                         : "0",
+                    backgroundColor: activeIndex === index ? "#E8EFFA" : "",
                     overflow: "hidden",
-                    transition: "max-height 0.5s ease",
+                    transition:
+                      "max-height 0.5s ease, background-color 0.5s ease",
                   }}
                 >
                   <div className="accordion-body style2">

@@ -95,7 +95,7 @@ function AyurvedaPage({ ayurveda }) {
                     aria-expanded="false"
                     aria-controls={`collapse-${index}`}
                   >
-                    Q{index + 1}.{faq.question}
+                    {faq.question}
                   </button>
                 </div>
                 <div

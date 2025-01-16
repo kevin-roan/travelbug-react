@@ -94,7 +94,8 @@ export default function FAQ() {
 
                         backgroundColor: activeIndex === index ? "#E8EFFA" : "",
                         overflow: "hidden",
-                        transition: "max-height 0.5s ease",
+                        transition:
+                          "max-height 0.5s ease, background-color 0.5s ease",
                       }}
                     >
                       <div className="accordion-body style2">
