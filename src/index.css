@@ -29412,7 +29412,7 @@ span.select2-selection.select2-selection--single:focus {
   border-radius: 15px; /* Rounded corners */
   transition: 0.5s ease-in-out;
 }
-.cta .add-my{
+.cta .add-my {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -29420,9 +29420,9 @@ span.select2-selection.select2-selection--single:focus {
   opacity: 1; /* Initially fully visible */
   transition: opacity 0.5s ease-in-out; /* Smooth fade-out transition */
 }
-.cta .add-my h2{
- font-size: 25px;
- color: white;
+.cta .add-my h2 {
+  font-size: 25px;
+  color: white;
 }
 
 .cta:hover img {
@@ -29430,7 +29430,7 @@ span.select2-selection.select2-selection--single:focus {
   filter: brightness(70%);
 }
 .cta:hover .add-my {
- opacity: 0;
+  opacity: 0;
 }
 
 .cta:hover .cta-text {
@@ -29725,9 +29725,7 @@ span.select2-selection.select2-selection--single:focus {
   transition: all 0.3s ease;
 }
 
-
-.globel-h2{
+.globel-h2 {
   font-family: "Caslon", serif !important;
   font-size: 37px !important;
- 
 }

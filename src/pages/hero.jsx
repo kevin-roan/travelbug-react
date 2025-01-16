@@ -627,10 +627,9 @@ export default function Hero() {
         <div className="container th-container">
           <div className="title-area text-center">
             <span
-              className="sub-title"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "20px",
+                fontSize: "2rem",
                 color: "#18A8CA",
               }}
             >
@@ -639,7 +638,7 @@ export default function Hero() {
             <h4
               style={{
                 fontFamily: "Libre Calson",
-                fontSize: 44,
+                fontSize: "3rem",
                 color: "#424242",
               }}
             >
@@ -696,19 +695,30 @@ export default function Hero() {
           <div className="title-area text-center">
             <span
               className="sub-title"
-              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "2rem",
+                color: "#18a8ca",
+              }}
             >
               Wornderful Place For You
             </span>
             <h2
-              className="sec-title"
-              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+              style={{
+                fontFamily: "Libre Calson",
+                fontSize: "3rem",
+                color: "#424242",
+              }}
             >
               Explore India's TOP Destinations
             </h2>
             <p
-              className="sec-text"
-              style={{ fontFamily: "Poppins", fontSize: "16px" }}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "1.3rem",
+                color: "#4A4A4A",
+                padding: "0 5vmax",
+              }}
             >
               India is a land of diverse landscapes, rich history, and vibrant
               cultures. From peaceful beaches and lush mountains to bustling
@@ -896,14 +906,20 @@ export default function Hero() {
           <div className="ps-xl-4 ms-xl-2">
             <div className="title-area mb-20 text-center">
               <span
-                className="sub-title style1 "
-                style={{ fontFamily: "Poppins", fontSize: "20px" }}
+                style={{
+                  fontFamily: "Poppins",
+                  fontSize: "2rem",
+                  color: "#18A8CA",
+                }}
               >
                 Let’s Go Together
               </span>
               <h2
-                className="sec-title mb-20  heading"
-                style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+                style={{
+                  fontFamily: "Libre Calson",
+                  fontSize: "3rem",
+                  color: "#424242",
+                }}
               >
                 Why Choose Us?
               </h2>
@@ -1088,14 +1104,20 @@ export default function Hero() {
         <div className="container th-container">
           <div className="title-area text-center">
             <span
-              className="sub-title"
-              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "2rem",
+                color: "#18A8CA",
+              }}
             >
               {homeData && homeData.gallery_title}
             </span>
             <h2
-              className="sec-title"
-              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+              style={{
+                fontFamily: "Libre Calson",
+                fontSize: "3rem",
+                color: "#424242",
+              }}
             >
               {homeData && homeData.gallery_heading}
             </h2>
@@ -1454,18 +1476,32 @@ export default function Hero() {
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
             <span
-              className="sub-title"
-              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "2rem",
+                color: "#18a8ca",
+              }}
             >
               Testimonial
             </span>
             <h2
-              className="sec-title"
-              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+              style={{
+                fontFamily: "Libre Calson",
+                fontSize: "3rem",
+                color: "#424242",
+              }}
             >
               What Our Customers Say
             </h2>
-            <p className="sec-text">
+            <p
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "1.3rem",
+                color: "#4A4A4A",
+                padding: "0 10vmax",
+                paddingBottom: 10,
+              }}
+            >
               At Travel Bug India, we take pride in create memorable travel
               experiences for our clients. Here’s what some of our satisfied
               travellers have to say about their journeys with us
@@ -2027,8 +2063,26 @@ export default function Hero() {
               className="items-center"
               style={{ paddingTop: 50, textAlign: "center" }}
             >
-              <h3>{homeData?.faq_head}</h3>
-              <p>{homeData?.fag_description}</p>
+              <h4
+                style={{
+                  fontFamily: "Libre Calson",
+                  fontSize: "3rem",
+                  color: "#424242",
+                }}
+              >
+                {homeData?.faq_head}
+              </h4>
+              <p
+                style={{
+                  fontFamily: "Poppins",
+                  fontSize: "1.3rem",
+                  color: "#4A4A4A",
+                  padding: "0 5vmax",
+                  paddingBottom: 10,
+                }}
+              >
+                {homeData?.fag_description}
+              </p>
             </div>
             {/* FAQ Start */}
             {faq &&
@@ -2038,6 +2092,8 @@ export default function Hero() {
                   key={index}
                   style={{
                     borderRadius: 10,
+                    border: "none",
+                    backgroundColor: "#F6F7F9",
                   }}
                 >
                   <div
@@ -2062,7 +2118,7 @@ export default function Hero() {
                     style={{
                       maxHeight:
                         activeIndex === index
-                          ? `${accordionRefs.current[index]?.scrollHeight}px`
+                          ? `${accordionRefs.current[index]?.scrollHeight * 0.8}px`
                           : "0",
                       backgroundColor: activeIndex === index ? "#E8EFFA" : "",
                       overflow: "hidden",
@@ -2072,10 +2128,10 @@ export default function Hero() {
                   >
                     <div className="accordion-body style2">
                       <p
-                        className="faq-text"
                         style={{
                           color: "#5C7295",
                           fontWeight: "500",
+                          fontSize: "1.2rem",
                         }}
                       >
                         {item.answer}
