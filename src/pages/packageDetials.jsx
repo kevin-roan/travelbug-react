@@ -42,10 +42,10 @@ export default function PackageDetails() {
     return <div className="loading-container">Loading...</div>;
   } else {
     return (
-      <div className="container">
-        <div className="  main-containerrr">
+      <div className="">
+        <div className="">
           {/* Banner Section */}
-          <section className="banner-section">
+          <section className="banner-section custom-banner">
             <TourPackageBanner
               id={data.package_details?.id}
               title={data.package_details?.title}
@@ -58,90 +58,100 @@ export default function PackageDetails() {
             />
 
             {/* Tab Navigation */}
-            <div className="tabs">
-              <button
-                className={activeTab === "overview" ? "active" : ""}
-                onClick={() => setActiveTab("overview")}
-              >
-                Overview
-              </button>
-              {/* <button
+            <div className="shadow-conatiner">
+              <div className="tabs container" style={{ margin: "0", padding: '0' }}>
+                <button
+                  className={activeTab === "overview" ? "active" : ""}
+                  onClick={() => setActiveTab("overview")}
+                >
+                  Overview
+                </button>
+                {/* <button
                 className={activeTab === "other_info" ? "active" : ""}
                 onClick={() => setActiveTab("other_info")}
               >
                 Other Info
               </button> */}
-              <button
-                className={activeTab === "accommodation" ? "active" : ""}
-                onClick={() => setActiveTab("accommodation")}
-              >
-                Accommodation & Facilities
-              </button>
-              <button
-                className={activeTab === "itinerary" ? "active" : ""}
-                onClick={() => setActiveTab("itinerary")}
-              >
-                Itinerary
-              </button>
+                <button
+                  className={activeTab === "accommodation" ? "active" : ""}
+                  onClick={() => setActiveTab("accommodation")}
+                >
+                  Accommodation & Facilities
+                </button>
+                <button
+                  className={activeTab === "itinerary" ? "active" : ""}
+                  onClick={() => setActiveTab("itinerary")}
+                >
+                  Itinerary
+                </button>
+
+                <button
+                  className={activeTab === "gallery" ? "active" : ""}
+                  onClick={() => setActiveTab("gallery")}
+                >
+                  Gallery
+                </button>
+              </div>
             </div>
 
             {/* Tab Content */}
-            <div className="tab-content">
-              {activeTab === "overview" && (
-                <>
-                  <h1 className="overSize">Overview</h1>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        data.package_details?.overview,
-                      ),
-                    }}
-                  ></div>
+            <div className="tab-content container tab-item-content-wraper">
+              <div>
+                {activeTab === "overview" && (
+                  <>
+                    <h1 className="overSize">Overview</h1>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.overview,
+                        ),
+                      }}
+                    ></div>
 
-                  <h1 className="overSize">Inclusions</h1>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        data.package_details?.inclusions,
-                      ),
-                    }}
-                  ></div>
+                    <h1 className="overSize">Inclusions</h1>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.inclusions,
+                        ),
+                      }}
+                    ></div>
 
-                  <h1 className="overSize">Highlights</h1>
+                    <h1 className="overSize">Highlights</h1>
 
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        data.package_details?.highlights,
-                      ),
-                    }}
-                  ></div>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.highlights,
+                        ),
+                      }}
+                    ></div>
 
-                  {/* <h1 className="overSize">Other Info</h1> */}
+                    {/* <h1 className="overSize">Other Info</h1> */}
 
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        data.package_details?.other_info,
-                      ),
-                    }}
-                  ></div>
-                </>
-              )}
-              {activeTab === "other_info" && (
-                <>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        data.package_details?.accommodation,
-                      ),
-                    }}
-                  ></div>
-                </>
-              )}
-              {activeTab === "accommodation" && (
-                <>
-                  {/* <div
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.other_info,
+                        ),
+                      }}
+                    ></div>
+                  </>
+                )}
+                {activeTab === "other_info" && (
+                  <>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.accommodation,
+                        ),
+                      }}
+                    ></div>
+                  </>
+                )}
+                {activeTab === "accommodation" && (
+                  <>
+                    {/* <div
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(
                         data.package_details?.other_info
@@ -149,11 +159,58 @@ export default function PackageDetails() {
                     }}
                   ></div> */}
 
-                  <Box
-                    sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
-                  >
-                    {data?.package_details?.accommodation?.map(
-                      (item, index) => (
+                    <Box
+                      sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
+                    >
+                      {data?.package_details?.accommodation?.map(
+                        (item, index) => (
+                          <Accordion key={index}>
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls={`panel${index}-content`}
+                              id={`panel${index}-header`}
+                            >
+                              <Typography variant="h6">{item.title}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Box sx={{ display: "flex", gap: 2 }}>
+                                {item?.images?.length > 0 ? (
+                                  <Carousel
+                                    autoPlay
+                                    animation="slide"
+                                    indicators={true}
+                                    navButtonsAlwaysVisible={true}
+                                    cycleNavigation={true}
+                                  >
+                                    {item.images.map((image, idx) => (
+                                      <Box
+                                        key={idx}
+                                        component="img"
+                                        src={image}
+                                        alt={`Image ${idx + 1}`}
+                                        style={{ width: "100%", height: "auto" }}
+                                      />
+                                    ))}
+                                  </Carousel>
+                                ) : (
+                                  <Typography>No images available</Typography>
+                                )}
+                              </Box>
+
+                              <p style={{ marginTop: "5px" }}>{item?.content}</p>
+                            </AccordionDetails>
+                          </Accordion>
+                        ),
+                      )}
+                    </Box>
+                  </>
+                )}
+                {activeTab === "itinerary" && (
+                  <>
+                    <Box
+                      sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
+                    >
+                      {data?.package_details?.itinerary?.map((item, index) => (
                         <Accordion key={index}>
                           <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -163,73 +220,30 @@ export default function PackageDetails() {
                             <Typography variant="h6">{item.title}</Typography>
                           </AccordionSummary>
                           <AccordionDetails>
-                            <Box sx={{ display: "flex", gap: 2 }}>
-                              {item?.images?.length > 0 ? (
-                                <Carousel
-                                  autoPlay
-                                  animation="slide"
-                                  indicators={true}
-                                  navButtonsAlwaysVisible={true}
-                                  cycleNavigation={true}
-                                >
-                                  {item.images.map((image, idx) => (
-                                    <Box
-                                      key={idx}
-                                      component="img"
-                                      src={image}
-                                      alt={`Image ${idx + 1}`}
-                                      style={{ width: "100%", height: "auto" }}
-                                    />
-                                  ))}
-                                </Carousel>
-                              ) : (
-                                <Typography>No images available</Typography>
-                              )}
+                            <Box>
+                              <p variant="body1">{item.content}</p>
+                              <p variant="body2" sx={{ marginTop: 2 }}>
+                                <strong>Sub Content: </strong>
+                                {item.sub_content}
+                              </p>
                             </Box>
-
-                            <p style={{ marginTop: "5px" }}>{item?.content}</p>
                           </AccordionDetails>
                         </Accordion>
-                      ),
-                    )}
-                  </Box>
-                </>
-              )}
-              {activeTab === "itinerary" && (
-                <>
-                  <Box
-                    sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
-                  >
-                    {data?.package_details?.itinerary?.map((item, index) => (
-                      <Accordion key={index}>
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls={`panel${index}-content`}
-                          id={`panel${index}-header`}
-                        >
-                          <Typography variant="h6">{item.title}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Box>
-                            <p variant="body1">{item.content}</p>
-                            <p variant="body2" sx={{ marginTop: 2 }}>
-                              <strong>Sub Content: </strong>
-                              {item.sub_content}
-                            </p>
-                          </Box>
-                        </AccordionDetails>
-                      </Accordion>
-                    ))}
-                  </Box>
-                </>
-              )}
+                      ))}
+                    </Box>
+                  </>
+                )}
+              </div>
+              <div>
+                {/* Form Section */}
+                <section className="form-section">
+                  <EnquiryForm packageId={data?.package_details?.id} />
+                </section>
+              </div>
             </div>
           </section>
 
-          {/* Form Section */}
-          <section className="form-section">
-            <EnquiryForm packageId={data?.package_details?.id} />
-          </section>
+
         </div>
 
         <div>

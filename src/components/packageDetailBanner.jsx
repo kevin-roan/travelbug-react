@@ -16,7 +16,7 @@ export default function TourPackageBanner({
   const bannerStyle = {
     position: "relative",
     width: "100%",
-    height: "50vh",
+    height: "70vh",
     minHeight: "400px",
     overflow: "hidden",
   };
@@ -76,7 +76,7 @@ export default function TourPackageBanner({
   };
 
   return (
-    <div style={bannerStyle}>
+    <div style={bannerStyle} >
       <img
         src={thumbnail}
         alt={title}
@@ -88,7 +88,7 @@ export default function TourPackageBanner({
         }}
       />
       <div style={overlayStyle} />
-      <div style={contentStyle}>
+      <div style={contentStyle} className="container">
         <div style={{ maxWidth: "56rem" }}>
           <h2 style={titleStyle}>{title}</h2>
           <div style={infoContainerStyle}>
