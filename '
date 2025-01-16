@@ -1424,7 +1424,7 @@ export default function Hero() {
                   spaceBetween={30} // Space between slides
                   slidesPerView={1} // Default number of slides to show
                   centeredSlides={true} // Center the active slide
-                  // loop={true} // Infinite loop
+                  loop={true} // Infinite loop
                   breakpoints={{
                     // Responsive breakpoints
                     768: { slidesPerView: 2 },
@@ -1459,13 +1459,7 @@ export default function Hero() {
                           >
                             <div
                               className="testi-card_avater"
-                              style={{
-                                marginRight: "15px",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                justifyContent: "center",
-                              }}
+                              style={{ marginRight: "15px" }}
                             >
                               <img
                                 src="assets/img/testimonial/testi_1_1.jpg"
@@ -1477,26 +1471,27 @@ export default function Hero() {
                                   objectFit: "cover",
                                 }}
                               />
-                              <div>
-                                <h3
-                                  className="box-title"
-                                  style={{
-                                    fontSize: "18px",
-                                    fontWeight: "600",
-                                    margin: 0,
-                                  }}
-                                >
-                                  {review.author}
-                                </h3>
-                                <span
-                                  className="testi-card_desig"
-                                  style={{ fontSize: "14px", color: "#999" }}
-                                >
-                                  Traveller
-                                </span>
-                              </div>
+                            </div>
+                            <div>
+                              <h3
+                                className="box-title"
+                                style={{
+                                  fontSize: "18px",
+                                  fontWeight: "600",
+                                  margin: 0,
+                                }}
+                              >
+                                {review.author}
+                              </h3>
+                              <span
+                                className="testi-card_desig"
+                                style={{ fontSize: "14px", color: "#999" }}
+                              >
+                                Traveller
+                              </span>
                             </div>
                           </div>
+
                           {/* Review Stars */}
                           <div
                             className="testi-card_review"
