@@ -12,18 +12,12 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import DOMPurify from "dompurify";
 import Card from "../components/Card";
+import Accordion from "../components/Accordion";
 export default function Hero() {
   const location = useLocation();
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
-
-  const [activeIndex, setActiveIndex] = useState(null);
-  const accordionRefs = useRef([]);
-
-  const toggleAccordion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   const navigate = useNavigate();
 
@@ -644,7 +638,7 @@ export default function Hero() {
             </span>
             <h4
               style={{
-                fontFamily: "Libre Calson",
+                fontFamily: "Libre Caslon",
                 fontSize: "3rem",
                 color: "#424242",
               }}
@@ -712,7 +706,7 @@ export default function Hero() {
             </span>
             <h2
               style={{
-                fontFamily: "Libre Calson",
+                fontFamily: "Libre Caslon",
                 fontSize: "3rem",
                 color: "#424242",
               }}
@@ -923,7 +917,7 @@ export default function Hero() {
               </span>
               <h2
                 style={{
-                  fontFamily: "Libre Calson",
+                  fontFamily: "Libre Caslon",
                   fontSize: "3rem",
                   color: "#424242",
                 }}
@@ -1121,7 +1115,7 @@ export default function Hero() {
             </span>
             <h2
               style={{
-                fontFamily: "Libre Calson",
+                fontFamily: "Libre Caslon",
                 fontSize: "3rem",
                 color: "#424242",
               }}
@@ -1493,7 +1487,7 @@ export default function Hero() {
             </span>
             <h2
               style={{
-                fontFamily: "Libre Calson",
+                fontFamily: "Libre Caslon",
                 fontSize: "3rem",
                 color: "#424242",
               }}
@@ -2072,7 +2066,7 @@ export default function Hero() {
             >
               <h4
                 style={{
-                  fontFamily: "Libre Calson",
+                  fontFamily: "Libre Caslon",
                   fontSize: "3rem",
                   color: "#424242",
                 }}
@@ -2094,62 +2088,16 @@ export default function Hero() {
             {/* FAQ Start */}
             {faq &&
               faq.map((item, index) => (
-                <div
-                  className="accordion-card style2 mx-4"
+                <Accordion
                   key={index}
-                  style={{
-                    borderRadius: 10,
-                    border: "none",
-                    backgroundColor: "#F6F7F9",
-                  }}
-                >
-                  <div
-                    className="accordion-header"
-                    id={`collapse-item-${index}`}
-                  >
-                    <button
-                      className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
-                      type="button"
-                      style={{
-                        backgroundColor: activeIndex === index ? "#E8EFFA" : "",
-                        transition: "background-color 0.5s ease",
-                      }}
-                      onClick={() => toggleAccordion(index)}
-                    >
-                      {item.question}
-                    </button>
-                  </div>
-                  <div
-                    ref={(el) => (accordionRefs.current[index] = el)}
-                    className="accordion-collapse"
-                    style={{
-                      maxHeight:
-                        activeIndex === index
-                          ? `${accordionRefs.current[index]?.scrollHeight * 0.8}px`
-                          : "0",
-                      backgroundColor: activeIndex === index ? "#E8EFFA" : "",
-                      overflow: "hidden",
-                      transition:
-                        "max-height 0.5s ease, background-color 0.5s ease",
-                    }}
-                  >
-                    <div className="accordion-body style2">
-                      <p
-                        style={{
-                          color: "#5C7295",
-                          fontWeight: "500",
-                          fontSize: "1.2rem",
-                        }}
-                      >
-                        {item.answer}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}{" "}
+                  index={index}
+                  question={item.question}
+                  answer={item.answer}
+                />
+              ))}
           </div>
         </div>
-      </div>{" "}
+      </div>
       <div className="scroll-top">
         <svg
           className="progress-circle svg-content"

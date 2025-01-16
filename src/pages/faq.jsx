@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import Accordion from "../components/Accordion";
 
 export default function FAQ() {
   const [faq, setFaq] = useState([]);
@@ -23,10 +24,6 @@ export default function FAQ() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const toggleAccordion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   return (
     <>
@@ -52,7 +49,7 @@ export default function FAQ() {
             <div className="col-xl-7">
               <div className="title-area text-center">
                 <span className="sub-title">FAQ</span>
-                <h2 className="sec-title">frequently Ask Questions</h2>
+                <h2 className="sec-title">Frequently Ask Questions</h2>
                 <p>Have questions you want answers to?</p>
               </div>
             </div>
@@ -60,62 +57,15 @@ export default function FAQ() {
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="accordion-area accordion mb-30">
-                {faq.map((item, index) => (
-                  <div
-                    className="accordion-card style2 mx-4"
-                    key={index}
-                    style={{
-                      borderRadius: 10,
-                      border: "none",
-                      backgroundColor: "#F6F7F9",
-                    }}
-                  >
-                    <div
-                      className="accordion-header"
-                      id={`collapse-item-${index}`}
-                    >
-                      <button
-                        className={`accordion-button ${activeIndex === index ? "" : "collapsed"}`}
-                        type="button"
-                        onClick={() => toggleAccordion(index)}
-                        style={{
-                          backgroundColor:
-                            activeIndex === index ? "#E8EFFA" : "",
-                          transition: "background-color 0.5s ease",
-                        }}
-                      >
-                        {item.question}
-                      </button>
-                    </div>
-                    <div
-                      ref={(el) => (accordionRefs.current[index] = el)}
-                      className="accordion-collapse"
-                      style={{
-                        maxHeight:
-                          activeIndex === index
-                            ? `${accordionRefs.current[index]?.scrollHeight * 0.8}px`
-                            : "0",
-
-                        backgroundColor: activeIndex === index ? "#E8EFFA" : "",
-                        overflow: "hidden",
-                        transition:
-                          "max-height 0.5s ease, background-color 0.5s ease",
-                      }}
-                    >
-                      <div className="accordion-body style2">
-                        <p
-                          style={{
-                            color: "#5C7295",
-                            fontWeight: "500",
-                            fontSize: "1.2rem",
-                          }}
-                        >
-                          {item.answer}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                {faq &&
+                  faq.map((item, index) => (
+                    <Accordion
+                      index={index}
+                      key={index}
+                      question={item.question}
+                      answer={item.answer}
+                    />
+                  ))}
               </div>
             </div>
           </div>

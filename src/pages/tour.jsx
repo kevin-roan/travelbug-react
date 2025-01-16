@@ -237,6 +237,7 @@ import axios from "axios";
 import { Euro } from "lucide-react";
 import "./Tour.css"; // Import the CSS file
 import Banner from "../assets/bane.jpg";
+import Accordion from "../components/Accordion";
 
 const Tour = () => {
   const [tourData, setTourData] = useState(null);
@@ -335,57 +336,12 @@ const Tour = () => {
               <h3>{tourData?.data?.faq?.heading}</h3>
             </div>
             {tourData?.data?.faq?.faqs?.map((faq, index) => (
-              <div
-                className="accordion-card style2 mx-4"
+              <Accordion
+                index={index}
                 key={index}
-                style={{
-                  borderRadius: 10,
-                  border: "none",
-                  backgroundColor: "#F6F7F9",
-                }}
-              >
-                <div className="accordion-header" id={`collapse-item-${index}`}>
-                  <button
-                    className={`accordion-button ${
-                      activeIndex === index ? "" : "collapsed"
-                    }`}
-                    type="button"
-                    onClick={() => toggleAccordion(index)}
-                    style={{
-                      backgroundColor: activeIndex === index ? "#E8EFFA" : "",
-                      transition: "background-color 0.5s ease",
-                    }}
-                  >
-                    {faq.question}
-                  </button>
-                </div>
-                <div
-                  ref={(el) => (accordionRefs.current[index] = el)}
-                  className="accordion-collapse"
-                  style={{
-                    maxHeight:
-                      activeIndex === index
-                        ? `${accordionRefs.current[index]?.scrollHeight * 0.8}px`
-                        : "0",
-                    backgroundColor: activeIndex === index ? "#E8EFFA" : "",
-                    overflow: "hidden",
-                    transition:
-                      "max-height 0.5s ease, background-color 0.5s ease",
-                  }}
-                >
-                  <div className="accordion-body style2">
-                    <p
-                      style={{
-                        color: "#5C7295",
-                        fontWeight: "500",
-                        fontSize: "1.2rem",
-                      }}
-                    >
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                question={faq.question}
+                answer={faq.answer}
+              />
             ))}
           </div>
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/header";
 import { Outlet } from "react-router-dom";
 import "./App.css";
+import "./Custom.css";
 import "./sass/style.scss";
 import "./Swiper-Bundle.css";
 import Footer from "./components/footer.jsx";

@@ -344,15 +344,8 @@ export default function Header() {
                 </li>
               </li>
 
-              <li className="menu-item-has-children">
-                <Link to="/blog">Blog</Link>
-                <ul className="sub-menu">
-                  <li>
-                    <Link to="/blog" onClick={toggleMobileMenu}>
-                      Blog
-                    </Link>
-                  </li>
-                </ul>
+              <li>
+                <Link to="/blog">Blogs</Link>
               </li>
 
               <li>
