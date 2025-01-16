@@ -633,39 +633,53 @@ export default function Hero() {
               Exclusive Offers for you
             </span>
             <h2
-              className="sec-title"
+              className="sec-title "
+
               style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
             >
               Our Popular Packages
             </h2>
           </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 20,
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {homeData &&
-              homeData.packages.map((item, index) => (
-                <Card
-                  title={item.title}
-                  key={index}
-                  starting_point={item.starting_point}
-                  ending_point={item.ending_point}
-                  amount={item.amount}
-                  standard_amount={item.standard_amount}
-                  discount={item.discount}
-                  persons={item.persons}
-                  destination_title={item.destination_title}
-                  day={item.day}
-                  night={item.night}
-                  thumbnail={item.thumbnail}
-                />
-              ))}
-          </div>
+          <div style={{ maxWidth: "1300px", margin: "0 auto" }}> {/* Container with max-width */}
+      <Swiper
+        className="custom-category-slider"
+        modules={[Navigation, Pagination]}
+        spaceBetween={24} // Default space between slides
+        slidesPerView={1} // Default number of slides per view
+        pagination={{
+          clickable: true,
+          dynamicBullets: true, // Makes pagination dots responsive
+        }}
+        navigation={{
+          prevEl: ".swiper-button-prev", // Customize the left button
+          nextEl: ".swiper-button-next", // Customize the right button
+        }}
+        breakpoints={{
+          0: { slidesPerView: 1, spaceBetween: 16 }, // Mobile: 1 card, smaller spacing
+          576: { slidesPerView: 2, spaceBetween: 20 }, // Tablet: 2 cards, moderate spacing
+          992: { slidesPerView: 3, spaceBetween: 24 }, // Desktop: 3 cards, default spacing
+        }}
+      >
+        {homeData &&
+          homeData.packages.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Card
+                title={item.title}
+                starting_point={item.starting_point}
+                ending_point={item.ending_point}
+                amount={item.amount}
+                standard_amount={item.standard_amount}
+                discount={item.discount}
+                persons={item.persons}
+                destination_title={item.destination_title}
+                day={item.day}
+                night={item.night}
+                thumbnail={item.thumbnail}
+              />
+            </SwiperSlide>
+          ))}
+      </Swiper>
+    </div>
         </div>
       </section>
       <section className="category-area bg-top-center">
@@ -788,6 +802,10 @@ export default function Hero() {
                       {" "}
                       {/* Add card spacing */}
                       <img src={category?.image} alt="Cta Background" />
+
+                      <div className="add-my">
+                      <h2>{category?.title}</h2>
+                      </div>
                       <div className="cta-text">
                         <h2>{category?.title}</h2>
                         <p>{category?.description}</p>

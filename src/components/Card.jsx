@@ -25,8 +25,8 @@ function Card({
       </span>
       <img src={thumbnail} alt="packageTypeImage" style={styles.cardImage} />
       <div style={styles.content}>
-        <h4 style={styles.cardHeading}>{title}</h4>
-        <p style={styles.description}>{destination_title}</p>
+        <h4 style={styles.cardHeading}>{title || 'Default Title'}</h4>
+        <p style={styles.description}>{destination_title} </p>
         <hr />
         <div style={styles.contentBottom}>
           <div>
@@ -79,7 +79,9 @@ const styles = {
   span: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "start", // Centers items horizontally
     gap: "8px",
+    marginBottom: "10px"
   },
   spanText: {
     color: "#0a0a0a",
