@@ -24,7 +24,7 @@ export default function TourPackageBanner({
   const overlayStyle = {
     position: "absolute",
     inset: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
     transition: "opacity 0.3s",
   };
 
@@ -47,6 +47,7 @@ export default function TourPackageBanner({
   const infoContainerStyle = {
     display: "flex",
     flexWrap: "wrap",
+    flexDirection: "column",
     gap: "16px",
     color: "white",
     marginBottom: "16px",
@@ -93,29 +94,46 @@ export default function TourPackageBanner({
           <div style={infoContainerStyle}>
             <div style={infoItemStyle}>
               <CalendarDays style={iconStyle} />
-              <span>
+              <span style={{ fontSize: 20 }}>
                 {day} Days / {night} Nights
               </span>
             </div>
-            <div style={infoItemStyle}>
+            {/* 
+<div style={infoItemStyle}>
               <MapPin style={iconStyle} />
               <span>
                 {startingPoint} to {endingPoint}
               </span>
             </div>
+
+              */}
             <div style={infoItemStyle}>
-              <Euro style={iconStyle} />
-              <span>{amount}</span>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 20,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Euro style={iconStyle} />
+                {amount}
+              </span>
             </div>
           </div>
           <button
             style={buttonStyle}
-            onMouseEnter={(e) =>
-              (e.target.style.backgroundColor = "rgba(255, 255, 255, 0.9)")
-            }
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "white")}
+            onMouseEnter={(e) => (
+              (e.target.style.backgroundColor = "white"),
+              (e.target.style.color = "black")
+            )}
+            onMouseLeave={(e) => (
+              (e.target.style.backgroundColor = "#1DA8CB"),
+              (e.target.style.color = "white")
+            )}
           >
-            View Details
+            Book Now
           </button>
         </div>
       </div>
