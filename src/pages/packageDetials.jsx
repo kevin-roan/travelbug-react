@@ -249,7 +249,7 @@ export default function PackageDetails() {
         <div>
           <h1
             className="overSize"
-            style={{ marginTop: "16px", textAlign: "center" }}
+            style={{ marginTop: "16px", textAlign: "center", marginBottom:'40px' }}
           >
             You might also like
           </h1>
@@ -261,6 +261,7 @@ export default function PackageDetails() {
             alignItems: "flex-start", // Align items at the top
             justifyContent: "center",
             flexWrap: "wrap",
+            marginBottom:'90px'
           }}
         >
           {/* {data.package_details.similar_packages.map((item) => (

@@ -160,11 +160,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[0].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -212,11 +211,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[1].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -264,11 +262,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[2].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -630,18 +627,15 @@ export default function Hero() {
             <span
               style={{
                 fontFamily: "Poppins",
-                fontSize: "2rem",
-                color: "#18A8CA",
+    
+                
               }}
+              className="poppins-item"
             >
               Exclusive Offers for you
             </span>
             <h4
-              style={{
-                fontFamily: "Libre Caslon",
-                fontSize: "3rem",
-                color: "#424242",
-              }}
+             className="libre-font-item"
             >
               Our Popular Packages
             </h4>
@@ -654,6 +648,7 @@ export default function Hero() {
               modules={[Navigation, Pagination]}
               spaceBetween={24} // Default space between slides
               slidesPerView={1} // Default number of slides per view
+              centeredSlides={true} // Center the slides
               pagination={{
                 clickable: true,
                 dynamicBullets: true, // Makes pagination dots responsive
@@ -663,9 +658,21 @@ export default function Hero() {
                 nextEl: ".swiper-button-next", // Customize the right button
               }}
               breakpoints={{
-                0: { slidesPerView: 1, spaceBetween: 16 }, // Mobile: 1 card, smaller spacing
-                576: { slidesPerView: 2, spaceBetween: 20 }, // Tablet: 2 cards, moderate spacing
-                992: { slidesPerView: 3, spaceBetween: 24 }, // Desktop: 3 cards, default spacing
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                  centeredSlides: true, // Ensure centering on small screens
+                },
+                576: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                  centeredSlides: false, // Not centered on larger screens
+                },
+                992: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                  centeredSlides: false, // Not centered on larger screens
+                },
               }}
             >
               {homeData &&
@@ -677,7 +684,7 @@ export default function Hero() {
                       ending_point={item.ending_point}
                       amount={item.amount}
                       standard_amount={item.standard_amount}
-                      discount={item.discount}
+                      discount={Math.floor(item.discount)}
                       persons={item.persons}
                       destination_title={item.destination_title}
                       short_description={item.short_descrption}
@@ -688,6 +695,7 @@ export default function Hero() {
                   </SwiperSlide>
                 ))}
             </Swiper>
+
           </div>
         </div>
       </section>
@@ -695,21 +703,15 @@ export default function Hero() {
         <div className="container th-container">
           <div className="title-area text-center">
             <span
-              className="sub-title"
+              className="poppins-item"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "2rem",
-                color: "#18a8ca",
               }}
             >
               Wornderful Place For You
             </span>
             <h2
-              style={{
-                fontFamily: "Libre Caslon",
-                fontSize: "3rem",
-                color: "#424242",
-              }}
+              className="libre-font-item"
             >
               Explore India's Top Destinations
             </h2>
@@ -732,95 +734,34 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* <div
-            className="swiper categorySlider"
-            id="categorySlide"
-            data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":2},"992":{"slidesPerView":3}},"centeredSlides":true,"initialSlide":2,"spaceBetween":24}'
-          >
-            <div className="swiper-wrapper">
-              {homeData &&
-                homeData.categories.map((catergory) => (
-                  <div
-                    className="swiper-slide"
-                    key={catergory.id}
-                    // onClick={() => navigate(`/tour_packages/${catergory.id}`)}
-                    onClick={() => navigate(`/holiday_packages`)}
-                  >
-                    <div className="category-card single">
-                      <div
-                        className="box-img global-img"
-                        style={{
-                          height: "250px",
-                          width: "100%",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <img
-                          src={catergory.image}
-                          alt="Image"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }}
-                        />
-                      </div>
-                      <h3 className="box-title">
-                        <Link
-                          to={`/holiday_packages`}
-                          // to={`/tour_packages/${catergory.id}`}
-                        >
-                          {catergory.title}
-                        </Link>
-                      </h3>
-                      <Link
-                        className="line-btn"
-                        // to={`/tour_packages/${catergory.id}`}
-                        to={`/holiday_packages`}
-                      >
-                        See more
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-            </div>
-            <div className="swiper-pagination"></div>
-          </div> */}
+
           <div
             className="custom-container"
-            style={{
-              maxWidth: "1200px",
-              margin: "0 auto",
-              padding: "16px",
-              gap: "40px",
-            }}
+
           >
             <Swiper
               className="custom-category-slider"
               modules={[Navigation, Pagination]}
-              spaceBetween={24} // Space between slides
+              spaceBetween={16} // Default spacing between slides
               slidesPerView={1}
               pagination={{
                 clickable: true,
-                dynamicBullets: true, // Makes pagination dots responsive
+                dynamicBullets: true,
               }}
               navigation={{
-                prevEl: ".swiper-button-prev", // Customize the left button
-                nextEl: ".swiper-button-next", // Customize the right button
+                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next",
               }}
               breakpoints={{
-                0: { slidesPerView: 1, spaceBetween: 16 }, // Mobile: 1 card, smaller spacing
-                576: { slidesPerView: 2, spaceBetween: 20 }, // Tablet: 2 cards, moderate spacing
-                992: { slidesPerView: 3, spaceBetween: 24 }, // Desktop: 3 cards, default spacing
+                0: { slidesPerView: 1, spaceBetween: 8 }, // Mobile: 1 card with smaller spacing
+                576: { slidesPerView: 2, spaceBetween: 16 }, // Tablet: 2 cards
+                992: { slidesPerView: 3, spaceBetween: 24 }, // Desktop: 3 cards
               }}
             >
               {homeData &&
                 homeData.categories.map((category) => (
                   <SwiperSlide key={category.id}>
-                    <div className="cta" style={{ margin: "0 8px" }}>
-                      {" "}
-                      {/* Add card spacing */}
+                    <div className="cta">
                       <img src={category?.image} alt="Cta Background" />
                       <div className="add-my">
                         <h2>{category?.title}</h2>
@@ -831,7 +772,6 @@ export default function Hero() {
                         <Link
                           to={`/tour_packages/${category.id}`}
                           className="th-btn style4 th-icon"
-                          style={{ border: "white" }}
                         >
                           Book Now
                         </Link>
@@ -840,6 +780,7 @@ export default function Hero() {
                   </SwiperSlide>
                 ))}
             </Swiper>
+
           </div>
         </div>
       </section>
@@ -907,20 +848,15 @@ export default function Hero() {
           <div className="ps-xl-4 ms-xl-2">
             <div className="title-area mb-20 text-center">
               <span
+              className="poppins-item"
                 style={{
                   fontFamily: "Poppins",
-                  fontSize: "2rem",
-                  color: "#18A8CA",
                 }}
               >
                 Let’s Go Together
               </span>
               <h2
-                style={{
-                  fontFamily: "Libre Caslon",
-                  fontSize: "3rem",
-                  color: "#424242",
-                }}
+              className="libre-font-item"
               >
                 Why Choose Us?
               </h2>
@@ -1105,20 +1041,16 @@ export default function Hero() {
         <div className="container th-container">
           <div className="title-area text-center">
             <span
+            className="poppins-item"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "2rem",
-                color: "#18A8CA",
+               
               }}
             >
               {homeData && homeData.gallery_title}
             </span>
             <h2
-              style={{
-                fontFamily: "Libre Caslon",
-                fontSize: "3rem",
-                color: "#424242",
-              }}
+               className="libre-font-item"
             >
               {homeData && homeData.gallery_heading}
             </h2>
@@ -1477,20 +1409,16 @@ export default function Hero() {
         <div className="container-fluid p-0">
           <div className="title-area mb-20 text-center">
             <span
+            className="poppins-item"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "2rem",
-                color: "#18a8ca",
+               
               }}
             >
               Testimonial
             </span>
             <h2
-              style={{
-                fontFamily: "Libre Caslon",
-                fontSize: "3rem",
-                color: "#424242",
-              }}
+              className="libre-font-item"
             >
               What Our Customers Say
             </h2>
@@ -2107,7 +2035,7 @@ export default function Hero() {
         >
           <path
             d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-            // style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"
+          // style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"
           ></path>
         </svg>
       </div>
