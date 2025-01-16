@@ -628,16 +628,23 @@ export default function Hero() {
           <div className="title-area text-center">
             <span
               className="sub-title"
-              style={{ fontFamily: "Poppins", fontSize: "20px" }}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "20px",
+                color: "#18A8CA",
+              }}
             >
               Exclusive Offers for you
             </span>
-            <h2
-              className="sec-title "
-              style={{ fontFamily: "Libre Calson", fontSize: "37px" }}
+            <h4
+              style={{
+                fontFamily: "Libre Calson",
+                fontSize: 44,
+                color: "#424242",
+              }}
             >
               Our Popular Packages
-            </h2>
+            </h4>
           </div>
           <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
             {" "}
