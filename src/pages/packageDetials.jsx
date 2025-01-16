@@ -36,7 +36,7 @@ export default function PackageDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   if (!data) {
     return <div className="loading-container">Loading...</div>;

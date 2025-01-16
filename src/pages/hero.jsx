@@ -838,11 +838,12 @@ export default function Hero() {
                 className="poppins-item"
                 style={{
                   fontFamily: "Poppins",
+                 
                 }}
               >
                 Let’s Go Together
               </span>
-              <h2 className="libre-font-item">Why Choose Us?</h2>
+              <h2 className="libre-font-item" style={{ marginBottom:'60px'}}>Why Choose Us?</h2>
             </div>
             <div
               className="about-item-wrap-new"
@@ -1027,6 +1028,7 @@ export default function Hero() {
               className="poppins-item"
               style={{
                 fontFamily: "Poppins",
+                marginTop:'90px'
               }}
             >
               {homeData && homeData.gallery_title}
