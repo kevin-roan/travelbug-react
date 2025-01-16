@@ -15,6 +15,7 @@ function Accordion({ question, answer, index }) {
         borderRadius: 10,
         border: "none",
         backgroundColor: "#F6F7F9",
+        
       }}
     >
       <div className="accordion-header" id={`collapse-item-${index}`}>
