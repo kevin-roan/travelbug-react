@@ -333,7 +333,14 @@ export default function Hero() {
       <div className="booking-sec" style={{ padding: "20px 0" }}>
         <div
           className="container"
-          style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 15px",
+            position: "relative",
+            zIndex: 10,
+            top: "-100px",
+          }}
         >
           <form
             action="mail"
