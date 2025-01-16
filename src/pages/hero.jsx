@@ -710,11 +710,9 @@ export default function Hero() {
               Explore India's Top Destinations
             </h2>
             <p
+               className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "1.3rem",
-                color: "#4A4A4A",
-                padding: "0 5vmax",
               }}
             >
               India is a land of diverse landscapes, rich history, and vibrant
@@ -830,7 +828,7 @@ export default function Hero() {
 
         * */}
       <div
-        className="about-area position-relative overflow-hidden space"
+        className="about-area position-relative overflow-hidden "
         id="about-sec"
       >
         <div className="container">
@@ -1400,12 +1398,11 @@ export default function Hero() {
             </span>
             <h2 className="libre-font-item">What Our Customers Say</h2>
             <p
+             className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "1.3rem",
-                color: "#4A4A4A",
-                padding: "0 10vmax",
-                paddingBottom: 10,
+               
+             marginBottom:'20px'
               }}
             >
               At Travel Bug India, we take pride in create memorable travel
@@ -1967,6 +1964,7 @@ export default function Hero() {
       <div className="row">
         <div className="col-lg-10 offset-lg-1">
           <div
+          style={{marginBottom:'90px'}}
             className="accordion-area accordion mb-30 mx-3"
             id="faqAccordion"
           >
@@ -1975,11 +1973,7 @@ export default function Hero() {
               style={{ paddingTop: 50, textAlign: "center" }}
             >
               <h4
-                style={{
-                  fontFamily: "Libre Caslon",
-                  fontSize: "3rem",
-                  color: "#424242",
-                }}
+                className="libre-font-item"
               >
                 {homeData?.faq_head}
               </h4>

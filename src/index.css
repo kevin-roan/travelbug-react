@@ -29789,6 +29789,12 @@ span.select2-selection.select2-selection--single:focus {
   font-size: 3.5rem;
 }
 
+.decription-tag-area {
+  font-size: 1.3rem;
+  color: "#4A4A4A";
+  padding: "0 5vmax";
+}
+
 @media (max-width: 700px) {
   .tab-item-content-wraper {
     display: grid !important;
@@ -29802,11 +29808,14 @@ span.select2-selection.select2-selection--single:focus {
     color: rgb(24, 168, 202);
     font-weight: 500;
   }
-  
+
   .libre-font-item {
     color: "#424242";
     font-family: 'Libre Calson';
     font-size: 2.2rem;
+  }
+  .decription-tag-area{
+    font-size: 17px;
   }
 
 
