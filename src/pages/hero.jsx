@@ -717,7 +717,7 @@ export default function Hero() {
                 color: "#424242",
               }}
             >
-              Explore India's TOP Destinations
+              Explore India's Top Destinations
             </h2>
             <p
               style={{

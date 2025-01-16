@@ -64,7 +64,11 @@ export default function FAQ() {
                   <div
                     className="accordion-card style2 mx-4"
                     key={index}
-                    style={{ borderRadius: 10 }}
+                    style={{
+                      borderRadius: 10,
+                      border: "none",
+                      backgroundColor: "#F6F7F9",
+                    }}
                   >
                     <div
                       className="accordion-header"
@@ -89,7 +93,7 @@ export default function FAQ() {
                       style={{
                         maxHeight:
                           activeIndex === index
-                            ? `${accordionRefs.current[index]?.scrollHeight}px`
+                            ? `${accordionRefs.current[index]?.scrollHeight * 0.8}px`
                             : "0",
 
                         backgroundColor: activeIndex === index ? "#E8EFFA" : "",
@@ -99,7 +103,15 @@ export default function FAQ() {
                       }}
                     >
                       <div className="accordion-body style2">
-                        <p className="faq-text">{item.answer}</p>
+                        <p
+                          style={{
+                            color: "#5C7295",
+                            fontWeight: "500",
+                            fontSize: "1.2rem",
+                          }}
+                        >
+                          {item.answer}
+                        </p>
                       </div>
                     </div>
                   </div>
