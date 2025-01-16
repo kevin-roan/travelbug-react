@@ -271,7 +271,7 @@ export default function Header() {
       <div
         className={`th-menu-wrapper onepage-nav ${isMobileMenuOpen ? "th-body-visible" : ""}`}
       >
-        <div className="th-menu-area text-center">
+        <div className="th-menu-area text-center" style={{ border: "none" }}>
           {/*
           <button
             className="th-menu-toggle"
@@ -357,12 +357,6 @@ export default function Header() {
               <li>
                 <Link to="/faq" onClick={toggleMobileMenu}>
                   FAQ
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/blog" onClick={toggleMobileMenu}>
-                  Blog
                 </Link>
               </li>
 
@@ -505,7 +499,7 @@ export default function Header() {
                       justifyContent: "center", // Center horizontally
                       alignItems: "center", // Center vertically
                       background: "var(--theme-color)",
-                      border: "none",
+                      border: "none !important",
                       width: "40px",
                       height: "40px",
                       fontSize: "20px",

@@ -232,7 +232,15 @@ export default function EnquiryForm() {
             name="phone"
             placeholder="Phone Number *"
             value={formData.phone}
-            style={formStyles.phoneInput}
+            style={{
+              width: "100%",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              padding: "10px",
+              marginLeft: 0,
+              marginRight: 0,
+            }}
             onChange={handleInputChange}
           />
         </div>
@@ -243,7 +251,15 @@ export default function EnquiryForm() {
             name="whatsapp"
             placeholder="WhatsApp"
             value={formData.whatsapp}
-            style={formStyles.phoneInput}
+            style={{
+              width: "100%",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              padding: "10px",
+              marginLeft: 0,
+              marginRight: 0,
+            }}
             onChange={handleInputChange}
           />
         </div>
@@ -264,7 +280,15 @@ export default function EnquiryForm() {
             type="date"
             name="date"
             placeholder="Date of Travel *"
-            style={formStyles.input}
+            style={{
+              width: "100%",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              padding: "10px",
+              marginLeft: 0,
+              marginRight: 0,
+            }}
             value={formData.date}
             onChange={handleInputChange}
           />
