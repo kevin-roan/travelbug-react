@@ -48,7 +48,6 @@ export default function FAQ() {
           <div className="row justify-content-center">
             <div className="col-xl-7">
               <div className="title-area text-center">
-                <span className="sub-title">FAQ</span>
                 <h2 className="sec-title">Frequently Ask Questions</h2>
                 <p>Have questions you want answers to?</p>
               </div>
@@ -73,7 +72,10 @@ export default function FAQ() {
       </div>{" "}
       <div className="elements-sec bg-white overflow-hidden">
         <div className="container-fluid">
-          <div className="tags-container relative" style={{marginBottom:'50px'}}></div>
+          <div
+            className="tags-container relative"
+            style={{ marginBottom: "50px" }}
+          ></div>
         </div>
       </div>{" "}
       <div

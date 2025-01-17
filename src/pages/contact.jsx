@@ -104,7 +104,7 @@ export default function Contact() {
       <div className="space">
         <div className="container">
           <div className="title-area text-center">
-            <span className="sub-title">Get In Touch</span>
+            <span className="poppins-item">Get In Touch</span>
             <h2 className="sec-title">Our Contact Information</h2>
           </div>
           <div className="row gy-4 justify-content-center">
