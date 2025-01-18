@@ -13,7 +13,7 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import DOMPurify from "dompurify";
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
-import SearchPackageCard from "../components/SearchPackageCard";
+import FilterCard from "../components/Filtercard";
 export default function Hero() {
   const location = useLocation();
   const [homeData, setHomeData] = useState(null);
@@ -325,7 +325,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <SearchPackageCard destinations={homeData?.popular_destinations} />
+      <FilterCard />
 
       <section className="catergory-area bg-top-center">
         <div className="container th-container">
