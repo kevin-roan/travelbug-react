@@ -13,6 +13,7 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import DOMPurify from "dompurify";
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
+import SearchPackageCard from "../components/SearchPackageCard";
 export default function Hero() {
   const location = useLocation();
   const [homeData, setHomeData] = useState(null);
@@ -324,306 +325,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="booking-sec" style={{ padding: "20px 0" }}>
-        <div
-          className="container"
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 15px",
-            position: "relative",
-            zIndex: 10,
-            top: "-100px",
-          }}
-        >
-          <form
-            action="mail"
-            method="POST"
-            style={{
-              background: "white",
-              borderRadius: "8px",
-              padding: "20px",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-            }}
-          >
-            <div className="input-wrap">
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  margin: "0 -10px",
-                  gap: "20px",
-                }}
-              >
-                {/* Destination Field */}
-                <div
-                  style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
-                    padding: "0 10px",
-                  }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "10px",
-                        top: "45px",
-                        color: "#666",
-                      }}
-                    >
-                      <i className="fa-light fa-route"></i>
-                    </div>
-                    <label
-                      style={{
-                        display: "block",
-                        marginBottom: "10px",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#4B5563",
-                      }}
-                    >
-                      Destination
-                    </label>
-                    <select
-                      name="subject"
-                      id="subject"
-                      style={{
-                        width: "100%",
-                        padding: "12px 12px 12px 35px",
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        fontSize: "14px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        // appearance: "auto",
-                        height: "45px",
-                      }}
-                    >
-                      <option value="" disabled selected>
-                        Select Destination
-                      </option>
-                      {homeData?.popular_destinations?.map(
-                        (destination, idx) => (
-                          <option value={destination.id} key={idx}>
-                            {destination.title}
-                          </option>
-                        ),
-                      )}
-                    </select>
-                  </div>
-                </div>
+      <SearchPackageCard destinations={homeData?.popular_destinations} />
 
-                {/* Adventure Type Field */}
-                <div
-                  style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
-                    padding: "0 10px",
-                  }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "10px",
-                        top: "45px",
-                        color: "#666",
-                      }}
-                    >
-                      <i className="fa-regular fa-person-hiking"></i>
-                    </div>
-                    <label
-                      style={{
-                        display: "block",
-                        marginBottom: "10px",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#4B5563",
-                      }}
-                    >
-                      Type
-                    </label>
-                    <select
-                      name="Adventure"
-                      id="Adventure"
-                      style={{
-                        width: "100%",
-                        padding: "12px 12px 12px 35px",
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        fontSize: "14px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        // appearance: "auto",
-                        height: "45px",
-                      }}
-                    >
-                      <option value="" disabled selected>
-                        Select Adventure Type
-                      </option>
-                      <option value="Beach">Beach</option>
-                      <option value="Group Tour">Group Tour</option>
-                      <option value="Couple Tour">Couple's Tour</option>
-                      <option value="Family Tour">Family Tour</option>
-                      <option value="Multi Center">Multicenter</option>
-                      <option value="Long-Haul Tour">Long-Haul Tour</option>
-                      <option value="Ayurveda Tour">Ayurveda Tour</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Duration Field */}
-                <div
-                  style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
-                    padding: "0 10px",
-                  }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "10px",
-                        top: "45px",
-                        color: "#666",
-                      }}
-                    >
-                      <i className="fa-light fa-clock"></i>
-                    </div>
-                    <label
-                      style={{
-                        display: "block",
-                        marginBottom: "10px",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#4B5563",
-                      }}
-                    >
-                      Duration
-                    </label>
-                    <input
-                      id="days"
-                      type="number"
-                      placeholder="Days"
-                      min="11"
-                      max="30"
-                      style={{
-                        width: "100%",
-                        padding: "12px 12px 12px 35px",
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        fontSize: "14px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        height: "45px",
-                      }}
-                      onInvalid={(e) => {
-                        e.target.setCustomValidity(
-                          "Tours are available for 11 to 30 days. Please select a number within this range.",
-                        );
-                      }}
-                      onInput={(e) => e.target.setCustomValidity("")}
-                    />
-                  </div>
-                </div>
-
-                {/* Tour Category Field */}
-                <div
-                  style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
-                    padding: "0 10px",
-                  }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: "10px",
-                        top: "45px",
-                        color: "#666",
-                      }}
-                    >
-                      <i className="fa-light fa-map-location-dot"></i>
-                    </div>
-                    <label
-                      style={{
-                        display: "block",
-                        marginBottom: "10px",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#4B5563",
-                      }}
-                    >
-                      Tour Category
-                    </label>
-                    <select
-                      name="category"
-                      id="category"
-                      style={{
-                        width: "100%",
-                        padding: "12px 12px 12px 35px",
-                        border: "1px solid #D1D5DB",
-                        borderRadius: "4px",
-                        fontSize: "14px",
-                        backgroundColor: "white",
-                        color: "#4B5563",
-                        cursor: "pointer",
-                        // appearance: "auto",
-                        height: "45px",
-                      }}
-                    >
-                      <option value="" disabled selected>
-                        Select Category
-                      </option>
-                      <option value="Superior">Superior</option>
-                      <option value="Deluxe">Deluxe</option>
-                      <option value="Heritage">Heritage</option>
-                      <option value="Luxury">Luxury</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Search Button */}
-                <div
-                  style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
-                    padding: "0 10px",
-                    display: "flex",
-                    alignItems: "flex-end",
-                  }}
-                >
-                  <button
-                    onClick={() => navigate("/search")}
-                    className="th-btn"
-                    style={{
-                      width: "100%",
-                      height: "45px",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <i className="fa-light fa-search"></i>
-                    Search
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
       <section className="catergory-area bg-top-center">
         <div className="container th-container">
           <div className="title-area text-center">
@@ -711,7 +414,7 @@ export default function Hero() {
               Explore India's Top Destinations
             </h2>
             <p
-               className="decription-tag-area container"
+              className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
               }}
@@ -839,12 +542,13 @@ export default function Hero() {
                 className="poppins-item"
                 style={{
                   fontFamily: "Poppins",
-                 
                 }}
               >
                 Let’s Go Together
               </span>
-              <h2 className="libre-font-item" style={{ marginBottom:'60px'}}>Why Choose Us?</h2>
+              <h2 className="libre-font-item" style={{ marginBottom: "60px" }}>
+                Why Choose Us?
+              </h2>
             </div>
             <div
               className="about-item-wrap-new"
@@ -1029,7 +733,7 @@ export default function Hero() {
               className="poppins-item"
               style={{
                 fontFamily: "Poppins",
-                marginTop:'90px'
+                marginTop: "90px",
               }}
             >
               {homeData && homeData.gallery_title}
@@ -1399,18 +1103,18 @@ export default function Hero() {
             >
               Testimonial
             </span>
-            <h2 className="libre-font-item">What Our Customers Say</h2>
+            <h2 className="libre-font-item">
+              {homeData && homeData.review_head}
+            </h2>
             <p
-             className="decription-tag-area container"
+              className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
-               
-             marginBottom:'20px'
+
+                marginBottom: "20px",
               }}
             >
-              At Travel Bug India, we take pride in create memorable travel
-              experiences for our clients. Here’s what some of our satisfied
-              travellers have to say about their journeys with us
+              {homeData && homeData?.review_description}
             </p>
           </div>
           <div className="slider-area">
@@ -1967,7 +1671,7 @@ export default function Hero() {
       <div className="row">
         <div className="col-lg-10 offset-lg-1">
           <div
-          style={{marginBottom:'90px'}}
+            style={{ marginBottom: "90px" }}
             className="accordion-area accordion mb-30 mx-3"
             id="faqAccordion"
           >
@@ -1975,16 +1679,12 @@ export default function Hero() {
               className="items-center"
               style={{ paddingTop: 50, textAlign: "center" }}
             >
-              <h4
-                className="libre-font-item"
-              >
-                {homeData?.faq_head}
-              </h4>
+              <h4 className="libre-font-item">{homeData?.faq_head}</h4>
               <p
-              className="decription-tag-area"
+                className="decription-tag-area"
                 style={{
                   fontFamily: "Poppins",
-             
+
                   color: "#4A4A4A",
                   padding: "0 5vmax",
                   paddingBottom: 10,
