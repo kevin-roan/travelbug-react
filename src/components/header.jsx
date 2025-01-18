@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { Package } from "lucide-react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [packageTypeList, setPackageTypeList] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -117,6 +120,15 @@ export default function Header() {
         window.jQuery(".onepage-nav").off();
       }
     };
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://iamanas.in/travel_bug/web_api/package_type_list")
+      .then((res) => {
+        setPackageTypeList(res.data.data);
+      })
+      .catch((error) => console.error("Package type list error", error));
   }, []);
 
   return (
@@ -309,57 +321,31 @@ export default function Header() {
               </li>
               <li className="menu-item-has-children">
                 <Link href="/holiday_packages">Holidays</Link>
-                <li>
-                  <Link
-                    to="/tour_packages/1"
-                    style={{ color: "gray", paddingLeft: 10 }}
-                  >
-                    Beach Holidays
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/tour_packages/17"
-                    style={{ color: "gray", paddingLeft: 10 }}
-                  >
-                    Ayurveda Wellness
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/tour_packages/3"
-                    style={{ color: "gray", paddingLeft: 10 }}
-                  >
-                    Escorted Tour
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/tour_packages/14"
-                    style={{ color: "gray", padding: 10 }}
-                  >
-                    Cultural Tours
-                  </Link>
-                </li>
+                {packageTypeList &&
+                  packageTypeList.map((item, _) => (
+                    <li key={item.id}>
+                      <Link
+                        to={`/tour_packages/${item.id}`}
+                        style={{ color: "gray", padding: 10 }}
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
               </li>
-
               <li>
                 <Link to="/blog">Blogs</Link>
               </li>
-
               <li>
                 <Link to="/visa_requirements" onClick={toggleMobileMenu}>
                   Visa Requirements
                 </Link>
               </li>
-
               <li>
                 <Link to="/faq" onClick={toggleMobileMenu}>
                   FAQ
                 </Link>
               </li>
-
               <li>
                 <Link to="/contact" onClick={toggleMobileMenu}>
                   Contact us
@@ -425,39 +411,14 @@ export default function Header() {
                           Holidays
                         </Link>
                         <ul className="sub-menu">
-                          <li>
-                            <Link
-                              to="/tour_packages/1"
-                              onClick={toggleMobileMenu}
-                            >
-                              Beach Holidays
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/tour_packages/17"
-                              onClick={toggleMobileMenu}
-                            >
-                              Ayurveda Wellness
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/tour_packages/3"
-                              onClick={toggleMobileMenu}
-                            >
-                              Escorted Tour
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link
-                              to="/tour_packages/14"
-                              onClick={toggleMobileMenu}
-                            >
-                              Cultural Tours
-                            </Link>
-                          </li>
+                          {packageTypeList &&
+                            packageTypeList.map((item) => (
+                              <li key={item.id}>
+                                <Link to={`/tour_packages/${item.id}`}>
+                                  {item.title}
+                                </Link>
+                              </li>
+                            ))}
                         </ul>
                       </li>
 
