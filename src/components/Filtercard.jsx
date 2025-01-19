@@ -67,14 +67,14 @@ const FilterCard = () => {
     e.preventDefault();
     if (location?.pathname === "/") {
       navigate(
-        `/search?destination=${formData.destination}&adventure=${formData.adventure}&duration=${formData.duration}&category=${formData.category}`,
+        `/search?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`,
       );
     } else {
-      console.log("search page  here enter logic");
+      navigate(
+        `/search?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`,
+      );
     }
   };
-
-  console.log("addddd", location);
 
   return (
     <>

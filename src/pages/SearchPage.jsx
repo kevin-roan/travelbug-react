@@ -1,124 +1,90 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Typography, Box } from "@mui/material";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied"; // Importing the icon
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 import "./search.css";
 import Card from "../components/Card";
 import FilterCard from "../components/Filtercard";
-import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
   const data = [1]; // Simulate no data available (you can replace this with real data)
+  const [homeData, setHomeData] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const homeData = {
-    packages: [
-      {
-        id: "8",
-        title: "South India Beaches & Heritage Tour 13 Nights & 14 Days",
-        short_descrption:
-          "Experience the South India Beaches  Heritage Tour Package, an unforgettable 14-day journey through the breathtaking landscapes, rich culture, and historical treasures of South India.",
-        starting_point: null,
-        ending_point: null,
-        amount: "3039",
-        standard_amount: "5000",
-        discount: "0",
-        persons: "1-5",
-        destination_title: "Kerala",
-        day: "13",
-        night: "14",
-        thumbnail:
-          "https://iamanas.in/travel_bug/uploads/package_images/012025/0d98bde7029fe9fc9a21abb3d4a199a1.jpg",
-      },
-      {
-        id: "9",
-        title: "North India Beaches & Heritage Tour 13 Nights & 14 Days",
-        short_descrption:
-          "Experience the South India Beaches  Heritage Tour Package, an unforgettable 14-day journey through the breathtaking landscapes, rich culture, and historical treasures of South India.",
-        starting_point: null,
-        ending_point: null,
-        amount: "3039",
-        standard_amount: "5000",
-        discount: "39",
-        persons: "1-7",
-        destination_title: "Kerala",
-        day: "13",
-        night: "14",
-        thumbnail:
-          "https://iamanas.in/travel_bug/uploads/package_images/012025/0d98bde7029fe9fc9a21abb3d4a199a1.jpg",
-      },
-      {
-        id: "10",
-        title: "Kerala Beaches & Heritage Tour 5 Nights & 6 Days",
-        short_descrption:
-          "Experience the South India Beaches  Heritage Tour Package, an unforgettable 14-day journey through the breathtaking landscapes, rich culture, and historical treasures of South India.",
-        starting_point: null,
-        ending_point: null,
-        amount: "3039",
-        standard_amount: "5000",
-        discount: "39",
-        persons: "1-5",
-        destination_title: "Kerala",
-        day: "6",
-        night: "5",
-        thumbnail:
-          "https://iamanas.in/travel_bug/uploads/package_images/012025/0d98bde7029fe9fc9a21abb3d4a199a1.jpg",
-      },
-      {
-        id: "11",
-        title: "Goa Beaches",
-        short_descrption:
-          "Experience the South India Beaches  Heritage Tour Package, an unforgettable 14-day journey through the breathtaking landscapes, rich culture, and historical treasures of South India.",
-        starting_point: null,
-        ending_point: null,
-        amount: "3039",
-        standard_amount: "5000",
-        discount: "39",
-        persons: "1-5",
-        destination_title: "Kerala",
-        day: "13",
-        night: "14",
-        thumbnail:
-          "https://iamanas.in/travel_bug/uploads/package_images/012025/0d98bde7029fe9fc9a21abb3d4a199a1.jpg",
-      },
-    ],
-  };
+  const location = useLocation();
+
+  useEffect(() => {
+    const getQueryParams = () => {
+      const searchParams = new URLSearchParams(location.search);
+      return {
+        destination_id: searchParams.get("destination_id") || "",
+        adventure_type_id: searchParams.get("adventure_type_id") || "",
+        duration: searchParams.get("duration") || "",
+        tour_category_id: searchParams.get("tour_category_id") || "",
+      };
+    };
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://iamanas.in/travel_bug/web_api/home_page_filter",
+          {
+            params: getQueryParams(), // Correctly passing params here
+          },
+        );
+        setHomeData(response.data.data);
+        console.log("qyewr repsonse", response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [location.search]);
+
   return (
     <div className="search-contain">
-      {data.length === 0 ? (
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          height="100%"
-          textAlign="center"
-          sx={{
-            backgroundColor: "#f5f5f5",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-          }}
-        >
-          <SentimentDissatisfiedIcon
+      {homeData.length === 0 ? (
+        <>
+          <FilterCard />
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            height="100%"
+            textAlign="center"
             sx={{
-              fontSize: "60px",
-              color: "#999",
-              marginBottom: "15px",
+              backgroundColor: "#f5f5f5",
+              padding: "20px",
+              borderRadius: "8px",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+              height: "80vh",
             }}
-          />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ marginBottom: "10px", color: "#666" }}
           >
-            No Data Available
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            Try searching with a different query or check back later.
-          </Typography>
-        </Box>
+            <SentimentDissatisfiedIcon
+              sx={{
+                fontSize: "60px",
+                color: "#999",
+                marginBottom: "15px",
+              }}
+            />
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{ marginBottom: "10px", color: "#666" }}
+            >
+              No Data Available
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Try searching with a different query or check back later.
+            </Typography>
+          </Box>
+        </>
       ) : (
         <div>
           <div className="search-banner">
@@ -138,7 +104,7 @@ const SearchPage = () => {
             }}
           >
             {homeData &&
-              homeData.packages.map((item, index) => (
+              homeData.map((item, index) => (
                 <Card
                   key={item?.id || index} // Ensure a unique key for each item
                   id={item?.id}
