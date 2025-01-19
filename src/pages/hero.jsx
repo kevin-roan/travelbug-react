@@ -411,7 +411,7 @@ export default function Hero() {
               Wornderful Place For You
             </span>
             <h2 className="libre-font-item">
-              Explore India's Top Destinations
+              {homeData && homeData.home_page_data.title}
             </h2>
             <p
               className="decription-tag-area container"
@@ -419,14 +419,7 @@ export default function Hero() {
                 fontFamily: "Poppins",
               }}
             >
-              India is a land of diverse landscapes, rich history, and vibrant
-              cultures. From peaceful beaches and lush mountains to bustling
-              cities and royal palaces, every region offers a unique experience
-              that leaves an everlasting impression. For those seeking
-              adventure, spiritual rejuvenation, or a glimpse into India's royal
-              heritage, our selected destinations promise an unforgettable
-              journey. Explore the beauty of India with our top packages
-              featuring must-visit destinations.
+              {homeData && homeData.home_page_data.description}
             </p>
           </div>
 

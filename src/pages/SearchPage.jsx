@@ -4,10 +4,10 @@ import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied
 import "./search.css";
 import Card from "../components/Card";
 import FilterCard from "../components/Filtercard";
+import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
   const data = [1]; // Simulate no data available (you can replace this with real data)
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
