@@ -53,7 +53,19 @@ const FilterCard = () => {
     };
 
     fetchData(); // Call the fetch function
-  }, []); // Empty dependency array ensures it runs only once on mount
+
+    const getQueryParams = () => {
+      const searchParams = new URLSearchParams(location.search);
+      return {
+        destination_id: searchParams.get("destination_id") || "",
+        adventure_type_id: searchParams.get("adventure_type_id") || "",
+        duration: searchParams.get("duration") || "",
+        tour_category_id: searchParams.get("tour_category_id") || "",
+      };
+    };
+
+    getQueryParams();
+  }, [location.search]); // Empty dependency array ensures it runs only once on mount
 
   const handleChange = (e) => {
     const { name, value } = e.target;

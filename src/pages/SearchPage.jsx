@@ -59,11 +59,11 @@ const SearchPage = () => {
             height="100%"
             textAlign="center"
             sx={{
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "white",
               padding: "20px",
               borderRadius: "8px",
               boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-              height: "80vh",
+              height: "60vh",
             }}
           >
             <SentimentDissatisfiedIcon
