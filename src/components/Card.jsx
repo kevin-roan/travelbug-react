@@ -19,15 +19,22 @@ function Card({
   night,
   thumbnail,
 }) {
-
-  const naviaget = useNavigate()
+  const naviaget = useNavigate();
   return (
-    <div style={styles.container} key={id} onClick={() => naviaget(`/package_details/${id}
-`)}>
-      <span style={styles.offerSpan}>
-        <img src="./assets/img/thunder.png" style={{ height: 20 }} />
-        {discount} % OFF 
-      </span>
+    <div
+      style={styles.container}
+      key={id}
+      onClick={() =>
+        naviaget(`/package_details/${id}
+`)
+      }
+    >
+      {discount > 0 && (
+        <span style={styles.offerSpan}>
+          <img src="./assets/img/thunder.png" style={{ height: 20 }} />
+          {discount} % OFF
+        </span>
+      )}
       <img src={thumbnail} alt="packageTypeImage" style={styles.cardImage} />
       <div style={styles.content}>
         <h4 style={styles.cardHeading}>{title || "Default Title"}</h4>
@@ -145,7 +152,7 @@ const styles = {
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
     position: "absolute",
     left: "15px", // Adjust position to make it stick to the top-left
-    top:'15px',
+    top: "15px",
     zIndex: 10,
     display: "flex",
     alignItems: "center",
