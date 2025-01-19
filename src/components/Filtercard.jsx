@@ -54,17 +54,14 @@ const FilterCard = () => {
 
     fetchData(); // Call the fetch function
 
-    const getQueryParams = () => {
-      const searchParams = new URLSearchParams(location.search);
-      return {
-        destination_id: searchParams.get("destination_id") || "",
-        adventure_type_id: searchParams.get("adventure_type_id") || "",
-        duration: searchParams.get("duration") || "",
-        tour_category_id: searchParams.get("tour_category_id") || "",
-      };
-    };
-
-    getQueryParams();
+    // Get query parameters and set form data
+    const searchParams = new URLSearchParams(location.search);
+    setFormData({
+      destination: searchParams.get("destination_id") || "",
+      adventure: searchParams.get("adventure_type_id") || "",
+      duration: searchParams.get("duration") || "",
+      category: searchParams.get("tour_category_id") || "",
+    });
   }, [location.search]); // Empty dependency array ensures it runs only once on mount
 
   const handleChange = (e) => {
@@ -75,16 +72,16 @@ const FilterCard = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    if (location?.pathname === "/") {
-      navigate(
-        `/search?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`,
-      );
-    } else {
-      navigate(
-        `/search?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`,
-      );
+    const apiUrl = `https://iamanas.in/travel_bug/web_api/home_page_filter?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`;
+    
+    try {
+      const response = await axios.get(apiUrl);
+      localStorage.setItem("searchResults", JSON.stringify(response.data.data));
+      navigate(`/search?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -152,7 +149,7 @@ const FilterCard = () => {
                     </label>
                     <select
                       name="destination"
-                      id="subject"
+                      value={formData.destination}
                       onChange={handleChange}
                       style={{
                         width: "100%",
@@ -167,10 +164,9 @@ const FilterCard = () => {
                         height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled>
                         Select Destination
                       </option>
-
                       {destinationData?.map((item, index) => (
                         <option value={item?.id} key={index}>
                           {item?.title}
@@ -212,7 +208,7 @@ const FilterCard = () => {
                     </label>
                     <select
                       name="adventure"
-                      id="Adventure"
+                      value={formData.adventure}
                       onChange={handleChange}
                       style={{
                         width: "100%",
@@ -227,7 +223,7 @@ const FilterCard = () => {
                         height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled>
                         Select Adventure Type
                       </option>
                       {adventureData?.map((item, index) => (
@@ -273,6 +269,7 @@ const FilterCard = () => {
                       id="days"
                       name="duration"
                       type="number"
+                      value={formData.duration}
                       onChange={handleChange}
                       placeholder="Days"
                       min="11"
@@ -329,7 +326,7 @@ const FilterCard = () => {
                     </label>
                     <select
                       name="category"
-                      id="category"
+                      value={formData.category}
                       onChange={handleChange}
                       style={{
                         width: "100%",
@@ -344,7 +341,7 @@ const FilterCard = () => {
                         height: "45px",
                       }}
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled>
                         Select Category
                       </option>
                       {categoryData?.map((item, index) => (
