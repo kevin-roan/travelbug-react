@@ -48,8 +48,25 @@ export default function FAQ() {
           <div className="row justify-content-center">
             <div className="col-xl-7">
               <div className="title-area text-center">
-                <h2 className="sec-title">Frequently Ask Questions</h2>
-                <p>Have questions you want answers to?</p>
+                <h2
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Libre Caslon",
+                  }}
+                >
+                  Frequently Ask Questions
+                </h2>
+                <p
+                  style={{
+                    fontFamily: "Poppins",
+                    color: "#4A4A4A",
+                    fontSize: 20,
+                  }}
+                >
+                  Have questions about your dream holiday to India? We have the
+                  answers! Check out our FAQs about India tourism and our
+                  holiday packages.
+                </p>
               </div>
             </div>
           </div>
