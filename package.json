@@ -26,6 +26,7 @@
     "react-animated-cursor": "^2.11.2",
     "react-dom": "^18.3.1",
     "react-material-ui-carousel": "^3.4.2",
+    "react-modal": "^3.16.3",
     "react-modern-drawer": "^1.4.0",
     "react-router-dom": "^6.27.0",
     "react-toastify": "^11.0.2",
