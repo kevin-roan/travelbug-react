@@ -5,6 +5,7 @@ import { Euro } from "lucide-react";
 import "./Tour.css"; // Import the CSS file
 import Banner from "../assets/bane.jpg";
 import Accordion from "../components/Accordion";
+import Card from "../components/Card";
 
 const Tour = () => {
   const [tourData, setTourData] = useState(null);
@@ -58,37 +59,23 @@ const Tour = () => {
         <h3>{tourData?.data?.package_section_title}</h3>
         <p>{tourData?.data?.package_section_content}</p>
         <div className="package-grid">
-          {tourData?.data?.packages.map((pkg) => (
-            <div className="package-card" key={pkg.id}>
-              <img
-                src={pkg.thumbnail}
-                alt={pkg.title}
-                className="package-image"
-              />
-              <div className="package-details">
-                <div>
-                  <h4>{pkg.title}</h4>
-                  <p style={{ textAlign: "start" }}>
-                    <strong>Price:</strong> ${pkg.amount}
-                  </p>
-                </div>
-
-                <div
-                  className="tour-action"
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                  }}
-                >
-                  <Link
-                    to={`/package_details/${pkg?.id}`}
-                    className="th-btn style4 th-icon"
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            </div>
+          {tourData?.data?.packages.map((item, index) => (
+            <Card
+              key={index}
+              id={item?.id}
+              title={item.title}
+              starting_point={item.starting_point}
+              ending_point={item.ending_point}
+              amount={item.amount}
+              standard_amount={item.standard_amount}
+              discount={Math.floor(item.discount)}
+              persons={item.persons}
+              destination_title={item.destination_title}
+              short_description={item.short_descrption}
+              day={item.day}
+              night={item.night}
+              thumbnail={item.thumbnail}
+            />
           ))}
         </div>
       </section>
