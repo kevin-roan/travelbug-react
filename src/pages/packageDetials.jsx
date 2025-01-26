@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 import axios from "axios";
 import TourPackageBanner from "../components/packageDetailBanner";
 import EnquiryForm from "../components/EnquiryForm";
+import Card from "../components/Card";
 import "./Tour.css";
 
 import {
@@ -59,7 +60,10 @@ export default function PackageDetails() {
 
             {/* Tab Navigation */}
             <div className="shadow-conatiner">
-              <div className="tabs container" style={{ margin: "0", padding: '0' }}>
+              <div
+                className="tabs container"
+                style={{ margin: "0", padding: "0" }}
+              >
                 <button
                   className={activeTab === "overview" ? "active" : ""}
                   onClick={() => setActiveTab("overview")}
@@ -188,7 +192,10 @@ export default function PackageDetails() {
                                         component="img"
                                         src={image}
                                         alt={`Image ${idx + 1}`}
-                                        style={{ width: "100%", height: "auto" }}
+                                        style={{
+                                          width: "100%",
+                                          height: "auto",
+                                        }}
                                       />
                                     ))}
                                   </Carousel>
@@ -197,7 +204,9 @@ export default function PackageDetails() {
                                 )}
                               </Box>
 
-                              <p style={{ marginTop: "5px" }}>{item?.content}</p>
+                              <p style={{ marginTop: "5px" }}>
+                                {item?.content}
+                              </p>
                             </AccordionDetails>
                           </Accordion>
                         ),
@@ -242,14 +251,16 @@ export default function PackageDetails() {
               </div>
             </div>
           </section>
-
-
         </div>
 
         <div>
           <h1
             className="overSize"
-            style={{ marginTop: "16px", textAlign: "center", marginBottom:'40px' }}
+            style={{
+              marginTop: "16px",
+              textAlign: "center",
+              marginBottom: "40px",
+            }}
           >
             You might also like
           </h1>
@@ -261,9 +272,28 @@ export default function PackageDetails() {
             alignItems: "flex-start", // Align items at the top
             justifyContent: "center",
             flexWrap: "wrap",
-            marginBottom:'90px'
+            marginBottom: "90px",
+            gap: "30px",
           }}
         >
+          {data.package_details.similar_packages.map((item, index) => (
+            <Card
+              key={index}
+              id={item.id}
+              title={item.title}
+              starting_point={item.starting_point}
+              ending_point={item.ending_point}
+              amount={item.amount}
+              standard_amount={item.standard_amount}
+              discount={Math.floor(item.discount)}
+              short_description={item.short_description}
+              destination_title={item.destination_title}
+              day={item.day}
+              night={item.night}
+              thumbnail={item.thumbnail}
+            />
+          ))}
+
           {/* {data.package_details.similar_packages.map((item) => (
             <div
               key={item.id}
@@ -350,6 +380,10 @@ export default function PackageDetails() {
             </div>
           ))} */}
 
+          {/*
+           */}
+
+          {/* 
           <div className="tour-container">
             <div className="package-grid">
               {data.package_details.similar_packages.map((pkg) => (
@@ -386,6 +420,7 @@ export default function PackageDetails() {
               ))}
             </div>
           </div>
+*/}
         </section>
       </div>
     );
