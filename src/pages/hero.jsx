@@ -1120,7 +1120,6 @@ export default function Hero() {
                 <Swiper
                   spaceBetween={30} // Space between slides
                   slidesPerView={1} // Default number of slides to show
-                  centeredSlides={true} // Center the active slide
                   // loop={true} // Infinite loop
                   breakpoints={{
                     // Responsive breakpoints
