@@ -356,7 +356,7 @@ export default Tour;
 //     );
 // }
 
-/ function Tours() {
+// function Tours() {
 //   const [tourData, setTourData] = useState(null);
 //   const { id } = useParams();
 
@@ -588,5 +588,3 @@ export default Tour;
 //       </div>
 //     );
 // }
-
-
