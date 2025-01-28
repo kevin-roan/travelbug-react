@@ -90,6 +90,20 @@ export default function PackageDetails() {
                 </button>
 
                 <button
+                  className={activeTab === "other_info" ? "active" : ""}
+                  onClick={() => setActiveTab("other_info")}
+                >
+                  Other Info
+                </button>
+
+                <button
+                  className={activeTab === "inclutions" ? "active" : ""}
+                  onClick={() => setActiveTab("inclutions")}
+                >
+                  Exclutions & Inclutions
+                </button>
+
+                <button
                   className={activeTab === "gallery" ? "active" : ""}
                   onClick={() => setActiveTab("gallery")}
                 >
@@ -147,12 +161,24 @@ export default function PackageDetails() {
                     <div
                       dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(
-                          data.package_details?.accommodation,
+                          data.package_details?.other_info,
                         ),
                       }}
                     ></div>
                   </>
                 )}
+                {activeTab === "inclutions" && (
+                  <>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data.package_details?.inclusions,
+                        ),
+                      }}
+                    ></div>
+                  </>
+                )}
+
                 {activeTab === "accommodation" && (
                   <>
                     {/* <div
