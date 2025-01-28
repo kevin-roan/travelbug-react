@@ -12,14 +12,11 @@ export default function EnquiryForm() {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
-    city: "",
     email: "",
     phone: "",
     whatsapp: "",
-    destination: "",
-    date: "",
-    no_of_people: "",
-    vacation_type: "",
+    starting_date: "",
+    ending_date: "",
   });
 
   const notify = (message) =>
@@ -77,21 +74,12 @@ export default function EnquiryForm() {
 
       if (response.status) {
         setFormData({
-          username: "",
-          email: "",
-          package_type_id: "",
-          message: "",
-        });
-        setFormData({
           name: "",
-          city: "",
           email: "",
           phone: "",
           whatsapp: "",
-          destination: "",
-          date: "",
-          no_of_people: "",
-          vacation_type: "",
+          starting_date: "",
+          ending_date: "",
         });
 
         notify(successMessage);
@@ -197,30 +185,9 @@ export default function EnquiryForm() {
         <div style={formStyles.inputGroup}>
           <input
             type="text"
-            placeholder="Name *"
+            placeholder="Full Name"
             name="name"
-            value={formData.name}
-            style={formStyles.input}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div style={formStyles.inputGroup}>
-          <input
-            type="text"
-            placeholder="City of Residence *"
-            style={formStyles.input}
-            value={formData.city}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div style={formStyles.inputGroup}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email *"
-            value={formData.email}
+            value={formData.fullName}
             style={formStyles.input}
             onChange={handleInputChange}
           />
@@ -230,8 +197,8 @@ export default function EnquiryForm() {
           <input
             type="tel"
             name="phone"
-            placeholder="Phone Number *"
-            value={formData.phone}
+            placeholder="Phone Number"
+            value={formData.phoneNumber}
             style={{
               width: "100%",
               border: "1px solid #ddd",
@@ -241,6 +208,16 @@ export default function EnquiryForm() {
               marginLeft: 0,
               marginRight: 0,
             }}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div style={formStyles.inputGroup}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Id"
+            value={formData.email}
+            style={formStyles.input}
             onChange={handleInputChange}
           />
         </div>
@@ -249,8 +226,8 @@ export default function EnquiryForm() {
           <input
             type="tel"
             name="whatsapp"
-            placeholder="WhatsApp"
-            value={formData.whatsapp}
+            placeholder="WhatsApp Number"
+            value={formData.whatsappNumber}
             style={{
               width: "100%",
               border: "1px solid #ddd",
@@ -265,21 +242,11 @@ export default function EnquiryForm() {
         </div>
 
         <div style={formStyles.inputGroup}>
-          <input
-            type="text"
-            name="destination"
-            placeholder="Travel Destination *"
-            value={formData.destination}
-            style={formStyles.input}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div style={formStyles.inputGroup}>
+          <label>Starting Date</label>
           <input
             type="date"
-            name="date"
-            placeholder="Date of Travel *"
+            name="starting_date"
+            placeholder="Starting Date"
             style={{
               width: "100%",
               border: "1px solid #ddd",
@@ -295,41 +262,23 @@ export default function EnquiryForm() {
         </div>
 
         <div style={formStyles.inputGroup}>
+          <label>Ending Date</label>
           <input
-            type="number"
-            name="no_of_people"
-            placeholder="No. of People *"
-            style={formStyles.input}
-            value={formData.no_of_people}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div style={formStyles.inputGroup}>
-          <select
-            name="subject"
-            id="subject"
+            type="date"
+            name="ending_date"
+            placeholder="Ending Date"
             style={{
               width: "100%",
-              border: "1px solid #D1D5DB",
+              border: "1px solid #ddd",
               borderRadius: "4px",
               fontSize: "14px",
-              backgroundColor: "white",
-              color: "#4B5563",
-              cursor: "pointer",
-              height: "45px",
+              padding: "10px",
+              marginLeft: 0,
+              marginRight: 0,
             }}
-          >
-            <option value="" disabled selected>
-              Select Vacation Type
-            </option>
-            {vacationType &&
-              Object.entries(vacationType).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-          </select>
+            value={formData.date}
+            onChange={handleInputChange}
+          />
         </div>
 
         <button style={formStyles.submitButton} type="submit">
