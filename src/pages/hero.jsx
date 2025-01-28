@@ -1302,7 +1302,8 @@ export default function Hero() {
           <img src="assets/img/shape/shape_7.png" alt="shape" />
         </div>
       </section>
-      <div className="brand-area overflow-hidden space-bottom">
+      {/* 
+<div className="brand-area overflow-hidden space-bottom">
         <div className="container th-container">
           <div
             className="swiper th-slider brandSlider1"
@@ -1506,6 +1507,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      */}
+
       <section className="bg-smoke overflow-hidden space" id="blog-sec">
         <div className="container">
           <div className="mb-30 text-center text-md-start">
