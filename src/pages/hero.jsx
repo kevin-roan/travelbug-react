@@ -333,12 +333,23 @@ export default function Hero() {
             <span
               style={{
                 fontFamily: "Poppins",
+                fontSize: "20px",
+                fontWeight: "500",
               }}
               className="poppins-item"
             >
               Exclusive Offers for you
             </span>
-            <h4 className="libre-font-item">Our Popular Packages</h4>
+            <h4
+              className="libre-font-item"
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "35px !important",
+                fontWeight: "700",
+              }}
+            >
+              Our Popular Packages
+            </h4>
           </div>
           <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
             {" "}
@@ -406,17 +417,28 @@ export default function Hero() {
               className="poppins-item"
               style={{
                 fontFamily: "Poppins",
+                fontSize: "20px",
+                fontWeight: 500,
               }}
             >
-              Wornderful Place For You
+              Wonderful Place For You
             </span>
-            <h2 className="libre-font-item">
+            <h2
+              className="libre-font-item"
+              style={{
+                fontSize: "35px !important",
+                fontFamily: "Poppins",
+                fontWeight: 700,
+              }}
+            >
               {homeData && homeData.home_page_data.title}
             </h2>
             <p
               className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
+                fontSize: "18px !important",
+                fontWeight: 400,
               }}
             >
               {homeData && homeData.home_page_data.description}
@@ -535,11 +557,20 @@ export default function Hero() {
                 className="poppins-item"
                 style={{
                   fontFamily: "Poppins",
+                  fontSize: "20px",
+                  fontWeight: 500,
                 }}
               >
                 Let’s Go Together
               </span>
-              <h2 className="libre-font-item" style={{ marginBottom: "60px" }}>
+              <h2
+                style={{
+                  marginBottom: "60px",
+                  fontFamily: "Poppins",
+                  fontSize: "35px !important",
+                  fontWeight: 700,
+                }}
+              >
                 Why Choose Us?
               </h2>
             </div>
@@ -727,11 +758,19 @@ export default function Hero() {
               style={{
                 fontFamily: "Poppins",
                 marginTop: "90px",
+                fontSize: "20px",
+                fontWeight: 500,
               }}
             >
               {homeData && homeData.gallery_title}
             </span>
-            <h2 className="libre-font-item">
+            <h2
+              style={{
+                fontSize: "35px !important",
+                fontFamily: "Poppins",
+                fontWeight: 700,
+              }}
+            >
               {homeData && homeData.gallery_heading}
             </h2>
           </div>
@@ -1092,19 +1131,29 @@ export default function Hero() {
               className="poppins-item"
               style={{
                 fontFamily: "Poppins",
+                fontSize: "20px",
+                fontWeight: "500",
               }}
             >
               Testimonial
             </span>
-            <h2 className="libre-font-item">
+            <h4
+              className="libre-font-item"
+              style={{
+                fontFamily: "Poppins",
+                fontSize: "35px !important",
+                fontWeight: "700",
+              }}
+            >
               {homeData && homeData.review_head}
-            </h2>
+            </h4>
             <p
               className="decription-tag-area container"
               style={{
                 fontFamily: "Poppins",
-
                 marginBottom: "20px",
+                fontSize: "18px !important",
+                fontWeight: "400",
               }}
             >
               {homeData && homeData?.review_description}
@@ -1671,15 +1720,24 @@ export default function Hero() {
               className="items-center"
               style={{ paddingTop: 50, textAlign: "center" }}
             >
-              <h4 className="libre-font-item">{homeData?.faq_head}</h4>
+              <h4
+                className="libre-font-item"
+                style={{
+                  fontFamily: "Poppins",
+                  fontSize: "35px !important",
+                  fontWeight: "700",
+                }}
+              >
+                {homeData?.faq_head}
+              </h4>
               <p
                 className="decription-tag-area"
                 style={{
                   fontFamily: "Poppins",
-
                   color: "#4A4A4A",
                   padding: "0 5vmax",
                   paddingBottom: 10,
+                  fontSize: "18px !important",
                 }}
               >
                 {homeData?.fag_description}
