@@ -309,7 +309,9 @@ export default function PackageDetails() {
                             <Box>
                               <p variant="body1">{item.content}</p>
                               <p variant="body2" sx={{ marginTop: 2 }}>
-                                <strong>Sub Content: </strong>
+                                {item.sub_content?.trim() !== "" && (
+                                  <strong>Sub Content: </strong>
+                                )}
                                 {item.sub_content}
                               </p>
                             </Box>
