@@ -13,6 +13,9 @@ import {
   AccordionDetails,
   Typography,
   Box,
+  ImageListItem,
+  useMediaQuery,
+  ImageList,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Carousel from "react-material-ui-carousel";
@@ -21,7 +24,16 @@ export default function PackageDetails() {
   const [data, setData] = useState("");
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("overview");
-  console.log("id is ", id);
+
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isMediumScreen = useMediaQuery("(max-width:900px)");
+
+  // Determine columns based on screen size
+  const getCols = () => {
+    if (isSmallScreen) return 1; // 1 column for small screens
+    if (isMediumScreen) return 2; // 2 columns for medium screens
+    return 3; // 3 columns for larger screens
+  };
 
   useEffect(() => {
     axios
@@ -195,10 +207,26 @@ export default function PackageDetails() {
 
                 {activeTab === "gallery" && (
                   <>
-                    <img
-                      src={data?.package_details?.gallery[0]}
-                      alt="Gallery image"
-                    />
+                    <Box
+                      sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
+                    >
+                      <ImageList cols={getCols()} gap={8}>
+                        {data?.package_details?.gallery?.map((item, index) => (
+                          <ImageListItem key={index}>
+                            <img
+                              src={item} // Assuming `item` is a URL
+                              alt={`Gallery Image ${index + 1}`}
+                              loading="lazy"
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                borderRadius: "8px",
+                              }}
+                            />
+                          </ImageListItem>
+                        ))}
+                      </ImageList>
+                    </Box>
                   </>
                 )}
 
@@ -475,3 +503,12 @@ export default function PackageDetails() {
     );
   }
 }
+
+const images = [
+  "https://via.placeholder.com/300x200/ff0000",
+  "https://via.placeholder.com/300x200/00ff00",
+  "https://via.placeholder.com/300x200/0000ff",
+  "https://via.placeholder.com/300x200/ffff00",
+  "https://via.placeholder.com/300x200/00ffff",
+  "https://via.placeholder.com/300x200/ff00ff",
+];
