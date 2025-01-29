@@ -39,6 +39,8 @@ export default function PackageDetails() {
     window.scrollTo(0, 0);
   }, [id]);
 
+  console.log("data ", data);
+
   if (!data) {
     return <div className="loading-container">Loading...</div>;
   } else {
@@ -76,39 +78,51 @@ export default function PackageDetails() {
               >
                 Other Info
               </button> */}
-                <button
-                  className={activeTab === "accommodation" ? "active" : ""}
-                  onClick={() => setActiveTab("accommodation")}
-                >
-                  Accommodation & Facilities
-                </button>
-                <button
-                  className={activeTab === "itinerary" ? "active" : ""}
-                  onClick={() => setActiveTab("itinerary")}
-                >
-                  Itinerary
-                </button>
 
-                <button
-                  className={activeTab === "other_info" ? "active" : ""}
-                  onClick={() => setActiveTab("other_info")}
-                >
-                  Other Info
-                </button>
+                {data?.package_details?.accommodation?.length > 0 && (
+                  <button
+                    className={activeTab === "accommodation" ? "active" : ""}
+                    onClick={() => setActiveTab("accommodation")}
+                  >
+                    Accommodation & Facilities
+                  </button>
+                )}
 
-                <button
-                  className={activeTab === "inclutions" ? "active" : ""}
-                  onClick={() => setActiveTab("inclutions")}
-                >
-                  Exclutions & Inclutions
-                </button>
+                {data?.package_details?.itinerary?.length > 0 && (
+                  <button
+                    className={activeTab === "itinerary" ? "active" : ""}
+                    onClick={() => setActiveTab("itinerary")}
+                  >
+                    Itinerary
+                  </button>
+                )}
 
-                <button
-                  className={activeTab === "gallery" ? "active" : ""}
-                  onClick={() => setActiveTab("gallery")}
-                >
-                  Gallery
-                </button>
+                {data?.package_details?.other_info !== "" && (
+                  <button
+                    className={activeTab === "other_info" ? "active" : ""}
+                    onClick={() => setActiveTab("other_info")}
+                  >
+                    Other Info
+                  </button>
+                )}
+
+                {data?.package_details?.inclutions !== "" && (
+                  <button
+                    className={activeTab === "inclutions" ? "active" : ""}
+                    onClick={() => setActiveTab("inclutions")}
+                  >
+                    Exclutions & Inclutions
+                  </button>
+                )}
+
+                {data?.package_details?.gallery?.length > 0 && (
+                  <button
+                    className={activeTab === "gallery" ? "active" : ""}
+                    onClick={() => setActiveTab("gallery")}
+                  >
+                    Gallery
+                  </button>
+                )}
               </div>
             </div>
 
@@ -176,6 +190,15 @@ export default function PackageDetails() {
                         ),
                       }}
                     ></div>
+                  </>
+                )}
+
+                {activeTab === "gallery" && (
+                  <>
+                    <img
+                      src={data?.package_details?.gallery[0]}
+                      alt="Gallery image"
+                    />
                   </>
                 )}
 
@@ -302,7 +325,7 @@ export default function PackageDetails() {
             gap: "30px",
           }}
         >
-          {data.package_details.similar_packages.map((item, index) => (
+          {data?.package_details?.similar_packages?.map((item, index) => (
             <Card
               key={index}
               id={item.id}
