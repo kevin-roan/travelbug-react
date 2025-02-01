@@ -30,29 +30,6 @@ function App() {
   return (
     <>
       <Header />
-      {!isMobile && (
-        <AnimatedCursor
-          innerSize={14}
-          outerSize={32}
-          color="28, 168, 203"
-          outerAlpha={0.2}
-          innerScale={0.7}
-          outerScale={2}
-          clickables={[
-            "a",
-            'input[type="text"]',
-            'input[type="email"]',
-            'input[type="number"]',
-            'input[type="submit"]',
-            'input[type="image"]',
-            "label[for]",
-            "select",
-            "textarea",
-            "button",
-            ".link",
-          ]}
-        />
-      )}
       <Outlet />
       <Footer />
     </>

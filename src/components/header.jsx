@@ -298,7 +298,7 @@ export default function Header() {
           <div className="mobile-logo">
             <Link to="/">
               <img
-                src="assets/img/logo2.svg"
+                src="assets/img/travelbug_logo.png"
                 alt="Travel Bug"
                 style={{
                   height: "5rem",
