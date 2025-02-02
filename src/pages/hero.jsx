@@ -395,6 +395,7 @@ export default function Hero() {
                   <SwiperSlide key={index}>
                     <Card
                       id={item?.id}
+                      url={item?.url}
                       title={item.title}
                       starting_point={item.starting_point}
                       ending_point={item.ending_point}

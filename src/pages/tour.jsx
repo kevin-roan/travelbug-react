@@ -62,6 +62,7 @@ const Tour = () => {
           {tourData?.data?.packages.map((item, index) => (
             <Card
               key={index}
+              url={item.url}
               id={item?.id}
               title={item.title}
               starting_point={item.starting_point}

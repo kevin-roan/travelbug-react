@@ -7,6 +7,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 function Card({
   id,
   title,
+  url,
   starting_point,
   ending_point,
   amount,
@@ -19,13 +20,13 @@ function Card({
   night,
   thumbnail,
 }) {
-  const naviaget = useNavigate();
+  const navigate = useNavigate();
   return (
     <div
       style={styles.container}
       key={id}
       onClick={() =>
-        naviaget(`/package_details/${id}
+        navigate(`/package_details/${url}
 `)
       }
     >

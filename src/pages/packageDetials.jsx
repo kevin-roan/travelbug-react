@@ -40,7 +40,6 @@ export default function PackageDetails() {
       .get(`https://iamanas.in/travel_bug/web_api/package_details/${id}`)
       .then((response) => {
         setData(response.data.data);
-        console.log("Package details 222", response.data.data);
       })
       .catch((err) => {
         console.log(err, "error");
