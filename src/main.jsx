@@ -16,6 +16,7 @@ import TourPackages from "./pages/TourPackages.jsx";
 import PackageDetails from "./pages/packageDetials.jsx";
 import Tour from "./pages/tour.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
+import TermsAndConditions from "./pages/Terms.jsx";
 
 const router = createHashRouter([
   {
@@ -50,6 +51,10 @@ const router = createHashRouter([
       {
         path: "privacy_policy",
         element: <PrivacyPolicy />,
+      },
+      {
+        path: "terms_and_conditions",
+        element: <TermsAndConditions />,
       },
       {
         path: "destination_details/:id",

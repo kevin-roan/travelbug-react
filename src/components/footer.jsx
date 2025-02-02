@@ -46,23 +46,31 @@ function Footer() {
                       </Link>
                     </div>
                     <p className="about-text">
-                      Discover new horizons with tailored travel experiences.
-                      Your adventure awaits—start exploring with us
+                      Travel Bug India offers immersive cultural trips across
+                      India, providing unforgettable experiences that showcase
+                      the country's rich heritage. With over 25 years of
+                      expertise, we ensure authentic, tailored India tour
+                      packages that celebrate traditions, history, and local
+                      flavors, delivering memorable and enriching experiences.
                     </p>
                     <div className="th-social">
-                      <a href="https://www.facebook.com/">
+                      <a href="https://www.facebook.com/travelbug.india/">
                         <i className="fab fa-facebook-f"></i>
                       </a>
+                      {/*
                       <a href="https://www.twitter.com/">
                         <i className="fab fa-twitter"></i>
                       </a>
+
                       <a href="https://www.linkedin.com/">
                         <i className="fab fa-linkedin-in"></i>
                       </a>
-                      <a href="https://www.whatsapp.com/">
+                        */}
+
+                      <a href="https://wa.me/919962579919">
                         <i className="fab fa-whatsapp"></i>
                       </a>
-                      <a href="https://instagram.com/">
+                      <a href="https://www.instagram.com/travelbugi/">
                         <i className="fab fa-instagram"></i>
                       </a>
                     </div>
@@ -103,13 +111,8 @@ function Footer() {
                       </div>
                       <div className="details">
                         <p>
-                          <a href="tel:+919037317949" className="info-box_link">
-                            +919037317949
-                          </a>
-                        </p>
-                        <p>
-                          <a href="tel:+919037317949" className="info-box_link">
-                            +919037317949
+                          <a href="tel:+91962579919" className="info-box_link">
+                            +91 99625 79919
                           </a>
                         </p>
                       </div>
@@ -121,18 +124,18 @@ function Footer() {
                       <div className="details">
                         <p>
                           <a
-                            href="mailto:example.com"
+                            href="mailto:mail@travelbugindia.com"
                             className="info-box_link"
                           >
-                            mailinfo.com
+                            mail@travelbugindia.com
                           </a>
                         </p>
                         <p>
                           <a
-                            href="mailto:support24@example.com"
+                            href="mailto:inbound@travelbugindia.com"
                             className="info-box_link"
                           >
-                            support.com
+                            inbound@travelbugindia.com
                           </a>
                         </p>
                       </div>
