@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import Modal from 'react-modal';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
@@ -14,11 +15,14 @@ import DOMPurify from "dompurify";
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
 import FilterCard from "../components/Filtercard";
+
 export default function Hero() {
   const location = useLocation();
   const [homeData, setHomeData] = useState(null);
   const [faq, setFaq] = useState(null);
   const [error, setError] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const navigate = useNavigate();
 
@@ -127,23 +131,13 @@ export default function Hero() {
       });
   }, []);
 
-  const handleOpen = (index) => {
+  const openModal = (index) => {
     setCurrentImageIndex(index);
-    setOpen(true);
+    setIsOpen(true);
   };
 
-  const handleClose = () => setOpen(false);
-
-  const handleNext = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex < homeData.gallery.length - 1 ? prevIndex + 1 : 0,
-    );
-  };
-
-  const handlePrevious = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : homeData.gallery.length - 1,
-    );
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -566,7 +560,7 @@ export default function Hero() {
                   fontWeight: 500,
                 }}
               >
-                Let’s Go Together
+                Let's Go Together
               </span>
               <h2
                 style={{
@@ -755,229 +749,58 @@ export default function Hero() {
         </div>
       </section>
 */}
-      <div className="gallery-area ">
+      <div className="gallery-area">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span
-              className="poppins-item"
-              style={{
-                fontFamily: "Poppins",
-                marginTop: "90px",
-                fontSize: "20px",
-                fontWeight: 500,
-              }}
-            >
+            <span className="poppins-item" style={{ fontFamily: "Poppins", marginTop: "90px" }}>
               {homeData && homeData.gallery_title}
             </span>
-            <h2
-              style={{
-                fontSize: "35px !important",
-                fontFamily: "Poppins",
-                fontWeight: 700,
-              }}
-            >
+            <h2 className="libre-font-item">
               {homeData && homeData.gallery_heading}
             </h2>
           </div>
           <div className="row gy-10 gx-10 justify-content-center align-items-center">
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[0].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[0].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
+            {homeData && homeData.gallery.map((image, index) => (
+              <div className="col-md-6 col-lg-2" key={index}>
+                <div className="gallery-card">
+                  <div className="box-img global-img">
+                    <a
+                      href={image.image}
+                      className="popup-image"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal(index);
+                      }}
+                    >
+                      <div className="icon-btn">
+                        <i className="fal fa-magnifying-glass-plus"></i>
+                      </div>
+                      <img src={image.image} alt="gallery image" style={{ width: '100%', height: 'auto' }} />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[1].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[1].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[2].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[2].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[3].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[3].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[4].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[4].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[6].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[6].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-2">
-              <div className="gallery-card">
-                <div className="box-img global-img">
-                  <a
-                    href={
-                      homeData && homeData.gallery
-                        ? homeData.gallery[2].image
-                        : ""
-                    }
-                    className="popup-image"
-                  >
-                    <div className="icon-btn">
-                      <i className="fal fa-magnifying-glass-plus"></i>
-                    </div>
-                    <img
-                      src={
-                        homeData && homeData.gallery
-                          ? homeData.gallery[2].image
-                          : ""
-                      }
-                      alt="gallery image"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div
-          className="shape-mockup  d-none d-xl-block"
-          data-top="-25%"
-          data-left="0%"
-        >
-          <img src="assets/img/shape/line.png" alt="shape" />
-        </div>
-        <div
-          className="shape-mockup movingX d-none d-xl-block"
-          data-top="30%"
-          data-left="3%"
-        >
-          <img
-            className="gmovingX"
-            src="assets/img/shape/shape_4.png"
-            alt="shape"
-          />
-        </div>
+      </div>
+      <div
+        className="shape-mockup  d-none d-xl-block"
+        data-top="-25%"
+        data-left="0%"
+      >
+        <img src="assets/img/shape/line.png" alt="shape" />
+      </div>
+      <div
+        className="shape-mockup movingX d-none d-xl-block"
+        data-top="30%"
+        data-left="3%"
+      >
+        <img
+          className="gmovingX"
+          src="assets/img/shape/shape_4.png"
+          alt="shape"
+        />
       </div>
       <div className="counter-area space">
         <div className="container">
@@ -1935,6 +1758,23 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Modal for displaying the larger image */}
+      <Modal isOpen={isOpen} onRequestClose={closeModal} style={{ overlay: { zIndex: 1000 } }}>
+        <div className="popup-slider" onClick={closeModal} style={{ position: 'relative', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img
+            src={homeData && homeData.gallery[currentImageIndex]?.image}
+            alt={`Slide ${currentImageIndex + 1}`}
+            style={{
+              width: '80%',
+              height: 'auto',
+              maxHeight: '80vh',
+              objectFit: 'contain',
+            }}
+          />
+          <button onClick={closeModal} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', fontSize: '24px' }}>✖</button>
+        </div>
+      </Modal>
     </div>
   );
 }

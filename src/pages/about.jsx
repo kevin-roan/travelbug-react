@@ -52,7 +52,7 @@ export default function About() {
         <div className="container">
           <div className="row">
             <div className="col-xl-7">
-              <div className="img-box3">
+              <div className="img-box3" style={{ padding: 30 }}>
                 <div className="img1">
                   <img src="assets/img/normal/about_3_1.jpg" alt="About" />
                 </div>
@@ -89,30 +89,65 @@ export default function About() {
                     aboutInfo.why_choose_travel_bug.special_features
                       .description}
                 </p>
-                <div className="about-item-wrap">
-                  {aboutInfo &&
-                    aboutInfo.why_choose_travel_bug.special_features.features.map(
-                      (item, index) => (
-                        <div className="about-item style2" key={index}>
-                          <div className="about-item_img">
-                            <img src="assets/img/icon/about_1_1.svg" alt="" />
-                          </div>
-                          <div className="about-item_centent">
-                            <h5 className="box-title">{item.title}</h5>
-                            <p className="about-item_text">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      ),
-                    )}
-                </div>
-                <div className="mt-35">
-                  <a href="/contact" className="th-btn style3 th-icon">
-                    Contact With Us
-                  </a>
-                </div>
               </div>
+            </div>
+            <div
+              className="about-item-wrap"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                gap: 20,
+                marginTop: 40,
+              }}
+            >
+              {aboutInfo &&
+                aboutInfo.why_choose_travel_bug.special_features.features.map(
+                  (item, index) => (
+                    <div
+                      className="about-item style2"
+                      key={index}
+                      style={{
+                        backgroundColor: "#1CA8CB",
+                        borderRadius: 20,
+                        padding: 20,
+                        height: 180,
+                        paddingRight: 20,
+                        paddingLeft: 20,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="about-item_img">
+                        <img src="assets/img/icon/about_1_1.svg" alt="" />
+                      </div>
+                      <div className="about-item_centent">
+                        <h5 className="box-title">{item.title}</h5>
+                        <p
+                          className="about-item_text"
+                          style={{ color: "white" }}
+                        >
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ),
+                )}
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="mt-35">
+              <a href="/contact" className="th-btn style3 th-icon">
+                Contact With Us
+              </a>
             </div>
           </div>
         </div>
@@ -183,17 +218,22 @@ export default function About() {
               ))}
           </div> */}
 
-          <div className="row gy-4 gx-4">
+          <div className="row gy-4 gx-4 justify-content-center">
             {aboutInfo &&
               aboutInfo.travel_packages.package_types.map((item) => (
                 <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
                   <div className="card">
                     <div className="card-img">
-                      <img src={item.image} alt={item.title} style={{
-                        objectFit: 'cover', objectPosition: 'top',
-                        width: '100%',
-                        height: '100%',
-                      }} />
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        style={{
+                          objectFit: "cover",
+                          objectPosition: "top",
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
                     </div>
                     <div className="card-content">
                       <h3 className="card-title">
