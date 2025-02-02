@@ -28,12 +28,12 @@ export default function Blog() {
       >
         <div className="container">
           <div className="breadcumb-content">
-            <h1 className="breadcumb-title">Blog Lists View</h1>
+            <h1 className="breadcumb-title">Blogs</h1>
             <ul className="breadcumb-menu">
               <li>
                 <a href="/#/">Home</a>
               </li>
-              <li>Blog Lists View</li>
+              <li>Blogs</li>
             </ul>
           </div>
         </div>
