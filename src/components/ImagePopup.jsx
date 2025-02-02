@@ -55,9 +55,11 @@ const ImagePopup = ({ image, onClose, onNavigate }) => {
           src={image.image || "/placeholder.svg"}
           alt={image.title}
           style={{
-            width: "680px", // Fixed width
-            height: "420px", // Fixed height
-            objectFit: "cover", // Ensures the image covers the area, may crop
+            width: "100%",
+            height: "auto",
+            maxWidth: "680px",
+            maxHeight: "420px",
+            objectFit: "contain",
             boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         />
@@ -65,7 +67,7 @@ const ImagePopup = ({ image, onClose, onNavigate }) => {
           onClick={handleClose}
           style={{
             position: "absolute",
-            top: "-50px",
+            top: "-40px",
             right: "0",
             backgroundColor: "rgba(255, 255, 255, 0.8)",
             color: "black",
@@ -89,7 +91,7 @@ const ImagePopup = ({ image, onClose, onNavigate }) => {
             style={{
               position: "absolute",
               top: "50%",
-              [direction]: "-50px",
+              [direction]: "10px", // Adjusted for mobile devices
               transform: "translateY(-50%)",
               backgroundColor: "rgba(255, 255, 255, 0.8)",
               color: "black",
@@ -102,6 +104,10 @@ const ImagePopup = ({ image, onClose, onNavigate }) => {
               alignItems: "center",
               cursor: "pointer",
               transition: "background-color 0.3s ease, transform 0.3s ease",
+              // Responsive adjustments
+              "@media (max-width: 768px)": {
+                [direction]: "5px", // Move closer to the image on smaller screens
+              },
             }}
           >
             {direction === "left" ? (
