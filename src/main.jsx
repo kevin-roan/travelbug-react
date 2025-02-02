@@ -17,6 +17,7 @@ import PackageDetails from "./pages/packageDetials.jsx";
 import Tour from "./pages/tour.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import TermsAndConditions from "./pages/Terms.jsx";
+import Gallery from "./pages/Gallery.jsx";
 
 const router = createHashRouter([
   {
@@ -79,6 +80,10 @@ const router = createHashRouter([
       {
         path: "/search",
         element: <SearchPage />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery />,
       },
     ],
   },

@@ -32,7 +32,6 @@ function Footer() {
               </div>
             </div>
             <div className="row justify-content-between">
-              <div className="col-md-3 col-xl-auto"></div>
               <div className="col-md-6 col-xl-3">
                 <div className="widget footer-widget">
                   <div className="th-widget-about">

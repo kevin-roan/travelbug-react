@@ -319,6 +319,11 @@ export default function Header() {
                   About Us
                 </Link>
               </li>
+              <li>
+                <Link to="/gallery" onClick={toggleMobileMenu}>
+                  Gallery
+                </Link>
+              </li>
               <li className="menu-item-has-children">
                 <Link href="/holiday_packages">Holidays</Link>
                 {packageTypeList &&
@@ -434,6 +439,11 @@ export default function Header() {
                       <li>
                         <Link to="/faq" onClick={toggleMobileMenu}>
                           FAQ
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/gallery" onClick={toggleMobileMenu}>
+                          Gallery
                         </Link>
                       </li>
 
