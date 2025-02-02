@@ -105,7 +105,14 @@ function Footer() {
                 <div className="widget footer-widget">
                   <h3 className="widget_title">Get In Touch</h3>
                   <div className="th-widget-contact">
-                    <div className="info-box_text">
+                    <div
+                      className="info-box_text"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        textAlign: "center",
+                      }}
+                    >
                       <div className="icon">
                         <img src="assets/img/icon/phone.svg" alt="img" />
                       </div>
@@ -144,7 +151,14 @@ function Footer() {
                       <div className="icon">
                         <img src="assets/img/icon/location-dot.svg" alt="img" />
                       </div>
-                      <div className="details">
+                      <div
+                        className="details"
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
                         <p>Kochi, Kerala</p>
                       </div>
                     </div>

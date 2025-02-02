@@ -6,9 +6,9 @@ export default function PrivacyPolicy() {
   }, []);
   return (
     <div className="privacy-policy" style={{ padding: 40 }}>
-      <h3>Privacy Policy</h3>
+      <h2>Privacy Policy</h2>
       <p>
-        At <strong>Travel Bug India</strong>, we value your privacy and are
+        <strong>Travel Bug India </strong>, we value your privacy and are
         committed to protecting your personally identifiable information. This
         Privacy Policy outlines how we collect, use, and safeguard your data
         when you visit our website or use our services.
