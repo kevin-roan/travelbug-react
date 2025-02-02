@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="privacy-policy" style={{ padding: 40 }}>
       <h3>Privacy Policy</h3>
@@ -76,6 +81,7 @@ export default function PrivacyPolicy() {
         <a href="mailto:inbound@travelbugindia.com">
           inbound@travelbugindia.com
         </a>
+        <a href="mailto:mail@travelbugindia.com">mail@travelbugindia.com</a>
         <br />
         +91 9061776888
       </address>

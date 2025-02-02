@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const TermsAndConditions = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ padding: 40 }}>
       <h2>Terms and Conditions</h2>

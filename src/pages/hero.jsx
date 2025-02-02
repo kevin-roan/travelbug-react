@@ -23,6 +23,10 @@ export default function Hero() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const scriptSources = [
       "/assets/js/vendor/jquery-3.6.0.min.js",
       "/assets/js/bootstrap.min.js",
