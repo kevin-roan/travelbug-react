@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import Swiper styles
@@ -474,7 +474,15 @@ export default function Hero() {
                       </div>
                       <div className="cta-text">
                         <h2>{category?.title}</h2>
-                        <p>{category?.description}</p>
+                        <p
+                          style={{
+                            maxHeight: "150px",
+                            overflowY: "auto",
+                            paddingRight: "8px",
+                          }}
+                        >
+                          {category?.description}
+                        </p>
                         <Link
                           to={`/tour_packages/${category.id}`}
                           className="th-btn style4 th-icon"
@@ -752,7 +760,10 @@ export default function Hero() {
       <div className="gallery-area">
         <div className="container th-container">
           <div className="title-area text-center">
-            <span className="poppins-item" style={{ fontFamily: "Poppins", marginTop: "90px" }}>
+            <span
+              className="poppins-item"
+              style={{ fontFamily: "Poppins", marginTop: "90px" }}
+            >
               {homeData && homeData.gallery_title}
             </span>
             <h2 className="libre-font-item">
@@ -760,27 +771,32 @@ export default function Hero() {
             </h2>
           </div>
           <div className="row gy-10 gx-10 justify-content-center align-items-center">
-            {homeData && homeData.gallery.map((image, index) => (
-              <div className="col-md-6 col-lg-2" key={index}>
-                <div className="gallery-card">
-                  <div className="box-img global-img">
-                    <a
-                      href={image.image}
-                      className="popup-image"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        openModal(index);
-                      }}
-                    >
-                      <div className="icon-btn">
-                        <i className="fal fa-magnifying-glass-plus"></i>
-                      </div>
-                      <img src={image.image} alt="gallery image" style={{ width: '100%', height: 'auto' }} />
-                    </a>
+            {homeData &&
+              homeData.gallery.map((image, index) => (
+                <div className="col-md-6 col-lg-2" key={index}>
+                  <div className="gallery-card">
+                    <div className="box-img global-img">
+                      <a
+                        href={image.image}
+                        className="popup-image"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openModal(index);
+                        }}
+                      >
+                        <div className="icon-btn">
+                          <i className="fal fa-magnifying-glass-plus"></i>
+                        </div>
+                        <img
+                          src={image.image}
+                          alt="gallery image"
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
@@ -1760,19 +1776,46 @@ export default function Hero() {
       </div>
 
       {/* Modal for displaying the larger image */}
-      <Modal isOpen={isOpen} onRequestClose={closeModal} style={{ overlay: { zIndex: 1000 } }}>
-        <div className="popup-slider" onClick={closeModal} style={{ position: 'relative', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        style={{ overlay: { zIndex: 1000 } }}
+      >
+        <div
+          className="popup-slider"
+          onClick={closeModal}
+          style={{
+            position: "relative",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             src={homeData && homeData.gallery[currentImageIndex]?.image}
             alt={`Slide ${currentImageIndex + 1}`}
             style={{
-              width: '80%',
-              height: 'auto',
-              maxHeight: '80vh',
-              objectFit: 'contain',
+              width: "80%",
+              height: "auto",
+              maxHeight: "80vh",
+              objectFit: "contain",
             }}
           />
-          <button onClick={closeModal} style={{ position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none', color: 'white', fontSize: '24px' }}>✖</button>
+          <button
+            onClick={closeModal}
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: "24px",
+            }}
+          >
+            ✖
+          </button>
         </div>
       </Modal>
     </div>

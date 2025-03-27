@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarDays, MapPin, Euro } from "lucide-react";
+import { CalendarDays, MapPin, Euro, DollarSign } from "lucide-react";
 
 const defaultImage = "/placeholder.svg?height=600&width=1200";
 
@@ -76,7 +76,7 @@ export default function TourPackageBanner({
   };
 
   return (
-    <div style={bannerStyle} >
+    <div style={bannerStyle}>
       <img
         src={thumbnail}
         alt={title}
@@ -117,7 +117,7 @@ export default function TourPackageBanner({
                   alignItems: "center",
                 }}
               >
-                <Euro style={iconStyle} />
+                <DollarSign style={iconStyle} />
                 {amount}
               </span>
             </div>
