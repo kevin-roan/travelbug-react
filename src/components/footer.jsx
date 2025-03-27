@@ -38,7 +38,7 @@ function Footer() {
                     <div className="about-logo">
                       <Link to="/">
                         <img
-                          src="assets/img/travelbug_logo.png"
+                          src="/images/footerlogo.png"
                           alt="Travel Bug"
                           style={{ width: "150px" }}
                         />
