@@ -18,6 +18,7 @@ import Tour from "./pages/tour.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import TermsAndConditions from "./pages/Terms.jsx";
 import Gallery from "./pages/Gallery.jsx";
+import BlogDeatils from "./pages/BlogDeatils.jsx";
 
 const router = createHashRouter([
   {
@@ -84,6 +85,10 @@ const router = createHashRouter([
       {
         path: "/gallery",
         element: <Gallery />,
+      },
+      {
+        path: "/blog-details/:slug",
+        element: <BlogDeatils />,
       },
     ],
   },

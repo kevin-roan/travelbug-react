@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Blog() {
   const [blogData, setBlogdata] = useState();
@@ -20,6 +21,11 @@ export default function Blog() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const naviagte = useNavigate()
+
+  const handelClik = (slug) => {
+    naviagte(`/blog-details/${slug}`)
+  }
   return (
     <>
       <div
@@ -46,7 +52,7 @@ export default function Blog() {
                 <div className="col-xxl-8 col-lg-7" key={index}>
                   <div className="th-blog blog-single has-post-thumbnail">
                     <div className="blog-img">
-                      <a href={blog.link}>
+                      <a onClick={() => handelClik(blog.slug)}>
                         <img
                           src={blog.image}
                           className="image-new"
@@ -73,7 +79,7 @@ export default function Blog() {
                       </h2>
                       <p className="blog-text">{blog.description}</p>
                       <a
-                        href="blog-details.html"
+                        onClick={() => handelClik(blog.slug)}
                         className="th-btn style4 th-icon"
                       >
                         Read More
