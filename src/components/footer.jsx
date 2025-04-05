@@ -1,6 +1,52 @@
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Snackbar, Alert, TextField, Button } from '@mui/material';
 
 function Footer() {
+  const [value, setValue] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+  const handleClose = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append('email', value); // Append the form field
+  
+    try {
+      const response = await axios.post(
+        'https://iamanas.in/travel_bug/web_api/insert_subscription',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+  
+      const res = response.data;
+  
+      if (res.status === 0) {
+        setSnackbarMessage(res.message || 'Invalid response.');
+        setSnackbarSeverity('error');
+      } else {
+        setSnackbarMessage(res.message || 'Subscribed successfully!');
+        setSnackbarSeverity('success');
+        setValue('')
+      }
+    } catch (error) {
+      setSnackbarMessage('Something went wrong. Please try again.');
+      setSnackbarSeverity('error');
+    } finally {
+      setOpenSnackbar(true);
+    }
+  };
+  
+
   return (
     <div>
       <footer className="footer-wrapper bg-title footer-layout2">
@@ -15,19 +61,32 @@ function Footer() {
                     </h2>
                   </div>
                   <div className="col-lg-7">
-                    <form className="newsletter-form style2">
+                    <form className="newsletter-form style2" >
                       <input
                         className="form-control "
                         type="email"
                         placeholder="Enter Email"
                         required=""
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
                       />
-                      <button type="submit" className="th-btn ">
+                      <button onClick={handleSubmit} className="th-btn hoverItem " >
                         Subscribe Now{" "}
                         <img src="assets/img/icon/plane2.svg" alt="" />
                       </button>
                     </form>
                   </div>
+
+                  <Snackbar
+                    open={openSnackbar}
+                    autoHideDuration={4000}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                  >
+                    <Alert onClose={handleClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                      {snackbarMessage}
+                    </Alert>
+                  </Snackbar>
                 </div>
               </div>
             </div>

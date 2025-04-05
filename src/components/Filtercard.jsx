@@ -75,7 +75,7 @@ const FilterCard = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const apiUrl = `https://iamanas.in/travel_bug/web_api/home_page_filter?destination_id=${formData.destination}&adventure_type_id=${formData.adventure}&duration=${formData.duration}&tour_category_id=${formData.category}`;
-    
+
     try {
       const response = await axios.get(apiUrl);
       localStorage.setItem("searchResults", JSON.stringify(response.data.data));
@@ -120,8 +120,8 @@ const FilterCard = () => {
                 {/* Destination Field */}
                 <div
                   style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
+                    flex: "1 1 310px",
+                    minWidth: "310px",
                     padding: "0 10px",
                   }}
                 >
@@ -179,8 +179,8 @@ const FilterCard = () => {
                 {/* Adventure Type Field */}
                 <div
                   style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
+                    flex: "1 1 310px",
+                    minWidth: "310px",
                     padding: "0 10px",
                   }}
                 >
@@ -236,7 +236,7 @@ const FilterCard = () => {
                 </div>
 
                 {/* Duration Field */}
-                <div
+                {/* <div
                   style={{
                     flex: "1 1 250px",
                     minWidth: "250px",
@@ -292,13 +292,13 @@ const FilterCard = () => {
                       onInput={(e) => e.target.setCustomValidity("")}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Tour Category Field */}
                 <div
                   style={{
-                    flex: "1 1 250px",
-                    minWidth: "250px",
+                    flex: "1 1 310px",
+                    minWidth: "310px",
                     padding: "0 10px",
                   }}
                 >

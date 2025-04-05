@@ -50,7 +50,9 @@ const SearchPage = () => {
     <div className="search-contain">
       {homeData.length === 0 ? (
         <>
-          <FilterCard />
+          <div className="search-banner">
+            <FilterCard />
+          </div>
           <Box
             display="flex"
             flexDirection="column"

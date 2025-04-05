@@ -15,6 +15,7 @@ import DOMPurify from "dompurify";
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
 import FilterCard from "../components/Filtercard";
+import TestMonelImage from '../../src/assets/img/testimonial/placeholder.jpg'
 
 export default function Hero() {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function Hero() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+ 
 
   useEffect(() => {
     const scriptSources = [
@@ -139,6 +141,10 @@ export default function Hero() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  const handelClik = (slug) => {
+    navigate(`/blog-details/${slug}`)
+  }
 
   return (
     <div>
@@ -766,7 +772,12 @@ export default function Hero() {
             >
               {homeData && homeData.gallery_title}
             </span>
-            <h2 className="libre-font-item">
+            <h2  className="libre-font-item"
+              style={{
+                fontFamily: "Poppins",
+               
+                fontWeight: "700",
+              }}>
               {homeData && homeData.gallery_heading}
             </h2>
           </div>
@@ -985,7 +996,7 @@ export default function Hero() {
               className="libre-font-item"
               style={{
                 fontFamily: "Poppins",
-                fontSize: "35px !important",
+               
                 fontWeight: "700",
               }}
             >
@@ -1057,7 +1068,7 @@ export default function Hero() {
                               }}
                             >
                               <img
-                                src="assets/img/testimonial/testi_1_1.jpg"
+                                src={TestMonelImage}
                                 alt="testimonial"
                                 style={{
                                   width: "60px",
@@ -1380,8 +1391,9 @@ export default function Hero() {
                 <div>
                   {homeData &&
                     homeData.blogs.map((item, index) => (
-                      <div className="swiper-slide" key={index}>
+                      <div className="swiper-sli" style={{maxWidth:'390px'}} key={index}>
                         <div
+                        onClick={()=>handelClik(item?.slug)}
                           className="blog-box th-ani"
                           style={{
                             background: "#fff",
@@ -1400,7 +1412,7 @@ export default function Hero() {
                               src={item.image}
                               alt="blog image"
                               style={{
-                                height: "200px",
+                                height: "300px",
                                 width: "100%",
                                 objectFit: "cover",
                                 transition: "transform 0.3s",
@@ -1571,7 +1583,6 @@ export default function Hero() {
                 className="libre-font-item"
                 style={{
                   fontFamily: "Poppins",
-                  fontSize: "35px !important",
                   fontWeight: "700",
                 }}
               >
@@ -1584,7 +1595,7 @@ export default function Hero() {
                   color: "#4A4A4A",
                   padding: "0 5vmax",
                   paddingBottom: 10,
-                  fontSize: "18px !important",
+                 
                 }}
               >
                 {homeData?.fag_description}

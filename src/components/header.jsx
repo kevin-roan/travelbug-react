@@ -4,6 +4,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Package } from "lucide-react";
 
+import PhoneIcon from '@mui/icons-material/Phone';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email'
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [packageTypeList, setPackageTypeList] = useState(null);
@@ -363,19 +367,30 @@ export default function Header() {
       <header className="th-header header-layout1">
         <div className="header-top">
           <div className="container th-container">
-            <div className="row justify-content-center justify-content-xl-between align-items-center">
-              <div className="col-auto d-none d-md-block">
-                <div className="header-links">
-                  <ul>
-                    <li className="d-none d-xl-inline-block">
-                      <i className="fa-sharp fa-regular  fa-location-dot"></i>
-                      <span>Calicut, India, Kerala</span>
-                    </li>
-                    <li className="d-none d-xl-inline-block">
-                      <i className="fa-regular fa-clock"></i>
-                      <span>Sun to Friday: 8.00 am - 7.00 pm</span>
-                    </li>
-                  </ul>
+
+
+            <div className="row justify-content-between align-items-center text-center text-md-start">
+              {/* Left: Phone (Always visible) */}
+              <div className="col-auto">
+                <div className="d-flex align-items-center gap-2">
+                  <PhoneIcon style={{ color: '#555' }} />
+                  <span>+91-99625 79919</span>
+                </div>
+              </div>
+
+              {/* Center: WhatsApp (Hidden on small screens) */}
+              <div className="col-auto d-none d-md-flex">
+                <div className="d-flex align-items-center gap-2">
+                  <WhatsAppIcon style={{ color: 'green' }} />
+                  <span>+91-96453 79919</span>
+                </div>
+              </div>
+
+              {/* Right: Email (Hidden on small screens) */}
+              <div className="col-auto d-none d-md-flex">
+                <div className="d-flex align-items-center gap-2">
+                  <EmailIcon style={{ color: '#555' }} />
+                  <span>mail@travelbugindia.com</span>
                 </div>
               </div>
             </div>
