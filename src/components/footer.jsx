@@ -16,7 +16,7 @@ function Footer() {
   const handleSubmit = async () => {
     const formData = new FormData();
     formData.append('email', value); // Append the form field
-  
+
     try {
       const response = await axios.post(
         'https://iamanas.in/travel_bug/web_api/insert_subscription',
@@ -27,9 +27,9 @@ function Footer() {
           },
         }
       );
-  
+
       const res = response.data;
-  
+
       if (res.status === 0) {
         setSnackbarMessage(res.message || 'Invalid response.');
         setSnackbarSeverity('error');
@@ -45,7 +45,7 @@ function Footer() {
       setOpenSnackbar(true);
     }
   };
-  
+
 
   return (
     <div>

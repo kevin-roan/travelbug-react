@@ -49,7 +49,9 @@ export default function TourPackages() {
       <h2 className="sec-title">{tourPackages.title}</h2>
       <p>{tourPackages.introduction}</p>
 
-      <span className="sub-title mt-5">Make Your Tour More Pleasure</span>
+      {tourPackages.package_types?.length !== 0 ? (
+        <>
+         <span className="sub-title mt-5">Make Your Tour More Pleasure</span>
       <h3 className=" mb-5">Tour Packages</h3>
       {/* <div
         style={{
@@ -110,69 +112,54 @@ export default function TourPackages() {
         ))}
       </div> */}
 
+
+
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", // Responsive grid
-          gap: "20px", // Space between cards
-          justifyItems: "center", // Center cards horizontally
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "20px",
+          boxSizing: "border-box",
         }}
       >
-        {tourPackages.package_types.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              width: "100%",
-              maxWidth: "300px", // Uniform card width
-              display: "flex",
-              flexDirection: "column",
-              height: "auto",
-            }}
-          >
-            <div
-              className="tour-box th-ani gsap-cursor"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
-              }}
-            >
-              {/* Image Section */}
-              <div
-                className="tour-box_img global-img"
-                style={{ height: "220px" }}
-              >
+
+
+        <div className="card-container">
+          {tourPackages.package_types.map((item) => (
+            <div key={item.id} className="card-item">
+              <div className="tour-box_img global-img" style={{ height: "220px" }}>
                 <img
                   src={item.image}
                   alt="image"
                   style={{
                     height: "100%",
                     width: "100%",
-                    objectFit: "cover", // Ensures image covers the container without distortion
+                    objectFit: "cover",
                   }}
                 />
               </div>
-              {/* Content Section */}
               <div
-                className="tour-content item-per-page"
                 style={{
                   flex: 1,
-                  padding: "10px",
+                  padding: "15px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                 }}
               >
-                <h4 className="box-title">
+                <h4 className="box-title" style={{ marginBottom: "10px" }}>
                   <a className="ne-text text-start-start">{item.title}</a>
                 </h4>
                 <div
                   style={{
                     display: "-webkit-box",
-                    WebkitLineClamp: 3, // Limit text to 2 lines
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
+                    marginBottom: "10px",
+                    fontSize: "14px",
+                    color: "#555",
                   }}
                 >
                   {item.description}
@@ -184,10 +171,9 @@ export default function TourPackages() {
                     border: "none",
                     color: "#007bff",
                     cursor: "pointer",
-                    textAlign: "left",
                     padding: 0,
-                    marginTop: "5px",
-                    fontSize: "15px",
+                    marginBottom: "10px",
+                    textAlign: "left",
                   }}
                 >
                   Read More
@@ -198,6 +184,7 @@ export default function TourPackages() {
                 <div
                   className="tour-action action-item"
                   style={{
+                    marginTop: "10px",
                     display: "flex",
                     justifyContent: "center",
                   }}
@@ -211,10 +198,12 @@ export default function TourPackages() {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
-        {/* Modal Section */}
+
+
+        {/* Modal */}
         {isModalOpen && selectedPackage && (
           <div
             style={{
@@ -240,10 +229,7 @@ export default function TourPackages() {
                 textAlign: "center",
               }}
             >
-              <h2
-                className="sec-title"
-                style={{ marginBottom: "5px", fontSize: "12px" }}
-              >
+              <h2 className="sec-title" style={{ fontSize: "16px", marginBottom: "10px" }}>
                 {selectedPackage.title}
               </h2>
               <p className="sec-text">{selectedPackage.description}</p>
@@ -255,16 +241,16 @@ export default function TourPackages() {
                 position: "absolute",
                 top: "10px",
                 right: "30px",
-                borderColor: "white", // White border
-                color: "white", // White text
+                borderColor: "white",
+                color: "white",
               }}
               onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "white"; // White background on hover
-                e.target.style.color = "#007bff"; // Primary text color on hover
+                e.target.style.backgroundColor = "white";
+                e.target.style.color = "#007bff";
               }}
               onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "transparent"; // Reset background
-                e.target.style.color = "white"; // Reset text color
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "white";
               }}
             >
               Close
@@ -272,6 +258,12 @@ export default function TourPackages() {
           </div>
         )}
       </div>
+        </>
+      ):''}
+
+     
+
+
     </div>
   );
 }

@@ -64,7 +64,7 @@ export default function BlogDeatils() {
         <Grid item xs={12} md={4}>
           {/* About Author */}
           <Paper sx={{ p: 3, textAlign: "center", mb: 3 }}>
-            <Avatar src={blogData?.author_image} sx={{ width: 80, height: 80, mx: "auto", mb: 2 }} />
+            <Avatar src={blogData?.author_image} sx={{ width: 150, height: 80, mx: "auto", mb: 2 }} />
             <Typography variant="h6">{blogData?.author}</Typography>
             <Typography variant="body2" color="text.secondary">Exploring the world, one place at a time.</Typography>
           </Paper>

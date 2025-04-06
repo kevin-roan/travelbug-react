@@ -2,10 +2,106 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { fetchAbout } from "../services/api";
 import { Link, useNavigate } from "react-router-dom";
+import { Snackbar, Alert, TextField, Button } from '@mui/material';
+
+
+
 
 export default function About() {
   const [aboutInfo, setAboutInfo] = useState("");
   const [error, setError] = useState(null);
+
+
+
+  const [selectedPackage, setSelectedPackage] = useState(null); // Track the selected package
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+
+
+
+
+  const [formValue, setFormValue] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    whatsapp: '',
+    message: ''
+  })
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+  const handleClose = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handelChange = (e) => {
+    const { value, name } = e.target
+    setFormValue((priv) => ({ ...priv, [name]: value }))
+  }
+
+  const handelSubmit = async () => {
+    console.log('valuueeeuue', formValue);
+
+    const formData = new FormData();
+    formData.append('name', formValue.name);
+    formData.append('phone', formValue.phone);
+    formData.append('email', formValue.email);
+    formData.append('whatsapp', formValue.whatsapp);
+    formData.append('message', formValue.message);
+
+    try {
+      const response = await axios.post(
+        'https://iamanas.in/travel_bug/web_api/insert_contact_us',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      if (response.data?.status === 1) {
+        setSnackbarMessage(response.data.message || 'Subscribed successfully!');
+        setSnackbarSeverity('success');
+        setFormValue({
+          name: '',
+          email: '',
+          phone: '',
+          whatsapp: '',
+          message: ''
+        })
+      } else {
+
+        setSnackbarMessage(response.data.message || 'Invalid response.');
+        setSnackbarSeverity('error');
+
+      }
+
+      // show success toast or UI update
+    } catch (error) {
+      console.log('error', error);
+      // show error toast or UI update
+      setSnackbarMessage('Something went wrong. Please try again.');
+      setSnackbarSeverity('error');
+    } finally {
+      setOpenSnackbar(true);
+    }
+  };
+
+
+
+
+
+  const handleReadMore = (item) => {
+    setSelectedPackage(item); // Set the selected package details
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setSelectedPackage(null); // Clear the selected package
+    setIsModalOpen(false); // Close the modal
+  };
 
   const navigate = useNavigate();
 
@@ -145,7 +241,7 @@ export default function About() {
             }}
           >
             <div className="mt-35">
-              <a href="/contact" className="th-btn style3 th-icon">
+              <a onClick={() => navigate(`/contact`)} className="th-btn style3 th-icon">
                 Contact With Us
               </a>
             </div>
@@ -180,97 +276,205 @@ export default function About() {
           <img src="assets/img/shape/shape_2_4.png" alt="shape" />
         </div>
       </div>
-      <section
-        className="position-relative overflow-hidden space-bottom"
-        id="destination-sec"
-      >
-        <div className="container">
-          <div className="title-area text-center">
-            <span className="sub-title">Services We Offer</span>
-            <h2 className="sec-title">
-              {aboutInfo && aboutInfo.travel_packages.title}
-            </h2>
 
-            <p className="mb-30 pe-xl-5">
-              {aboutInfo &&
-                aboutInfo.travel_packages.package_types.introduction}
-            </p>
-          </div>
-          {/* <div className="row gy-4 gx-4">
-            {aboutInfo &&
-              aboutInfo.travel_packages.package_types.map((item) => (
-                <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
-                  <div className="destination-item th-ani">
-                    <div className="destination-item_img global-img">
-                      <img src={item.image} alt={item.title} />
-                    </div>
-                    <div className="destination-content">
-                      <h3 className="box-title">
-                        <a href="service-details.html">{item.title}</a>
-                      </h3>
-                      <p className="destination-text">{item.description}</p>
-                      <a href="contact.html" className="th-btn style4 th-icon">
-                        Book Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div> */}
 
-          <div className="row gy-4 gx-4 justify-content-center">
-            {aboutInfo &&
-              aboutInfo.travel_packages.package_types.map((item) => (
-                <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
-                  <div className="card">
-                    <div className="card-img">
-                      <img
-                        src={item.image}
-                        alt={item.title}
+
+      {aboutInfo?.travel_packages?.package_types?.length !== 0 ? (
+        <section
+          className="position-relative overflow-hidden space-bottom"
+          id="destination-sec"
+        >
+          <div className="container">
+            <div className="title-area text-center">
+              <span className="sub-title">Services We Offer</span>
+              <h2 className="sec-title">
+                {aboutInfo && aboutInfo.travel_packages.title}
+              </h2>
+
+              <p className="mb-30 pe-xl-5">
+                {aboutInfo &&
+                  aboutInfo.travel_packages.package_types.introduction}
+              </p>
+            </div>
+            {/* <div className="row gy-4 gx-4">
+     {aboutInfo &&
+       aboutInfo.travel_packages.package_types.map((item) => (
+         <div className="col-xl-3 col-lg-4 col-md-6" key={item.id}>
+           <div className="destination-item th-ani">
+             <div className="destination-item_img global-img">
+               <img src={item.image} alt={item.title} />
+             </div>
+             <div className="destination-content">
+               <h3 className="box-title">
+                 <a href="service-details.html">{item.title}</a>
+               </h3>
+               <p className="destination-text">{item.description}</p>
+               <a href="contact.html" className="th-btn style4 th-icon">
+                 Book Now
+               </a>
+             </div>
+           </div>
+         </div>
+       ))}
+   </div> */}
+
+
+
+
+
+            <>
+
+              <div
+                style={{
+                  maxWidth: "1200px",
+                  margin: "0 auto",
+                  padding: "20px",
+                  boxSizing: "border-box",
+                }}
+              >
+
+
+                <div className="card-container">
+                  {aboutInfo?.travel_packages?.package_types?.map((item) => (
+                    <div key={item.id} className="card-item">
+                      <div className="tour-box_img global-img" style={{ height: "220px" }}>
+                        <img
+                          src={item.image}
+                          alt="image"
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </div>
+                      <div
                         style={{
-                          objectFit: "cover",
-                          objectPosition: "top",
-                          width: "100%",
-                          height: "auto",
+                          flex: 1,
+                          padding: "15px",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
                         }}
-                      />
-                    </div>
-                    <div className="card-content">
-                      <h3 className="card-title">
-                        <a>{item.title}</a>
-                      </h3>
-                      <p className="card-text">
-                        {item.description.length > 150 ? (
-                          <>
-                            {item.description.substring(0, 150)}...
-                            <a
-                              className="read-more"
-                              onClick={() =>
-                                navigate(`/tour_packages/${item.id}`)
-                              }
-                            >
-                              Read More
-                            </a>
-                          </>
-                        ) : (
-                          item.description
-                        )}
-                      </p>
-                      <div className="pag">
-                        <Link
-                          to={`/tour_packages/${item.id}`}
-                          className="th-btn style4 th-icon"
+                      >
+                        <h4 className="box-title" style={{ marginBottom: "10px" }}>
+                          <a className="ne-text text-start-start">{item.title}</a>
+                        </h4>
+                        <div
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            marginBottom: "10px",
+                            fontSize: "14px",
+                            color: "#555",
+                          }}
                         >
-                          Book Now
-                        </Link>
+                          {item.description}
+                        </div>
+                        <button
+                          onClick={() => handleReadMore(item)}
+                          style={{
+                            background: "transparent",
+                            border: "none",
+                            color: "#007bff",
+                            cursor: "pointer",
+                            padding: 0,
+                            marginBottom: "10px",
+                            textAlign: "left",
+                          }}
+                        >
+                          Read More
+                        </button>
+                        <h3 className="tour-box_price">
+                          <span className="box-title">{item.amount}</span>
+                        </h3>
+                        <div
+                          className="tour-action action-item"
+                          style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Link
+                            to={`/tour_packages/${item.id}`}
+                            className="th-btn style4 th-icon"
+                          >
+                            Book Now
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+
+
+
+                {/* Modal */}
+                {isModalOpen && selectedPackage && (
+                  <div
+                    style={{
+                      position: "fixed",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      zIndex: 1000,
+                    }}
+                  >
+                    <div
+                      style={{
+                        background: "#fff",
+                        padding: "20px",
+                        borderRadius: "8px",
+                        maxWidth: "500px",
+                        width: "90%",
+                        textAlign: "center",
+                      }}
+                    >
+                      <h2 className="sec-title" style={{ fontSize: "16px", marginBottom: "10px" }}>
+                        {selectedPackage.title}
+                      </h2>
+                      <p className="sec-text">{selectedPackage.description}</p>
+                    </div>
+                    <button
+                      onClick={closeModal}
+                      className="btn btn-outline-primary"
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "30px",
+                        borderColor: "white",
+                        color: "white",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "white";
+                        e.target.style.color = "#007bff";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "transparent";
+                        e.target.style.color = "white";
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+
+
           </div>
-        </div>
-      </section>
+        </section>
+      ) : ''}
+
       <section className="discover-india-section-new">
         <div className="container">
           <div className="title-area text-center">
@@ -292,11 +496,9 @@ export default function About() {
           </div>
         </div>
       </section>
-      <div className="booking-form-container">
+      <div className="booking-form-container" style={{ maxWidth: '900px', margin: '0 auto', marginTop: '20px', marginBottom: '20px' }}>
         <form
-          action="mail.php"
-          method="POST"
-          className="contact-form style2 ajax-contact"
+
         >
           <h3 className="sec-title mb-30 text-capitalize">Book a Tour</h3>
           <div className="row">
@@ -305,8 +507,10 @@ export default function About() {
                 type="text"
                 className="form-control"
                 name="name"
-                id="name3"
-                placeholder="First Name"
+                id="full_name"
+                placeholder="Full Name"
+                onChange={(e) => handelChange(e)}
+                value={formValue.name}
               />
               <img
                 src="assets/img/icon/user.svg"
@@ -314,13 +518,19 @@ export default function About() {
                 className="input-icon"
               />
             </div>
+
+
             <div className="col-12 form-group position-relative">
               <input
                 type="email"
                 className="form-control"
-                name="email3"
-                id="email3"
-                placeholder="Your Mail"
+                name="email"
+                id="email"
+                placeholder="Email ID"
+                onChange={(e) => handelChange(e)}
+                value={formValue.email}
+
+
               />
               <img
                 src="assets/img/icon/mail.svg"
@@ -328,22 +538,48 @@ export default function About() {
                 className="input-icon"
               />
             </div>
-            <div className="form-group col-12">
-              <select
-                name="subject"
-                id="subject"
-                className="form-select nice-select"
-              >
-                <option value="Select Tour Type" disabled>
-                  Select Tour Type
-                </option>
-                <option value="Africa Adventure">Africa Adventure</option>
-                <option value="Africa Wild">Africa Wild</option>
-                <option value="Asia">Asia</option>
-                <option value="Scandinavia">Scandinavia</option>
-                <option value="Western Europe">Western Europe</option>
-              </select>
+
+
+            <div className="col-12 form-group position-relative">
+              <input
+                type="tel"
+                className="form-control"
+                name="phone"
+                id="phone"
+                placeholder="Phone Number"
+                onChange={(e) => handelChange(e)}
+                minLength={10}
+                value={formValue.phone}
+
+              />
+              <img
+                src="assets/img/icon/phone.svg"
+                alt="Phone Icon"
+                className="input-icon"
+
+              />
             </div>
+
+            <div className="col-12 form-group position-relative">
+              <input
+                type="tel"
+                className="form-control"
+                name="whatsapp"
+                id="whatsapp"
+                placeholder="WhatsApp Number"
+                onChange={(e) => handelChange(e)}
+                maxLength={10}
+                value={formValue.whatsapp}
+
+
+              />
+              {/* <img
+                src="assets/img/icon/whatsapp.svg"
+                alt="WhatsApp Icon"
+                className="input-icon"
+              /> */}
+            </div>
+
             <div className="form-group col-12 position-relative">
               <textarea
                 name="message"
@@ -352,6 +588,10 @@ export default function About() {
                 rows="4"
                 className="form-control"
                 placeholder="Your Message"
+                onChange={(e) => handelChange(e)}
+                value={formValue.message}
+
+
               ></textarea>
               <img
                 src="assets/img/icon/chat.svg"
@@ -359,13 +599,26 @@ export default function About() {
                 className="textarea-icon"
               />
             </div>
+
             <div className="form-btn col-12 mt-24 text-center">
-              <button type="submit" className="th-btn style3">
+              <button type="button" onClick={handelSubmit} className="th-btn style3">
                 Send Message
                 <img src="assets/img/icon/plane.svg" alt="Send Icon" />
               </button>
             </div>
           </div>
+
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={4000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          >
+            <Alert onClose={handleClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+              {snackbarMessage}
+            </Alert>
+          </Snackbar>
+
           <p className="form-messages mb-0 mt-3"></p>
         </form>
       </div>

@@ -30,7 +30,7 @@ export default function Hero() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
- 
+
 
   useEffect(() => {
     const scriptSources = [
@@ -165,11 +165,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[0].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -217,11 +216,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[1].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -269,11 +267,10 @@ export default function Hero() {
                       : ""
                   }
                   style={{
-                    backgroundImage: `url(${
-                      homeData && homeData.banners
+                    backgroundImage: `url(${homeData && homeData.banners
                         ? homeData.banners[2].image
                         : ""
-                    })`,
+                      })`,
                   }}
                 ></div>
                 <div className="container">
@@ -772,16 +769,16 @@ export default function Hero() {
             >
               {homeData && homeData.gallery_title}
             </span>
-            <h2  className="libre-font-item"
+            <h2 className="libre-font-item"
               style={{
                 fontFamily: "Poppins",
-               
+
                 fontWeight: "700",
               }}>
               {homeData && homeData.gallery_heading}
             </h2>
           </div>
-          <div className="row gy-10 gx-10 justify-content-center align-items-center">
+          <div className="row gy-10 gx-10 justify-content-center align-items-center" style={{ maxWidth: '1300px', margin: '0 auto' }}>
             {homeData &&
               homeData.gallery.map((image, index) => (
                 <div className="col-md-6 col-lg-2" key={index}>
@@ -801,7 +798,8 @@ export default function Hero() {
                         <img
                           src={image.image}
                           alt="gallery image"
-                          style={{ width: "100%", height: "auto" }}
+                          className="hero-gallary"
+
                         />
                       </a>
                     </div>
@@ -996,7 +994,7 @@ export default function Hero() {
               className="libre-font-item"
               style={{
                 fontFamily: "Poppins",
-               
+
                 fontWeight: "700",
               }}
             >
@@ -1391,9 +1389,9 @@ export default function Hero() {
                 <div>
                   {homeData &&
                     homeData.blogs.map((item, index) => (
-                      <div className="swiper-sli" style={{maxWidth:'390px'}} key={index}>
+                      <div className="swiper-sli" style={{ maxWidth: '390px' }} key={index}>
                         <div
-                        onClick={()=>handelClik(item?.slug)}
+                          onClick={() => handelClik(item?.slug)}
                           className="blog-box th-ani"
                           style={{
                             background: "#fff",
@@ -1595,7 +1593,7 @@ export default function Hero() {
                   color: "#4A4A4A",
                   padding: "0 5vmax",
                   paddingBottom: 10,
-                 
+
                 }}
               >
                 {homeData?.fag_description}
@@ -1623,7 +1621,7 @@ export default function Hero() {
         >
           <path
             d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-            // style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"
+          // style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"
           ></path>
         </svg>
       </div>
@@ -1804,8 +1802,8 @@ export default function Hero() {
           }}
         >
           <img
-            src={homeData && homeData.gallery[currentImageIndex]?.image}
-            alt={`Slide ${currentImageIndex + 1}`}
+           src={homeData && homeData.gallery[currentImageIndex]?.image}
+           alt={`Slide ${currentImageIndex + 1}`}
             style={{
               width: "80%",
               height: "auto",

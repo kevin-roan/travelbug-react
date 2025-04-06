@@ -81,30 +81,36 @@ const Tour = () => {
         </div>
       </section>
 
-      <div className="row" style={{ marginBottom: "50px" }}>
-        <div className="col-lg-10 offset-lg-1">
-          <div className="accordion-area accordion mb-30" id="faqAccordion">
-            <div
-              className="items-center"
-              style={{
-                paddingTop: 50,
-                textAlign: "center",
-                marginBottom: "40px",
-              }}
-            >
-              <h3>{tourData?.data?.faq?.heading}</h3>
+      {tourData?.data?.faq?.faqs?.length !== 0 ? (
+        <>
+          <div className="row" style={{ marginBottom: "50px" }}>
+            <div className="col-lg-10 offset-lg-1">
+              <div className="accordion-area accordion mb-30" id="faqAccordion">
+                <div
+                  className="items-center"
+                  style={{
+                    paddingTop: 50,
+                    textAlign: "center",
+                    marginBottom: "40px",
+                  }}
+                >
+                  <h3>{tourData?.data?.faq?.heading}</h3>
+                </div>
+                {tourData?.data?.faq?.faqs?.map((faq, index) => (
+                  <Accordion
+                    index={index}
+                    key={index}
+                    question={faq.question}
+                    answer={faq.answer}
+                  />
+                ))}
+              </div>
             </div>
-            {tourData?.data?.faq?.faqs?.map((faq, index) => (
-              <Accordion
-                index={index}
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-              />
-            ))}
           </div>
-        </div>
-      </div>
+        </>
+      ) : ''}
+
+
     </div>
   );
 };

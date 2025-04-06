@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Accordion from "../components/Accordion";
+import { Snackbar, Alert, TextField, Button } from '@mui/material';
 
 export default function FAQ() {
   const [faq, setFaq] = useState([]);
@@ -24,6 +25,78 @@ export default function FAQ() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [formValue, setFormValue] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    whatsapp: '',
+    message: ''
+  })
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+  const handleClose = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handelChange = (e) => {
+    const { value, name } = e.target
+    setFormValue((priv) => ({ ...priv, [name]: value }))
+  }
+
+  const handelSubmit = async () => {
+    console.log('valuueeeuue', formValue);
+
+    const formData = new FormData();
+    formData.append('name', formValue.name);
+    formData.append('phone', formValue.phone);
+    formData.append('email', formValue.email);
+    formData.append('whatsapp', formValue.whatsapp);
+    formData.append('message', formValue.message);
+
+    try {
+      const response = await axios.post(
+        'https://iamanas.in/travel_bug/web_api/insert_contact_us',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      if (response.data?.status === 1) {
+        setSnackbarMessage(response.data.message || 'Subscribed successfully!');
+        setSnackbarSeverity('success');
+        setFormValue({
+          name: '',
+          email: '',
+          phone: '',
+          whatsapp: '',
+          message: ''
+        })
+      } else {
+
+        setSnackbarMessage(response.data.message || 'Invalid response.');
+        setSnackbarSeverity('error');
+
+      }
+
+      // show success toast or UI update
+    } catch (error) {
+      console.log('error', error);
+      // show error toast or UI update
+      setSnackbarMessage('Something went wrong. Please try again.');
+      setSnackbarSeverity('error');
+    } finally {
+      setOpenSnackbar(true);
+    }
+  };
+
+
 
   return (
     <>
@@ -107,75 +180,133 @@ export default function FAQ() {
                   <span className="sub-title style1">Meet with Our Guide</span>
                   <h2 className="sec-title">Do You Have Any More Questions?</h2>
                 </div>
-                <form
-                  action="mail.php"
-                  method="POST"
-                  className="contact-form ajax-contact"
-                >
-                  <h3 className="sec-title mb-30">Book a tour</h3>
-                  <div className="row">
-                    <div className="col-md-6 form-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        id="name3"
-                        placeholder="First Name"
-                      />
-                      <img src="assets/img/icon/user.svg" alt="" />
+                <div className="booking-form-container" style={{ maxWidth: '1100px', margin: '0 auto', marginTop: '20px', marginBottom: '20px',borderRadius:'10px', padding: '30px', background: 'white' }}>
+                  <form
+
+
+                  >
+                    <h3 className="sec-title mb-30 text-capitalize">Book a Tour</h3>
+                    <div className="row">
+                      <div className="col-12 form-group position-relative">
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="name"
+                          id="full_name"
+                          placeholder="Full Name"
+                          onChange={(e) => handelChange(e)}
+                          value={formValue.name}
+                        />
+                        <img
+                          src="assets/img/icon/user.svg"
+                          alt="User Icon"
+                          className="input-icon"
+                        />
+                      </div>
+
+
+                      <div className="col-12 form-group position-relative">
+                        <input
+                          type="email"
+                          className="form-control"
+                          name="email"
+                          id="email"
+                          placeholder="Email ID"
+                          onChange={(e) => handelChange(e)}
+                          value={formValue.email}
+
+
+                        />
+                        <img
+                          src="assets/img/icon/mail.svg"
+                          alt="Mail Icon"
+                          className="input-icon"
+                        />
+                      </div>
+
+
+                      <div className="col-12 form-group position-relative">
+                        <input
+                          type="tel"
+                          className="form-control"
+                          name="phone"
+                          id="phone"
+                          placeholder="Phone Number"
+                          onChange={(e) => handelChange(e)}
+                          minLength={10}
+                          value={formValue.phone}
+
+                        />
+                        <img
+                          src="assets/img/icon/phone.svg"
+                          alt="Phone Icon"
+                          className="input-icon"
+
+                        />
+                      </div>
+
+                      <div className="col-12 form-group position-relative">
+                        <input
+                          type="tel"
+                          className="form-control"
+                          name="whatsapp"
+                          id="whatsapp"
+                          placeholder="WhatsApp Number"
+                          onChange={(e) => handelChange(e)}
+                          maxLength={10}
+                          value={formValue.whatsapp}
+
+
+                        />
+                        {/* <img
+                            src="assets/img/icon/whatsapp.svg"
+                            alt="WhatsApp Icon"
+                            className="input-icon"
+                          /> */}
+                      </div>
+
+                      <div className="form-group col-12 position-relative">
+                        <textarea
+                          name="message"
+                          id="message"
+                          cols="30"
+                          rows="4"
+                          className="form-control"
+                          placeholder="Your Message"
+                          onChange={(e) => handelChange(e)}
+                          value={formValue.message}
+
+
+                        ></textarea>
+                        <img
+                          src="assets/img/icon/chat.svg"
+                          alt="Chat Icon"
+                          className="textarea-icon"
+                        />
+                      </div>
+
+                      <div className="form-btn col-12 mt-24 text-center">
+                        <button type="button" onClick={handelSubmit} className="th-btn style3">
+                          Send Message
+                          <img src="assets/img/icon/plane.svg" alt="Send Icon" />
+                        </button>
+                      </div>
                     </div>
-                    <div className="col-md-6 form-group">
-                      <input
-                        type="email"
-                        className="form-control"
-                        name="email3"
-                        id="email3"
-                        placeholder="Your Mail"
-                      />
-                      <img src="assets/img/icon/mail.svg" alt="" />
-                    </div>
-                    <div className="form-group col-12">
-                      <select
-                        name="subject"
-                        id="subject"
-                        className="form-select nice-select"
-                      >
-                        <option
-                          value="Select Tour Destination"
-                          selected
-                          disabled
-                        >
-                          Select Tour Destination
-                        </option>
-                        <option value="Africa Adventure">
-                          Africa Adventure
-                        </option>
-                        <option value="Africa Wild">Africa Wild</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Scandinavia">Scandinavia</option>
-                        <option value="Western Europe">Western Europe</option>
-                      </select>
-                    </div>
-                    <div className="form-group col-12">
-                      <textarea
-                        name="message"
-                        id="message"
-                        cols="30"
-                        rows="3"
-                        className="form-control"
-                        placeholder="Your Message"
-                      ></textarea>
-                      <img src="assets/img/icon/chat.svg" alt="" />
-                    </div>
-                    <div className="form-btn col-12 mt-24">
-                      <button type="submit" className="th-btn style3">
-                        Send message{" "}
-                        <img src="assets/img/icon/plane.svg" alt="" />
-                      </button>
-                    </div>
-                  </div>
-                  <p className="form-messages mb-0 mt-3"></p>
-                </form>
+
+                    <Snackbar
+                      open={openSnackbar}
+                      autoHideDuration={4000}
+                      onClose={handleClose}
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                    >
+                      <Alert onClose={handleClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                        {snackbarMessage}
+                      </Alert>
+                    </Snackbar>
+
+                    <p className="form-messages mb-0 mt-3"></p>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

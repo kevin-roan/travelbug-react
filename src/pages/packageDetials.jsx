@@ -20,6 +20,15 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Carousel from "react-material-ui-carousel";
 
+import {
+  Dialog,
+  DialogContent,
+  IconButton,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+
 export default function PackageDetails() {
   const [data, setData] = useState("");
   const { id } = useParams();
@@ -51,6 +60,28 @@ export default function PackageDetails() {
   }, [id]);
 
   console.log("data ", data);
+
+  const [open, setOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const images = data?.package_details?.gallery || [];
+
+  const handleOpen = (index) => {
+    setSelectedImageIndex(index);
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
+
+  const handleNext = () =>
+    setSelectedImageIndex((prev) => (prev + 1) % images.length);
+
+  const handlePrev = () =>
+    setSelectedImageIndex(
+      (prev) => (prev - 1 + images.length) % images.length
+    );
+
+
 
   if (!data) {
     return <div className="loading-container">Loading...</div>;
@@ -206,26 +237,61 @@ export default function PackageDetails() {
 
                 {activeTab === "gallery" && (
                   <>
-                    <Box
-                      sx={{ width: "100%", margin: "0 auto", padding: "10px" }}
-                    >
-                      <ImageList cols={getCols()} gap={8}>
-                        {data?.package_details?.gallery?.map((item, index) => (
-                          <ImageListItem key={index}>
-                            <img
-                              src={item} // Assuming `item` is a URL
-                              alt={`Gallery Image ${index + 1}`}
-                              loading="lazy"
-                              style={{
-                                width: "100%",
-                                height: "auto",
-                                borderRadius: "8px",
-                              }}
-                            />
-                          </ImageListItem>
-                        ))}
-                      </ImageList>
-                    </Box>
+                    {images.length > 0 && (
+                      <Box sx={{ width: "100%", margin: "0 auto", padding: "10px" }}>
+                        <ImageList cols={getCols()} gap={8}>
+                          {images.map((item, index) => (
+                            <ImageListItem key={index} onClick={() => handleOpen(index)} style={{ cursor: "pointer" }}>
+                              <img
+                                src={item}
+                                alt={`Gallery Image ${index + 1}`}
+                                loading="lazy"
+                                style={{
+                                  width: "100%",
+                                  height: "auto",
+                                  borderRadius: "8px",
+                                }}
+                              />
+                            </ImageListItem>
+                          ))}
+                        </ImageList>
+                      </Box>
+                    )}
+
+                    {/* Image Popup Dialog */}
+                    <Dialog open={open} onClose={handleClose} maxWidth="md">
+                      <DialogContent sx={{ position: "relative", p: 0 }}>
+                        <IconButton
+                          onClick={handleClose}
+                          sx={{ position: "absolute", top: 10, right: 10, zIndex: 1 }}
+                        >
+                          <CloseIcon />
+                        </IconButton>
+                        <IconButton
+                          onClick={handlePrev}
+                          sx={{ position: "absolute", top: "50%", left: 10, zIndex: 1 }}
+                        >
+                          <ArrowBackIosIcon />
+                        </IconButton>
+                        <img
+                          src={images[selectedImageIndex]}
+                          alt={`Selected Gallery ${selectedImageIndex + 1}`}
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto",
+                            display: "block",
+                            margin: "0 auto",
+                            borderRadius: "8px",
+                          }}
+                        />
+                        <IconButton
+                          onClick={handleNext}
+                          sx={{ position: "absolute", top: "50%", right: 10, zIndex: 1 }}
+                        >
+                          <ArrowForwardIosIcon />
+                        </IconButton>
+                      </DialogContent>
+                    </Dialog>
                   </>
                 )}
 

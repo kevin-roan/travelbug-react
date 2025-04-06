@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Snackbar, Alert, TextField, Button } from '@mui/material';
+
 
 export default function Contact() {
   const [contactInfo, setContactInfo] = useState([]);
@@ -82,6 +84,77 @@ export default function Contact() {
       alert(`Sorry try again later, ${error}`);
     }
   };
+
+  const [formValue, setFormValue] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    whatsapp: '',
+    message: ''
+  })
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+  const handleClose = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handelChange = (e) => {
+    const { value, name } = e.target
+    setFormValue((priv) => ({ ...priv, [name]: value }))
+  }
+
+  const handelSubmit = async () => {
+    console.log('valuueeeuue', formValue);
+
+    const formData = new FormData();
+    formData.append('name', formValue.name);
+    formData.append('phone', formValue.phone);
+    formData.append('email', formValue.email);
+    formData.append('whatsapp', formValue.whatsapp);
+    formData.append('message', formValue.message);
+
+    try {
+      const response = await axios.post(
+        'https://iamanas.in/travel_bug/web_api/insert_contact_us',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      if (response.data?.status === 1) {
+        setSnackbarMessage(response.data.message || 'Subscribed successfully!');
+        setSnackbarSeverity('success');
+        setFormValue({
+          name: '',
+          email: '',
+          phone: '',
+          whatsapp: '',
+          message: ''
+        })
+      } else {
+
+        setSnackbarMessage(response.data.message || 'Invalid response.');
+        setSnackbarSeverity('error');
+
+      }
+
+      // show success toast or UI update
+    } catch (error) {
+      console.log('error', error);
+      // show error toast or UI update
+      setSnackbarMessage('Something went wrong. Please try again.');
+      setSnackbarSeverity('error');
+    } finally {
+      setOpenSnackbar(true);
+    }
+  };
+
 
   return (
     <>
@@ -177,7 +250,7 @@ export default function Contact() {
               <div className="video-box1">
                 <a
                   href="https://www.youtube.com/watch?v=cQfIUPw72Dk"
-                  className="play-btn style2 popup-video"
+                  // className="play-btn style2 popup-video"
                 >
                   <i className="fa-sharp fa-solid fa-play"></i>
                 </a>
@@ -193,74 +266,122 @@ export default function Contact() {
                     Book a tour
                   </h3>
                   <div className="row">
-                    <div className="col-12 form-group">
+                    <div className="col-12 form-group position-relative">
                       <input
                         type="text"
                         className="form-control"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleInputChange}
-                        placeholder="Your Name"
-                        required
+                        name="name"
+                        id="full_name"
+                        placeholder="Full Name"
+                        onChange={(e) => handelChange(e)}
+                        value={formValue.name}
                       />
-                      <img src="assets/img/icon/user.svg" alt="" />
+                      <img
+                        src="assets/img/icon/user.svg"
+                        alt="User Icon"
+                        className="input-icon"
+                      />
                     </div>
-                    <div className="col-12 form-group">
+
+
+                    <div className="col-12 form-group position-relative">
                       <input
                         type="email"
                         className="form-control"
                         name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="Your Mail"
-                        required
+                        id="email"
+                        placeholder="Email ID"
+                        onChange={(e) => handelChange(e)}
+                        value={formValue.email}
+
+
                       />
-                      <img src="assets/img/icon/mail.svg" alt="" />
+                      <img
+                        src="assets/img/icon/mail.svg"
+                        alt="Mail Icon"
+                        className="input-icon"
+                      />
                     </div>
-                    <div className="form-group col-12">
-                      <select
-                        name="packageType"
-                        value={formData.packageType}
-                        onChange={handleInputChange}
-                        className="form-select nice-select"
-                        required
-                      >
-                        <option value="" disabled>
-                          Select Tour Type
-                        </option>
-                        {packageListType &&
-                          packageListType.map((packageType) => (
-                            <option key={packageType.id} value={packageType.id}>
-                              {packageType.title}
-                            </option>
-                          ))}
-                      </select>
+
+
+                    <div className="col-12 form-group position-relative">
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="phone"
+                        id="phone"
+                        placeholder="Phone Number"
+                        onChange={(e) => handelChange(e)}
+                        minLength={10}
+                        value={formValue.phone}
+
+                      />
+                      <img
+                        src="assets/img/icon/phone.svg"
+                        alt="Phone Icon"
+                        className="input-icon"
+
+                      />
                     </div>
-                    <div className="form-group col-12">
+
+                    <div className="col-12 form-group position-relative">
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="whatsapp"
+                        id="whatsapp"
+                        placeholder="WhatsApp Number"
+                        onChange={(e) => handelChange(e)}
+                        maxLength={10}
+                        value={formValue.whatsapp}
+
+
+                      />
+                      {/* <img
+                                             src="assets/img/icon/whatsapp.svg"
+                                             alt="WhatsApp Icon"
+                                             className="input-icon"
+                                           /> */}
+                    </div>
+
+                    <div className="form-group col-12 position-relative">
                       <textarea
                         name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
+                        id="message"
                         cols="30"
-                        rows="3"
+                        rows="4"
                         className="form-control"
                         placeholder="Your Message"
-                        required
+                        onChange={(e) => handelChange(e)}
+                        value={formValue.message}
+
+
                       ></textarea>
-                      <img src="assets/img/icon/chat.svg" alt="" />
+                      <img
+                        src="assets/img/icon/chat.svg"
+                        alt="Chat Icon"
+                        className="textarea-icon"
+                      />
                     </div>
-                    <div className="form-btn col-12 mt-24">
-                      <button
-                        type="submit"
-                        className="th-btn style3"
-                        onClick={handleSubmit}
-                      >
-                        Send message
-                        <img src="assets/img/icon/plane.svg" alt="" />
+
+                    <div className="form-btn col-12 mt-24 text-center">
+                      <button type="button" onClick={handelSubmit} className="th-btn style3">
+                        Send Message
+                        <img src="assets/img/icon/plane.svg" alt="Send Icon" />
                       </button>
                     </div>
                   </div>
-                  <p className="form-messages mb-0 mt-3"></p>
+
+                  <Snackbar
+                    open={openSnackbar}
+                    autoHideDuration={4000}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                  >
+                    <Alert onClose={handleClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                      {snackbarMessage}
+                    </Alert>
+                  </Snackbar>
                 </form>
               </div>
             </div>
@@ -271,7 +392,7 @@ export default function Contact() {
         <div className="container-fluid">
           <div className="contact-map style2">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.7310056272386!2d89.2286059153658!3d24.00527418490799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fe9b97badc6151%3A0x30b048c9fb2129bc!2sAngfuztheme!5e0!3m2!1sen!2sbd!4v1651028958211!5m2!1sen!2sbd"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.3168775528025!2d55.324426800000005!3d25.158776099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6780a2842a21%3A0xb6ff5ca65250c789!2sTravelbug%20Tourism!5e0!3m2!1sen!2sin!4v1743774067946!5m2!1sen!2sin"
               allowfullscreen=""
               loading="lazy"
             ></iframe>

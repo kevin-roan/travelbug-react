@@ -90,54 +90,54 @@ export default function Blog() {
               ))}
             <div className="col-xxl-4 col-lg-5">
               <aside className="sidebar-area">
-                <div className="widget widget_search  ">
+                {/* <div className="widget widget_search  ">
                   <form className="search-form">
                     <input type="text" placeholder="Search" />
                     <button type="submit">
                       <i className="far fa-search"></i>
                     </button>
                   </form>
-                </div>
+                </div> */}
                 <div className="widget widget_categories  ">
                   <h3 className="widget_title">Categories</h3>
                   <ul>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         City Tour
                       </a>
                       <span>(8)</span>
                     </li>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         Beach Tours
                       </a>
                       <span>(6)</span>
                     </li>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         Wildlife Tours
                       </a>
                       <span>(2)</span>
                     </li>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         News & Tips
                       </a>
                       <span>(7)</span>
                     </li>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         Adventure Tours
                       </a>
                       <span>(9)</span>
                     </li>
                     <li>
-                      <a href="blog.html">
+                      <a >
                         <img src="assets/img/theme-img/map.svg" alt="" />
                         Mountain Tours
                       </a>
@@ -150,7 +150,7 @@ export default function Blog() {
                   <div className="recent-post-wrap">
                     <div className="recent-post">
                       <div className="media-img">
-                        <a href="blog-details.html">
+                        <a >
                           <img
                             src="assets/img/blog/recent-post-1-1.jpg"
                             alt="Blog Image"
@@ -159,7 +159,7 @@ export default function Blog() {
                       </div>
                       <div className="media-body">
                         <h4 className="post-title">
-                          <a className="text-inherit" href="blog-details.html">
+                          <a className="text-inherit" >
                             Exploring The Green Spaces Of the island maldives
                           </a>
                         </h4>
@@ -172,7 +172,7 @@ export default function Blog() {
                     </div>
                     <div className="recent-post">
                       <div className="media-img">
-                        <a href="blog-details.html">
+                        <a >
                           <img
                             src="assets/img/blog/recent-post-1-2.jpg"
                             alt="Blog Image"
@@ -181,7 +181,7 @@ export default function Blog() {
                       </div>
                       <div className="media-body">
                         <h4 className="post-title">
-                          <a className="text-inherit" href="blog-details.html">
+                          <a className="text-inherit" >
                             Harmony With Nature Of Belgium Tour and travle
                           </a>
                         </h4>
@@ -203,7 +203,7 @@ export default function Blog() {
                       </div>
                       <div className="media-body">
                         <h4 className="post-title">
-                          <a className="text-inherit" href="blog-details.html">
+                          <a className="text-inherit" >
                             Exploring The Green Spaces Of Realar Residence
                           </a>
                         </h4>
@@ -219,14 +219,14 @@ export default function Blog() {
                 <div className="widget widget_tag_cloud  ">
                   <h3 className="widget_title">Popular Tags</h3>
                   <div className="tagcloud">
-                    <a href="blog.html">Tour</a>
-                    <a href="blog.html">Adventure</a>
-                    <a href="blog.html">Rent</a>
-                    <a href="blog.html">Innovate</a>
-                    <a href="blog.html">Hotel</a>
-                    <a href="blog.html">Modern</a>
-                    <a href="blog.html">Luxury</a>
-                    <a href="blog.html">Travel</a>
+                    <a >Tour</a>
+                    <a >Adventure</a>
+                    <a >Rent</a>
+                    <a >Innovate</a>
+                    <a >Hotel</a>
+                    <a >Modern</a>
+                    <a >Luxury</a>
+                    <a >Travel</a>
                   </div>
                 </div>
               </aside>

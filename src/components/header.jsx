@@ -174,7 +174,7 @@ export default function Header() {
             <div className="recent-post-wrap">
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a>
                     <img
                       src="assets/img/blog/recent-post-1-1.jpg"
                       alt="Blog Image"
@@ -183,12 +183,12 @@ export default function Header() {
                 </div>
                 <div className="media-body">
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a >
                       <i className="far fa-calendar"></i>24 Jun , 2024
                     </a>
                   </div>
                   <h4 className="post-title">
-                    <a className="text-inherit" href="blog-details.html">
+                    <a className="text-inherit" >
                       Where Vision Meets Concrete Reality
                     </a>
                   </h4>
@@ -196,7 +196,7 @@ export default function Header() {
               </div>
               <div className="recent-post">
                 <div className="media-img">
-                  <a href="blog-details.html">
+                  <a >
                     <img
                       src="assets/img/blog/recent-post-1-2.jpg"
                       alt="Blog Image"
@@ -205,12 +205,12 @@ export default function Header() {
                 </div>
                 <div className="media-body">
                   <div className="recent-post-meta">
-                    <a href="blog.html">
+                    <a>
                       <i className="far fa-calendar"></i>22 Jun , 2024
                     </a>
                   </div>
                   <h4 className="post-title">
-                    <a className="text-inherit" href="blog-details.html">
+                    <a className="text-inherit" >
                       Raising the Bar in Construction.
                     </a>
                   </h4>
@@ -370,30 +370,31 @@ export default function Header() {
 
 
             <div className="row justify-content-between align-items-center text-center text-md-start">
-              {/* Left: Phone (Always visible) */}
+              {/* Phone - always visible */}
               <div className="col-auto">
-                <div className="d-flex align-items-center gap-2">
+                <a href="tel:+91962579919" className="d-flex align-items-center gap-2 addI">
                   <PhoneIcon style={{ color: '#555' }} />
                   <span>+91-99625 79919</span>
-                </div>
+                </a>
               </div>
 
-              {/* Center: WhatsApp (Hidden on small screens) */}
+              {/* WhatsApp - hidden on small screens */}
               <div className="col-auto d-none d-md-flex">
-                <div className="d-flex align-items-center gap-2">
+                <a href="https://wa.me/919645379919" target="_blank" rel="noopener noreferrer" className="d-flex align-items-center gap-2 addI">
                   <WhatsAppIcon style={{ color: 'green' }} />
                   <span>+91-96453 79919</span>
-                </div>
+                </a>
               </div>
 
-              {/* Right: Email (Hidden on small screens) */}
+              {/* Email - hidden on small screens */}
               <div className="col-auto d-none d-md-flex">
-                <div className="d-flex align-items-center gap-2">
+                <a href="mailto:mail@travelbugindia.com" className="d-flex align-items-center gap-2 addI">
                   <EmailIcon style={{ color: '#555' }} />
                   <span>mail@travelbugindia.com</span>
-                </div>
+                </a>
               </div>
             </div>
+
           </div>
         </div>
         <div className="sticky-wrapper">
